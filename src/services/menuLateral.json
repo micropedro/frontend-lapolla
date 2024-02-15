@@ -1,0 +1,39 @@
+{
+    "menu": [
+        {
+            "name": "Usuarios",
+            "icon": "bi bi-people",
+            "link": "/dashboard/users"
+        },
+        {
+            "name": "loterías",
+            "icon": "bi bi-dice-6",
+            "link": "/dashboard/loterias"
+        },
+        {
+            "name": "Ganadores",
+            "icon": "bi bi-check-circle",
+            "link": "/dashboard/ganadores"
+        },
+        {
+            "name": "Métodos de pago",
+            "icon": "bi bi-credit-card",
+            "link": "/dashboard/metodos"
+        },
+        {
+            "name": "Quinielas",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/quinielas"
+        },
+        {
+            "name": "Bancos",
+            "icon": "bi bi-bank",
+            "link": "/dashboard/bancos"
+        },
+        {
+            "name": "Ventas",
+            "icon": "bi bi-cash",
+            "link": "/dashboard/ventas"
+        }
+    ]
+}

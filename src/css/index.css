@@ -1,0 +1,78 @@
+.logo{
+    width: 100%;
+    max-width: 120px;
+}
+.list-none{
+    list-style: none;
+}
+.link{
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(153, 153, 153);
+    background-color: rgb(6, 76, 138);
+}
+.link:hover{
+    background-color: aqua;
+    width: 100%;
+}
+.sidebar-button{
+    margin-bottom: 2px;
+    padding: 3px 10px;
+    background-color: rgba(236, 241, 241, 0.055);
+    border-radius: 2px;
+    transition: 0.4s;
+    
+}
+.sidebar-button-active{
+    background-color: aliceblue;
+}
+.sidebar-button:hover{
+    color: white;
+    background-color: rgba(236, 241, 241, 0.212);
+}
+.wrap-login{
+    padding-top: 50px;
+}
+.login-body{
+    background-color: rgba(255, 255, 255, 0.082);
+    padding: 10px;
+    border-radius: 15px;
+}
+.logo-login{
+    max-height: 100px;
+}
+
+.notification-bg{
+    background-color: rgba(29, 29, 29, 0.767);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-body{
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 4px;
+    min-width: 260px;
+    min-height: 180px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.welcomeSidebarText{
+    margin-bottom: 0px;
+}
+.text-gray{
+    color: gray;
+}
+.sidebarNameEmail{
+    font-size: 12px;
+    display: block;
+    line-height: 11px;
+}
