@@ -76,3 +76,12 @@
     display: block;
     line-height: 11px;
 }
+.devEnvironment{
+    background-color: rgba(150, 8, 8, 0.438);
+    color: aliceblue;
+    position: fixed;
+    padding: 3px 10px;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+}

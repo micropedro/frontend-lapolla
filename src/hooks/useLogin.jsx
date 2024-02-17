@@ -34,7 +34,7 @@ const useLogin = () => {
 
         } catch (error) {
             console.log(error)
-            /* setText(error) */
+            setText('A ocurrido un error')
             setNotification(true)
         }
     }

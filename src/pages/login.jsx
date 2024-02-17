@@ -5,15 +5,14 @@ import useLogin from "../hooks/useLogin"
 const Login = () => {
     const { loading } = useLoadingStore()
     const { login } = useLogin()
-
+   
     return (
         <>
             <div className="container-fluid bg-dark text-light min-vh-100">
                 <div className="row wrap-login">
                     <div className="col-10 col-sm-8 col-md-6 col-lg-4 offset-1 offset-sm-2 offset-md-3 offset-lg-4 login-body p-4">
                         <div className="text-center">
-                            <img src={images.logoSVG} className="logo-login mb-2" alt="" />
-                            <h4 className="mb-3">Administracion</h4>
+                            <img src={images.logoPng} className="logo-login mb-2" alt="" />
                         </div>
                         <div className="mb-4">
                             <form onSubmit={e => { login(e) }}>

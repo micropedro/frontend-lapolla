@@ -1,5 +1,5 @@
-import logoSVG from './logo.svg'
+import logoPng from './logo.png'
 const images = {
-    logoSVG
+    logoPng
 }
 export default images
