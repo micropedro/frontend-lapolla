@@ -1,6 +1,6 @@
 import images from "../images/images"
 import useLoadingStore from "../store/loadingStore"
-import Spinner from '../components/spinner'
+import Spinner from "../components/spiner"
 import useLogin from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 const Login = () => {

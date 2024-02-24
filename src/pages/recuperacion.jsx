@@ -1,7 +1,7 @@
 import images from '../images/images'
 import useRecuperacion from '../hooks/useRecuperacion'
 import useLoadingStore from '../store/loadingStore'
-import Spinner from '../components/spinner'
+import Spinner from '../components/spiner'
 
 function Recuperacion() {
     const { loading } = useLoadingStore()
