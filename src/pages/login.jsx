@@ -1,11 +1,12 @@
 import images from "../images/images"
 import useLoadingStore from "../store/loadingStore"
-import Spinner from "../components/Spinner"
+import Spinner from '../components/spinner'
 import useLogin from "../hooks/useLogin"
+import { Link } from "react-router-dom"
 const Login = () => {
     const { loading } = useLoadingStore()
     const { login } = useLogin()
-   
+
     return (
         <>
             <div className="container-fluid bg-dark text-light min-vh-100">
@@ -26,9 +27,9 @@ const Login = () => {
                             </form>
                         </div>
                         <div className="my-3">
-                            <a href="">
+                            <Link to='/recuperacion' >
                                 Olvide mi contraseña
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

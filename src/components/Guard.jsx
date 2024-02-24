@@ -1,9 +1,24 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
-const Guard = () => {
+const Guard = ({ children }) => {
+
     const navigate = useNavigate()
-    useEffect(() => { if (!localStorage.getItem('user')) { navigate('/login') } }, [])
+
+    const [access, setAccess] = useState(false)
+
+    useEffect(() => {
+        if (!localStorage.getItem('user')) {
+            setAccess(false)
+            navigate('/login')
+        } else {
+            setAccess(true)
+        }
+    }, [])
+
+    return access ? children : "Error de autenticacion de usuario..."
+
 }
 
 export default Guard
