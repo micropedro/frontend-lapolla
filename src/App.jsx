@@ -7,10 +7,12 @@ import Notification from './components/notification'
 import { useEffect } from 'react'
 import useInitApp from './hooks/useInitApp'
 import DevEnvironment from './components/devEnvironment'
+import LoadingModal from './components/modals/loadingModal'
 const App = () => {
   const { initApp } = useInitApp()
   useEffect(() => (initApp), [])
   return (<>
+    <LoadingModal />
     <DevEnvironment />
     <Notification />
     <Router />

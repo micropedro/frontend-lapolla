@@ -5,7 +5,7 @@ import useLogin from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 const Login = () => {
     const { loading } = useLoadingStore()
-    const { login } = useLogin()
+    const { login, eye, setEye } = useLogin()
 
     return (
         <>
@@ -19,10 +19,15 @@ const Login = () => {
                             <form onSubmit={e => { login(e) }}>
                                 <span>Correo</span>
                                 <input defaultValue={'manuelperez.0000@gmail.com'} name='email' type="email" className="form-control mb-3" placeholder="Ingrese su correo electronico" required />
-                                <span>Contraseña</span>
-                                <input defaultValue={'123456'} name="password" minLength='6' type="password" className="form-control mb-3" placeholder="Ingrese su contraseña" required />
+                                <div className="flex-between">
+                                    <span>Contraseña</span>
+
+                                    <i onClick={() => setEye(!eye)} className={eye ? 'bi eye-button bi-eye-slash' : 'bi eye-button bi-eye'} />
+
+                                </div>
+                                <input name="password" minLength='6' type={eye ? "text" : "password"} className="form-control mb-3" placeholder="Ingrese su contraseña" required />
                                 <button className="btn btn-primary w-100">
-                                    {loading ? <Spinner color='white' /> : 'Iniciar sesion '}
+                                    {loading ? <Spinner /> : 'Iniciar sesion '}
                                 </button>
                             </form>
                         </div>

@@ -2,8 +2,13 @@ import axios from "axios"
 import apiUrl from "../services/apiUrl"
 import { useEffect } from "react"
 import useUserStore from "../store/userStore"
+import useModal from "../store/modalStore"
+
 const useUsers = () => {
+
+    const { setVisible, setText, setUser } = useModal()
     const { users, setUsers } = useUserStore()
+
     const getUsers = async () => {
         const localToken = JSON.parse(localStorage.getItem('user'))
         if (localToken !== null) {
@@ -15,10 +20,18 @@ const useUsers = () => {
         }
     }
 
+    const deleteModal = (user) => {
+        setText('Esta seguro que desea eliminar este usuario?')
+        setVisible(true)
+        setUser(user)
+    }
+
     useEffect(() => { getUsers() }, []);
 
     return {
-        users
+        users,
+        deleteModal,
+        getUsers
     }
 }
 
