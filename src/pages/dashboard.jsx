@@ -2,7 +2,7 @@
 import SideBar from "../components/sideBar"
 const Dashboard = ({children}) => {
     return (<>
-        <div className="container-fluid">
+        <div className="container-fluid bg-gray">
             <div className="row g-4">
                 <SideBar />
                 <div className="col-10 col-md-8 col-lg-9 min-vh-100">

@@ -1,3 +1,4 @@
+
 .logo{
     width: 100%;
     max-width: 120px;
@@ -99,4 +100,7 @@
 .eye-button:hover{
     cursor: pointer;
     color: rgb(255, 255, 255);
+}
+.bg-gray{
+    background-color: rgb(236, 236, 236);
 }

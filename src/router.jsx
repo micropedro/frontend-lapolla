@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import Login from "./pages/login"
 import Dashboard from "./pages/dashboard"
-import Users from "./pages/users"
+import Users from "./pages/users/users"
 import Loterias from "./pages/loterias"
 import Ganadores from "./pages/ganadores"
 import Metodos from "./pages/metodos"
@@ -9,7 +9,8 @@ import Quinielas from "./pages/quinielas"
 import Bancos from "./pages/bancos"
 import Ventas from "./pages/ventas"
 import Recuperacion from "./pages/recuperacion"
-
+import AddUsers from "./pages/users/addUsers"
+import EditUser from "./pages/users/editUser"
 const Router = () => {
     return (<>
         <Routes>
@@ -17,6 +18,10 @@ const Router = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/recuperacion" element={<Recuperacion />} />
             <Route path="/dashboard/users" element={<Dashboard><Users /></Dashboard>} />
+
+            <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
+            <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />
+
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
             <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />

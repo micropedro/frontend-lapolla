@@ -1,4 +1,4 @@
-import useNotificationStore from '../store/notificationStore'
+/* import useNotificationStore from '../store/notificationStore' */
 import axios from "axios"
 import apiUrl from '../services/apiUrl'
 import { useNavigate } from 'react-router-dom'
@@ -6,11 +6,13 @@ import { jwtDecode } from 'jwt-decode'
 import useUserStore from '../store/userStore'
 import { useState } from 'react'
 import useLoadingStore from '../store/loadingStore'
+import useNotify from './useNotify'
 const useLogin = () => {
+    const {notify} = useNotify()
     const { setLoading } = useLoadingStore()
     const navigate = useNavigate()
     const { setUser } = useUserStore()
-    const { setNotification, setText } = useNotificationStore()
+   /*  const { setNotification, setText } = useNotificationStore() */
     const [eye, setEye] = useState(false)
 
     const login = async (e) => {
@@ -22,8 +24,9 @@ const useLogin = () => {
         const url = apiUrl + '/login'
 
         if (!email || !password) {
-            setText("!Debe ingresar un correo y una contraseña!")
-            setNotification(true)
+            notify.error('!Debe ingresar un correo y una contraseña!')
+            /* setText("!Debe ingresar un correo y una contraseña!")
+            setNotification(true) */
             return
         }
 
@@ -38,13 +41,15 @@ const useLogin = () => {
             const userString = JSON.stringify(user)
             localStorage.setItem('user', userString)
             setLoading(false)
+            notify.success("Inicio de sesion exitoso")
             navigate('/dashboard/users')
             
         } catch (error) {
             setLoading(false)
-            console.log(error)
+            /* console.log(error)
             setText('A ocurrido un error')
-            setNotification(true)
+            setNotification(true) */
+            notify.error("Ocurrio un error")
         }
     }
 
