@@ -8,11 +8,11 @@ import { useState } from 'react'
 import useLoadingStore from '../store/loadingStore'
 import useNotify from './useNotify'
 const useLogin = () => {
-    const {notify} = useNotify()
+    const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
     const navigate = useNavigate()
     const { setUser } = useUserStore()
-   /*  const { setNotification, setText } = useNotificationStore() */
+    /*  const { setNotification, setText } = useNotificationStore() */
     const [eye, setEye] = useState(false)
 
     const login = async (e) => {
@@ -33,7 +33,6 @@ const useLogin = () => {
         try {
             const res = await axios.post(url, data)
             const token = res.data.body
-
             const { userData } = jwtDecode(token)
             const user = userData
             user.token = token
@@ -43,13 +42,14 @@ const useLogin = () => {
             setLoading(false)
             notify.success("Inicio de sesion exitoso")
             navigate('/dashboard/users')
-            
+
         } catch (error) {
             setLoading(false)
-            /* console.log(error)
+            const message = (JSON.parse(error.request.response).message)
+            /* 
             setText('A ocurrido un error')
             setNotification(true) */
-            notify.error("Ocurrio un error")
+            notify.error(message || "Ocurrio un error inisperado")
         }
     }
 

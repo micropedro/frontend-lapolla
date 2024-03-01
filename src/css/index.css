@@ -1,49 +1,57 @@
-
-.logo{
+.logo {
     width: 100%;
     max-width: 120px;
 }
-.list-none{
+
+.list-none {
     list-style: none;
 }
-.link{
+
+.link {
     text-decoration: none;
     font-size: 18px;
     color: rgb(153, 153, 153);
     background-color: rgb(6, 76, 138);
 }
-.link:hover{
+
+.link:hover {
     background-color: aqua;
     width: 100%;
 }
-.sidebar-button{
+
+.sidebar-button {
     margin-bottom: 2px;
     padding: 3px 10px;
     background-color: rgba(236, 241, 241, 0.055);
     border-radius: 2px;
     transition: 0.4s;
-    
+
 }
-.sidebar-button-active{
+
+.sidebar-button-active {
     background-color: aliceblue;
 }
-.sidebar-button:hover{
+
+.sidebar-button:hover {
     color: white;
     background-color: rgba(236, 241, 241, 0.212);
 }
-.wrap-login{
+
+.wrap-login {
     padding-top: 50px;
 }
-.login-body{
+
+.login-body {
     background-color: rgba(255, 255, 255, 0.082);
     padding: 10px;
     border-radius: 15px;
 }
-.logo-login{
+
+.logo-login {
     max-height: 100px;
 }
 
-.notification-bg{
+.notification-bg {
     background-color: rgba(29, 29, 29, 0.767);
     position: fixed;
     z-index: 1;
@@ -56,7 +64,7 @@
     top: 0px;
 }
 
-.notification-body{
+.notification-body {
     background-color: aliceblue;
     padding: 20px;
     border-radius: 4px;
@@ -69,18 +77,22 @@
     justify-content: center;
     flex-direction: column;
 }
-.welcomeSidebarText{
+
+.welcomeSidebarText {
     margin-bottom: 0px;
 }
-.text-gray{
+
+.text-gray {
     color: gray;
 }
-.sidebarNameEmail{
+
+.sidebarNameEmail {
     font-size: 12px;
     display: block;
     line-height: 11px;
 }
-.devEnvironment{
+
+.devEnvironment {
     background-color: rgba(150, 8, 8, 0.438);
     color: aliceblue;
     position: fixed;
@@ -89,18 +101,30 @@
     left: 10px;
     font-size: 14px;
 }
-.flex-between{
+
+.flex-between {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.eye-button{
+
+.eye-button {
     color: rgb(136, 148, 153);
 }
-.eye-button:hover{
+
+.eye-button:hover {
     cursor: pointer;
     color: rgb(255, 255, 255);
 }
-.bg-gray{
+
+.bg-gray {
     background-color: rgb(236, 236, 236);
+}
+
+.bg-gray-2 {
+    background-color: rgb(201, 201, 201);
+}
+
+.radius {
+    border-radius: 5px;
 }

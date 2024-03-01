@@ -4,7 +4,7 @@ import Dashboard from "./pages/dashboard"
 import Users from "./pages/users/users"
 import Loterias from "./pages/loterias"
 import Ganadores from "./pages/ganadores"
-import Metodos from "./pages/metodos"
+import Metodos from "./pages/metodos/metodos"
 import Quinielas from "./pages/quinielas"
 import Bancos from "./pages/bancos"
 import Ventas from "./pages/ventas"
@@ -21,10 +21,10 @@ const Router = () => {
 
             <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
             <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />
+            <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />
 
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
-            <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />
             <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
             <Route path="/dashboard/bancos" element={<Dashboard><Bancos /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />

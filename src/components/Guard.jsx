@@ -6,9 +6,10 @@ const Guard = ({ children }) => {
 
     const navigate = useNavigate()
 
-    const [access, setAccess] = useState(false)
+    const [access, setAccess] = useState(false,() => { console.log("876876876876") })
 
     useEffect(() => {
+        //falta agregar los tipos de usuarios que va a entrar 1 2 3 4
         if (!localStorage.getItem('user')) {
             setAccess(false)
             navigate('/login')

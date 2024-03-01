@@ -6,6 +6,11 @@
             "link": "/dashboard/users"
         },
         {
+            "name": "Métodos de pago",
+            "icon": "bi bi-credit-card",
+            "link": "/dashboard/metodos"
+        },
+        {
             "name": "loterías",
             "icon": "bi bi-dice-6",
             "link": "/dashboard/loterias"
@@ -14,11 +19,6 @@
             "name": "Ganadores",
             "icon": "bi bi-check-circle",
             "link": "/dashboard/ganadores"
-        },
-        {
-            "name": "Métodos de pago",
-            "icon": "bi bi-credit-card",
-            "link": "/dashboard/metodos"
         },
         {
             "name": "Quinielas",
