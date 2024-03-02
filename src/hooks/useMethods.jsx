@@ -1,15 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import request from "../services/request"
 import apiUrl from "../services/apiUrl"
 import useNotify from "./useNotify"
-
+import useLoadingStore from "../store/loadingStore"
 const useMethods = () => {
+    const { setLoading } = useLoadingStore()
     const { notify } = useNotify()
     const [methodName, setMethodName] = useState()
     const [selected, setSelected] = useState([])
     const [actualMethods, setActualMethods] = useState([])
     const sendForm = async (e) => {
         e.preventDefault()
+        setLoading(true)
         if (!methodName) {
             notify.warn("Debe porporcionar un nombre para el metodo de pago")
             return
@@ -39,6 +42,8 @@ const useMethods = () => {
             getActualMethods()
         } catch (error) {
             notify.error(error.message || error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -47,13 +52,16 @@ const useMethods = () => {
     const handleSelected = (e) => e.target.checked ? setSelected([...selected, e.target.name]) : setSelected(selected.filter((item) => item !== e.target.name))
 
     const getActualMethods = async () => {
+        setLoading(true)
         const response = await request.get(apiUrl + '/admin/methods/getMethods')
         if (response?.data.body) {
             setActualMethods(response.data.body)
         }
+        setLoading(false)
     }
 
     const deleteMethod = async (_id) => {
+        setLoading(true)
         const response = await request.post(apiUrl + '/admin/methods/delete', { _id })
         console.log(response)
         if (response.data.status === 200) {
@@ -62,6 +70,7 @@ const useMethods = () => {
         } else {
             notify.error("Ocurrio un error en la peticion")
         }
+        setLoading(false)
     }
 
     useEffect(() => {

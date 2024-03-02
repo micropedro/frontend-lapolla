@@ -12,9 +12,9 @@ const Metodos = () => {
         <h2> Metodos de pago </h2>
       </div>
       <hr />
-      {loading ? <div className='text-center p-5 bg-primary text-light'>
+      {loading ? <div className='text-center p-5 bg-gray-2 text-dark'>
         <div className='pb-3'> Cargando metodos de pago </div>
-        <Spinner color={'white'} />
+        <Spinner color={'black'} />
       </div> :
         <>
           <table className='table table-border' >

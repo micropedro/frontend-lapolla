@@ -6,7 +6,6 @@ import Loterias from "./pages/loterias"
 import Ganadores from "./pages/ganadores"
 import Metodos from "./pages/metodos/metodos"
 import Quinielas from "./pages/quinielas"
-import Bancos from "./pages/bancos"
 import Ventas from "./pages/ventas"
 import Recuperacion from "./pages/recuperacion"
 import AddUsers from "./pages/users/addUsers"
@@ -26,7 +25,6 @@ const Router = () => {
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
             <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
-            <Route path="/dashboard/bancos" element={<Dashboard><Bancos /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/*" element={<div className="NotFound404">404 Not found</div>} />
         </Routes>

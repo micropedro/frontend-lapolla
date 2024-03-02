@@ -26,11 +26,6 @@
             "link": "/dashboard/quinielas"
         },
         {
-            "name": "Bancos",
-            "icon": "bi bi-bank",
-            "link": "/dashboard/bancos"
-        },
-        {
             "name": "Ventas",
             "icon": "bi bi-cash",
             "link": "/dashboard/ventas"
