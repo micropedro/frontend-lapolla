@@ -128,3 +128,59 @@
 .radius {
     border-radius: 5px;
 }
+
+.btn-animals {
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+    border: 1px solid rgb(165, 165, 165);
+}
+
+.btn-animals:hover {
+    background-color: rgb(245, 206, 79);
+    cursor: pointer;
+    transform: scale(1.05);
+    border: 1px solid rgb(255, 153, 0);
+}
+
+.btn-animals-selected {
+    background-color: rgb(54, 255, 54);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+    border: 1px solid rgb(165, 165, 165);
+}
+
+.btn-animals-selected:hover {
+    background-color: rgb(16, 175, 16);
+    cursor: pointer;
+    transform: scale(0.95);
+}
+
+.animals-list {
+    background-color: rgb(9, 255, 0);
+    padding: 3px 15px;
+    font-size: 12px;
+    margin-left: 5px;
+    border-radius: 4px;
+}
+
+.animal-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.animal-col {
+    width: calc(20% - 10px);
+    width: 120px;
+    height: 120px;
+    padding: 3px;
+}

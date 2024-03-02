@@ -3,32 +3,38 @@
         {
             "name": "Usuarios",
             "icon": "bi bi-people",
-            "link": "/dashboard/users"
+            "link": "/dashboard/users",
+            "status": true
         },
         {
             "name": "Métodos de pago",
             "icon": "bi bi-credit-card",
-            "link": "/dashboard/metodos"
-        },
-        {
-            "name": "loterías",
-            "icon": "bi bi-dice-6",
-            "link": "/dashboard/loterias"
-        },
-        {
-            "name": "Ganadores",
-            "icon": "bi bi-check-circle",
-            "link": "/dashboard/ganadores"
-        },
-        {
-            "name": "Quinielas",
-            "icon": "bi bi-bar-chart",
-            "link": "/dashboard/quinielas"
+            "link": "/dashboard/metodos",
+            "status": true
         },
         {
             "name": "Ventas",
             "icon": "bi bi-cash",
-            "link": "/dashboard/ventas"
+            "link": "/dashboard/ventas",
+            "status": false
+        },
+        {
+            "name": "loterías",
+            "icon": "bi bi-dice-6",
+            "link": "/dashboard/loterias",
+            "status": false
+        },
+        {
+            "name": "Ganadores",
+            "icon": "bi bi-check-circle",
+            "link": "/dashboard/ganadores",
+            "status": false
+        },
+        {
+            "name": "Quinielas",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/quinielas",
+            "status": false
         }
     ]
 }

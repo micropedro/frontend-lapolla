@@ -2,12 +2,12 @@ import images from '../images/images'
 import useRecuperacion from '../hooks/useRecuperacion'
 import useLoadingStore from '../store/loadingStore'
 import Spinner from '../components/spiner'
-
+import Guard from '../components/Guard'
 function Recuperacion() {
     const { loading } = useLoadingStore()
     const { verifyTemporalPass, sendTemporalPass, saveNewPassword, step } = useRecuperacion()
     return (
-        <>
+        <Guard>
             <div className="container-fluid bg-dark text-light min-vh-100">
                 <div className="row wrap-login">
                     <div className="col-10 col-sm-8 col-md-6 col-lg-4 offset-1 offset-sm-2 offset-md-3 offset-lg-4 login-body p-4">
@@ -62,7 +62,7 @@ function Recuperacion() {
                     </div>
                 </div>
             </div>
-        </>
+        </Guard>
     )
 }
 
