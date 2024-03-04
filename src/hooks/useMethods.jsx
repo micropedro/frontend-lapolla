@@ -10,6 +10,7 @@ const useMethods = () => {
     const [methodName, setMethodName] = useState()
     const [selected, setSelected] = useState([])
     const [actualMethods, setActualMethods] = useState([])
+
     const sendForm = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -34,11 +35,10 @@ const useMethods = () => {
             methodName,
             telefono
         }
+
         try {
             const response = await request.post(apiUrl + '/admin/methods/addMethod', datos)
             if (response) notify.success(response.data.message)
-            console.log(response)
-            setMethodName("")
             getActualMethods()
         } catch (error) {
             notify.error(error.message || error)
@@ -49,7 +49,15 @@ const useMethods = () => {
 
     const itemType = (item) => item === 'correo' ? 'email' : 'text'
 
-    const handleSelected = (e) => e.target.checked ? setSelected([...selected, e.target.name]) : setSelected(selected.filter((item) => item !== e.target.name))
+    const handleSelected = (e) => {
+        if (e.target.checked) {
+            //si selected incluye e.target.name no envia 
+            if (!selected.includes(e.target.name)) setSelected([...selected, e.target.name])
+        } else {
+            setSelected(selected.filter((item) => item !== e.target.name))
+        }
+
+    }
 
     const getActualMethods = async () => {
         setLoading(true)

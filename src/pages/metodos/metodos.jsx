@@ -53,12 +53,12 @@ const Metodos = () => {
             <div className="row">
               <div className="col-6">
                 <h4>Nombre del metodo</h4>
-                <input onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control' placeholder='Ingrese el nombre del metodo de pago' />
+                <input value={methodName} onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control' placeholder='Ingrese el nombre del metodo de pago' />
                 <div className='container p-4'>
                   <div className="row">
                     {datos && datos.map((dato, index) => {
                       return (<div key={index} className="form-check col-6">
-                        <input onChange={handleSelected} name={dato} className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <input onChange={handleSelected} name={dato} className="form-check-input" type="checkbox" checked={selected.includes(dato)} id="flexCheckDefault" />
                         <label className="form-check-label" htmlFor="flexCheckDefault">
                           {dato}
                         </label>
