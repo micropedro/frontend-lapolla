@@ -11,6 +11,7 @@ import LoadingModal from './components/modals/loadingModal'
 import 'react-toastify/dist/ReactToastify.css'
 import useNotify from './hooks/useNotify'
 import './css/tostify.css'
+import { HashRouter } from "react-router-dom";
 
 const App = () => {
   const { ToastContainer } = useNotify()
@@ -18,11 +19,13 @@ const App = () => {
   useEffect(() => (initApp), [])
 
   return (<>
-    <ToastContainer theme="dark" />
-    <LoadingModal />
-    <DevEnvironment />
-    <Notification />
-    <Router />
+    <HashRouter>
+      <ToastContainer theme="dark" />
+      <LoadingModal />
+      <DevEnvironment />
+      <Notification />
+      <Router />
+    </HashRouter>
   </>)
 }
 export default App
