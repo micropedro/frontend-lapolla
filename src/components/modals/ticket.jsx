@@ -31,7 +31,7 @@ const Ticket = () => {
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
                                 <div key={index} className="col-4">
-                                    <div > #{animal.id} {animal.name}, </div>
+                                    <div > {animal.id} {animal.name}, </div>
                                 </div>
                             )
                         })}
