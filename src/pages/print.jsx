@@ -32,12 +32,12 @@ const Print = () => {
                     Gran Quiniela 25Bs
                 </h4>
                 <hr />
-                <div className="container mx-400">
+                <div className="container-fluid mx-400">
                     <div className="row">
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
                                 <div key={index} className="col-6">
-                                    <div > #{animal.id} {animal.name}, </div>
+                                    <div > {animal.id} {animal.name}, </div>
                                 </div>
                             )
                         })}
