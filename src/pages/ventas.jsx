@@ -20,7 +20,7 @@ const Ventas = () => {
       <div>Seleccionados {animals.length} / 6</div>
       <div className="animals-content">
         {animals.length > 0 && animals.map((i, index) => {
-          return <div key={index} className="bg-dark m-1 p-2 anim-btn">
+          return <div onClick={() => handleSelectedAnimal(i)} key={index} className="m-1 p-2 anim-btn">
             <div className="text-light">
               {i.id === 37 ? "00" : i.id} - {i.name}
             </div>

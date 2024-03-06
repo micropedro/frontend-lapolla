@@ -201,6 +201,14 @@
 
 .anim-btn {
     position: relative;
+    background-color: rgb(58, 61, 61);
+    transition: 0.3s;
+}
+
+.anim-btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: rgb(112, 41, 8);
 }
 
 .delete-animal {

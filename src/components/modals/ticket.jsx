@@ -30,7 +30,7 @@ const Ticket = () => {
                     <div className="row">
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
-                                <div key={index} className="col-6">
+                                <div key={index} className="col-4">
                                     <div > #{animal.id} {animal.name}, </div>
                                 </div>
                             )
