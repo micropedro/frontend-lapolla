@@ -8,7 +8,9 @@ const Ventas = () => {
   const { animals, handleSelectedAnimal, saveAndPrint } = useVentas()
 
   return (<Guard>
-    <Ticket animals={animals} />
+    <div>
+      <Ticket animals={animals} />
+    </div>
     <div className='px-4 pt-3'>
       <div className="flex-between">
         <h2> Taquilla de ventas </h2>

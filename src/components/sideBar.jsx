@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import images from '../images/images';
 import { Link } from 'react-router-dom';
 import SideMenu from './sideMenu';
 import useUserStore from '../store/userStore';
 import useSession from '../hooks/useSession';
+
 const SideBar = () => {
+
     const { closeSession } = useSession()
     const { user } = useUserStore();
     return (<>
@@ -15,6 +18,7 @@ const SideBar = () => {
                 <h5 className='welcomeSidebarText'>Bienvenido,</h5>
                 <div className='text-gray'>
                     {user.name && <span className='sidebarNameEmail'> {user.name} </span>}
+
                     {user.email && <span className='sidebarNameEmail'> {user.email} </span>}
                 </div>
             </div>

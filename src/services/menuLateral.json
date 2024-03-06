@@ -13,6 +13,12 @@
             "status": true
         },
         {
+            "name": "Quinielas",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/quinielas",
+            "status": false
+        },
+        {
             "name": "Ventas",
             "icon": "bi bi-cash",
             "link": "/dashboard/ventas",
@@ -28,12 +34,6 @@
             "name": "Ganadores",
             "icon": "bi bi-check-circle",
             "link": "/dashboard/ganadores",
-            "status": false
-        },
-        {
-            "name": "Quinielas",
-            "icon": "bi bi-bar-chart",
-            "link": "/dashboard/quinielas",
             "status": false
         }
     ]

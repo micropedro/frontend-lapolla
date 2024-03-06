@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import SideBar from "../components/sideBar"
-const Dashboard = ({children}) => {
-    return (<>
+import Guard from "../components/Guard"
+const Dashboard = ({ children }) => {
+
+    return (<Guard>
         <div className="container-fluid bg-gray">
             <div className="row g-4">
                 <SideBar />
@@ -10,6 +12,6 @@ const Dashboard = ({children}) => {
                 </div>
             </div>
         </div>
-    </>)
+    </Guard>)
 }
 export default Dashboard

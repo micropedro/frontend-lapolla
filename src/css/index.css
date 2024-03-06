@@ -248,3 +248,7 @@
     margin: 0px 10px;
     width: 130px;
 }
+
+.mx-400 {
+    max-width: 300px;
+}
