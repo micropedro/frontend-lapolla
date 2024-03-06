@@ -9,14 +9,14 @@ const Ventas = () => {
 
   return (<Guard>
     <div>
-      <Ticket animals={animals} />
+      <Ticket />
     </div>
     <div className='px-4 pt-3'>
       <div className="flex-between">
         <h2> Taquilla de ventas </h2>
         <button onClick={saveAndPrint} className="btn btn-primary"> Imprimir </button>
       </div>
-      <b> {dateNow} </b>
+      <b> {dateNow.fecha} </b>
       <div>Seleccionados {animals.length} / 6</div>
       <div className="animals-content">
         {animals.length > 0 && animals.map((i, index) => {

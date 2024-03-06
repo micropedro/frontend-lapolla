@@ -2,14 +2,10 @@
 import useTicketStore from "../../store/ticketStore"
 import dateNow from "../../services/dateNow"
 import { useNavigate } from "react-router-dom"
-const Ticket = ({ animals }) => {
+
+const Ticket = () => {
     const navigate = useNavigate()
-    const hora = new Date()
-    const minutos = hora.getMinutes()
-    const horas = hora.getHours()
-    const periodo = horas >= 12 ? 'PM' : 'AM';
-    const seconds = hora.getSeconds()
-    const { visible, setVisible } = useTicketStore()
+    const { visible, setVisible, animals } = useTicketStore()
 
     const handlePrint = () => {
         navigate("/print")
@@ -22,7 +18,7 @@ const Ticket = ({ animals }) => {
                     <h2>apuestaslapolla.com</h2>
                     <div>Nro Ticket. 234 - <i>codigo: 368Y45</i></div>
                     <p className="text-center">
-                        {dateNow} {horas}:{minutos}:{seconds} {periodo}
+                        {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>
                 </div>
                 <hr />
