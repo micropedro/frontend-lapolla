@@ -50,6 +50,13 @@ const Print = () => {
                 <div>
                     Sin ticket no cobra
                 </div>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
+                <div>.</div>
                 <hr />
             </div>
         </div>
