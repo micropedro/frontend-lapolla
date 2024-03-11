@@ -1,4 +1,5 @@
-import apiUrl from "../services/apiUrl"
+/* eslint-disable react-hooks/exhaustive-deps */
+import APIURL from "../services/APIURL"
 import { useEffect } from "react"
 import useUserStore from "../store/userStore"
 import useModal from "../store/modalStore"
@@ -15,25 +16,22 @@ const useUsers = () => {
         setLoading(true)
 
         try {
-            const users = await request.get(apiUrl + '/users')
-            console.log(users)
+            const users = await request.get(APIURL + '/users')
+            /* console.log(users) */
             const usersList = users.data.body
-            if (!usersList) throw 'Users not found'
+            if (!usersList) throw 'Usuarios no encontrados'
             if (usersList.length > 0) setUsers(usersList)
 
         } catch (error) {
-            const message = (JSON.parse(error.request.response).message)
+            const message = error
             notify.error(message)
-            console.log(message)
-
         }
-
 
         setLoading(false)
     }
 
     const deleteModal = (user) => {
-        setText('Esta seguro que desea eliminar este usuario?')
+        setText('¿Esta seguro que desea eliminar este usuario?')
         setVisible(true)
         setUser(user)
     }

@@ -1,6 +1,6 @@
 /* import useNotificationStore from '../store/notificationStore' */
 import axios from "axios"
-import apiUrl from '../services/apiUrl'
+import APIURL from '../services/APIURL'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import useUserStore from '../store/userStore'
@@ -21,7 +21,7 @@ const useLogin = () => {
         const email = e.target.email.value
         const password = e.target.password.value
         const data = { email, password }
-        const url = apiUrl + '/login'
+        const url = APIURL + '/login'
 
         if (!email || !password) {
             notify.error('!Debe ingresar un correo y una contraseña!')

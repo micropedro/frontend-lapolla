@@ -8,6 +8,10 @@ const useTicketStore = createWithEqualityFn((set) => ({
     visible: false,
     setVisible: (newVisible) => set(() => ({
         visible: newVisible
+    })),
+    type: false,
+    setType: (newType) => set(() => ({
+        type: newType
     }))
 }))
 

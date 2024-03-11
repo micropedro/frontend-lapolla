@@ -203,6 +203,7 @@
     position: relative;
     background-color: rgb(58, 61, 61);
     transition: 0.3s;
+    user-select: none;
 }
 
 .anim-btn:hover {

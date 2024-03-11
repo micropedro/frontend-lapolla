@@ -1,22 +1,20 @@
 /* eslint-disable react/prop-types */
 import useTicketStore from "../../store/ticketStore"
 import dateNow from "../../services/dateNow"
-import { useNavigate } from "react-router-dom"
+import useTicket from "../../hooks/useTicket"
+import { convertCeroNumber } from "../../services/utils"
 
 const Ticket = () => {
-    const navigate = useNavigate()
-    const { visible, setVisible, animals } = useTicketStore()
 
-    const handlePrint = () => {
-        navigate("/print")
-    }
+    const { handlePrint } = useTicket()
+    const { visible, setVisible, animals } = useTicketStore()
 
     if (visible) return (<div className="bg-modal">
         <div className="ticket-body p-3">
             <div>
                 <div className="text-center">
                     <h2>apuestaslapolla.com</h2>
-                    <div>Nro Ticket. 234 - <i>codigo: 368Y45</i></div>
+                    <div>Nro Ticket. 234 - <i>Codigo: 368Y45</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>
@@ -30,8 +28,8 @@ const Ticket = () => {
                     <div className="row">
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
-                                <div key={index} className="col-4">
-                                    <div > {animal.id} {animal.name}, </div>
+                                <div key={index} className="col-6 mb-1">
+                                    {animal.id === 37 ? "00" : convertCeroNumber(animal.id)} {animal.name.toUpperCase()}
                                 </div>
                             )
                         })}
@@ -39,10 +37,10 @@ const Ticket = () => {
                 </div>
                 <hr />
                 <div>
-                    <b>caduca a los 3 dias</b>
+                    <b>CADUCA A LOS 3 DIAS</b>
                 </div>
                 <div>
-                    Sin ticket no cobra
+                    SIN TICKET NO COBRA
                 </div>
                 <hr />
             </div>

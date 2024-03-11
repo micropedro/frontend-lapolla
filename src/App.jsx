@@ -11,15 +11,12 @@ import LoadingModal from './components/modals/loadingModal'
 import 'react-toastify/dist/ReactToastify.css'
 import useNotify from './hooks/useNotify'
 import './css/tostify.css'
-
 const App = () => {
   const { ToastContainer } = useNotify()
   const { initApp } = useInitApp()
-  useEffect(() => (initApp), [])
+  useEffect(() => { initApp() }, [])
 
   return (<>
-
-
     <ToastContainer theme="dark" />
     <LoadingModal />
     <DevEnvironment />

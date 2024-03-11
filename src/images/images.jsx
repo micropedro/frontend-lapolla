@@ -40,6 +40,7 @@ import ballena from '../images/animals/37.png'
 
 const animals = [
     { name: "delfin", image: delfin, id: 0 },
+    { name: "ballena", image: ballena, id: 37 },
     { name: "carnero", image: carnero, id: 1 },
     { name: "toro", image: toro, id: 2 },
     { name: "cienpies", image: cienpies, id: 3 },
@@ -75,8 +76,7 @@ const animals = [
     { name: "pescado", image: pescado, id: 33 },
     { name: "venado", image: venado, id: 34 },
     { name: "jirafa", image: jirafa, id: 35 },
-    { name: "culebra", image: culebra, id: 36 },
-    { name: "ballena", image: ballena, id: 37 }
+    { name: "culebra", image: culebra, id: 36 }
 ]
 
 const images = {

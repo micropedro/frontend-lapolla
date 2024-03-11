@@ -1,5 +1,5 @@
 import useModalStore from "../../store/modalStore"
-import apiUrl from "../../services/apiUrl"
+import APIURL from "../../services/APIURL"
 import useUsers from "../../hooks/useUsers"
 import useLoadingModalStore from "../../store/loadingModalStore"
 import request from "../../services/request"
@@ -15,7 +15,7 @@ const useDeleteUserModal = () => {
         setText("Eliminando usuario: " + name)
         setLoading(true)
         try {
-            const response = await request.post(apiUrl + "/admin/deleteuser", { _id })
+            const response = await request.post(APIURL + "/admin/deleteuser", { _id })
             if (response.data.status === 200) {
                 setLoading(false)
                 getUsers()

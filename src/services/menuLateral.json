@@ -31,6 +31,12 @@
             "status": false
         },
         {
+            "name": "Reporte de caja",
+            "icon": "bi bi-dice-6",
+            "link": "/dashboard/loterias",
+            "status": false
+        },
+        {
             "name": "Ganadores",
             "icon": "bi bi-check-circle",
             "link": "/dashboard/ganadores",

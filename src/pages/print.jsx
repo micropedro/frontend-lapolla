@@ -22,16 +22,16 @@ const Print = () => {
             <div>
                 <div className="text-center">
                     <h2>apuestaslapolla.com</h2>
-                    <div>Nro Ticket. 234 - <i>codigo: 368Y45</i></div>
+                    <div>NRO TICKET. 234 - <i>CODIGO: 368Y45</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>
                 </div>
-                <hr />
+                <div>----------------------------</div>
                 <h4>
-                    Gran Quiniela 25Bs
+                    GRAN QUINIELA 25.BS
                 </h4>
-                <hr />
+                <div>----------------------------</div>
                 <div className="container-fluid mx-400">
                     <div className="row">
                         {animals.length > 0 && animals.map((animal, index) => {
@@ -43,21 +43,15 @@ const Print = () => {
                         })}
                     </div>
                 </div>
-                <hr />
+                <br />
                 <div>
-                    <b>caduca a los 3 dias</b>
+                    <b>CADUCA A LOS 3 DIAS</b>
                 </div>
                 <div>
-                    Sin ticket no cobra
+                    SIN TICKET NO COBRA
                 </div>
                 <div>.</div>
                 <div>.</div>
-                <div>.</div>
-                <div>.</div>
-                <div>.</div>
-                <div>.</div>
-                <div>.</div>
-                <hr />
             </div>
         </div>
     </div>)

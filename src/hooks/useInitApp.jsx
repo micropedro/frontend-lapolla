@@ -6,7 +6,6 @@ const useInitApp = () => {
         const localUser = localStorage.getItem('user')
         const user = JSON.parse(localUser)
         if (user !== 'null') setUser(user)
-
     }
 
     return {
