@@ -5,7 +5,7 @@ import DeleteUserModal from '../../components/modals/deleteUserModal'
 import { Link } from 'react-router-dom'
 import useEditUserStore from '../../store/editUserStore'
 import useLoadingStore from '../../store/loadingStore'
-import Spinner from '../../components/spiner'
+import Spinner from '../../components/spinner'
 const Users = () => {
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()

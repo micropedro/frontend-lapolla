@@ -1,6 +1,6 @@
 import Guard from '../../components/Guard'
 import useLoadingStore from '../../store/loadingStore'
-import Spinner from '../../components/spiner'
+import Spinner from '../../components/spinner'
 import { datos } from '../../services/metodos.json'
 import useMethods from '../../hooks/useMethods'
 const Metodos = () => {

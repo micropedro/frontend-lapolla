@@ -1,10 +1,10 @@
 import useEditUser from "../../hooks/useEditUser"
 import useEditUserStore from "../../store/editUserStore"
 import useLoadingStore from "../../store/loadingStore"
-import Spinner from '../../components/spiner'
+import Spinner from '../../components/spinner'
 
 const EditUser = () => {
-   
+
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()

@@ -1,5 +1,5 @@
 import useLoadingModalStore from "../../store/loadingModalStore"
-import Spinner from '../../components/spiner'
+import Spinner from '../../components/spinner'
 const LoadingModal = () => {
 
     const { loading, text } = useLoadingModalStore()
