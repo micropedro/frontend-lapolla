@@ -1,4 +1,4 @@
-import APIURL from '../services/APIURL'
+import APIURL from '../services/APIURL.js'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import useUserStore from '../store/userStore'
