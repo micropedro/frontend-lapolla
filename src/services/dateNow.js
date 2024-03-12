@@ -9,7 +9,8 @@ const dateNow = {
     fecha,
     minutos,
     periodo,
-    seconds
+    seconds,
+    horas
 }
 
 export default dateNow

@@ -1,5 +1,3 @@
-/* import useNotificationStore from '../store/notificationStore' */
-import axios from "axios"
 import APIURL from '../services/APIURL'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
@@ -7,6 +5,7 @@ import useUserStore from '../store/userStore'
 import { useState } from 'react'
 import useLoadingStore from '../store/loadingStore'
 import useNotify from './useNotify'
+import request from "../services/request"
 const useLogin = () => {
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
@@ -31,7 +30,7 @@ const useLogin = () => {
         }
 
         try {
-            const res = await axios.post(url, data)
+            const res = await request.post(url, data)
             const token = res.data.body
             const { userData } = jwtDecode(token)
             const user = userData
@@ -45,11 +44,8 @@ const useLogin = () => {
 
         } catch (error) {
             setLoading(false)
-            const message = (JSON.parse(error.request.response).message)
-            /* 
-            setText('A ocurrido un error')
-            setNotification(true) */
-            notify.error(message || "Ocurrio un error inisperado")
+            const message = (error.response?.data.message || error.message)
+            notify.error(message)
         }
     }
 

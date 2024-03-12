@@ -1,6 +1,8 @@
 import useNotify from "./useNotify"
 import useTicketStore from "../store/ticketStore"
+import { useState } from "react"
 const useVentas = () => {
+    const [menu, setMenu] = useState("taquilla")
     const { animals, setAnimals, setVisible, type, setType } = useTicketStore()
     const { notify } = useNotify()
     const handleSelectedAnimal = (animal) => {
@@ -37,7 +39,8 @@ const useVentas = () => {
         handleSelectedAnimal,
         saveAndPrint,
         type,
-        setType
+        setType,
+        menu, setMenu
     }
 
 }

@@ -29,7 +29,17 @@
 }
 
 .sidebar-button-active {
-    background-color: aliceblue;
+    margin-bottom: 2px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    transition: 0.4s;
+    background-color: rgba(236, 241, 241, 0.212);
+    color: aliceblue;
+}
+
+.sidebar-button-active:hover {
+    background-color: rgba(236, 241, 241, 0.212);
+    color: aliceblue;
 }
 
 .sidebar-button:hover {
@@ -260,4 +270,40 @@
 
 .mx-400 {
     max-width: 350px;
+}
+
+.winer-ticket {
+    border: 3px solid rgb(55, 241, 55);
+    background-color: rgb(182, 230, 182);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: rgb(11, 110, 27);
+    flex-direction: column;
+}
+
+.winer-ticket h1 {
+    margin: 0px;
+}
+
+.winer-icon {
+    color: rgb(20, 197, 20);
+    font-size: 100px;
+    line-height: 100px;
+}
+
+.premio {
+    font-size: 30px;
+    color: aliceblue;
+    background-color: rgb(3, 102, 0);
+    padding: 5px 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.text-lg {
+    font-size: 22px;
 }
