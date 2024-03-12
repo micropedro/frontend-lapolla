@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import { useEffect } from "react"
 import useUserStore from "../store/userStore"
 import useModal from "../store/modalStore"
@@ -16,7 +16,7 @@ const useUsers = () => {
         setLoading(true)
 
         try {
-            const users = await request.get(APIURL + '/users')
+            const users = await request.get(urlApi + '/users')
             /* console.log(users) */
             const usersList = users.data.body
             if (!usersList) throw 'Usuarios no encontrados'

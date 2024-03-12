@@ -1,5 +1,5 @@
 import request from "../services/request"
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import useNotify from "..//hooks/useNotify"
 import useTicketStore from "../store/ticketStore"
 import useUserStore from "../store/userStore"
@@ -18,7 +18,7 @@ const useTicket = () => {
         if (!comprobacion(body)) return notify.error('Error en los datos del formulario')
 
         try {
-            const res = await request.post(`${APIURL}/saveTicket`, body)
+            const res = await request.post(`${urlApi}/saveTicket`, body)
             if (res) {
                 navigate("/print")
             } else throw 'No se ha podido guardar el ticket'

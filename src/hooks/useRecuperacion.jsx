@@ -1,5 +1,5 @@
 import axios from 'axios'
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import useNotificationStore from '../store/notificationStore'
 import useLoadingStore from '../store/loadingStore'
 import { useState } from 'react'
@@ -24,7 +24,7 @@ function useRecuperacion() {
     const email = e.target.email.value
     setUserEmail(email)
     const body = { email }
-    const result = await axios.post(APIURL + gettemporalpass, body)
+    const result = await axios.post(urlApi + gettemporalpass, body)
     if (result) {
       setText(result.data.message)
       setNotification(true)
@@ -70,7 +70,7 @@ function useRecuperacion() {
       email: userEmail,
       temporalPass: userTemporal
     }
-    const response = await axios.post(APIURL + setNewPassword, body)
+    const response = await axios.post(urlApi + setNewPassword, body)
     setLoading(false)
     if (response) {
       setText('Su clave a sido actualizada con exito')

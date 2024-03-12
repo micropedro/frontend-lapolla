@@ -1,5 +1,5 @@
 import axios from "axios"
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import { useNavigate } from "react-router-dom"
 import useLoadingModalStore from "../store/loadingModalStore"
 import useNotify from "./useNotify"
@@ -21,7 +21,7 @@ const useAddUsers = () => {
         }
         try {
 
-            const savedUser = await axios.post(APIURL + '/register', user)
+            const savedUser = await axios.post(urlApi + '/register', user)
             if (!savedUser) throw 'No se a podido registrar el usuario'
             navigate('/dashboard/users')
             setLoading(false)
@@ -34,7 +34,7 @@ const useAddUsers = () => {
          if (localToken !== null) {
              const { token } = localToken
              axios.defaults.headers.get['Authorization'] = `Bearer ${token}`;
-             const users = await axios.get(APIURL + '/users')
+             const users = await axios.get(urlApi + '/users')
              const usersList = users.data.response
              console.log(usersList)
          } */

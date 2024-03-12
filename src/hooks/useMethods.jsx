@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import request from "../services/request"
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import useNotify from "./useNotify"
 import useLoadingStore from "../store/loadingStore"
 const useMethods = () => {
@@ -37,7 +37,7 @@ const useMethods = () => {
         }
 
         try {
-            const response = await request.post(APIURL + '/admin/methods/addMethod', datos)
+            const response = await request.post(urlApi + '/admin/methods/addMethod', datos)
             if (response) notify.success(response.data.message)
             getActualMethods()
         } catch (error) {
@@ -61,7 +61,7 @@ const useMethods = () => {
 
     const getActualMethods = async () => {
         setLoading(true)
-        const response = await request.get(APIURL + '/admin/methods/getMethods')
+        const response = await request.get(urlApi + '/admin/methods/getMethods')
         if (response?.data.body) {
             setActualMethods(response.data.body)
         }
@@ -70,7 +70,7 @@ const useMethods = () => {
 
     const deleteMethod = async (_id) => {
         setLoading(true)
-        const response = await request.post(APIURL + '/admin/methods/delete', { _id })
+        const response = await request.post(urlApi + '/admin/methods/delete', { _id })
         if (response.data.status === 200) {
             getActualMethods()
             notify.success(response.data.message)

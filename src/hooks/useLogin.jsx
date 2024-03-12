@@ -1,4 +1,4 @@
-import APIURL from '../services/APIURL.js'
+import urlApi from '../services/urlApi'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import useUserStore from '../store/userStore'
@@ -20,7 +20,7 @@ const useLogin = () => {
         const email = e.target.email.value
         const password = e.target.password.value
         const data = { email, password }
-        const url = APIURL + '/login'
+        const url = urlApi + '/login'
 
         if (!email || !password) {
             notify.error('!Debe ingresar un correo y una contraseña!')

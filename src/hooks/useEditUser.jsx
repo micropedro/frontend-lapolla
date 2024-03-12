@@ -1,5 +1,5 @@
 import axios from "axios"
-import APIURL from "../services/APIURL"
+import urlApi from "../services/urlApi"
 import useLoadingStore from "../store/loadingStore"
 import useNotify from "./useNotify"
 import useUsers from "./useUsers"
@@ -19,7 +19,7 @@ const useEditUser = () => {
             _id: e.target._id.value
         }
         try {
-            const response = await axios.post(APIURL + "/admin/updateuser", user)
+            const response = await axios.post(urlApi + "/admin/updateuser", user)
             if (response.data.status !== 500) {
                 notify.success("Se guardaron todos los cambios")
                 getUsers()
