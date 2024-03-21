@@ -16,19 +16,13 @@
             "name": "Quinielas",
             "icon": "bi bi-bar-chart",
             "link": "/dashboard/quinielas",
-            "status": false
+            "status": true
         },
         {
             "name": "Ventas",
             "icon": "bi bi-cash",
             "link": "/dashboard/ventas",
-            "status": false
-        },
-        {
-            "name": "loterías",
-            "icon": "bi bi-dice-6",
-            "link": "/dashboard/loterias",
-            "status": false
+            "status": true
         },
         {
             "name": "Reporte de caja",
