@@ -1,3 +1,8 @@
+:root {
+    --yellow1: rgb(252, 219, 33);
+    --yellow2: rgba(235, 238, 93, 0.918);
+}
+
 .logo {
     width: 100%;
     max-width: 120px;
@@ -115,6 +120,12 @@
 .flex-between {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.flex-between-start {
+    display: flex;
+    align-items: start;
     justify-content: space-between;
 }
 
@@ -306,4 +317,91 @@
 
 .text-lg {
     font-size: 22px;
+}
+
+.animal-none {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(240, 248, 255, 0.205);
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    border: 5px solid rgba(255, 255, 255, 0.267);
+}
+
+.animal-none i {
+    color: aliceblue;
+    font-size: 50px;
+}
+
+.bg-success-2 {
+    background-color: rgb(178, 233, 178);
+}
+
+.jugando {
+    background-color: rgb(208, 255, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    font-weight: 600;
+    animation-name: cambiaColor;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cambiaColor {
+    0% {
+        background-color: var(--yellow1);
+    }
+
+    50% {
+        background-color: greenyellow;
+    }
+
+    100% {
+        background-color: var(--yellow1);
+    }
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animal-success {
+    background-color: rgb(36, 209, 20);
+    border: 1px solid rgb(29, 124, 33);
+}
+
+.animal-warning {
+    background-color: rgb(201, 218, 141);
+    border: 1px solid rgb(29, 124, 33);
+}
+
+:root {
+    --tam: 32px;
+}
+
+.anim-btn2 {
+    height: var(--tam);
+    width: var(--tam);
+    margin-left: 2px;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-default {
+    background-color: rgb(212, 212, 212);
+    border: 1px solid rgb(134, 134, 134);
+}
+
+.btn-default :hover {
+    background-color: rgb(230, 230, 230);
+    border: 1px solid rgb(156, 156, 156) !important;
 }

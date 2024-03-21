@@ -6,10 +6,15 @@ import { Link } from 'react-router-dom'
 import useEditUserStore from '../../store/editUserStore'
 import useLoadingStore from '../../store/loadingStore'
 import Spinner from '../../components/spinner'
+import { userType } from '../../services/utils'
 const Users = () => {
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()
     const { users, deleteModal } = useUsers()
+
+
+
+
     return (<Guard >
         <DeleteUserModal />
         <div className='flex-between px-4 pt-3'>
@@ -46,7 +51,7 @@ const Users = () => {
                                 {user.email}
                             </td>
                             <td>{user.phone}</td>
-                            <td>{user.level}</td>
+                            <td>{userType(user.level)}</td>
                             <td>{user.ci}</td>
                             <td>
                                 <Link to="/dashboard/editUser" >

@@ -3,8 +3,12 @@ import useTicketStore from "../../store/ticketStore"
 import dateNow from "../../services/dateNow"
 import useTicket from "../../hooks/useTicket"
 import { convertCeroNumber } from "../../services/utils"
+import loadingStore from "../../store/loadingStore"
+import Spinner from "../../components/spinner"
 
 const Ticket = () => {
+
+    const { loading } = loadingStore()
 
     const { handlePrint } = useTicket()
     const { visible, setVisible, animals } = useTicketStore()
@@ -46,9 +50,14 @@ const Ticket = () => {
             </div>
             <div>
                 <button onClick={() => setVisible(false)} className="btn btn-danger ticket-button"> Cancelar </button>
-                <button onClick={() => handlePrint()} className="btn btn-primary ticket-button"> Imprimir </button>
+                {loading ?
+                    <button className="btn btn-primary px-5" >  <Spinner /> </button>
+                    :
+                    <button onClick={() => handlePrint()} className="btn btn-primary ticket-button"> Imprimir </button>
+                }
             </div>
         </div>
     </div>)
 }
+
 export default Ticket

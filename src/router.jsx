@@ -11,6 +11,7 @@ import Recuperacion from "./pages/recuperacion"
 import AddUsers from "./pages/users/addUsers"
 import EditUser from "./pages/users/editUser"
 import Print from "./pages/print"
+import Cargar from "./pages/cargar"
 
 const Router = () => {
     return (<>
@@ -30,6 +31,8 @@ const Router = () => {
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
             <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
+            <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
+
 
             <Route path="/*" element={<div className="NotFound404">404 Not found</div>} />
         </Routes>

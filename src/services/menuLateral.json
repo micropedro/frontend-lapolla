@@ -37,10 +37,10 @@
             "status": false
         },
         {
-            "name": "Ganadores",
+            "name": "Cargar Animalitos",
             "icon": "bi bi-check-circle",
-            "link": "/dashboard/ganadores",
-            "status": false
+            "link": "/dashboard/cargar",
+            "status": true
         }
     ]
 }

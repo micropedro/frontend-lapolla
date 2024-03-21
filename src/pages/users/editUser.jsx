@@ -2,9 +2,9 @@ import useEditUser from "../../hooks/useEditUser"
 import useEditUserStore from "../../store/editUserStore"
 import useLoadingStore from "../../store/loadingStore"
 import Spinner from '../../components/spinner'
-
+import useUserStore from "../../store/userStore"
 const EditUser = () => {
-
+    const { user } = useUserStore()
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()
@@ -47,10 +47,12 @@ const EditUser = () => {
                             <td>
                                 <select defaultValue={editUser.level} name='level' style={{ color: "gray" }} className="form-select" >
                                     <option value={99} style={{ color: "black" }}>Elija un tipo de usuario</option>
-                                    <option value={1}>Cliente</option>
-                                    <option value={2}>Loteria</option>
-                                    <option value={3}> Administrador</option>
-                                    <option value={4}> Master</option>
+
+                                    {user.level === 1 && <option value={2}>Administrador</option>}
+                                    {[1, 2].includes(user.level) && <option value={3}>Grupero</option>}
+                                    {[1, 2, 3].includes(user.level) && <option value={4}>Agencia</option>}
+                                    {user.level === 1 && <option value={5}>Cliente</option>}
+
                                 </select>
                             </td>
                         </tr>

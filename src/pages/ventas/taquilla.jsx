@@ -1,9 +1,9 @@
-import images from "../../images/images"
 import Guard from "../../components/Guard"
 import useVentas from "../../hooks/useVentas"
 import dateNow from "../../services/dateNow"
 import Ticket from "../../components/modals/ticket"
 import { convertCeroNumber } from "../../services/utils"
+import AnimalsButtons from "../../components/animalsButtons"
 const Taquilla = () => {
     const { animals, handleSelectedAnimal, saveAndPrint, type, setType, setAnimals } = useVentas()
     return (<Guard>
@@ -15,19 +15,6 @@ const Taquilla = () => {
                 <h2> Taquilla de ventas </h2>
                 <button onClick={saveAndPrint} className="btn btn-primary"> Imprimir </button>
             </div>
-            {/* <div className="bg-success p-2 text-light">
-        <div className="flex-between">
-          <div>
-            10 tikets 250bs -10%
-            <div>
-              15 Recargas 1500bs -5%
-            </div>
-            <h2>Total 1750bs</h2>
-          </div>
-          <button className="btn btn-primary"> imprimir reporte </button>
-        </div>
-      </div> */}
-
             <div className="flex-between">
                 <div>
                     <b> {dateNow.fecha} </b>
@@ -52,23 +39,7 @@ const Taquilla = () => {
             </div>
         </div>
         <hr />
-        {type && <>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="animal-container">
-                            {images.animals.map((animal, index) => {
-                                return <div key={index} className="animal-col">
-                                    <div onClick={() => handleSelectedAnimal(animal)} className={!animals.includes(animal) ? "btn-animals" : "btn-animals-selected"}>
-                                        <img src={animal.image} className="w-100" />
-                                    </div>
-                                </div>
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>}
+        {type && <AnimalsButtons handle={handleSelectedAnimal} />}
     </Guard >
     )
 }

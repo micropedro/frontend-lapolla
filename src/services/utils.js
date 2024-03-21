@@ -21,3 +21,23 @@ export const convertDate = (date) => {
     const [dia, mes, anio] = date.split("-")
     return new Date(anio, mes - 1, dia).getTime()
 }
+
+export const userType = (type) => {
+    if (type === 1) return 'master'
+    if (type === 2) return 'administrador'
+    if (type === 3) return 'grupero'
+    if (type === 4) return 'agencia'
+    if (type === 5) return 'cliente'
+    return 'ERROR'
+}
+
+export const restarDias = (fechaBase, dias) => {
+    try {
+        const date = new Date(fechaBase);
+        //console.log(fechaBase)
+        date.setDate(date.getDate() + 1 - dias)
+        return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0')
+    } catch (error) {
+        return false
+    }
+}

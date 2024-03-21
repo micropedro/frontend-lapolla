@@ -2,20 +2,18 @@ import useReportes from "../../hooks/useReportes"
 import { convertCeroNumber } from "../../services/utils"
 import dateNow from "../../services/dateNow"
 import useNotify from '../../hooks/useNotify'
+import formatDate from "../../services/formatDate"
+
 const Reporte = () => {
     const { notify } = useNotify()
     const { reportes, listType, setListType, reportesFiltered, setReportesFiltered } = useReportes()
 
     const filter = (discound) => {
-        const dia = new Date().getDate()
-        const list = reportes.filter((_reporte) => {
-            const reporteDate = _reporte.date
-            const arrayFecha = reporteDate.split('-')
-            return dia + discound == arrayFecha[0] && _reporte
-        })
+        const date = new Date()
+        const queryDate = formatDate(date, discound)
+        const list = reportes.filter((_reporte) => formatDate(_reporte.date) === queryDate)
         setReportesFiltered(list)
         if (list.length === 0) notify.error('No se encontraron registros en esta fecha')
-
     }
 
     return (<>
@@ -39,19 +37,20 @@ const Reporte = () => {
                 <div className="flex-between">
                     <div>
                         <button onClick={() => filter(0)} className="btn">Hoy</button>
-                        <button onClick={() => filter(-1)} className="btn">Ayer</button>
-                        <button onClick={() => filter(-2)} className="btn"> -2 dias </button>
-                        <button onClick={() => filter(-3)} className="btn"> -3 dias </button>
-                        <button onClick={() => filter(-4)} className="btn"> -4 dias </button>
-                        <button onClick={() => filter(-5)} className="btn"> -5 dias </button>
+                        <button onClick={() => filter(1)} className="btn">Ayer</button>
+                        <button onClick={() => filter(2)} className="btn"> -2 dias </button>
+                        <button onClick={() => filter(3)} className="btn"> -3 dias </button>
+                        <button onClick={() => filter(4)} className="btn"> -4 dias </button>
+                        <button onClick={() => filter(5)} className="btn"> -5 dias </button>
                     </div>
                     <div>
                         <button onClick={() => setListType(true)} className="btn text-dark"> <i className="bi bi-grid-fill" /> </button>
-                        <button onClick={() => setListType(false)} className="btn text-dark"> <i className="bi bi-stack" /> </button>
+                        <button onClick={() => setListType(false)} className="btn text-dark"> <i className="bi bi-list-ul" /> </button>
                     </div>
                 </div>
 
                 {listType ? reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
+                    const date = new Date(reporte.date).getDate()
                     return <div key={index} className="col-3 mb-3 text-center">
                         <div className="card h-100 p-2">
                             <b>Nro. {index + 1}</b>
@@ -60,7 +59,12 @@ const Reporte = () => {
                                     {reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}
                                 </b>
                             </div>
-                            <div>{reporte.date}</div>
+                            <div>
+                                {
+
+                                    date
+
+                                }</div>
                             <div>
                                 {reporte.animals.map((animal, index2) => {
                                     return (<span className="mx-2" key={index2}>{animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-{animal.name}, </span>)
@@ -81,10 +85,14 @@ const Reporte = () => {
                         </thead>
                         <tbody>
                             {reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
+                                const date = new Date(reporte.date)
+                                const dia = String(date.getDate()).padStart(2, '0')
+                                const anio = date.getFullYear()
+                                const mes = String(date.getMonth() + 1).padStart(2, '0')
                                 return (<tr key={index}>
                                     <td> {index} </td>
                                     <td>{reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}</td>
-                                    <td>{reporte.date}</td>
+                                    <td>{dia}-{mes}-{anio}</td>
                                     <td>{reporte.hora}</td>
                                     <td className="text-end">{reporte.animals.map((animal) => `${animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-${animal.name}, `)}</td>
                                 </tr>)
