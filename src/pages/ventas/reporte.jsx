@@ -30,7 +30,7 @@ const Reporte = () => {
                             Total de ventas <b> {reportes.length * 25} BS </b>
                         </div>
                         <div>
-                            Total a pagar <b> {reportes.length * 25 * 0.90} BS </b>
+                            Total a pagar <b> {reportes.length * 25 * 0.80} BS </b>
                         </div>
                     </div>
                 </div>

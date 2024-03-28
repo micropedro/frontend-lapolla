@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react"
 import useAnimalsStore from "../store/animalsStore"
 import request from "../services/request"
@@ -24,6 +25,7 @@ const useAnimal = () => {
                 const regDay = (`${registerDate.getDate()}-${registerDate.getMonth()}-${registerDate.getFullYear()}`)
                 const ayer = new Date(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)
                 const ayerDate = (ayer.getDate() - 1)
+
                 if (hora > 8) {
                     return hoy === regDay
                 } else {
@@ -31,13 +33,15 @@ const useAnimal = () => {
                 }
             })
             setAnimals(filtered)
+            return filtered
         } catch (error) { errorManager(error) }
     }
 
     useEffect(() => { getAnimals() }, [])
 
     return {
-        animals
+        animals,
+        getAnimals
     }
 }
 

@@ -5,6 +5,7 @@ const useVentas = () => {
     const [menu, setMenu] = useState("taquilla")
     const { animals, setAnimals, setVisible, type, setType } = useTicketStore()
     const { notify } = useNotify()
+
     const handleSelectedAnimal = (animal) => {
 
         if (animals.includes(animal)) return setAnimals(animals.filter((i) => i.id !== animal.id))

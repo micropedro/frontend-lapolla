@@ -4,7 +4,9 @@ import dateNow from "../../services/dateNow"
 import Ticket from "../../components/modals/ticket"
 import { convertCeroNumber } from "../../services/utils"
 import AnimalsButtons from "../../components/animalsButtons"
+
 const Taquilla = () => {
+
     const { animals, handleSelectedAnimal, saveAndPrint, type, setType, setAnimals } = useVentas()
     return (<Guard>
         <div>

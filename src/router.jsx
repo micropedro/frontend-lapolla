@@ -12,6 +12,8 @@ import AddUsers from "./pages/users/addUsers"
 import EditUser from "./pages/users/editUser"
 import Print from "./pages/print"
 import Cargar from "./pages/cargar"
+import Reporte from "./pages/reporte"
+import Config from "./pages/config"
 
 const Router = () => {
     return (<>
@@ -26,6 +28,8 @@ const Router = () => {
             <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
             <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />
             <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />
+            <Route path="/dashboard/reporte" element={<Dashboard><Reporte /></Dashboard>} />
+            <Route path="/dashboard/config" element={<Dashboard><Config /></Dashboard>} />
 
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />

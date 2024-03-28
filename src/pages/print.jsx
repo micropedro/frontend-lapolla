@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom"
 import useTicketStore from "../store/ticketStore"
 import dateNow from "../services/dateNow"
 import useNotify from "../hooks/useNotify"
+
 const Print = () => {
     const { notify } = useNotify()
-    const { setVisible, animals, setAnimals } = useTicketStore()
+    const { setVisible, animals, setAnimals, ticketCode } = useTicketStore()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const Print = () => {
             <div>
                 <div className="text-center">
                     <h2>apuestaslapolla.com</h2>
-                    <div>NRO TICKET. 234 - <i>CODIGO: 368Y45</i></div>
+                    <div>NRO TICKET. 234 - <i>CODIGO: {ticketCode}</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>

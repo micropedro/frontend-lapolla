@@ -1,24 +1,36 @@
+import Spinner from "../../components/spinner"
+import useGanadores from "../../hooks/useGanadores"
+import useLoadingStore from "../../store/loadingStore"
+import WinnerTicket from "../../components/winnerTicket"
 const Ganadores = () => {
+    const { loading } = useLoadingStore()
+    const { setCode, winnerTicket } = useGanadores()
+    const handler = (e) => {
+        e.preventDefault()
+        winnerTicket(e)
+    }
     return (
-        <div className="container px-5 py-2">
-            <div className="row justify-content-center">
-                <div className="col-10">
+        <div className="container ">
+            <div className="row mt-3 bg-dark text-light px-3 py-2">
+                <div className="col-12">
                     <h3>Comprobacion de ganadores</h3>
-                    <input type="text" placeholder="Ingresar codigo del ticket" className="form-control" />
-                    <button className="btn btn-primary px-5 btn-lg my-4"> Comprobar </button>
-
+                    <div className="input-group mb-3">
+                        <form onSubmit={handler} className="w-100 d-flex">
+                            <input onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="Ingresa el codigo del ticket" maxLength={5} />
+                            <div className="input-group-append">
+                                {loading ?
+                                    <button disabled className="btn btn-secondary">  <Spinner />  </button>
+                                    :
+                                    <button className="btn btn-primary "> Comprobar </button>
+                                }
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div className="row justify-content-center">
-                <div className="col-6 text-center">
-                    <div className="winer-ticket">
-                        <h1>Ticket Ganador <i className="winer-icon bi bi-check-circle-fill " /></h1>
-                        <div>Nombre: Manuel Perez </div>
-                        <div>Nro ticket: 1232 </div>
-                        <div>Codigo: woie738 </div>
-                        <div>Gran Quiniela: 27/08/2024  </div>
-                        <h3 className="premio">Premio: Bs. 95.000</h3>
-                    </div>
+            <div className="row">
+                <div className="col-8 offset-2 text-center pt-4">
+                    <WinnerTicket />
                 </div>
             </div>
         </div>

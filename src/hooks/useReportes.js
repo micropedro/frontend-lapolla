@@ -5,15 +5,30 @@ import request from '../services/request'
 import useUserStore from '../store/userStore'
 import useReportesStore from '../store/reportesStore'
 import { useEffect } from 'react'
+import useConfig from './useConfig'
 const useReportes = () => {
-
-    const { reportes, setReportes, listType, setListType, reportesFiltered, setReportesFiltered } = useReportesStore()
+    const { granQuinielaPrice, pollaWinnersPercent } = useConfig()
+    const { reportes, setReportes, listType, setListType, reportesFiltered, setReportesFiltered, polla, setPolla } = useReportesStore()
     const { user } = useUserStore()
 
     const getReportes = async () => {
         const response = await request.get(`${urlApi}/reportes/agencia/${user._id}`)
-        setReportes(response.data.body)
-        setReportesFiltered(response.data.body)
+        const reportes = response.data.body
+        setReportes(reportes)
+        setReportesFiltered(reportes)
+        getPolla(reportes)
+    }
+    const getPolla = (reportes) => {
+        const todayTickets = reportes.filter((ticket) => {
+            const date = new Date()
+            const ticketDate = new Date(ticket.date)
+            const today = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
+            const ticketToday = ticketDate.getFullYear() + '-' + ticketDate.getMonth() + '-' + ticketDate.getDate()
+            return today === ticketToday
+        })
+        const polla = (granQuinielaPrice * todayTickets.length) * pollaWinnersPercent / 100
+        console.log(granQuinielaPrice)
+        setPolla(polla)
     }
 
     useEffect(() => { getReportes() }, [])
@@ -24,7 +39,8 @@ const useReportes = () => {
         setListType,
         setReportes,
         reportesFiltered,
-        setReportesFiltered
+        setReportesFiltered,
+        polla
     }
 }
 

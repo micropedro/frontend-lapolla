@@ -14,27 +14,39 @@
         },
         {
             "name": "Quinielas",
-            "icon": "bi bi-bar-chart",
+            "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
             "status": true
         },
         {
             "name": "Ventas",
-            "icon": "bi bi-cash",
+            "icon": "bi bi-person-workspace",
             "link": "/dashboard/ventas",
             "status": true
         },
         {
+            "name": "Cargar Animalitos",
+            "icon": "bi bi-file-earmark-arrow-up",
+            "link": "/dashboard/cargar",
+            "status": true
+        },
+        {
             "name": "Reporte de caja",
-            "icon": "bi bi-dice-6",
-            "link": "/dashboard/loterias",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/reporte",
             "status": false
         },
         {
-            "name": "Cargar Animalitos",
-            "icon": "bi bi-check-circle",
-            "link": "/dashboard/cargar",
-            "status": true
+            "name": "Configuracion",
+            "icon": "bi bi-boxes",
+            "link": "/dashboard/config",
+            "status": false
+        },
+        {
+            "name": "Mensajes",
+            "icon": "bi bi-envelope",
+            "link": "/dashboard/mensajes",
+            "status": false
         }
     ]
 }

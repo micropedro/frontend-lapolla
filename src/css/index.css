@@ -294,6 +294,7 @@
     margin-bottom: 20px;
     color: rgb(11, 110, 27);
     flex-direction: column;
+    font-size: 20px;
 }
 
 .winer-ticket h1 {
@@ -302,8 +303,8 @@
 
 .winer-icon {
     color: rgb(20, 197, 20);
-    font-size: 100px;
-    line-height: 100px;
+    font-size: 80px;
+    line-height: 80px;
 }
 
 .premio {
@@ -404,4 +405,32 @@
 .btn-default :hover {
     background-color: rgb(230, 230, 230);
     border: 1px solid rgb(156, 156, 156) !important;
+}
+
+.btn-cargar {
+    height: 40px;
+}
+
+.mr1 {
+    margin-inline-end: 30px;
+}
+
+.ticket-looser {
+    border: 1px solid #969696;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.btn-jugada {
+    padding: 5px 12px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+.win {
+    background-color: rgb(113, 243, 113);
+}
+
+.lose {
+    background-color: rgb(253, 199, 199);
 }

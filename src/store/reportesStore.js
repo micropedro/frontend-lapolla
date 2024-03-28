@@ -13,6 +13,10 @@ const useReportesStore = createWithEqualityFn((set) => ({
     setReportesFiltered: (newReportesF) => set(() => ({
         reportesFiltered: newReportesF
     })),
+    polla: 0,
+    setPolla: (newPolla) => set(() => ({
+        polla: newPolla
+    }))
 }))
 
 export default useReportesStore

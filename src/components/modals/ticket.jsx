@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import useTicketStore from "../../store/ticketStore"
 import dateNow from "../../services/dateNow"
@@ -5,20 +6,22 @@ import useTicket from "../../hooks/useTicket"
 import { convertCeroNumber } from "../../services/utils"
 import loadingStore from "../../store/loadingStore"
 import Spinner from "../../components/spinner"
-
+import { getTicketCode } from "../../services/utils"
+import { useEffect } from "react"
 const Ticket = () => {
 
     const { loading } = loadingStore()
-
     const { handlePrint } = useTicket()
-    const { visible, setVisible, animals } = useTicketStore()
+    const { visible, setVisible, animals, setTicketCode } = useTicketStore()
+
+    useEffect(() => setTicketCode(getTicketCode()), [])
 
     if (visible) return (<div className="bg-modal">
         <div className="ticket-body p-3">
             <div>
                 <div className="text-center">
                     <h2>apuestaslapolla.com</h2>
-                    <div>Nro Ticket. 234 - <i>Codigo: 368Y45</i></div>
+                    <div>Nro Ticket. 234 - <i>Codigo: ******</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>

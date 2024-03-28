@@ -6,7 +6,13 @@ export const objectEmpty = (object) => {
 
 export const convertCeroNumber = (number) => number > 0 && number < 10 ? `0${number}` : number
 
-export const comprobacion = ({ animals, user, type }) => animals.length === 3 || animals.length === 6 && type === 1 || type === 2 && user
+export const comprobacion = ({ animals, user, type, code }) => {
+    const animalLengths = animals.length === 3 | animals.length === 6
+    const animalTypes = type === 1 | type === 2
+    const codeLength = code.length === 5
+    const comprobar = animalLengths && animalTypes && user && codeLength
+    return comprobar
+}
 
 export const textMenu = ["Taquilla", "Reporte", "Ganadores"]
 
@@ -40,4 +46,14 @@ export const restarDias = (fechaBase, dias) => {
     } catch (error) {
         return false
     }
+}
+
+export const getTicketCode = () => {
+    const digits = "123456789ACDEFGHJKLMPQRTUX"
+    const randomDigit = () => digits[Math.floor((Math.random() * digits.length))]
+    let ticketCode = ""
+    for (let index = 1; index < 6; index++) {
+        ticketCode += randomDigit()
+    }
+    return ticketCode
 }

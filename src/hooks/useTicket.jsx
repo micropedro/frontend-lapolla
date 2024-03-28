@@ -6,18 +6,24 @@ import useUserStore from "../store/userStore"
 import { useNavigate } from "react-router-dom"
 import { comprobacion } from "../services/utils"
 import loadingStore from "../store/loadingStore"
+
 const useTicket = () => {
+
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user } = useUserStore()
-    const { animals, type } = useTicketStore()
+    const { animals, type, ticketCode } = useTicketStore()
     const { notify } = useNotify()
 
     const handlePrint = async () => {
         setLoading(true)
-        const body = { animals, user, type }
 
-        if (!comprobacion(body)) return notify.error('Error en los datos del formulario')
+        const body = { animals, user, type, code: ticketCode }
+
+        if (!comprobacion(body)) {
+            setLoading(false)
+            return notify.error('Error en los datos del formulario')
+        }
 
         try {
             const res = await request.post(`${urlApi}/tickets`, body)
