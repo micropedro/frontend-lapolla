@@ -40,9 +40,8 @@ export const userType = (type) => {
 export const restarDias = (fechaBase, dias) => {
     try {
         const date = new Date(fechaBase);
-        //console.log(fechaBase)
-        date.setDate(date.getDate() + 1 - dias)
-        return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0')
+        date.setDate(date.getDate() - dias)
+        return date.getFullYear() + '-' + (String(date.getMonth() + 1).padStart(2, '0')) + '-' + (String(date.getDate() + 1).padStart(2, '0'))
     } catch (error) {
         return false
     }

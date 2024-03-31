@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Guard from "../components/Guard"
-import dateNow from "../services/dateNow"
-import useQuinielas from "../hooks/useQuinielas"
-import useLoadingStore from "../store/loadingStore"
-import Spinner from "../components/spinner"
-import useAnimals from '../hooks/useAnimals'
+import Guard from "../../components/Guard"
+import dateNow from "../../services/dateNow"
+import useQuinielas from "../../hooks/useQuinielas"
+import useLoadingStore from "../../store/loadingStore"
+import Spinner from "../../components/spinner"
+import useAnimals from '../../hooks/useAnimals'
 import { useEffect } from "react"
 const Quinielas = () => {
   const { animals } = useAnimals()
@@ -19,6 +19,7 @@ const Quinielas = () => {
   }
 
   useEffect(() => {
+
     if (tickets.length > 0) {
       let cant = 0
       tickets.forEach((ticket) => {

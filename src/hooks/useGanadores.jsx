@@ -5,6 +5,10 @@ import useErrorManager from "./useErrorManager"
 import useAnimals from "../hooks/useAnimals"
 import useLoadingStore from "../store/loadingStore"
 import useTicketStore from "../store/ticketStore"
+
+const granQuniela = "1"
+const miniQuiniela = "2"
+
 const useGanadores = () => {
     const { setLoading } = useLoadingStore()
     const { getAnimals } = useAnimals()
@@ -29,22 +33,22 @@ const useGanadores = () => {
                 const numerosRepetidos = ids.filter(num => ticketsIds.includes(num))
                 console.log(numerosRepetidos)
 
-                if (ticketType === "1" && numerosRepetidos.length === 6) {
+                if (ticketType === granQuniela && numerosRepetidos.length === 6) {
                     ticket.isWinner = true
                     setTicket(ticket)
                 }
 
-                if (ticketType === "2" && numerosRepetidos.length === 3) {
+                if (ticketType === miniQuiniela && numerosRepetidos.length === 3) {
                     ticket.isWinner = true
                     setTicket(ticket)
                 }
 
-                if (ticketType === "1" && numerosRepetidos.length !== 6) {
+                if (ticketType === granQuniela && numerosRepetidos.length !== 6) {
                     ticket.isWinner = false
                     setTicket(ticket)
                 }
 
-                if (ticketType === "2" && numerosRepetidos.length !== 3) {
+                if (ticketType === miniQuiniela && numerosRepetidos.length !== 3) {
                     ticket.isWinner = false
                     setTicket(ticket)
                 }

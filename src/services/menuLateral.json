@@ -31,15 +31,15 @@
             "status": true
         },
         {
-            "name": "Reporte de caja",
-            "icon": "bi bi-bar-chart",
-            "link": "/dashboard/reporte",
-            "status": false
-        },
-        {
             "name": "Configuracion",
             "icon": "bi bi-boxes",
             "link": "/dashboard/config",
+            "status": true
+        },
+        {
+            "name": "Reporte de caja",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/reporte",
             "status": false
         },
         {

@@ -1,10 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useNotify from "./useNotify"
 import useTicketStore from "../store/ticketStore"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 const useVentas = () => {
+
     const [menu, setMenu] = useState("taquilla")
     const { animals, setAnimals, setVisible, type, setType } = useTicketStore()
     const { notify } = useNotify()
+
+    useEffect(() => () => setAnimals([]), [])
 
     const handleSelectedAnimal = (animal) => {
 

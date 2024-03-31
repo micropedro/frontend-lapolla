@@ -4,6 +4,7 @@ import useAnimalsStore from "../store/animalsStore"
 const WinnerTicket = () => {
     const { animals } = useAnimalsStore()
     const { ticket } = useTicketStore()
+
     return (<>
         {/*  {ticket && (ticket.isWinner ? 'winer' : 'No ganador')} */}
         {ticket?.isWinner ?

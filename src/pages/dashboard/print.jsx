@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import useTicketStore from "../store/ticketStore"
-import dateNow from "../services/dateNow"
-import useNotify from "../hooks/useNotify"
+import useTicketStore from "../../store/ticketStore"
+import dateNow from "../../services/dateNow"
+import useNotify from "../../hooks/useNotify"
 
 const Print = () => {
     const { notify } = useNotify()

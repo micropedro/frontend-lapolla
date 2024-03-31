@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import SideBar from "../components/sideBar"
-import Guard from "../components/Guard"
+import SideBar from "../../components/sideBar"
+import Guard from "../../components/Guard"
 const Dashboard = ({ children }) => {
 
     return (<Guard>

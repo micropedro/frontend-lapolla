@@ -19,7 +19,7 @@ const useQuinielas = () => {
         setLoading(true)
         try {
             const date = new Date()
-            const fechaHoy = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, '0')}`
+            const fechaHoy = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
             const fechaAyer = restarDias(fechaHoy, 1)
 
             const res = await request.get(`${urlApi}/tickets/${fechaAyer}/${fechaHoy}`)

@@ -7,7 +7,7 @@ import useReportesStore from '../store/reportesStore'
 import { useEffect } from 'react'
 import useConfig from './useConfig'
 const useReportes = () => {
-    const { granQuinielaPrice, pollaWinnersPercent } = useConfig()
+    const { config } = useConfig()
     const { reportes, setReportes, listType, setListType, reportesFiltered, setReportesFiltered, polla, setPolla } = useReportesStore()
     const { user } = useUserStore()
 
@@ -18,6 +18,7 @@ const useReportes = () => {
         setReportesFiltered(reportes)
         getPolla(reportes)
     }
+
     const getPolla = (reportes) => {
         const todayTickets = reportes.filter((ticket) => {
             const date = new Date()
@@ -26,8 +27,8 @@ const useReportes = () => {
             const ticketToday = ticketDate.getFullYear() + '-' + ticketDate.getMonth() + '-' + ticketDate.getDate()
             return today === ticketToday
         })
-        const polla = (granQuinielaPrice * todayTickets.length) * pollaWinnersPercent / 100
-        console.log(granQuinielaPrice)
+        const polla = (config.gQPrice * todayTickets.length) * config.premioCasa / 100
+        console.log(config.gQPrice)
         setPolla(polla)
     }
 

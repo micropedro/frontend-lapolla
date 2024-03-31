@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import Login from "./pages/login"
+import Login from "./pages/auth/login"
 import Dashboard from "./pages/dashboard"
 import Users from "./pages/users/users"
 import Loterias from "./pages/loterias"
@@ -7,20 +7,23 @@ import Ganadores from "./pages/ganadores"
 import Metodos from "./pages/metodos/metodos"
 import Quinielas from "./pages/quinielas"
 import Ventas from "./pages/ventas/ventas"
-import Recuperacion from "./pages/recuperacion"
+import Recuperacion from "./pages/auth/recuperacion"
 import AddUsers from "./pages/users/addUsers"
 import EditUser from "./pages/users/editUser"
 import Print from "./pages/print"
 import Cargar from "./pages/cargar"
 import Reporte from "./pages/reporte"
 import Config from "./pages/config"
+import Home from "./pages/client/home/home"
+import Register from "./pages/auth/register"
 
 const Router = () => {
     return (<>
 
         <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/recuperacion" element={<Recuperacion />} />
             <Route path="/print" element={<Print />} />
 
