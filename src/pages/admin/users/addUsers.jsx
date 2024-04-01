@@ -1,5 +1,5 @@
-import useAddUsers from "../../hooks/useAddUser"
-import useUserStore from "../../store/userStore"
+import useAddUsers from "@/hooks/useAddUser"
+import useUserStore from "@/store/userStore"
 const AddUsers = () => {
     const { user } = useUserStore()
     const { sendUserForm } = useAddUsers()

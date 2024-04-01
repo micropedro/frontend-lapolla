@@ -1,4 +1,5 @@
-const urlApi = 'http://localhost:5000/api/v1'
-/* const urlApi = 'https://backend-lapolla.vercel.app/api/v1' */
+import { hostLocale, pathLocale, pathProduction } from '@/config.json'
+
+const urlApi = hostLocale ? pathLocale : pathProduction
 
 export default urlApi

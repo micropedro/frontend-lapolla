@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 const Guard = ({ children }) => {

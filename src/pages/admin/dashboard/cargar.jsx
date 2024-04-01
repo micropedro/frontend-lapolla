@@ -1,8 +1,8 @@
-import Guard from "../../components/Guard"
-import AnimalsButtons from "../../components/animalsButtons"
-import dateNow from "../../services/dateNow"
-import useCargarAnimales from "../../hooks/useCargarAnimales"
-import Hora from '../../components/hora'
+import Guard from "@/components/Guard"
+import AnimalsButtons from "@/components/animalsButtons"
+import dateNow from "@/services/dateNow"
+import useCargarAnimales from "@/hooks/useCargarAnimales"
+import Hora from '@/components/hora'
 const Cargar = () => {
     const { animalSelected, handle, save, setHora, formattedDate, hora, radioRoulet, setRadioRoulet, animalDate } = useCargarAnimales()
     return (

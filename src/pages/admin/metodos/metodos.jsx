@@ -1,8 +1,8 @@
-import Guard from '../../components/Guard'
-import useLoadingStore from '../../store/loadingStore'
-import Spinner from '../../components/spinner'
-import { datos } from '../../services/metodos.json'
-import useMethods from '../../hooks/useMethods'
+import Guard from '@/components/Guard'
+import useLoadingStore from '@/store/loadingStore'
+import Spinner from '@/components/spinner'
+import { datos } from '@/services/metodos.json'
+import useMethods from '@/hooks/useMethods'
 const Metodos = () => {
   const { loading } = useLoadingStore()
   const { handleSelected, sendForm, deleteMethod, itemType, methodName, setMethodName, selected, actualMethods } = useMethods()
