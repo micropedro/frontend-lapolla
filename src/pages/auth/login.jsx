@@ -38,7 +38,7 @@ const Login = () => {
                         </div>
                         <div className="my-3">
                             <Link to='/register' >
-                                Registrate Aqui
+                                Registrate aquí
                             </Link>
                         </div>
                     </div>

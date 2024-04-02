@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
-import SideBar from "@/components/sideBar"
-import Guard from "@/components/Guard"
+import PropsTypes from 'prop-types'
+import SideBar from '@/components/sideBar'
+import Guard from '@/components/Guard'
 const Dashboard = ({ children }) => {
 
     return (<Guard>
@@ -14,4 +14,9 @@ const Dashboard = ({ children }) => {
         </div>
     </Guard>)
 }
+
+Dashboard.propTypes = {
+    children: PropsTypes.element.isRequired
+}
+
 export default Dashboard
