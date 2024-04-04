@@ -1,7 +1,7 @@
-import images from "../../images/images"
-import useLoadingStore from "../../store/loadingStore"
-import Spinner from "../../components/spinner"
-import useLogin from "../../hooks/useLogin"
+import images from "@/images/images"
+import useLoadingStore from "@/store/loadingStore"
+import Spinner from "@/components/spinner"
+import useLogin from "@/hooks/useLogin"
 import { Link } from "react-router-dom"
 const Login = () => {
     const { loading } = useLoadingStore()
@@ -38,7 +38,7 @@ const Login = () => {
                         </div>
                         <div className="my-3">
                             <Link to='/register' >
-                                Registrate Aqui
+                                Registrate aquí
                             </Link>
                         </div>
                     </div>

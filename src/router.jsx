@@ -1,21 +1,22 @@
-import { Routes, Route } from "react-router-dom"
-import Login from "./pages/auth/login"
-import Dashboard from "./pages/dashboard/dashboard"
-import Users from "./pages/users/users"
-import Loterias from "./pages/dashboard/loterias"
-import Ganadores from "./pages/dashboard/ganadores"
-import Metodos from "./pages/metodos/metodos"
-import Quinielas from "./pages/dashboard/quinielas"
-import Ventas from "./pages/ventas/ventas"
-import Recuperacion from "./pages/auth/recuperacion"
-import AddUsers from "./pages/users/addUsers"
-import EditUser from "./pages/users/editUser"
-import Print from "./pages/dashboard/print"
-import Cargar from "./pages/dashboard/cargar"
-import Reporte from "./pages/dashboard/reporte"
-import Config from "./pages/dashboard/config"
-import Home from "./pages/client/home/home"
-import Register from "./pages/auth/register"
+import { Routes, Route } from 'react-router-dom'
+import Login from './pages/auth/login'
+import Dashboard from './pages/admin/dashboard/dashboard'
+import DashboardClient from './pages/client/dashboard/Dashboard'
+import Users from './pages/admin/users/users'
+import Loterias from './pages/admin/dashboard/loterias'
+import Ganadores from './pages/admin/dashboard/ganadores'
+import Metodos from './pages/admin/metodos/metodos'
+import Quinielas from './pages/admin/dashboard/quinielas'
+import Ventas from './pages/admin/ventas/ventas'
+import Recuperacion from './pages/auth/recuperacion'
+import AddUsers from './pages/admin/users/addUsers'
+import EditUser from './pages/admin/users/editUser'
+import Print from './pages/admin/dashboard/print'
+import Cargar from './pages/admin/dashboard/cargar'
+import Reporte from './pages/admin/dashboard/reporte'
+import Config from './pages/admin/dashboard/config'
+import Home from './pages/home/home'
+import Register from './pages/auth/register'
 
 const Router = () => {
     return (<>
@@ -40,6 +41,7 @@ const Router = () => {
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
 
+            <Route path="/dashboard/" element={<Dashboard><DashboardClient /></Dashboard>} />
 
             <Route path="/*" element={<div className="NotFound404">404 Not found</div>} />
         </Routes>

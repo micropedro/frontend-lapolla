@@ -1,8 +1,8 @@
-import useEditUser from "../../hooks/useEditUser"
-import useEditUserStore from "../../store/editUserStore"
-import useLoadingStore from "../../store/loadingStore"
-import Spinner from '../../components/spinner'
-import useUserStore from "../../store/userStore"
+import useEditUser from "@/hooks/useEditUser"
+import useEditUserStore from "@/store/editUserStore"
+import useLoadingStore from "@/store/loadingStore"
+import Spinner from '@/components/spinner'
+import useUserStore from "@/store/userStore"
 const EditUser = () => {
     const { user } = useUserStore()
     const { loading } = useLoadingStore()

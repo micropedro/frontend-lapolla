@@ -1,6 +1,7 @@
-/* eslint-disable react/prop-types */
-import images from "../images/images"
-import useVentas from "../hooks/useVentas"
+import images from "@/images/images"
+import useVentas from "@/hooks/useVentas"
+import PropsTypes from 'prop-types'
+
 const AnimalsButtons = ({ handle }) => {
     const { animals } = useVentas()
     return (
@@ -20,6 +21,10 @@ const AnimalsButtons = ({ handle }) => {
             </div>
         </div>
     )
+}
+
+AnimalsButtons.propTypes = {
+    handle: PropsTypes.func.isRequired
 }
 
 export default AnimalsButtons
