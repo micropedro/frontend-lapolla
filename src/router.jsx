@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Login from './pages/auth/login'
 import Dashboard from './pages/admin/dashboard/dashboard'
-import DashboardClient from './pages/client/dashboard/dashboard'
+import DashboardClient from './pages/client/dashboard/Dashboard'
 import Users from './pages/admin/users/users'
 import Loterias from './pages/admin/dashboard/loterias'
 import Ganadores from './pages/admin/dashboard/ganadores'
