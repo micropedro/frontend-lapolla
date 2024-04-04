@@ -1,4 +1,10 @@
-// eslint-disable-next-line react/prop-types
+import PropsTypes from "prop-types"
+
 const Spinner = ({ color }) =>
     <div className="spinner-border" style={color ? { color } : { color: 'white' }} role="status" />
-export default Spinner
+
+Spinner.propTypes = {
+    color: PropsTypes.string.isRequired
+}
+
+    export default Spinner

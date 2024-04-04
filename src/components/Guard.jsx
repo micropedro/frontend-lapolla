@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 const Guard = ({ children }) => {
 
     const navigate = useNavigate()
 
     const [access, setAccess] = useState()
+
 
     useEffect(() => {
         //falta agregar los tipos de usuarios que va a entrar 1 2 3 4
@@ -18,7 +17,7 @@ const Guard = ({ children }) => {
         }
     }, [])
 
-    return access ? children : "Error de autenticacion de usuario..."
+    return access ? children : 'Error de autenticacion de usuario...'
 
 }
 

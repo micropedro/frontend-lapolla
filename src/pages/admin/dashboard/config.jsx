@@ -1,6 +1,6 @@
-import useConfig from "../../hooks/useConfig"
-import useLoadingStore from "../../store/loadingStore"
-import Spinner from "../../components/spinner"
+import useConfig from "@/hooks/useConfig"
+import useLoadingStore from "@/store/loadingStore"
+import Spinner from "@/components/spinner"
 const Config = () => {
     const { loading } = useLoadingStore()
     const { config, updateConfig, setConfig, handleHoras } = useConfig()

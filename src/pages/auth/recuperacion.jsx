@@ -1,8 +1,8 @@
-import images from '../../images/images'
-import useRecuperacion from '../../hooks/useRecuperacion'
-import useLoadingStore from '../../store/loadingStore'
-import Spinner from '../../components/spinner'
-import Guard from '../../components/Guard'
+import images from '@/images/images'
+import useRecuperacion from '@/hooks/useRecuperacion'
+import useLoadingStore from '@/store/loadingStore'
+import Spinner from '@/components/spinner'
+import Guard from '@/components/Guard'
 function Recuperacion() {
     const { loading } = useLoadingStore()
     const { verifyTemporalPass, sendTemporalPass, saveNewPassword, step } = useRecuperacion()

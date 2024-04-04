@@ -1,8 +1,8 @@
-import useModalStore from "../../store/modalStore"
-import urlApi from "../../services/urlApi"
-import useUsers from "../../hooks/useUsers"
-import useLoadingModalStore from "../../store/loadingModalStore"
-import request from "../../services/request"
+import useModalStore from "@/store/modalStore"
+import urlApi from "@/services/urlApi"
+import useUsers from "@/hooks/useUsers"
+import useLoadingModalStore from "@/store/loadingModalStore"
+import request from "@/services/request"
 const useDeleteUserModal = () => {
     const { setLoading, setText } = useLoadingModalStore()
     const { getUsers } = useUsers()

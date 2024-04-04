@@ -1,12 +1,12 @@
 
-import Guard from '../../components/Guard'
-import useUsers from '../../hooks/useUsers'
-import DeleteUserModal from '../../components/modals/deleteUserModal'
+import Guard from '@/components/Guard'
+import useUsers from '@/hooks/useUsers'
+import DeleteUserModal from '@/components/modals/deleteUserModal'
 import { Link } from 'react-router-dom'
-import useEditUserStore from '../../store/editUserStore'
-import useLoadingStore from '../../store/loadingStore'
-import Spinner from '../../components/spinner'
-import { userType } from '../../services/utils'
+import useEditUserStore from '@/store/editUserStore'
+import useLoadingStore from '@/store/loadingStore'
+import Spinner from '@/components/spinner'
+import { userType } from '@/services/utils'
 const Users = () => {
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()

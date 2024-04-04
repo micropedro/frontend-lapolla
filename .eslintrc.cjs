@@ -16,5 +16,10 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'quotes': ['error', 'single'],
+    'indent': ['error', 4]
   },
+  globals: {
+    __dirname: 'readonly',
+  }
 }
