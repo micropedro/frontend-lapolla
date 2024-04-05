@@ -11,15 +11,17 @@ const Home = () => {
                                 <img height='80px' src={image.logoPng} alt="" />
                             </div>
                             <div>
-                                <Link to='/login' className="btn btn-warning mx-1 btn-lg px-4" >
-                                    <i className="bi bi-box-arrow-in-right mx-2" />
-                                    Iniciar sesion
+                                <Link to='/login'  >
+                                    <button className="btn btn-warning mx-1 btn-lg px-4 box-shadow-btn-landing btn-land-1">
+                                        <i className="bi bi-box-arrow-in-right mx-2" />
+                                        Iniciar sesion
+                                    </button>
                                 </Link>
-                                <Link to='/register' className="btn btn-primary mx-1 btn-lg px-4" >
-                                    <i className="bi bi-cloud-arrow-up mx-2" />
-                                    <i>
+                                <Link to='/register' >
+                                    <button className="btn btn-warning mx-1 btn-lg px-4 box-shadow-btn-landing btn-land-2">
+                                        <i className="bi bi-cloud-arrow-up mx-2" />
                                         Registrarme
-                                    </i>
+                                    </button>
                                 </Link>
                             </div>
                         </div>
