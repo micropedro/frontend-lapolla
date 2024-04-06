@@ -1,6 +1,3 @@
-const Ganadores = () => {
-  return (
-    <div>Ganadores</div>
-  )
-}
+const Ganadores = () => <div>Ganadores</div>
+
 export default Ganadores
