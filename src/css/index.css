@@ -52,6 +52,10 @@
     background-color: rgba(236, 241, 241, 0.212);
 }
 
+.container-auth{
+    min-height: calc(100vh - 96px) !important;
+}
+
 .wrap-login {
     padding-top: 50px;
 }

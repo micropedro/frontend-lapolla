@@ -1,39 +1,24 @@
-import { Link } from "react-router-dom"
-import image from '../../images/images'
+import Menu from '@/components/menu'
+import Results from './results/'
+import Winners from './winners'
+import NextQuiniela from './nextQuiniela'
+import ItemsRoulettes from './itemsRoulettes'
+
 const Home = () => {
     return (
         <>
-            <div className="bg-dark">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 flex-between py-2">
-                            <div className="">
-                                <img height='80px' src={image.logoPng} alt="" />
-                            </div>
-                            <div>
-                                <Link to='/login' className="btn btn-warning mx-1 btn-lg px-4" >
-                                    <i className="bi bi-box-arrow-in-right mx-2" />
-                                    Iniciar sesion
-                                </Link>
-                                <Link to='/register' className="btn btn-primary mx-1 btn-lg px-4" >
-                                    <i className="bi bi-cloud-arrow-up mx-2" />
-                                    <i>
-                                        Registrarme
-                                    </i>
-                                </Link>
-                            </div>
-                        </div>
+            <Menu />
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="col-9">
+                        <Results />
+                        <NextQuiniela />
+                    </div>
+                    <div className="col-3">
+                        <Winners />
                     </div>
                 </div>
-            </div>
-            <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <h1>contenido aqui</h1>
-                        </div>
-                    </div>
-                </div>
+                <ItemsRoulettes />
             </div>
         </>
     )
