@@ -438,3 +438,22 @@
 .lose {
     background-color: rgb(253, 199, 199);
 }
+
+.box-shadow-btn-landing {
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.678);
+    color: aliceblue;
+    transition: 0.1s;
+}
+
+.box-shadow-btn-landing:hover {
+    color: rgb(21, 255, 0);
+    transform: scale(1.01);
+}
+
+.btn-land-1 {
+    background: linear-gradient(rgb(219, 76, 10), rgb(224, 153, 0));
+}
+
+.btn-land-2 {
+    background: linear-gradient(rgb(219, 4, 219), rgb(206, 0, 79));
+}
