@@ -1,5 +1,5 @@
-import Menu from '@/components/menu'
-import Results from './results/'
+import Menu from '../../components/menu'
+import Results from './results/results'
 import Winners from './winners'
 import NextQuiniela from './nextQuiniela'
 import ItemsRoulettes from './itemsRoulettes'
@@ -7,25 +7,26 @@ import Footer from './footer'
 
 const Home = () => {
     return (
-        <>
+        <div className='bg-dark'>
             <Menu />
-            <div className='bg-dark'>
-                <div className="container bg-dark">
-                    <div className="row">
-                        <div className="col-9">
-                            <Results />
-                            <NextQuiniela />
-                        </div>
-                        <div className="col-3">
-                            <Winners />
-                        </div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12 col-lg-9">
+                        <Results />
+                        <NextQuiniela />
                     </div>
-                    <ItemsRoulettes />
+                    <div className="col-md-12 col-lg-3">
+                        <Winners />
+                    </div>
+                </div>
+            </div>
+            <ItemsRoulettes />
+            <div className="container">
+                <div className="row">
                     <Footer />
                 </div>
             </div>
-          
-        </>
+        </div>
     )
 }
 

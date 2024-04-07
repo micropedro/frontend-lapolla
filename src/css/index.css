@@ -57,7 +57,7 @@
     background-color: rgba(236, 241, 241, 0.212);
 }
 
-.container-auth{
+.container-auth {
     min-height: calc(100vh - 96px) !important;
 }
 
@@ -465,4 +465,13 @@
 
 .btn-land-2 {
     background: linear-gradient(rgb(219, 4, 219), rgb(206, 0, 79));
+}
+
+.linkRedes a {
+    text-decoration: none;
+    color: white;
+}
+
+.linkRedes i {
+    color: white;
 }

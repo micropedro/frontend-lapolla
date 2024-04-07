@@ -1,36 +1,36 @@
-.container{
+.container {
     text-align: center;
     color: white;
 }
 
-h2{
+h2 {
     font-size: 40px;
     font-family: 'grobold';
 }
 
-.cardQuiniela p{
+.cardQuiniela p {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 0;
 }
 
-.btnQuiniela{
-    font-size: 30px;
+.btnQuiniela {
+    font-size: 20px;
     font-weight: 700;
     background-color: #143d79;
 }
 
-i{
+i {
     color: rgb(126, 3, 9);
 }
 
-.hoursMini{
+.hoursMini {
     font-size: 20px;
     font-weight: 700;
     color: rgb(126, 3, 9);
 }
 
-.hoursGran{
+.hoursGran {
     font-size: 20px;
     font-weight: 700;
     color: rgb(15, 131, 56);

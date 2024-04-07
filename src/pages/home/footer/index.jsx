@@ -7,10 +7,10 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-md-4">
                         <h5>Redes Sociales</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Instagram</a></li>
+                        <ul className="list-unstyled linkRedes">
+                            <li><a href="#"> <i className='bi bi-facebook' /> Facebook</a></li>
+                            <li><a href="#"> <i className='bi bi-facebook' /> Twitter</a></li>
+                            <li><a href="#"> <i className='bi bi-facebook' /> Instagram</a></li>
                         </ul>
                     </div>
                     <div className="col-md-4">
