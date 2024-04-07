@@ -6,7 +6,7 @@ const Card = ({ width, height, content }) => {
     const Content = content
     return (
         <div 
-            className='card bg-warning bg-gradient' 
+            className='card bg-warning bg-card' 
             style={{ width: width ?? '160px', height: height ?? '200px' }}
         >
             <Content animal={animal} />

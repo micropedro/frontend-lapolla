@@ -3,23 +3,28 @@ import Results from './results/'
 import Winners from './winners'
 import NextQuiniela from './nextQuiniela'
 import ItemsRoulettes from './itemsRoulettes'
+import Footer from './footer'
 
 const Home = () => {
     return (
         <>
             <Menu />
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-9">
-                        <Results />
-                        <NextQuiniela />
+            <div className='bg-dark'>
+                <div className="container bg-dark">
+                    <div className="row">
+                        <div className="col-9">
+                            <Results />
+                            <NextQuiniela />
+                        </div>
+                        <div className="col-3">
+                            <Winners />
+                        </div>
                     </div>
-                    <div className="col-3">
-                        <Winners />
-                    </div>
+                    <ItemsRoulettes />
+                    <Footer />
                 </div>
-                <ItemsRoulettes />
             </div>
+          
         </>
     )
 }

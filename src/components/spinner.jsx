@@ -7,4 +7,4 @@ Spinner.propTypes = {
     color: PropsTypes.string.isRequired
 }
 
-    export default Spinner
+export default Spinner
