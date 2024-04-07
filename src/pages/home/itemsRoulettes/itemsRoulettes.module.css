@@ -1,0 +1,18 @@
+.btnRegister{
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    background-color: #161616;
+    border: none;
+}
+
+.btnRegister:hover{
+    background-color: #262626;
+}
+
+.btnLogin{
+    font-size: 22px;
+    font-weight: 700;
+    background-color: white;
+    color: #212529;
+}

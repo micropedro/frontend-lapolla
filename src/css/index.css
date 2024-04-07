@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'grobold';
+    src: url('@/css/grobold.ttf') format('truetype');
+}
+
 :root {
     --yellow1: rgb(252, 219, 33);
     --yellow2: rgba(235, 238, 93, 0.918);
@@ -50,6 +55,10 @@
 .sidebar-button:hover {
     color: white;
     background-color: rgba(236, 241, 241, 0.212);
+}
+
+.container-auth {
+    min-height: calc(100vh - 96px) !important;
 }
 
 .wrap-login {
@@ -433,4 +442,36 @@
 
 .lose {
     background-color: rgb(253, 199, 199);
+}
+
+.box-shadow-btn-landing {
+    box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.678);
+    color: aliceblue;
+    transition: 0.1s;
+}
+
+.box-shadow-btn-landing:hover {
+    color: rgb(21, 255, 0);
+    transform: scale(1.01);
+}
+
+.btn-land-1 {
+    background: linear-gradient(rgb(219, 76, 10), rgb(224, 153, 0));
+}
+
+.bg-card {
+    background: linear-gradient(rgb(234, 117, 22), rgb(224, 153, 0));
+}
+
+.btn-land-2 {
+    background: linear-gradient(rgb(219, 4, 219), rgb(206, 0, 79));
+}
+
+.linkRedes a {
+    text-decoration: none;
+    color: white;
+}
+
+.linkRedes i {
+    color: white;
 }

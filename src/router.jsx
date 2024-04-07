@@ -41,7 +41,7 @@ const Router = () => {
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
 
-            <Route path="/dashboard/" element={<Dashboard><DashboardClient /></Dashboard>} />
+            <Route path="/dashboard/" element={<DashboardClient />} />
 
             <Route path="/*" element={<div className="NotFound404">404 Not found</div>} />
         </Routes>

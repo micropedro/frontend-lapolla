@@ -1,14 +1,30 @@
-import { Link } from "react-router-dom"
+import Menu from '../../components/menu'
+import Results from './results/results'
+import Winners from './winners'
+import NextQuiniela from './nextQuiniela'
+import ItemsRoulettes from './itemsRoulettes'
+import Footer from './footer'
+
 const Home = () => {
     return (
-        <div className="bg-dark text-center p-5">
-            <div className="">
-                <Link to='/login' className="btn btn-primary" >
-                    Iniciar sesion
-                </Link>
-                <Link to='/register' className="btn btn-primary" >
-                    Registrarme
-                </Link>
+        <div className='bg-dark'>
+            <Menu />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12 col-lg-9">
+                        <Results />
+                        <NextQuiniela />
+                    </div>
+                    <div className="col-md-12 col-lg-3">
+                        <Winners />
+                    </div>
+                </div>
+            </div>
+            <ItemsRoulettes />
+            <div className="container">
+                <div className="row">
+                    <Footer />
+                </div>
             </div>
         </div>
     )
