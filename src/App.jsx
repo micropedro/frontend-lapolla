@@ -12,17 +12,17 @@ import 'react-toastify/dist/ReactToastify.css'
 import useNotify from './hooks/useNotify'
 import './css/tostify.css'
 const App = () => {
-  const { ToastContainer } = useNotify()
-  const { initApp } = useInitApp()
-  useEffect(() => { initApp() }, [])
+    const { ToastContainer } = useNotify()
+    const { initApp } = useInitApp()
+    useEffect(() => { initApp() }, [])
 
-  return (<>
-    <ToastContainer theme="dark" />
-    <LoadingModal />
-    <DevEnvironment />
-    <Notification />
-    <RouterX />
-  </>
-  )
+    return (<>
+        <ToastContainer theme="dark" />
+        <LoadingModal />
+        <DevEnvironment />
+        <Notification />
+        <RouterX />
+    </>
+    )
 }
 export default App

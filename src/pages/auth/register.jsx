@@ -5,6 +5,8 @@ import useRegister from '@/hooks/useRegister'
 import useLogin from '@/hooks/useLogin'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import Menu from '@/components/menu'
+
 const Register = () => {
     const { loading } = useLoadingStore()
     const { eye, setEye } = useLogin()
@@ -13,8 +15,9 @@ const Register = () => {
 
     return (
         <>
+            <Menu />
             <div className="container-fluid bg-dark text-light min-vh-100">
-                <div className="row wrap-login">
+                <div className="row wrap-login pb-5">
                     <div className="col-10 col-sm-8 col-md-6 col-lg-4 offset-1 offset-sm-2 offset-md-3 offset-lg-4 login-body p-4">
                         <h2>Registro</h2>
                         <div className="text-center">
@@ -32,14 +35,18 @@ const Register = () => {
                                 <input name='phone' type="number" className="form-control mb-3" placeholder="Ingrese su teléfono" required />
                                 <div className="flex-between">
                                     <span>Contraseña</span>
-                                    <i onClick={() => setEye(!eye)} className={eye ? 'bi eye-button bi-eye-slash' : 'bi eye-button bi-eye'} />
                                 </div>
-                                <input name="password" minLength='6' type={eye ? 'text' : 'password'} className="form-control mb-3" placeholder="Ingrese su contraseña" required />
+                                <div className="input-group mb-3">
+                                    <input name="password" minLength='6' type={eye ? 'text' : 'password'} className="form-control" placeholder="Ingrese su contraseña" required />
+                                    <span className="input-group-text"> <i onClick={() => setEye(!eye)} className={eye ? 'bi eye-button bi-eye-slash' : 'bi eye-button bi-eye'} /></span>
+                                </div>
                                 <div className="flex-between">
                                     <span>Repetir Contraseña</span>
-                                    <i onClick={() => setReEye(!reEye)} className={reEye ? 'bi eye-button bi-eye-slash' : 'bi eye-button bi-eye'} />
                                 </div>
-                                <input name="repassword" minLength='6' type={reEye ? 'text' : 'password'} className="form-control mb-3" placeholder="Repetir contraseña" required />
+                                <div className="input-group mb-3">
+                                    <input name="repassword" minLength='6' type={reEye ? 'text' : 'password'} className="form-control" placeholder="Repetir contraseña" required />
+                                    <span className="input-group-text"> <i onClick={() => setReEye(!reEye)} className={reEye ? 'bi eye-button bi-eye-slash' : 'bi eye-button bi-eye'} /></span>
+                                </div>
                                 <button className="btn btn-primary w-100">
                                     {loading ? <Spinner /> : 'Registrar '}
                                 </button>

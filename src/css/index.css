@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'grobold';
+    src: url('@/css/grobold.ttf') format('truetype');
+}
+
 :root {
     --yellow1: rgb(252, 219, 33);
     --yellow2: rgba(235, 238, 93, 0.918);
@@ -50,6 +55,10 @@
 .sidebar-button:hover {
     color: white;
     background-color: rgba(236, 241, 241, 0.212);
+}
+
+.container-auth{
+    min-height: calc(100vh - 96px) !important;
 }
 
 .wrap-login {
@@ -448,6 +457,10 @@
 
 .btn-land-1 {
     background: linear-gradient(rgb(219, 76, 10), rgb(224, 153, 0));
+}
+
+.bg-card {
+    background: linear-gradient(rgb(234, 117, 22), rgb(224, 153, 0));
 }
 
 .btn-land-2 {
