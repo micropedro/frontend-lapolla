@@ -1,4 +1,4 @@
-import styles from './Winners.module.css'
+import styles from './winners.module.css'
 
 const Winners = () => {
     return (<><>
@@ -19,7 +19,7 @@ const Winners = () => {
         <div className="d-grid gap-2">
             <button type="button" className={`${styles.btnPlay} btn btn-primary btn-lg m-2`}>
                 <i className="bi bi-caret-right-fill mx-2" />
-            Jugar Ahora</button>
+                Jugar Ahora</button>
         </div>
     </></>)
 }
