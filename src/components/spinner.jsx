@@ -4,7 +4,7 @@ const Spinner = ({ color }) =>
     <div className="spinner-border" style={color ? { color } : { color: 'white' }} role="status" />
 
 Spinner.propTypes = {
-    color: PropsTypes.string.isRequired
+    color: PropsTypes.string
 }
 
-    export default Spinner
+export default Spinner

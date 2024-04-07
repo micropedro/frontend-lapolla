@@ -1,6 +1,5 @@
 import urlApi from '../services/urlApi'
 import { useNavigate } from 'react-router-dom'
-import { jwtDecode } from 'jwt-decode'
 import useUserStore from '../store/userStore'
 import { useState } from 'react'
 import useLoadingStore from '../store/loadingStore'
@@ -24,16 +23,13 @@ const useLogin = () => {
 
         if (!email || !password) {
             notify.error('!Debe ingresar un correo y una contraseña!')
-            /* setText("!Debe ingresar un correo y una contraseña!")
-            setNotification(true) */
             return
         }
 
         try {
             const res = await request.post(url, data)
-            const token = res.data.body
-            const { userData } = jwtDecode(token)
-            const user = userData
+            const user = res.data.body.data.userData
+            const token = res.data.body.token
             user.token = token
             setUser(user)
             const userString = JSON.stringify(user)
@@ -56,3 +52,4 @@ const useLogin = () => {
     }
 }
 export default useLogin
+
