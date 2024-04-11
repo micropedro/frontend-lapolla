@@ -1,0 +1,26 @@
+.bgSidebar{
+    background-color: #081c41;
+    border-radius: 40px;
+    min-width: 110px;
+}
+
+.sidebar{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    gap: 20px;
+}
+
+.sidebar i{
+    color: rgb(116 127 120);
+    padding: 8px 12px;
+}
+
+.sidebar i:hover{
+    background-color: rgba(70, 70, 70, 0.281);
+    padding: 8px 12px;
+    border-radius: 10px;
+    position: relative;
+}
