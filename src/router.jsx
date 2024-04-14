@@ -1,7 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import Login from './pages/auth/login'
 import Dashboard from './pages/admin/dashboard/dashboard'
-import DashboardClient from './pages/client/dashboard/Dashboard'
+import Lobby from './pages/client/lobby/Lobby'
+import Perfil from './pages/client/perfil/Perfil'
+import Transactions from './pages/client/transactions/Transactions'
+import Support from './pages/client/support/Support'
+import History from './pages/client/history/History'
 import Users from './pages/admin/users/users'
 import Loterias from './pages/admin/dashboard/loterias'
 import Ganadores from './pages/admin/dashboard/ganadores'
@@ -17,6 +21,7 @@ import Reporte from './pages/admin/dashboard/reporte'
 import Config from './pages/admin/dashboard/config'
 import Home from './pages/home/home'
 import Register from './pages/auth/register'
+import TemplateClient from './components/templateClient/TemplateClient'
 
 const Router = () => {
     return (<>
@@ -41,11 +46,19 @@ const Router = () => {
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
 
-            <Route path="/dashboard/" element={<DashboardClient />} />
+            <Route element={<TemplateClient />}>
+                <Route path="/lobby/" element={<Lobby />} />
+                <Route path="/history/" element={<History />} />
+                <Route path="/perfil/" element={<Perfil />} />
+                <Route path="/transactions/" element={<Transactions />} />
+                <Route path="/support/" element={<Support />} />
+            </Route>
 
             <Route path="/*" element={<div className="NotFound404">404 Not found</div>} />
         </Routes>
     </>)
 }
+
+
 
 export default Router

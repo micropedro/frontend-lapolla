@@ -4,12 +4,17 @@ import Winners from './winners'
 import NextQuiniela from './nextQuiniela'
 import ItemsRoulettes from './itemsRoulettes'
 import Footer from './footer'
+import Carrousels from '@/components/carrousels/Carrousels'
 
 const Home = () => {
     return (
         <div className='bg-dark'>
             <Menu />
+            <div className="container">    
+                <Carrousels />       
+            </div>
             <div className="container">
+                
                 <div className="row">
                     <div className="col-md-12 col-lg-9">
                         <Results />
