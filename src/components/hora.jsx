@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-const Hora = ({ setHora, hora }) => {
+const Hora = ({ handleHora, hora }) => {
     return (
-        <select defaultValue={hora} className="btn-cargar" name="hora" id="hora" onChange={(e) => setHora(e.target.value)}>
+        <select defaultValue={hora} className="btn-cargar" name="hora" id="hora" onChange={(e) => handleHora(e.target.value)}>
+            <option value={8} > 8 AM  </option>
             <option value={9} > 9 AM  </option>
             <option value={10}> 10 AM </option>
             <option value={11}> 11 AM </option>
@@ -15,9 +16,6 @@ const Hora = ({ setHora, hora }) => {
             <option value={19}> 7 PM  </option>
             <option value={20}> 8 PM  </option>
             <option value={21}> 9 PM  </option>
-            <option value={22}> 10 PM </option>
-            <option value={23}> 11 PM </option>
-            <option value={24}> 12 PM </option>
         </select>
     )
 }

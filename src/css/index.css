@@ -34,8 +34,6 @@
     padding: 3px 10px;
     background-color: rgba(236, 241, 241, 0.055);
     border-radius: 2px;
-    transition: 0.4s;
-
 }
 
 .sidebar-button-active {
