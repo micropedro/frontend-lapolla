@@ -36,7 +36,12 @@ const useLogin = () => {
             localStorage.setItem('user', userString)
             setLoading(false)
             notify.success("Inicio de sesion exitoso")
-            navigate('/dashboard/users')
+            if(user.level == 5){
+                navigate('/Lobby')
+            }else{
+                navigate('/dashboard/users')
+            }
+          
 
         } catch (error) {
             setLoading(false)

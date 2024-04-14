@@ -4,22 +4,28 @@ import useLoadingModalStore from '../store/loadingModalStore'
 import useNotify from './useNotify'
 import request from '../services/request'
 import useErrorManager from './useErrorManager'
-const useAddUsers = () => {
+import useUserStore from '../store/userStore'
+import { validateUserType } from '../services/utils'
 
+const useAddUsers = () => {
+    const store = useUserStore()
     const errorManager = useErrorManager()
     const { notify } = useNotify()
     const { setLoading, setText } = useLoadingModalStore()
     const navigate = useNavigate()
 
     const sendUserForm = async (e) => {
-        /*  setLoading(true) */
-        setText('Agregando usuario')
+        setLoading(true)
         e.preventDefault()
+        const level = Number(e.target.level.value)
+        if (!validateUserType(store.user.level, level)) return notify.warn('Datos invalidos')
+
+        setText('Agregando usuario')
         const user = {
             name: e.target.name.value,
             phone: e.target.phone.value,
             ci: e.target.ci.value,
-            level: Number(e.target.level.value),
+            level,
             email: e.target.email.value,
             password: e.target.password.value,
             admin: e.target.admin.value

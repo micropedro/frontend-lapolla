@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import request from "../services/request"
 import urlApi from "../services/urlApi"
@@ -10,48 +11,44 @@ const useCargarAnimales = () => {
     const { user } = useUserStore()
     const { notify } = useNotify()
     const [animalSelected, setAnimalSelected] = useState()
-    const [hora, setHora] = useState(9)
     const [radioRoulet, setRadioRoulet] = useState(null)
-    const [_date, setDate] = useState(null)
+
+    const [hora, setHora] = useState(8)
+    const [inputDate, setInputDate] = useState(null)
+
     const currentDate = new Date()
     const formattedDate = currentDate.toISOString().split('T')[0]
 
     const handle = (animal) => setAnimalSelected(animal)
 
+    const handleHora = (hora) => setHora(hora)
+
+    const handleFecha = (fecha) => setInputDate(fecha)
+
     useEffect(() => {
         const date = new Date()
-        const defaultTime = date.getHours()
-        setHora(defaultTime)
+        const animalHour = date.getHours()
+        handleHora(animalHour)
+        const fecha = date.getFullYear() + '-' + (String(date.getMonth() + 1).padStart(2, '0')) + '-' + (String(date.getDate()).padStart(2, '0'))
+        handleFecha(fecha)
     }, [])
 
-    const animalDate = (e) => {
-        const x = new Date(e.target.value)
-        setDate(x)
-    }
-
     const save = async (animal) => {
-        const newDate = new Date()
-        const asas = newDate.toISOString()
+
         const data = {
             owner: user._id,
             animalId: animal.id,
             name: animal.name,
-            date: _date || asas,
             hora: hora,
+            fecha: inputDate + ' ' + hora + ':00:00',
             roulet: radioRoulet
         }
-
-        console.log(data)
 
         if (!verify([
             notFalsy(data.owner),
             notFalsy(data.name),
             notFalsy(data.roulet)
-        ])) {
-            notify.error('A ocurrido un error al intentar guardar el animalito')
-            return
-        }
-
+        ])) { return notify.error('A ocurrido un error al intentar guardar el animalito') }
 
         try {
             await request.post(urlApi + '/animals', data)
@@ -69,7 +66,8 @@ const useCargarAnimales = () => {
         hora, setHora,
         formattedDate,
         radioRoulet, setRadioRoulet,
-        animalDate
+        handleHora,
+        handleFecha
     }
 }
 

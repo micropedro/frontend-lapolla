@@ -8,6 +8,10 @@
     --yellow2: rgba(235, 238, 93, 0.918);
 }
 
+.active{
+    color: #f39c12 !important;
+}
+
 .logo {
     width: 100%;
     max-width: 120px;
@@ -34,8 +38,6 @@
     padding: 3px 10px;
     background-color: rgba(236, 241, 241, 0.055);
     border-radius: 2px;
-    transition: 0.4s;
-
 }
 
 .sidebar-button-active {
