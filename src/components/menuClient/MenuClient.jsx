@@ -42,9 +42,9 @@ const MenuClient = ({ children }) => {
                 </Navbar.Collapse>
             </Navbar>
       
-            <div className="row">
-                <div className={`col-md-1 d-none d-md-block sidebar ${styles.bgSidebar}`}>
-                    <div className="sidebar-sticky">
+            <div className={`${styles.containerRow} row`}>
+                <div className={`d-none d-md-block sidebar ${styles.bgSidebar}`}>
+                    <div className={styles.sidebarSticky}>
                         <div className="row position-relative">             
                             <img src={logo} alt="Logo" className="mt-4" style={{ position: 'absolute', width: '100%', maxWidth: '150px'}} />
                         </div>
@@ -71,7 +71,7 @@ const MenuClient = ({ children }) => {
                     </div>
                 </div>
 
-                <div className="col-md-11 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div style={{ width: '90%' }}>
                     {children}
                 </div>
             </div>
