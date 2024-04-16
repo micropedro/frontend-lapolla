@@ -1,7 +1,7 @@
 import { createWithEqualityFn } from 'zustand/traditional'
 
 const useUserStore = createWithEqualityFn((set) => ({
-    user: { _id: '' },
+    user: { _id: '', level: 0 },
     setUser: (newUser) => set(() => ({
         user: newUser
     })),

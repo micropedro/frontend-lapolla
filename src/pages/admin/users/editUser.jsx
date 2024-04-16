@@ -1,8 +1,8 @@
-import useEditUser from "@/hooks/useEditUser"
-import useEditUserStore from "@/store/editUserStore"
-import useLoadingStore from "@/store/loadingStore"
-import Spinner from '@/components/spinner'
-import useUserStore from "@/store/userStore"
+import useEditUser from "../../../hooks/useEditUser"
+import useEditUserStore from "../../../store/editUserStore"
+import useLoadingStore from "../../../store/loadingStore"
+import Spinner from '../../../components/spinner'
+import useUserStore from "../../../store/userStore"
 const EditUser = () => {
     const { user } = useUserStore()
     const { loading } = useLoadingStore()
@@ -21,6 +21,10 @@ const EditUser = () => {
                 <table className="table">
                     <tbody>
                         <tr>
+                            <td>Id</td>
+                            <td> {editUser._id} </td>
+                        </tr>
+                        <tr>
                             <td>Nombre</td>
                             <td>
                                 <input defaultValue={editUser.name} name="name" required type="text" className="form-control" placeholder="Ingrese el nombre" />
@@ -29,10 +33,6 @@ const EditUser = () => {
                         <tr>
                             <td>Cedula</td>
                             <td> <input defaultValue={editUser.ci} name="ci" required type="text" className="form-control" placeholder="Ingrese el cedula" /> </td>
-                        </tr>
-                        <tr>
-                            <td>Id</td>
-                            <td> {editUser._id} </td>
                         </tr>
                         <tr>
                             <td>Correo</td>
@@ -55,6 +55,30 @@ const EditUser = () => {
 
                                 </select>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Administrador</td>
+                            <td>
+                                {/*  {user.admin || <span className="text-danger">Sin administrador</span>} */}
+                                <input defaultValue={editUser.admin} name="admin" type="text" className="form-control" placeholder="Ingrese el id del administrador" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Grupero</td>
+                            <td>
+                                <input defaultValue={editUser.grupero} name="grupero" type="text" className="form-control" placeholder="Ingrese el id del grupero" />
+                                {/*  {user.grupero || <span className="text-danger">Sin grupero</span>}  */}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Porcentaje</td>
+                            <td>
+                                <input defaultValue={editUser.percent} name="percent" type="number" className="form-control" placeholder="Ingrese el id del grupero" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Balance</td>
+                            <td> {user.balance} </td>
                         </tr>
                         <tr>
                             <td className="pt-5"></td>

@@ -56,3 +56,14 @@ export const getTicketCode = () => {
     }
     return ticketCode
 }
+
+export const validateUserType = (userLevel, levelForm) => {
+    if (userLevel === 1) return true
+
+    if (userLevel === 2 && ![1, 2].includes(levelForm)) return true
+
+    if (userLevel === 3 && ![1, 2, 3].includes(levelForm)) return true
+
+    if (userLevel === 4 && ![1, 2, 3, 4].includes(levelForm)) return true
+    return false
+}

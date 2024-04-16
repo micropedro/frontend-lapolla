@@ -1,7 +1,7 @@
 import Guard from "@/components/Guard"
-import useVentas from "@/hooks/useVentas"
+import useVentas from "../../../hooks/useVentas"
 import dateNow from "@/services/dateNow"
-import Ticket from "@/components/modals/ticket"
+import Ticket from "../../../components/modals/ticket"
 import { convertCeroNumber } from "@/services/utils"
 import AnimalsButtons from "@/components/animalsButtons"
 

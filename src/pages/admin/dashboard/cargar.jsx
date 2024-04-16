@@ -1,10 +1,10 @@
 import Guard from "@/components/Guard"
 import AnimalsButtons from "@/components/animalsButtons"
 import dateNow from "@/services/dateNow"
-import useCargarAnimales from "@/hooks/useCargarAnimales"
-import Hora from '@/components/hora'
+import useCargarAnimales from "../../../hooks/useCargarAnimales"
+import Hora from '../../../components/hora'
 const Cargar = () => {
-    const { animalSelected, handle, save, setHora, formattedDate, hora, radioRoulet, setRadioRoulet, animalDate } = useCargarAnimales()
+    const { animalSelected, handle, save, handleHora, formattedDate, hora, radioRoulet, setRadioRoulet, handleFecha } = useCargarAnimales()
     return (
         <Guard>
             <div className="mt-3 px-2">
@@ -16,8 +16,8 @@ const Cargar = () => {
                         </div>
                         <div className="px-3">
                             <h4>Cargar Animalito {String(dateNow.horas).padStart(2, "0")}:{String(dateNow.minutos).padStart(2, '0')} {dateNow.periodo}</h4>
-                            <input onChange={animalDate} className="btn-cargar" type="date" name="date" defaultValue={formattedDate} />
-                            <Hora setHora={setHora} hora={hora} />
+                            <input onChange={(e) => handleFecha(e.target.value)} className="btn-cargar" type="date" name="date" defaultValue={formattedDate} />
+                            <Hora handleHora={handleHora} hora={hora} />
                             <div className="d-flex mt-2">
                                 <div className="mr1">
                                     <input type="radio" name="radioRoulet" id={1} onChange={() => setRadioRoulet(1)} />
