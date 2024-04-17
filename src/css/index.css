@@ -6,13 +6,15 @@
 :root {
     --yellow1: rgb(252, 219, 33);
     --yellow2: rgba(235, 238, 93, 0.918);
+    --border-light: rgb(184, 184, 184);
+    --border-light-2: rgb(230, 230, 230);
 }
 
-.navbar-brand{
+.navbar-brand {
     padding-bottom: 0 !important;
 }
 
-.active{
+.active {
     color: #f39c12 !important;
 }
 
@@ -480,4 +482,45 @@
 
 .linkRedes i {
     color: white;
+}
+
+.nav-depositos {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.btn-dep {
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 3px;
+    padding: 5px 10px;
+}
+
+.btn-tab-inanctive {
+    background-color: #e0e0e0;
+    border-top: 1px solid var(--border-light-2);
+    border-left: 1px solid var(--border-light-2);
+    border-right: 1px solid var(--border-light-2);
+}
+
+.btn-tab-active {
+    background-color: white;
+    border-top: 1px solid var(--border-light);
+    border-left: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+}
+
+.btn-tab-active:active,
+.btn-tab-inanctive:active {
+    background-color: rgb(214, 255, 198);
+}
+
+.mx-w-300 {
+    max-width: 400px;
+}
+
+.between-start {
+    display: flex;
+    align-items: start;
 }

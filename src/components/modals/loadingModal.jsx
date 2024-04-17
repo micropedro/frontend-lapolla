@@ -9,7 +9,6 @@ const LoadingModal = () => {
             <div className="notification-body">
                 <div>{text}</div>
                 <div>
-
                     <Spinner color={'black'} />
                 </div>
             </div>
