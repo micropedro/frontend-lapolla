@@ -7,9 +7,11 @@ import useLoadingStore from "../store/loadingStore"
 const useMethods = () => {
     const { setLoading } = useLoadingStore()
     const { notify } = useNotify()
+
     const [methodName, setMethodName] = useState()
     const [selected, setSelected] = useState([])
     const [actualMethods, setActualMethods] = useState([])
+    const [defaultMethod, setDefaultMethod] = useState({ _id: undefined })
 
     const sendForm = async (e) => {
         e.preventDefault()
@@ -62,7 +64,9 @@ const useMethods = () => {
     const getActualMethods = async () => {
         setLoading(true)
         const response = await request.get(urlApi + '/admin/methods/getMethods')
-        if (response?.data.body) {
+        const meth = response?.data.body
+        if (meth) {
+            setDefaultMethod(meth[0])
             setActualMethods(response.data.body)
         }
         setLoading(false)
@@ -86,7 +90,8 @@ const useMethods = () => {
     return {
         handleSelected, sendForm,
         itemType, methodName, setMethodName, selected, actualMethods,
-        deleteMethod
+        deleteMethod,
+        defaultMethod, setDefaultMethod
     }
 }
 export default useMethods

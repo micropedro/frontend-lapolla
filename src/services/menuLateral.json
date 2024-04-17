@@ -47,6 +47,12 @@
             "icon": "bi bi-envelope",
             "link": "/dashboard/mensajes",
             "status": false
+        },
+        {
+            "name": "Depositos",
+            "icon": "bi bi-credit-card",
+            "link": "/dashboard/depositos",
+            "status": false
         }
     ]
 }
