@@ -10,7 +10,7 @@ const SideBar = () => {
     const { closeSession } = useSession()
     const { user } = useUserStore();
     return (<>
-        <div className="bg-dark text-light col-2 col-md-4 col-lg-3 min-vh-100">
+        <div className="bg-dark text-light col-2 col-md-4 col-lg-3 vh-100 scroll">
             <div className='text-center pt-3 px-1'>
                 <img src={images.logoPng} alt="apuetalapolla" className='logo' />
             </div>
@@ -34,6 +34,11 @@ const SideBar = () => {
                         </Link>
                     </li>
                 </ul>
+
+                <Link to='/lobby'>
+                    <button className='btn btn-primary w-100 mt-2'> Lobby </button>
+                </Link>
+
             </div>
         </div>
     </>)
