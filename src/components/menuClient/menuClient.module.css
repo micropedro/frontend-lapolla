@@ -1,7 +1,14 @@
+.containerRow{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    height: 100vh;
+}
+
 .bgSidebar{
     background-color: #081c41;
-    border-radius: 40px;
     min-width: 110px;
+    width: 10%;
 }
 
 .sidebar{
@@ -9,8 +16,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    gap: 20px;
+    font-size: 25px;
+    flex-wrap: nowrap;
+}
+
+.sidebarSticky{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sidebar i{
