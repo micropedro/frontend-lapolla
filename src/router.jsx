@@ -9,7 +9,7 @@ import History from './pages/client/history/History'
 import Users from './pages/admin/users/users'
 import Loterias from './pages/admin/dashboard/loterias'
 import Ganadores from './pages/admin/dashboard/ganadores'
-import Metodos from './pages/admin/metodos/metodos'
+import Metodos from './pages/admin/dashboard/metodos'
 import Quinielas from './pages/admin/dashboard/quinielas'
 import Ventas from './pages/admin/ventas/ventas'
 import Recuperacion from './pages/auth/recuperacion'
@@ -19,6 +19,7 @@ import Print from './pages/admin/dashboard/print'
 import Cargar from './pages/admin/dashboard/cargar'
 import Reporte from './pages/admin/dashboard/reporte'
 import Config from './pages/admin/dashboard/config'
+import Depositos from './pages/admin/dashboard/depositos'
 import Home from './pages/home/home'
 import Register from './pages/auth/register'
 import TemplateClient from './components/templateClient/TemplateClient'
@@ -39,6 +40,7 @@ const Router = () => {
             <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />
             <Route path="/dashboard/reporte" element={<Dashboard><Reporte /></Dashboard>} />
             <Route path="/dashboard/config" element={<Dashboard><Config /></Dashboard>} />
+            <Route path="/dashboard/depositos" element={<Dashboard><Depositos /></Dashboard>} />
 
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />

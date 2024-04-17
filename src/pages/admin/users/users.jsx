@@ -1,6 +1,6 @@
 
 import Guard from '@/components/Guard'
-import useUsers from '@/hooks/useUsers'
+import useUsers from '../../../hooks/useUsers'
 import DeleteUserModal from '@/components/modals/deleteUserModal'
 import { Link } from 'react-router-dom'
 import useEditUserStore from '@/store/editUserStore'
@@ -11,9 +11,6 @@ const Users = () => {
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()
     const { users, deleteModal } = useUsers()
-
-
-
 
     return (<Guard >
         <DeleteUserModal />
