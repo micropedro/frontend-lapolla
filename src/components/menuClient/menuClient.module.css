@@ -37,3 +37,13 @@
     border-radius: 10px;
     position: relative;
 }
+
+.content{
+    width: 90%;
+}
+
+@media (max-width: 768px) { 
+    .content{
+        width: 100%;
+    }
+}

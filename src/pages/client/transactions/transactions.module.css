@@ -11,10 +11,11 @@
 }
 
 .itemNum{
-    position: relative;
-    font-size: 40px;
-    display: flex;
+    /* position: relative; */
+    font-size: 20px;
+    /* display: flex; */
     flex-wrap: wrap;
+    
 }
 
 .number{
@@ -24,13 +25,21 @@
 
 .itemNum .itemBadge{
     font-size: 9px;
-    position: absolute;
-    top: 16px;
+    /* position: absolute; */
+    /* top: 16px; */
+    align-self: self-end;
 }
 
 .itemBadgestatus{
     font-size: 9px;
 
+}
+
+.bank{
+    font-size: 15px !important;
+    width: 150px;
+    line-height: 12px;
+    font-weight: 500;
 }
 
 @media (max-width: 992px) { 
@@ -44,6 +53,7 @@
         flex-direction: column;
         height: auto;
         text-align: center;
+        gap: 10px;
     }
 
     .itemWin, .itemNum, .itemDate{
@@ -63,10 +73,21 @@
 
     .itemNum{
         justify-content: center;
+      
     }
 
     .itemNum .itemBadge{
         left: -100px;
+        align-self: center;
+    }
+
+    .containerMethod{
+        flex-direction: column-reverse;
+        gap: 5px;
+    }
+
+    .bank{
+        width: 100%;
     }
     
  }

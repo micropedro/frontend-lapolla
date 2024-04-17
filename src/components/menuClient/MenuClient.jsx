@@ -71,7 +71,7 @@ const MenuClient = ({ children }) => {
                     </div>
                 </div>
 
-                <div style={{ width: '90%' }}>
+                <div className={styles.content}>
                     {children}
                 </div>
             </div>
