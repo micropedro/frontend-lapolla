@@ -6,7 +6,9 @@ import useMethods from '../../../hooks/useMethods'
 const Metodos = () => {
 
     const { loading } = useLoadingStore()
-    const { handleSelected, sendForm, deleteMethod, itemType, methodName, setMethodName, selected, actualMethods } = useMethods()
+    const { handleSelected, sendForm, deleteMethod, itemType,
+        methodName, setMethodName, selected, actualMethods, imageUrl,
+        setImageUrl } = useMethods()
 
     return (
         <Guard >
@@ -55,7 +57,9 @@ const Metodos = () => {
                         <div className="row">
                             <div className="col-6">
                                 <h4>Nombre del metodo</h4>
-                                <input value={methodName} onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control' placeholder='Ingrese el nombre del metodo de pago' />
+                                <input value={methodName} onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control mb-3' placeholder='Ingrese el nombre del metodo de pago' />
+                                <h4>Url de a imagen</h4>
+                                <input value={imageUrl} onChange={(e) => { setImageUrl(e.target.value) }} type="text" name="imageUrl" className='form-control' id="" required />
                                 <div className='container p-4'>
                                     <div className="row">
                                         {datos && datos.map((dato, index) => {
@@ -68,6 +72,7 @@ const Metodos = () => {
                                         })}
                                     </div>
                                 </div>
+
                             </div>
                             <div className="col-6">
                                 <h4>{methodName}</h4>
