@@ -4,7 +4,9 @@ import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useNotify from "./useNotify"
 import useLoadingStore from "../store/loadingStore"
+import userStore from "../store/userStore"
 const useMethods = () => {
+    const { user } = userStore()
     const { setLoading } = useLoadingStore()
     const { notify } = useNotify()
 
@@ -44,7 +46,8 @@ const useMethods = () => {
             nombre,
             methodName,
             telefono,
-            imageUrl
+            imageUrl,
+            userId: user._id
         }
 
         try {
@@ -72,7 +75,7 @@ const useMethods = () => {
 
     const getActualMethods = async () => {
         setLoading(true)
-        const response = await request.get(urlApi + '/admin/methods/getMethods')
+        const response = await request.get(urlApi + '/admin/methods/getMethods/' + user._id)
         const meth = response?.data.body
         console.log(meth[meth.length - 1])
         if (meth) {
