@@ -26,6 +26,7 @@ const Metodos = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Imagen</th>
                                 <th>Datos</th>
                                 <th></th>
                             </tr>
@@ -36,6 +37,9 @@ const Metodos = () => {
                                     <td>{index + 1}</td>
                                     <td>{i.methodName}</td>
                                     <td>
+                                        <img width={"100px"} src={i.imageUrl} alt="" />
+                                    </td>
+                                    <td>
                                         <div> {i.correo && <> <b> Correo </b>{i.correo}</>} </div>
                                         <div> {i.cuenta && <> <b> cuenta </b>{i.cuenta}</>} </div>
                                         <div> {i.tipo && <> <b> tipo </b>{i.tipo}</>} </div>
@@ -43,6 +47,8 @@ const Metodos = () => {
                                         <div> {i.cedula && <> <b> cedula </b>{i.cedula}</>} </div>
                                         <div> {i.banco && <> <b> banco </b>{i.banco}</>} </div>
                                         <div> {i.nombre && <> <b> nombre </b>{i.nombre}</>} </div>
+                                        <div> <b>userId:</b> {i.userId} </div>
+                                        <div> <b>MethodId:</b> {i._id} </div>
                                     </td>
                                     <td>
                                         <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
@@ -51,14 +57,16 @@ const Metodos = () => {
                             })}
                         </tbody>
                     </table>
-                    <div>
-                    </div>
+
                     <div className='container mb-5 bg-gray-2 radius p-4 text-dark'>
                         <div className="row">
                             <div className="col-6">
                                 <h4>Nombre del metodo</h4>
                                 <input value={methodName} onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control mb-3' placeholder='Ingrese el nombre del metodo de pago' />
-                                <h4>Url de a imagen</h4>
+                                <div className="flex-between">
+                                    <h4>Url de a imagen</h4>
+                                    <a target='_blanc' href="https://es.imgbb.com/">subir en imgbb.com</a>
+                                </div>
                                 <input value={imageUrl} onChange={(e) => { setImageUrl(e.target.value) }} type="text" name="imageUrl" className='form-control' id="" required />
                                 <div className='container p-4'>
                                     <div className="row">
