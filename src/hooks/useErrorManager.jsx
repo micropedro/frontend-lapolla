@@ -5,7 +5,7 @@ const useErrorManager = () => {
     return (error) => {
         console.log("ErrorManager: ", error)
         try {
-            if (error.message === 'Network Error') throw 'Error en la conexion'
+            if (error.message) throw error.message
 
             //error en mongodb datos invalidos o requeridos
             const error1 = error.response.data.message.message || false

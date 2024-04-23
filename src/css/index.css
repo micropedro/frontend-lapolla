@@ -545,3 +545,26 @@
 .fecha-envio-labek {
     min-width: 200px;
 }
+
+.td-buttons {
+    width: 180px;
+}
+
+.deposit-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deposit-buttons button {
+    width: 90px;
+}
+
+.style-card {
+    max-width: 95vw;
+    min-width: 50vw;
+}
+
+.min-x {
+    min-width: 200px;
+}
