@@ -4,7 +4,9 @@ import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useNotify from "./useNotify"
 import useLoadingStore from "../store/loadingStore"
+import userStore from "../store/userStore"
 const useMethods = () => {
+    const { user } = userStore()
     const { setLoading } = useLoadingStore()
     const { notify } = useNotify()
 
@@ -12,14 +14,22 @@ const useMethods = () => {
     const [selected, setSelected] = useState([])
     const [actualMethods, setActualMethods] = useState([])
     const [defaultMethod, setDefaultMethod] = useState({ _id: undefined })
+    const [imageUrl, setImageUrl] = useState(undefined)
+
+    const validateImage = (image) => {
+        const urlPattern = /^(https?:\/\/)?[\w.-]+\.[a-z]{2,}(\/.*)?$/i
+        return !!urlPattern.test(image)
+    }
 
     const sendForm = async (e) => {
         e.preventDefault()
+        if (!methodName) return notify.warn("Debe porporcionar un nombre para el metodo de pago")
+
+        if (!imageUrl) return notify.warn("Debe porporcionar una imagen")
+
+        if (!validateImage(imageUrl)) return notify.warn("Debe porporcionar una imagen valida")
+
         setLoading(true)
-        if (!methodName) {
-            notify.warn("Debe porporcionar un nombre para el metodo de pago")
-            return
-        }
         const correo = e.target.correo?.value || ""
         const cuenta = e.target.cuenta?.value || ""
         const tipo = e.target.tipo?.value || ""
@@ -35,7 +45,9 @@ const useMethods = () => {
             banco,
             nombre,
             methodName,
-            telefono
+            telefono,
+            imageUrl,
+            userId: user._id
         }
 
         try {
@@ -63,8 +75,9 @@ const useMethods = () => {
 
     const getActualMethods = async () => {
         setLoading(true)
-        const response = await request.get(urlApi + '/admin/methods/getMethods')
+        const response = await request.get(urlApi + '/admin/methods/getMethods/' + user._id)
         const meth = response?.data.body
+        console.log(meth[meth.length - 1])
         if (meth) {
             setDefaultMethod(meth[0])
             setActualMethods(response.data.body)
@@ -87,11 +100,13 @@ const useMethods = () => {
     useEffect(() => {
         getActualMethods()
     }, [])
+
     return {
         handleSelected, sendForm,
         itemType, methodName, setMethodName, selected, actualMethods,
         deleteMethod,
-        defaultMethod, setDefaultMethod
+        defaultMethod, setDefaultMethod,
+        imageUrl, setImageUrl
     }
 }
 export default useMethods
