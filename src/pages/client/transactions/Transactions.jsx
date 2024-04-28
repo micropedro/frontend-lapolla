@@ -1,9 +1,34 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import styles from './transactions.module.css';
 import bdv from '../../../images/bdv.jpg'
+import DepositModal from '../../../components/modals/DepositModal/DepositModal';
+import WithdrawModal from '../../../components/modals/WithdrawModal/WithdrawModal';
 
 const Transactions = () => {
+
+    const [showDepositModal, setShowDepositModal] = useState(false);
+    const [showWithdraw, setShowWithdraw] = useState(false);
+
+    const handleShowDepositModal = () => {
+        setShowDepositModal(true);
+    };
+
+    const handleShowWithdrawModal = () => {
+        setShowWithdraw(true);
+    };
+    
+    const handleHideDepositModal = () => {
+        setShowDepositModal(false);
+    };
+
+    const handleHideWithdrawModal = () => {
+        setShowWithdraw(false);
+    };
+
     return (<>
+        <DepositModal show={showDepositModal} onHide={handleHideDepositModal} />
+        <WithdrawModal show={showWithdraw} onHide={handleHideWithdrawModal} />
         <div className='container mt-3'>
             <div className='row pb-2'>
                 <nav className="navbar bg-body-tertiary">
@@ -29,6 +54,12 @@ const Transactions = () => {
                 </div>
                 <div className="col-md-2">
                     <button className="btn btn-primary">Consultar</button>
+                </div>
+                <div className="col-md-2">
+                    <button onClick={handleShowDepositModal} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
+                </div>
+                <div className="col-md-2">
+                    <button onClick={handleShowWithdrawModal} style={{ width: '150px' }} className="btn btn-danger btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
                 </div>
             </div>
             <div className='row pt-5'><h3 className={styles.h3}>Historial de Transacciones:</h3></div>

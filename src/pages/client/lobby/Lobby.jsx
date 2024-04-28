@@ -34,10 +34,10 @@ const Lobby = () => {
         </div>
         <div className={`row d-flex gap-5 justify-content-center vh-100 p-5`}>
             <div className={`${styles.col} col-sm-12 col-md-6 `}>
-                <img className={`${styles.imgCol} rounded`} src={logo} alt="" />
+                <Link to="/mini"><img className={`${styles.imgCol} rounded`} src={logo} alt="" /></Link>
             </div>
             <div className={`${styles.col} col-sm-12 col-md-6`}>
-                <img className={`${styles.imgCol} rounded`} src={logo} alt="" />
+                <Link to="/mini"><img className={`${styles.imgCol} rounded`} src={logo} alt="" /></Link>
             </div>
         </div>
     </>)

@@ -22,6 +22,8 @@ import Config from './pages/admin/dashboard/config'
 import Depositos from './pages/admin/dashboard/depositos/depositos'
 import Home from './pages/home/home'
 import Register from './pages/auth/register'
+import Mini from './pages/client/mini/Mini'
+import Quiniela from './pages/client/quiniela/Quiniela'
 import TemplateClient from './components/templateClient/TemplateClient'
 import Mensajes from './pages/admin/dashboard/mensajes'
 
@@ -52,6 +54,8 @@ const Router = () => {
 
             <Route element={<TemplateClient />}>
                 <Route path="/lobby/" element={<Lobby />} />
+                <Route path="/mini/" element={<Mini />} />
+                <Route path="/quiniela/" element={<Quiniela />} />
                 <Route path="/history/" element={<History />} />
                 <Route path="/perfil/" element={<Perfil />} />
                 <Route path="/transactions/" element={<Transactions />} />
