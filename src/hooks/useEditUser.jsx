@@ -27,15 +27,17 @@ const useEditUser = () => {
             grupero: e.target.grupero.value,
             percent: e.target.percent.value
         }
-        if (user.level > 5) {
-            notify.warning("Elija un tipo de usuario")
-            return
-        }
+        
+        if (user.level > 5 || user.level < 1) return notify.warning("Elija un tipo de usuario")
+        
         try {
             const response = await axios.post(urlApi + "/admin/updateuser", user)
-            if (response.data.status !== 500) {
+            console.log(response)
+            if (response.status === 200) {
                 notify.success("Se guardaron todos los cambios")
                 getUsers()
+            }else{
+                throw "Error updating"
             }
 
         } catch (error) {

@@ -6,7 +6,11 @@ import useModal from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
 import request from "../services/request"
 import useNotify from '../hooks/useNotify'
+import useDeposits from "./useDeposits"
+
 const useUsers = () => {
+
+    const { findUserByCi } = useDeposits()
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
     const { setVisible, setText, setUser } = useModal()
@@ -36,12 +40,19 @@ const useUsers = () => {
         setUser(user)
     }
 
-    useEffect(() => { getUsers() }, []);
+    useEffect(() => { getUsers() }, [])
+
+    const _findUserByCi = async (e) => {
+        const user = await findUserByCi(e)
+        if (user) setUsers([user])
+        else notify.error('Usuario no encontrado')
+    }
 
     return {
         users,
         deleteModal,
         getUsers,
+        _findUserByCi
     }
 }
 

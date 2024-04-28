@@ -48,7 +48,7 @@ const Config = () => {
                             Hora Gran Quiniela <b className="mx-2"> {config.horaGranQuiniela}:00 </b>
                         </div>
                         <div className="col-7">
-                            <input onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} />
+                            <input max={23} min={0} onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} />
                         </div>
                     </div>
                     <div className="row">

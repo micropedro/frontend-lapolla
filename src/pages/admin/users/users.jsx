@@ -8,14 +8,15 @@ import useLoadingStore from '../../../store/loadingStore'
 import Spinner from '../../../components/spinner'
 import { userType } from '../../../services/utils'
 const Users = () => {
+
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()
-    const { users, deleteModal } = useUsers()
+    const { users, deleteModal, _findUserByCi,getUsers } = useUsers()
 
     return (<Guard >
         <DeleteUserModal />
         <div className='flex-between px-4 pt-3'>
-            <h2> Administracion de usuarios </h2>
+            <h2> Administracion de usuarios</h2>
             <Link to='/dashboard/addUsers'>
                 <button className='btn btn-primary'> <i className='bi bi-person-plus' /> </button>
             </Link>
@@ -25,6 +26,13 @@ const Users = () => {
         {loading ? <div className='text-center p-5'>
             <Spinner color={'black'} />
         </div> : <>
+            <div className='flex-between mb-3'>
+                <button onClick={getUsers} className='btn btn-primary'> Cargar todos </button>
+                <form onSubmit={(e) => _findUserByCi(e)}>
+                    <input name='ci' type="text" className='input-buscar' placeholder='cedula' required />
+                    <button className='btn-buscar bg-primary text-light'> Buscar </button>
+                </form>
+            </div>
             <table className='table table-border' >
                 <thead>
                     <tr>
@@ -55,7 +63,7 @@ const Users = () => {
                                     <button onClick={() => setEditUser(user)} className='btn btn-warning mx-1'> <i className='bi bi-card-text' /> </button>
                                 </Link>
                                 <button onClick={() => deleteModal(user)} className='btn btn-danger mx-1'> <i className='bi bi-dash-square' />   </button>
-                                <button className='btn btn-success mx-1'> <i className='bi bi-database' />  </button>
+                                {/* <button className='btn btn-success mx-1'> <i className='bi bi-database' />  </button> */}
                             </td>
                         </tr>
                         )

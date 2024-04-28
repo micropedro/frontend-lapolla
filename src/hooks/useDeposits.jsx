@@ -116,9 +116,11 @@ const useDeposits = () => {
             const res = await request.get(urlApi + '/user/ci/' + ci)
             if (res) {
                 setFindedUser({ ...res.data.body, state: 2 })
-                console.log(res.data.body)
+                setLoading(false)
+                return res.data.body
             }
             setLoading(false)
+            return false
 
         } catch (error) {
             setFindedUser({ state: 3 })
