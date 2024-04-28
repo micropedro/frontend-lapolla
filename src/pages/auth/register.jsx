@@ -1,11 +1,11 @@
-import images from '@/images/images'
-import useLoadingStore from '@/store/loadingStore'
-import Spinner from '@/components/spinner'
-import useRegister from '@/hooks/useRegister'
-import useLogin from '@/hooks/useLogin'
+import images from '../../images/images'
+import useLoadingStore from '../../store/loadingStore'
+import Spinner from '../../components/spinner'
+import useRegister from '../../hooks/useRegister'
+import useLogin from '../../hooks/useLogin'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import Menu from '@/components/menu'
+import Menu from '../../components/menu'
 
 const Register = () => {
     const { loading } = useLoadingStore()

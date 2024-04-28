@@ -1,5 +1,5 @@
 import styles from './lobby.module.css'
-import logo from '@/images/col.jpg'
+import logo from '../../../images/col.jpg'
 import { Link } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import { useState } from 'react';

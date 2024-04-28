@@ -1,5 +1,5 @@
-import images from "@/images/images"
-import useVentas from "@/hooks/useVentas"
+import images from "../images/images"
+import useVentas from "../hooks/useVentas"
 import PropsTypes from 'prop-types'
 
 const AnimalsButtons = ({ handle }) => {

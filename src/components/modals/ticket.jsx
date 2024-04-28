@@ -1,10 +1,10 @@
-import useTicketStore from "@/store/ticketStore"
-import dateNow from "@/services/dateNow"
-import useTicket from "@/hooks/useTicket"
-import { convertCeroNumber } from "@/services/utils"
-import loadingStore from "@/store/loadingStore"
-import Spinner from "@/components/spinner"
-import { getTicketCode } from "@/services/utils"
+import useTicketStore from "../../store/ticketStore"
+import dateNow from "../../services/dateNow"
+import useTicket from "../../hooks/useTicket"
+import { convertCeroNumber } from "../../services/utils"
+import loadingStore from "../../store/loadingStore"
+import Spinner from "../../components/spinner"
+import { getTicketCode } from "../../services/utils"
 import { useEffect } from "react"
 const Ticket = () => {
 

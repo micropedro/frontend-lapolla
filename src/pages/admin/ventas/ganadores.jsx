@@ -1,7 +1,7 @@
-import Spinner from "@/components/spinner"
-import useGanadores from "@/hooks/useGanadores"
-import useLoadingStore from "@/store/loadingStore"
-import WinnerTicket from "@/components/winnerTicket"
+import Spinner from "../../../components/spinner"
+import useGanadores from "../../../hooks/useGanadores"
+import useLoadingStore from "../../../store/loadingStore"
+import WinnerTicket from "../../../components/winnerTicket"
 const Ganadores = () => {
     const { loading } = useLoadingStore()
     const { setCode, winnerTicket } = useGanadores()

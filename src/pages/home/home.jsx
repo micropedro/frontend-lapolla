@@ -4,7 +4,7 @@ import Winners from './winners'
 import NextQuiniela from './nextQuiniela'
 import ItemsRoulettes from './itemsRoulettes'
 import Footer from './footer'
-import Carrousels from '@/components/carrousels/Carrousels'
+import Carrousels from '../../components/carrousels/Carrousels'
 
 const Home = () => {
     return (

@@ -1,6 +1,6 @@
-import farm from '@/images/granja.png'
-import lotto from '@/images/lotto.png'
-import roulette from '@/images/roulette.png'
+import farm from '../../../images/granja.png'
+import lotto from '../../../images/lotto.png'
+import roulette from '../../../images/roulette.png'
 import style from './itemsRoulettes.module.css'
 
 const ItemsRoulettes = () => {
