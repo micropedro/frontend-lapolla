@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import image from '@/images/images'
+import image from '../../images/images'
 import styles from './menu.module.css'
 
 const Menu = () => {

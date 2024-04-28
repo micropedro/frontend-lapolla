@@ -1,10 +1,10 @@
-import Guard from "@/components/Guard"
+import Guard from "../../../components/Guard"
 import Taquilla from "./taquilla"
 import Reporte from "./reporte"
 import Ganadores from "./ganadores"
-import NavButton from "@/components/navButton"
-import useMenuVentas from "@/store/menuVentasStore"
-import { textMenu } from "@/services/utils"
+import NavButton from "../../../components/navButton"
+import useMenuVentas from "../../../store/menuVentasStore"
+import { textMenu } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
 const Ventas = () => {
     const { polla } = useReportes()

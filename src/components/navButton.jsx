@@ -1,5 +1,5 @@
 import PropsTypes from "prop-types"
-import useMenuVentas from "@/store/menuVentasStore"
+import useMenuVentas from "../store/menuVentasStore"
 
 const NavButton = ({ text }) => {
     const { menu, setMenu } = useMenuVentas()

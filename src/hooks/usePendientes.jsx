@@ -13,6 +13,7 @@ const usePendientes = () => {
         const min = String(hours.getMinutes()).padStart(2, '0')
         return hour + ':' + min
     }
+    
     const depositStatus = (state) => {
 
         if (state === 1) return <div className="bg-warning text-light flex-center"> Pendiente </div>

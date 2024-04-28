@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './menuClient.module.css'
-import logo from '@/images/logo.png';
+import logo from '../../images/logo.png';
 
 // eslint-disable-next-line react/prop-types
 const MenuClient = ({ children }) => {

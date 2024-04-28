@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'grobold';
-    src: url('@/css/grobold.ttf') format('truetype');
+    src: url('../../../css/grobold.ttf') format('truetype');
 }
 
 :root {

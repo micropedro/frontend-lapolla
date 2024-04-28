@@ -1,4 +1,4 @@
-import { devEnvironmet } from '@/config.json'
+import { devEnvironmet } from '../config.json'
 const DevEnvironment = () => {
     if (devEnvironmet) {
         return (

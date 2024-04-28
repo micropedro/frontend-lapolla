@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
-import banner1 from '@/images/banner_apuesta_1.webp'
-import banner2 from '@/images/banner_apuesta_2.webp'
-import banner3 from '@/images/banner_apuesta_3.webp'
+import banner1 from '../../images/banner_apuesta_1.webp'
+import banner2 from '../../images/banner_apuesta_2.webp'
+import banner3 from '../../images/banner_apuesta_3.webp'
 
 const imgContainer = {
     width: '100%',

@@ -48,13 +48,19 @@ export const restarDias = (fechaBase, dias) => {
 }
 
 export const getTicketCode = () => {
-    const digits = "123456789ACDEFGHJKLMPQRTUX"
+
+    const digits = "23456789ACDEFGHJKLMPQRTUX"
     const randomDigit = () => digits[Math.floor((Math.random() * digits.length))]
     let ticketCode = ""
-    for (let index = 1; index < 6; index++) {
+    for (let index = 1; index < 7; index++) {
         ticketCode += randomDigit()
     }
     return ticketCode
+
+    /*let uuid = uuidv4();
+    uuid = uuid.replace(/[01iy\W_]/g, '')
+    uuid = uuid.slice(0, 6)
+    return uuid */
 }
 
 export const validateUserType = (userLevel, levelForm) => {

@@ -1,8 +1,8 @@
-import useReportes from "@/hooks/useReportes"
-import { convertCeroNumber } from "@/services/utils"
-import dateNow from "@/services/dateNow"
-import useNotify from '@/hooks/useNotify'
-import formatDate from "@/services/formatDate"
+import useReportes from "../../../hooks/useReportes"
+import { convertCeroNumber } from "../../../services/utils"
+import dateNow from "../../../services/dateNow"
+import useNotify from '../../../hooks/useNotify'
+import formatDate from "../../../services/formatDate"
 
 const Reporte = () => {
     const { notify } = useNotify()

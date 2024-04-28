@@ -1,5 +1,5 @@
-import useAnimals from '@/hooks/useAnimals'
-import images from '@/images/images'
+import useAnimals from '../hooks/useAnimals'
+import images from '../images/images'
 
 // eslint-disable-next-line react/prop-types
 const Cards = ({ roulette }) => {
