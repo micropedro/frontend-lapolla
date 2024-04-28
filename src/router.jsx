@@ -23,6 +23,7 @@ import Depositos from './pages/admin/dashboard/depositos/depositos'
 import Home from './pages/home/home'
 import Register from './pages/auth/register'
 import TemplateClient from './components/templateClient/TemplateClient'
+import Mensajes from './pages/admin/dashboard/mensajes'
 
 const Router = () => {
     return (<>
@@ -41,6 +42,7 @@ const Router = () => {
             <Route path="/dashboard/reporte" element={<Dashboard><Reporte /></Dashboard>} />
             <Route path="/dashboard/config" element={<Dashboard><Config /></Dashboard>} />
             <Route path="/dashboard/depositos" element={<Dashboard><Depositos /></Dashboard>} />
+            <Route path="/dashboard/mensajes" element={<Dashboard><Mensajes /></Dashboard>} />
 
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />

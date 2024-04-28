@@ -5,7 +5,9 @@ import urlApi from "../services/urlApi"
 import request from "../services/request"
 import useErrorManager from "../hooks/useErrorManager"
 import useLoadingStore from "../store/loadingStore"
+import useNotify from "./useNotify"
 const useConfig = () => {
+    const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
     const errorManager = useErrorManager()
     const { config, setConfig } = useConfigStore()
@@ -14,8 +16,7 @@ const useConfig = () => {
         setLoading(true)
         try {
             const _config = await request.get(urlApi + "/config")
-            const [data] = _config.data.body
-            setConfig(data)
+            setConfig(_config.data.body)
         } catch (error) {
             errorManager(error)
         }
@@ -37,8 +38,10 @@ const useConfig = () => {
             }
 
             const res = await request.post(urlApi + "/config/update", body)
+            console.log(res)
             if (!res) throw 'No se pudo actualizar la configuracion'
             getConfig()
+            notify.success("Guardado con exito")
         } catch (error) {
             errorManager(error)
         }

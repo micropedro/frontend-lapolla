@@ -27,8 +27,9 @@ const useReportes = () => {
             const ticketToday = ticketDate.getFullYear() + '-' + ticketDate.getMonth() + '-' + ticketDate.getDate()
             return today === ticketToday
         })
-        const polla = (config.gQPrice * todayTickets.length) * config.premioCasa / 100
-        console.log(config.gQPrice)
+
+        const polla = (config.precioGranQuiniela * todayTickets.length) * config.premioCasa / 100
+        console.log(polla)
         setPolla(polla)
     }
 
