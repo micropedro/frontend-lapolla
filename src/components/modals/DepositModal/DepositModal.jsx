@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './depositModal.css'
 
@@ -7,15 +7,15 @@ const DepositModal = ({ show, onHide }) => {
     const [method, setMethod] = useState('');
     const [amount, setAmount] = useState('');
     const [transactionNumber, setTransactionNumber] = useState('');
-    const [fromAccount, setFromAccount] = useState('');
+    /*     const [fromAccount, setFromAccount] = useState(''); */
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aquí puedes enviar los datos a tu backend para procesar el depósito
-        console.log('Método de pago:', method);
-        console.log('Monto:', amount);
-        console.log('Número de operación:', transactionNumber);
-        console.log('Cuenta de origen:', fromAccount);
+        /*  console.log('Método de pago:', method);
+         console.log('Monto:', amount);
+         console.log('Número de operación:', transactionNumber);
+         console.log('Cuenta de origen:', fromAccount); */
         // Cerrar el modal después de enviar el formulario
         onHide();
     };

@@ -28,16 +28,16 @@ const Lobby = () => {
             <AlertLobby />
             <div className="row justify-content-center mb-4">
                 <div className="col-sm-12 col-md-5">
-                    <div className='bg-btn-1'>
+                    <div className='bg-btn-2'>
                         <Link to="/mini">
-                            <img width="100%" className="hover-image" src={logoGq} alt="" />
+                            <img width="100%" className="hover-image" src={logoMq} alt="" />
                         </Link>
                     </div>
                 </div>
                 <div className="col-sm-12 col-md-5">
-                    <div className="bg-btn-2">
-                        <Link to="/mini">
-                            <img width="100%" className="hover-image" src={logoMq} alt="" />
+                    <div className="bg-btn-1">
+                        <Link to="/quiniela">
+                            <img width="100%" className="hover-image" src={logoGq} alt="" />
                         </Link>
                     </div>
                 </div>
