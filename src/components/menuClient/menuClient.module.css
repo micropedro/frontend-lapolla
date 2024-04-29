@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
-    height: 100vh;
 }
 
 .bgSidebar{

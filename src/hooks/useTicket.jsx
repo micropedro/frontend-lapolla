@@ -19,7 +19,7 @@ const useTicket = () => {
         setLoading(true)
 
         const body = { animals, user, type, code: ticketCode }
-
+       
         if (!comprobacion(body)) {
             setLoading(false)
             return notify.error('Error en los datos del formulario')

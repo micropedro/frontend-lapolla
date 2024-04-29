@@ -13,12 +13,6 @@
             "status": true
         },
         {
-            "name": "Quinielas",
-            "icon": "bi bi-diagram-3",
-            "link": "/dashboard/quinielas",
-            "status": true
-        },
-        {
             "name": "Ventas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/ventas",
@@ -43,15 +37,21 @@
             "status": false
         },
         {
-            "name": "Mensajes",
-            "icon": "bi bi-envelope",
-            "link": "/dashboard/mensajes",
-            "status": false
-        },
-        {
             "name": "Depositos",
             "icon": "bi bi-credit-card",
             "link": "/dashboard/depositos",
+            "status": false
+        },
+        {
+            "name": "Quinielas",
+            "icon": "bi bi-diagram-3",
+            "link": "/dashboard/quinielas",
+            "status": false
+        },
+        {
+            "name": "Mensajes",
+            "icon": "bi bi-envelope",
+            "link": "/dashboard/mensajes",
             "status": false
         }
     ]

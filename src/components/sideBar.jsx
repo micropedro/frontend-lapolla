@@ -35,9 +35,9 @@ const SideBar = () => {
                     </li>
                 </ul>
 
-                <Link to='/lobby'>
+                {<Link to='/lobby'>
                     <button className='btn btn-primary w-100 mt-2'> Lobby </button>
-                </Link>
+                </Link>}
 
             </div>
         </div>

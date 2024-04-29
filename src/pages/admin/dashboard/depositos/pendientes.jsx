@@ -30,13 +30,15 @@ const Pendientes = () => {
                                 {formatDate(deposit.depositDate)}
                             </td>
                             <td>{deposit.operation}</td>
-                            <td>{deposit.monto}</td>
+                            <td>
+                                {deposit.monto}
+                            </td>
                             <td>{deposit.methodName}</td>
                             <td> {depositStatus(deposit.state)} </td>
                             <td className="td-buttons">
                                 <div className="deposit-buttons">
-                                    <button onClick={() => updateDeposit({ state: 2, _id: deposit._id })} className="btn btn-success mx-1 mb-1"> Aprobar </button>
-                                    <button onClick={() => updateDeposit({ state: 3, _id: deposit._id })} className="btn btn-danger mx-1 mb-1"> Anular </button>
+                                    <button onClick={() => updateDeposit({ state: 2, _id: deposit._id })} className="btn btn-success btn-sm mx-1 mb-1"> Aprobar </button>
+                                    <button onClick={() => updateDeposit({ state: 3, _id: deposit._id })} className="btn btn-danger btn-sm mx-1 mb-1"> Anular </button>
                                 </div>
                             </td>
                         </tr>

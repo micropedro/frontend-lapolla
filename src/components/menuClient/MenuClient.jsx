@@ -27,7 +27,7 @@ const MenuClient = ({ children }) => {
     }, [location]);
 
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid bg-granja'>
             <Navbar bg="light" expand="md" className="d-block d-md-none">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleToggleMenu} />
                 <Navbar.Collapse id="basic-navbar-nav">

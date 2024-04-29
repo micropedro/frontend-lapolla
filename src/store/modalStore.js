@@ -9,7 +9,7 @@ const useModalStore = createWithEqualityFn((set) => ({
     setText: (newtext) => set(() => ({
         text: newtext
     })),
-    clickEvent: null,
+    clickEvent: ()=>{},
     setClickEvent: (newClickEvent) => set(() => ({
         clickEvent: newClickEvent
     })),
