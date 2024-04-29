@@ -1,4 +1,4 @@
-import useModalStore from "@/store/modalStore"
+import useModalStore from "../../store/modalStore"
 import useDeleteUserModal from "./useDeleteModal"
 
 const DeleteUserModal = () => {

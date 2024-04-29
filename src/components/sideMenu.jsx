@@ -1,6 +1,6 @@
-import { menu } from '@/services/menuLateral.json'
+import { menu } from '../services/menuLateral.json'
 import { Link } from 'react-router-dom';
-import { devEnvironmet } from '@/config.json'
+import { devEnvironmet } from '../config.json'
 import { useState } from 'react';
 const SideMenu = () => {
 

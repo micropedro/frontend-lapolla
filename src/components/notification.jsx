@@ -1,4 +1,4 @@
-import useNotificationStore from "@/store/notificationStore"
+import useNotificationStore from "../store/notificationStore"
 export default function Notification() {
     const { text, closeNotification, notification } = useNotificationStore()
     return (

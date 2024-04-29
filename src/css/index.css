@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'grobold';
-    src: url('@/css/grobold.ttf') format('truetype');
+    src: url('../../../css/grobold.ttf') format('truetype');
 }
 
 :root {
@@ -567,4 +567,84 @@
 
 .min-x {
     min-width: 200px;
+}
+
+.input-buscar{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid rgb(138, 151, 158);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-buscar{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid  rgb(40, 143, 199);
+    padding-left:20px;
+    padding-right: 20px;
+}
+.pencil{
+    margin: 0px !important;
+    color: #003f88;
+}
+
+.pencil-btn{
+    margin-left: 6px;
+    border: none;
+    background-color: rgba(6, 25, 66, 0.212);
+    border-radius: 13px;
+    width: 26px;
+    height: 26px;
+    padding: none;
+    text-align: center;
+    font-size: 15px;
+}
+.pencil-btn:hover{
+    background-color: rgb(158, 212, 132);
+}
+.body-modal{
+    background-color: #dee6ee;
+    padding: 30px;
+    border-radius: 5px;
+    min-height: 200px;
+    min-width:400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #a52424;
+}
+
+.bg-granja{
+    background-image: url(../images/bg-lobby.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hover-image{
+    transition: 0.2s;
+    border-radius: 50px;
+}
+.hover-image:hover{
+    box-shadow: 5px 8px 10px rgba(209, 202, 202, 0.61);
+    transform: scale(1.02);
+    outline: 2px solid #508bce;
+}
+
+.bg-btn-1{
+    background-image: url(../images/bg-red.png);
+    background-position:bottom; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 35px;
+}
+
+.bg-btn-2{
+    background-image: url(../images/bg-yellow.png);
+    background-position:bottom; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 35px;
 }

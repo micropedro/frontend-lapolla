@@ -78,7 +78,7 @@ const EditUser = () => {
                         </tr>
                         <tr>
                             <td>Balance</td>
-                            <td> {user.balance} </td>
+                            <td> {editUser.balance} </td>
                         </tr>
                         <tr>
                             <td className="pt-5"></td>

@@ -1,8 +1,8 @@
-import images from "@/images/images"
-import useLoadingStore from "@/store/loadingStore"
-import Spinner from "@/components/spinner"
+import images from "../../images/images"
+import useLoadingStore from "../../store/loadingStore"
+import Spinner from "../../components/spinner"
 import useLogin from "../../hooks/useLogin"
-import Menu from '@/components/menu'
+import Menu from '../../components/menu'
 import { Link } from "react-router-dom"
 const Login = () => {
     const { loading } = useLoadingStore()

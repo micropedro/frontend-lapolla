@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './menuClient.module.css'
-import logo from '@/images/logo.png';
+import logo from '../../images/logo.png';
 
 // eslint-disable-next-line react/prop-types
 const MenuClient = ({ children }) => {
@@ -27,7 +27,7 @@ const MenuClient = ({ children }) => {
     }, [location]);
 
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid bg-granja'>
             <Navbar bg="light" expand="md" className="d-block d-md-none">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleToggleMenu} />
                 <Navbar.Collapse id="basic-navbar-nav">

@@ -1,4 +1,4 @@
-import { hostLocale, pathLocale, pathProduction } from '@/config.json'
+import { hostLocale, pathLocale, pathProduction } from '../config.json'
 
 const urlApi = hostLocale ? pathLocale : pathProduction
 

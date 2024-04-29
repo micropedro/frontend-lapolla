@@ -1,8 +1,8 @@
-import images from '@/images/images'
-import useRecuperacion from '@/hooks/useRecuperacion'
-import useLoadingStore from '@/store/loadingStore'
-import Spinner from '@/components/spinner'
-import Menu from '@/components/menu'
+import images from '../../images/images'
+import useRecuperacion from '../../hooks/useRecuperacion'
+import useLoadingStore from '../../store/loadingStore'
+import Spinner from '../../components/spinner'
+import Menu from '../../components/menu'
 
 const Recuperacion = () => {
     const { loading } = useLoadingStore()

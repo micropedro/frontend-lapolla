@@ -1,6 +1,6 @@
-import useConfig from "@/hooks/useConfig"
-import useLoadingStore from "@/store/loadingStore"
-import Spinner from "@/components/spinner"
+import useConfig from "../../../hooks/useConfig"
+import useLoadingStore from "../../../store/loadingStore"
+import Spinner from "../../../components/spinner"
 const Config = () => {
     const { loading } = useLoadingStore()
     const { config, updateConfig, setConfig, handleHoras } = useConfig()
@@ -48,7 +48,7 @@ const Config = () => {
                             Hora Gran Quiniela <b className="mx-2"> {config.horaGranQuiniela}:00 </b>
                         </div>
                         <div className="col-7">
-                            <input onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} />
+                            <input max={23} min={0} onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} />
                         </div>
                     </div>
                     <div className="row">
