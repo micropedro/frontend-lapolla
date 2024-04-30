@@ -25,7 +25,7 @@ const useUsers = () => {
             const usersList = users.data.body
             if (!usersList) throw 'Usuarios no encontrados'
             if (usersList.length > 0) setUsers(usersList)
-
+            
         } catch (error) {
             const message = error
             notify.error(message)
@@ -40,14 +40,14 @@ const useUsers = () => {
         setUser(user)
     }
 
-    useEffect(() => { getUsers() }, [])
-
     const _findUserByCi = async (e) => {
         const user = await findUserByCi(e)
         if (user) setUsers([user])
         else notify.error('Usuario no encontrado')
     }
 
+    useEffect(() => { getUsers() }, [])
+    
     return {
         users,
         deleteModal,
