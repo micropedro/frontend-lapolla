@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useVentas from "../../../hooks/useVentas"
 import dateNow from "@/services/dateNow"
-// import Ticket from "../../../components/modals/ticket"
+import Ticket from "../../../components/modals/ticket"
 import { convertCeroNumber } from "@/services/utils"
 import { useEffect } from "react"
 import AnimalsButtons from "@/components/animalsButtons"
@@ -18,12 +19,12 @@ const Taquilla = () => {
 
     return (<>
         <div>
-            {/* <Ticket /> */}
+            <Ticket />
         </div>
-        <div className='px-4 pt-3'>
+        <div className='px-4 pt-4 text-light mb-3'>
             <div className="row">
                 <div className="col-md-3">
-                    <h2 className="bg-warning text-light px-2 py-1 rounded text-center">Mini Quiniela</h2> 
+                    <h2 className="bg-warning text-light px-2 py-1 rounded text-center">Mini Quiniela</h2>
                 </div>
                 <div className="col-md-3">
                     <Link to='../quiniela' className="btn btn-primary">Ir a Gran Quiniela </Link>
@@ -34,10 +35,10 @@ const Taquilla = () => {
                 <div className="col-md-3 d-flex justify-content-end">
                     <div>
                         <p>Saldo: 1000 bs</p>
-                        <button onClick={saveAndPrint} className="btn btn-success"> Guardar </button>
+                        <button onClick={saveAndPrint} className="btn btn-success"> Comprar Ticket </button>
                     </div>
                 </div>
-              
+
             </div>
             <div>Seleccionados {animals.length}  {type === 1 ? '/ 6' : type === 2 ? '/ 3' : ""}</div>
             <div className="animals-content">
@@ -48,7 +49,6 @@ const Taquilla = () => {
                 })}
             </div>
         </div>
-        <hr />
         {type && <AnimalsButtons handle={handleSelectedAnimal} />}
     </>)
 }
