@@ -31,21 +31,21 @@
             "status": true
         },
         {
-            "name": "Reporte de caja",
-            "icon": "bi bi-bar-chart",
-            "link": "/dashboard/reporte",
-            "status": false
-        },
-        {
             "name": "Depositos",
             "icon": "bi bi-credit-card",
             "link": "/dashboard/depositos",
-            "status": false
+            "status": true
         },
         {
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
+            "status": false
+        },
+        {
+            "name": "Reporte de caja",
+            "icon": "bi bi-bar-chart",
+            "link": "/dashboard/reporte",
             "status": false
         },
         {

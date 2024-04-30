@@ -19,7 +19,7 @@ const MenuClient = ({ children }) => {
     const handleClose = () => {
         localStorage.removeItem('user');
         navigate('/login');
-        return null; 
+        return null;
     }
 
     useEffect(() => {
@@ -41,17 +41,19 @@ const MenuClient = ({ children }) => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-      
+
             <div className={`${styles.containerRow} row`}>
                 <div className={`d-none d-md-block sidebar ${styles.bgSidebar}`}>
                     <div className={styles.sidebarSticky}>
-                        <div className="row position-relative">             
-                            <img src={logo} alt="Logo" className="mt-4" style={{ position: 'absolute', width: '100%', maxWidth: '150px'}} />
+                        <div className="row position-relative">
+                            <Nav.Link as={Link} to="/">
+                                <img src={logo} alt="Logo" className="mt-4" style={{ position: 'absolute', width: '100%', maxWidth: '150px' }} />
+                            </Nav.Link>
                         </div>
                         <Nav className={`${styles.sidebar} flex-column`}>
                             <Nav.Link as={Link} to="/lobby">
                                 <i className={`bi bi-house-door-fill ${activePath === '/lobby' && 'active'}`}></i>
-                            </Nav.Link> 
+                            </Nav.Link>
                             <Nav.Link as={Link} to="/history">
                                 <i className={`bi bi-file-earmark-text-fill ${activePath === '/history' && 'active'}`}></i>
                             </Nav.Link>

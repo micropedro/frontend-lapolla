@@ -13,7 +13,7 @@ const Depositos = () => {
                 <button onClick={() => setTab(1)} className={tab === 1 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Nuevo Deposito </button>
                 <button onClick={() => setTab(2)} className={tab === 2 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Pendientes </button>
                 <button onClick={() => setTab(3)} className={tab === 3 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Aprobados </button>
-                <button onClick={() => setTab(4)} className={tab === 4 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Anulados </button>
+                <button onClick={() => setTab(4)} className={tab === 4 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Rechazados </button>
             </div>
         </div>
         <hr className="m-0 p-0" />

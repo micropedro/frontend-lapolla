@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useVentas from "../../../hooks/useVentas"
 import dateNow from "@/services/dateNow"
 // import Ticket from "../../../components/modals/ticket"
@@ -20,7 +21,7 @@ const Taquilla = () => {
         <div>
             {/* <Ticket /> */}
         </div>
-        <div className='px-4 pt-3'>
+        <div className='px-4 pt-4 text-light mb-3'>
             <div className="row">
                 <div className="col-md-3">
                     <h2 className="bg-warning text-light px-2 py-1 rounded text-center">Gran Quiniela</h2> 
@@ -34,7 +35,7 @@ const Taquilla = () => {
                 <div className="col-md-3 d-flex justify-content-end">
                     <div>
                         <p>Saldo: 1000 bs</p>
-                        <button onClick={saveAndPrint} className="btn btn-success"> Guardar </button>
+                        <button onClick={saveAndPrint} className="btn btn-success"> Comprar Ticket </button>
                     </div>
                 </div>
               
@@ -48,7 +49,6 @@ const Taquilla = () => {
                 })}
             </div>
         </div>
-        <hr />
         {type && <AnimalsButtons handle={handleSelectedAnimal} />}
     </>)
 }

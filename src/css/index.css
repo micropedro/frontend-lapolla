@@ -569,7 +569,7 @@
     min-width: 200px;
 }
 
-.input-buscar{
+.input-buscar {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: 1px solid rgb(138, 151, 158);
@@ -577,19 +577,20 @@
     padding-right: 20px;
 }
 
-.btn-buscar{
+.btn-buscar {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    border: 1px solid  rgb(40, 143, 199);
-    padding-left:20px;
+    border: 1px solid rgb(40, 143, 199);
+    padding-left: 20px;
     padding-right: 20px;
 }
-.pencil{
+
+.pencil {
     margin: 0px !important;
     color: #003f88;
 }
 
-.pencil-btn{
+.pencil-btn {
     margin-left: 6px;
     border: none;
     background-color: rgba(6, 25, 66, 0.212);
@@ -600,15 +601,17 @@
     text-align: center;
     font-size: 15px;
 }
-.pencil-btn:hover{
+
+.pencil-btn:hover {
     background-color: rgb(158, 212, 132);
 }
-.body-modal{
+
+.body-modal {
     background-color: #dee6ee;
     padding: 30px;
     border-radius: 5px;
     min-height: 200px;
-    min-width:400px;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -616,35 +619,58 @@
     color: #a52424;
 }
 
-.bg-granja{
+.bg-granja {
     background-image: url(../images/bg-lobby.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
-.hover-image{
+.hover-image {
     transition: 0.2s;
     border-radius: 50px;
 }
-.hover-image:hover{
+
+.hover-image:hover {
     box-shadow: 5px 8px 10px rgba(209, 202, 202, 0.61);
     transform: scale(1.02);
     outline: 2px solid #508bce;
 }
 
-.bg-btn-1{
+.bg-btn-1 {
     background-image: url(../images/bg-red.png);
-    background-position:bottom; 
+    background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;
     padding: 35px;
 }
 
-.bg-btn-2{
+.bg-btn-2 {
     background-image: url(../images/bg-yellow.png);
-    background-position:bottom; 
+    background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;
     padding: 35px;
+}
+
+.avatar-icon-container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.avartar-icon {
+    font-size: 90px;
+}
+
+.bg-dark-blue {
+    background-color: #081c41;
+    color: white;
 }

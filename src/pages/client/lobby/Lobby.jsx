@@ -1,31 +1,22 @@
 import logoGq from '../../../images/granquiniela.png'
 import logoMq from '../../../images/miniquiniela.png'
 import { Link } from 'react-router-dom';
-import AlertLobby from './alertLobby';
+/* import AlertLobby from './alertLobby'; */
 import Cards from '../../../components/Cards';
 
 const Lobby = () => {
     return (<>
-        <div className='container pb-5'>
-            <div className='row pb-4 pt-3'>
-                <div className="col-12 flex-between">
+        <div className='container mt-3'>
+            <div className='row pb-2'>
+                <div className="col-12 d-flex align-items-start justify-content-between">
                     <h2 className='text-warning'>Lobby</h2>
                     <div>
                         <div className='text-lg text-end text-light'>Premio Acumulado</div>
                         <div> <h2 className='text-warning'> BS. 258.000,00 </h2> </div>
                     </div>
                 </div>
-                {/* <nav className="navbar bg-body-tertiary">
-                    <div className="container">
-                        <a className="navbar-brand" href="#">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><Link to="/lobby">Lobby</Link></li>
-                            </ol>
-                        </a>
-                    </div>
-                </nav> */}
             </div>
-            <AlertLobby />
+            {/*  <AlertLobby /> */}
             <div className="row justify-content-center mb-4">
                 <div className="col-sm-12 col-md-5">
                     <div className='bg-btn-2'>
@@ -39,6 +30,20 @@ const Lobby = () => {
                         <Link to="/quiniela">
                             <img width="100%" className="hover-image" src={logoGq} alt="" />
                         </Link>
+                    </div>
+                </div>
+            </div>
+            <div className="row mb-5">
+                <div className="col-12">
+                    <div className="card p-4">
+                        <h3 className='text-danger'>
+                            Bienvenido a ApuestaLaPolla, tu plataforma de juegos de quinielas online
+                        </h3>
+                        <p className='text-gray'>
+                            Estamos emocionados de tenerte en nuestra plataforma,
+                            Aqui encontrarás los juegos de quinielas disponibles
+                            que te mantendrán entretenido mientras ganas emocionantes premios.
+                        </p>
                     </div>
                 </div>
             </div>
