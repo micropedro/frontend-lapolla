@@ -1,8 +1,13 @@
 import BancoModal from '../../../components/modals/BancoModal/BancoModal'
 import { useState } from 'react'
+import formatDate from '../../../services/formatDate'
+import usePerfil from '../../../hooks/usePerfil'
 
 const Perfil = () => {
+
+    const { userMethods, user } = usePerfil()
     const [showBank, setShowBank] = useState(false)
+
     return (<>
         {<BancoModal show={showBank} handleClose={setShowBank} />}
         <div className='container mt-3'>
@@ -11,7 +16,7 @@ const Perfil = () => {
             </div>
         </div>
         <div className='row p-5 pt-1'>
-            <div className='col-md-12 col-lg-6'>
+            <div className='col-md-12 col-lg-5 mb-3'>
                 <div className="card">
                     <div className='avatar'>
                         <div className='avatar-icon-container'>
@@ -20,48 +25,51 @@ const Perfil = () => {
                         <div>
                             <div className="card-body">
                                 <h3 className="card-text">
-                                    Jason Hernandez
+                                    {user && user.name}
                                 </h3>
-                                <p className="card-text"><i className="bi bi-envelope" /> kaltre10@gmail.com</p>
-                                <p className="card-text"><i className="bi bi-telephone-fill" /> 917545622</p>
-                                <p className="card-text"><i className="bi bi-pin-map-fill" /> Los cocos 211, Tucupita Delta Amacuto</p>
-                                <p className="card-text"><i className="bi bi-calendar-fill" /> Desde 17/04/2024</p>
+                                <p className="card-text"><i className="bi bi-envelope" /> {user && user.email}</p>
+                                <p className="card-text"><i className="bi bi-telephone-fill" /> {user && user.phone}</p>
+                                {/* <p className="card-text"><i className="bi bi-pin-map-fill" /> Los cocos 211, Tucupita Delta Amacuto</p> */}
+                                <p className="card-text"><i className="bi bi-calendar-fill" /> Desde {user && formatDate(user.date)}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='col-md-12 col-lg-6'>
-                <div className="row bg-light rounded p-3">
-                    <div className="col-6">
-                        <h4>
-                            Metodos de pago registrados
-                        </h4>
-                    </div>
-                    <div className="col-6">
-                        <button onClick={() => setShowBank(true)} className="btn btn-success w-100">
-                            <i className="bi bi-house-add" style={{ fontSize: '20px' }} /> Agregar Metodo de pago
-                        </button>
-                    </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <div className='card'>
-                                    <div className="card-body">
-                                        <h5 className="card-title">Banco de Venezuela</h5>
-                                        <p className="card-text">321654987</p>
-                                        <p className="card-text">cuenta de ahorro</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-6">
-                                <div className='card'>
-                                    <div className="card-body">
-                                        <h5 className="card-title">Banco de Venezuela</h5>
-                                        <p className="card-text">321654987</p>
-                                        <p className="card-text">cuenta de ahorro</p>
-                                    </div>
-                                </div>
+            <div className='col-md-12 col-lg-7 mb-3'>
+                <div className="card">
+                    <div className="row p-3">
+                        <div className="col-6">
+                            <h4>
+                                Metodos de pago registrados
+                            </h4>
+                        </div>
+                        <div className="col-6">
+                            <button onClick={() => setShowBank(true)} className="btn btn-success w-100">
+                                <i className="bi bi-house-add" style={{ fontSize: '20px' }} /> Agregar Metodo de pago
+                            </button>
+                        </div>
+                        <div className="col-12">
+                            <div className="row">
+                                {userMethods && userMethods.map((method) => {
+                                    return (<div key={method._id} className="col-6 mb-3 h-100">
+                                        <div className='card'>
+                                            <div className="card-body">
+                                                <div className='flex-between'>
+                                                    <img src={method.imageUrl} height={"30px"} alt="" />
+                                                    <h5 className="card-title">{method.methodName}</h5>
+                                                </div>
+                                                {method.correo && <p className='mb-0'>{method.correo} </p>}
+                                                {method.telefono && <p className='mb-0'>{method.telefono} </p>}
+                                                {method.banco && <p className='mb-0'>{method.banco} </p>}
+                                                {method.cuenta && <p className='mb-0'>{method.cuenta} </p>}
+                                                {method.tipo && <p className='mb-0'>{method.tipo} </p>}
+                                                {method.cedula && <p className='mb-0'>{method.cedula} </p>}
+                                                {method.nombre && <p className='mb-0'>{method.nombre} </p>}
+                                            </div>
+                                        </div>
+                                    </div>)
+                                })}
                             </div>
                         </div>
                     </div>
