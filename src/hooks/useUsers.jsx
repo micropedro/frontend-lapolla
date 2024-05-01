@@ -52,7 +52,8 @@ const useUsers = () => {
         users,
         deleteModal,
         getUsers,
-        _findUserByCi
+        _findUserByCi,
+        findUserByCi
     }
 }
 
