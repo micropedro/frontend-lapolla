@@ -73,9 +73,27 @@ const useTicket = () => {
         }
     }
 
+    const getTickets = async(from, to) => {
+        console.log(from, to)
+        try {
+            setLoading(true)
+            const res = await request.get(`${urlApi}/gettickets/${user._id}`)
+            if (res) {
+                return res.data.body
+            } else throw 'Ah ocurrido un error'
+        } catch (error) {
+            console.log(error)
+            notify.error(error.message || error)
+            return []
+        } finally{
+            setLoading(false)
+        }
+    }
+
     return {
         handlePrint,
-        saveTicketClient
+        saveTicketClient,
+        getTickets
     }
 }
 

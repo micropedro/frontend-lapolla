@@ -76,8 +76,8 @@ const useMethods = () => {
     const getActualMethods = async () => {
         setLoading(true)
         const response = await request.get(urlApi + '/admin/methods/getMethods/' + user._id)
-        const meth = response?.data.body
-        console.log(meth[meth.length - 1])
+        const meth = response?.data?.body
+        // console.log(meth[meth.length - 1])
         if (meth) {
             setDefaultMethod(meth[0])
             setActualMethods(response.data.body)
