@@ -39,9 +39,10 @@ const useVentas = () => {
     }
 
     const saveTicketClient = () => {
+        console.log(animals.length)
         if (!type) return notify.error('debe elegir un tipo de quiniela')
         if (type === 1 && animals.length < 6) return notify.error('debe elegir 6 animalitos')
-        if (type === 2 && animals.length < 2) return notify.error('debe elegir 3 animalitos')
+        if (type === 2 && animals.length <= 2) return notify.error('debe elegir 3 animalitos')
         setVisible(true)
     }
 
