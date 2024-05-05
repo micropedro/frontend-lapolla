@@ -12,7 +12,7 @@ const Taquilla = () => {
 
     const type = 2
 
-    const { animals, handleSelectedAnimal, saveTicketClient, setType, setAnimals } = useVentas()
+    const { animals, handleSelectedAnimal, saveTicketClient, setType } = useVentas()
     const { user } = useUserStore()
 
     useEffect(() => {
