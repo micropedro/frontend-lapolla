@@ -9,7 +9,7 @@ const Menu = () => {
                 <div className="col-12 flex-between">
                     <div className="">
                         <Link to='/' ><img height='80px' src={image.logoPng} alt="Apuestalapolla" /></Link>
-                        <span className={`${styles.titleLogo} d-none d-ms-none d-md-none d-lg-inline-block`}>ApuestaLaPolla</span>
+                        <span className={`${styles.titleLogo} d-none d-ms-none d-md-none d-lg-inline-block`}>Apuestas La Polla</span>
                     </div>
                     <div className="d--block d-sm-flex">
                         <Link to='/login' className="mx-2">

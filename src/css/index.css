@@ -627,6 +627,14 @@
     background-attachment: fixed;
 }
 
+.bg-granja-2 {
+    background: linear-gradient(rgba(122, 0, 47, 0.733),rgba(2, 2, 102, 0.781)), url(../images/bg-lobby.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .hover-image {
     transition: 0.2s;
     border-radius: 50px;
@@ -673,4 +681,10 @@
 .bg-dark-blue {
     background-color: #081c41;
     color: white;
+}
+.mw-1{
+    min-width: 180px;
+}
+.mw-2{
+    min-width: 280px;
 }

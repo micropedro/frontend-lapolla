@@ -5,7 +5,7 @@ import style from './itemsRoulettes.module.css'
 
 const ItemsRoulettes = () => {
     return (
-        <div className='container mt-5'>
+        <div className='container mt-5 mb-5'>
             <div className="row">
                 <div className=" mt-3 col-12 col-md-4 flex-center p-3">
                     <img width={"100%"} src={farm} alt="Imagen 1" />

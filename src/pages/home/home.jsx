@@ -8,13 +8,12 @@ import Carrousels from '../../components/carrousels/Carrousels'
 
 const Home = () => {
     return (
-        <div className='bg-dark'>
+        <div className='bg-granja-2'>
             <Menu />
-            <div className="container">    
+            <div className="container pt-4">    
                 <Carrousels />       
             </div>
             <div className="container">
-                
                 <div className="row">
                     <div className="col-md-12 col-lg-9">
                         <Results />
@@ -26,12 +25,12 @@ const Home = () => {
                 </div>
             </div>
             <ItemsRoulettes />
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <Footer />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
