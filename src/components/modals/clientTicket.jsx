@@ -3,6 +3,7 @@ import dateNow from "../../services/dateNow"
 import useTicket from "../../hooks/useTicket"
 import { convertCeroNumber } from "../../services/utils"
 import loadingStore from "../../store/loadingStore"
+import useConfig from "../../hooks/useConfig"
 import Spinner from "../../components/spinner"
 import { getTicketCode } from "../../services/utils"
 import { useEffect } from "react"
@@ -10,8 +11,9 @@ const ClientTicket = () => {
 
     const { loading } = loadingStore()
     const { saveTicketClient } = useTicket()
+    const { config } = useConfig()
     const { visible, setVisible, animals, setTicketCode } = useTicketStore()
-
+    
     useEffect(() => setTicketCode(getTicketCode()), [])
 
     if (visible) return (<div className="bg-modal">
@@ -26,7 +28,7 @@ const ClientTicket = () => {
                 </div>
                 <hr />
                 <h4>
-                    Mini Quiniela 25Bs
+                    {animals.length === 3 ? `Mini Quiniela ${config.precioMiniQuiniela} Bs` : `Gran Quiniela ${config.precioGranQuiniela} Bs`}
                 </h4>
                 <hr />
                 <div className="container mx-400">
