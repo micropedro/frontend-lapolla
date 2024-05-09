@@ -4,12 +4,12 @@ import useNotify from "..//hooks/useNotify"
 import useTicketStore from "../store/ticketStore"
 import useUserStore from "../store/userStore"
 import { useNavigate } from "react-router-dom"
-import { comprobacion } from "../services/utils"
 import loadingStore from "../store/loadingStore"
 import useUsers from "../hooks/useUsers"
-
+import useErrorManager from "./useErrorManager"
+useErrorManager
 const useTicket = () => {
-
+    const errorManager = useErrorManager()
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user, setUser } = useUserStore()
@@ -21,11 +21,12 @@ const useTicket = () => {
         setLoading(true)
 
         const body = { animals, user, type, code: ticketCode }
-       
-        if (!comprobacion(body)) {
-            setLoading(false)
-            return notify.error('Error en los datos del formulario')
-        }
+
+        if (!body.animals) throw new Error("No animals")
+        if (!body.user) throw new Error("No user")
+        if (!body.type) throw new Error("No type")
+        if (!body.code) throw new Error("No code")
+        if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: "+body.animals.length
 
         try {
             const res = await request.post(`${urlApi}/tickets`, body)
@@ -33,25 +34,22 @@ const useTicket = () => {
                 const userRefresh = await findUserByCi(user.ci)
                 setUser(userRefresh)
                 navigate("/print")
-            } else throw 'No se ha podido guardar el ticket'
+            } else {
+                throw 'No se ha podido guardar el ticket'
+            }
+            setLoading(false)
 
         } catch (error) {
-            console.log(error)
-            notify.error(error.message || error)
+            errorManager(error)
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     const saveTicketClient = async () => {
         setLoading(true)
 
         const body = { animals, user, type, code: ticketCode }
-       
-        if (!comprobacion(body)) {
-            setLoading(false)
-            return notify.error('Error en los datos del formulario')
-        }
-       
+
         try {
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {
@@ -67,13 +65,13 @@ const useTicket = () => {
         } catch (error) {
             console.log(error)
             notify.error(error?.response?.data?.message || error)
-        } finally{
+        } finally {
             setVisible(false)
             setLoading(false)
         }
     }
 
-    const getTickets = async(from, to) => {
+    const getTickets = async (from, to) => {
         console.log(from, to)
         try {
             setLoading(true)
@@ -85,7 +83,7 @@ const useTicket = () => {
             console.log(error)
             notify.error(error.message || error)
             return []
-        } finally{
+        } finally {
             setLoading(false)
         }
     }

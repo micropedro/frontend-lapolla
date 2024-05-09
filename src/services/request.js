@@ -9,7 +9,12 @@ const request = {
         const localToken = JSON.parse(localStorage.getItem('user'))
         axios.defaults.headers.get['Authorization'] = `Bearer ${localToken?.token || ''}`
         return await axios.get(url)
-    }
+    },
+    put: async (url, body) => {
+        const localToken = JSON.parse(localStorage.getItem('user'))
+        axios.defaults.headers.put['Authorization'] = `Bearer ${localToken?.token || ''}`
+        return await axios.put(url, body)
+    },
 }
 
 export default request

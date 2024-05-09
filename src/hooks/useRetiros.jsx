@@ -5,42 +5,54 @@ import urlApi from "../services/urlApi"
 import useRetiroStore from "../store/retirosStore"
 import useErrorManager from "./useErrorManager"
 import useModalStore from "../store/modalStore"
+import useLoadingStore from "../store/loadingStore"
+import { Spinner } from "react-bootstrap"
 const useRetiros = () => {
-    const { setVisible, setText, setButtonText, setClickEvent } = useModalStore()
+    const { setLoading } = useLoadingStore()
+    const { setVisible, setText, setButtonText, setClickEvent,setFillBtn } = useModalStore()
     const errorManager = useErrorManager()
     const { setRetiros, retiros } = useRetiroStore()
     const getRetiros = async () => {
         try {
+            setLoading(true)
             const response = await request.get(urlApi + "/withdraws")
-            setRetiros(response.data.body)
+            if (response) setRetiros(response.data.body)
+            setLoading(false)
             return response
         } catch (error) {
+            setLoading(false)
             errorManager(error)
         }
     }
 
-    const aproveWhithdraw = async () => {
+    const aproveWhithdraw = async (_id) => {
         //update retiro .put
-        const data = {
-            "userId": "66207f0edf3abd9ae2cb076d",
-            "adminMethodId": "6623ff61769f378e2e72e02d",
-            "amount": 1,
-            "_id": "6637942d887aae8988dc76d0"
-        }
         try {
-            const responseUpdate = await request.post(urlApi + "/withdraws/update",data)
-            console.log("response put :"+responseUpdate)
+            setText(<Spinner className="p-4"></Spinner>)
+            setLoading(true)
+            setFillBtn(false)
+            const responseUpdate = await request.put(urlApi + "/withdraws", { _id })
+            if (!responseUpdate) throw new Error("Error en la peticion de retiros")
+            getRetiros()
+            setVisible(false)
+            setFillBtn(true)
         } catch (error) {
+            setVisible(false)
+            setLoading(false)
             errorManager(error)
+            setFillBtn(true)
         }
     }
 
     const handleModal = (retiro) => {
-        setClickEvent(aproveWhithdraw)
+        const { _id, payMethod, amount } = retiro
+        setClickEvent(() => aproveWhithdraw(_id))
         setButtonText("Ya e pagado")
-        console.log(retiro)
+        setFillBtn(true)
         setVisible(true)
-        const { methodName, nombre, cedula, correo, tipo, cuenta, banco, telefono, imageUrl } = retiro.payMethod
+
+        const { methodName, nombre, cedula, correo, tipo, cuenta, banco, telefono, imageUrl } = payMethod
+
         setText(<div className="mw-2 text-dark">
             <div className="flex-between">
                 <h3>{methodName && methodName} </h3>
@@ -54,6 +66,8 @@ const useRetiros = () => {
                 {cuenta && <div> {cuenta}</div>}
                 {banco && <div> {banco}</div>}
                 {telefono && <div> {telefono}</div>}
+                <hr className="pb-0 mb-0" />
+                {amount && <div className="text-center"> <h3>Enviar:  BS. {amount} </h3> </div>}
             </div>
         </div>)
     }

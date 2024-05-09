@@ -6,14 +6,6 @@ export const objectEmpty = (object) => {
 
 export const convertCeroNumber = (number) => number > 0 && number < 10 ? `0${number}` : number
 
-export const comprobacion = ({ animals, user, type, code }) => {
-    const animalLengths = animals.length === 3 | animals.length === 6
-    const animalTypes = type === 1 | type === 2
-    const codeLength = code.length === 6
-    const comprobar = animalLengths && animalTypes && user && codeLength
-    return comprobar
-}
-
 export const textMenu = ["Taquilla", "Reporte", "Ganadores"]
 
 export const getMiliseconds = (date) => {

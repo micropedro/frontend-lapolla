@@ -9,7 +9,7 @@ const useModalStore = createWithEqualityFn((set) => ({
     setText: (newtext) => set(() => ({
         text: newtext
     })),
-    clickEvent: ()=>{},
+    clickEvent: () => { },
     setClickEvent: (newClickEvent) => set(() => ({
         clickEvent: newClickEvent
     })),
@@ -21,6 +21,10 @@ const useModalStore = createWithEqualityFn((set) => ({
     setUser: (newuser) => set(() => ({
         user: newuser
     })),
+    fillBtn: true,
+    setFillBtn: (btn) => set(() => ({
+        fillBtn: btn
+    }))
 }))
 
 export default useModalStore
