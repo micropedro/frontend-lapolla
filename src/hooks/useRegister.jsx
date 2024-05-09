@@ -66,7 +66,6 @@ const useRegister = () => {
             if(error.response?.data.message){
                 notify.error(error.response?.data.message)
             }
-            console.error(error.message)
         }
     }
 

@@ -53,6 +53,12 @@
             "icon": "bi bi-envelope",
             "link": "/dashboard/mensajes",
             "status": false
+        },
+        {
+            "name": "Retiros",
+            "icon": "bi bi-envelope",
+            "link": "/dashboard/retiros",
+            "status": false
         }
     ]
 }

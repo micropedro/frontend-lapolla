@@ -107,10 +107,12 @@ const useDeposits = () => {
     }, [])
 
     const findUserByCi = async (e) => {
-        e.preventDefault()
+        if(e?.target) {
+            e.preventDefault()
+        }
         setLoading(true)
         try {
-            const ci = e.target.ci.value
+            const ci = e?.target?.ci?.value || e
             if (!ci) throw "Debe ingresar la Cedula de identidad"
 
             const res = await request.get(urlApi + '/user/ci/' + ci)

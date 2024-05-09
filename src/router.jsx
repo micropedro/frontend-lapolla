@@ -26,6 +26,7 @@ import Mini from './pages/client/mini/Mini'
 import Quiniela from './pages/client/quiniela/Quiniela'
 import TemplateClient from './components/templateClient/TemplateClient'
 import Mensajes from './pages/admin/dashboard/mensajes'
+import Retiros from './pages/admin/dashboard/retiros/retiros'
 
 const Router = () => {
     return (<>
@@ -51,6 +52,7 @@ const Router = () => {
             <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
+            <Route path="/dashboard/retiros" element={<Dashboard><Retiros /></Dashboard>} />
 
             <Route element={<TemplateClient />}>
                 <Route path="/lobby/" element={<Lobby />} />
