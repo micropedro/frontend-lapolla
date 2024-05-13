@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import loadingStore from "../store/loadingStore"
 import useUsers from "../hooks/useUsers"
 import useErrorManager from "./useErrorManager"
-useErrorManager
+
 const useTicket = () => {
     const errorManager = useErrorManager()
     const { setLoading } = loadingStore()

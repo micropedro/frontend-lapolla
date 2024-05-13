@@ -12,10 +12,11 @@ const useRetiros = () => {
     const { setVisible, setText, setButtonText, setClickEvent,setFillBtn } = useModalStore()
     const errorManager = useErrorManager()
     const { setRetiros, retiros } = useRetiroStore()
-    const getRetiros = async () => {
-        try {
+
+    const getRetiros = async (state) => {
+        try { 
             setLoading(true)
-            const response = await request.get(urlApi + "/withdraws")
+            const response = await request.get(urlApi + "/withdraws" + (state || ""))
             if (response) setRetiros(response.data.body)
             setLoading(false)
             return response

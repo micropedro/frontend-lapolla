@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import images from '../images/images';
-import { Link } from 'react-router-dom';
-import SideMenu from './sideMenu';
-import useUserStore from '../store/userStore';
-import useSession from '../hooks/useSession';
+import images from '../images/images'
+import { Link } from 'react-router-dom'
+import SideMenu from './sideMenu'
+import useUserStore from '../store/userStore'
+import useSession from '../hooks/useSession'
+import money from '../services/money'
 
 const SideBar = () => {
 
@@ -20,6 +21,7 @@ const SideBar = () => {
                     {user.name && <span className='sidebarNameEmail'> {user.name} </span>}
 
                     {user.email && <span className='sidebarNameEmail'> {user.email} </span>}
+                    {money(user.balance) } BS
                 </div>
             </div>
             <div className='mt-4'>

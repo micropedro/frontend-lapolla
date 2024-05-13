@@ -1,1 +1,0 @@
-export const hostLocale = import.meta.env.VITE_ENVIROMENT
