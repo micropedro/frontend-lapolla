@@ -13,7 +13,6 @@ const useEditUser = () => {
     const sendUserForm = async (e) => {
         e.preventDefault()
 
-
         setLoading(true)
 
         const user = {
@@ -28,7 +27,7 @@ const useEditUser = () => {
             percent: e.target.percent.value
         }
         
-        if (user.level > 5 || user.level < 1) return notify.warning("Elija un tipo de usuario")
+        if (user.level > 5 || user.level < 1) return notify.warn("Elija un tipo de usuario")
         
         try {
             const response = await axios.post(urlApi + "/admin/updateuser", user)

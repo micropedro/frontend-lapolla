@@ -7,7 +7,7 @@ const Aproved = () => {
     const { retiros } = useRetiros()
     const { loading } = useLoadingStore()
     return (
-        <div className="mt-3">
+        <div className="mt-0">
             <div>
                 {loading ? <div className="text-center py-5">
                     <Spinner />

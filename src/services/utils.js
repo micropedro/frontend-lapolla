@@ -65,3 +65,5 @@ export const validateUserType = (userLevel, levelForm) => {
     if (userLevel === 4 && ![1, 2, 3, 4].includes(levelForm)) return true
     return false
 }
+
+export const formatIf37 = (idAnimal) => idAnimal === 37 ? "00" : idAnimal
