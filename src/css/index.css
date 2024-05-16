@@ -10,6 +10,10 @@
     --border-light-2: rgb(230, 230, 230);
 }
 
+body{
+    min-width: 320px;
+}
+
 .navbar-brand {
     padding-bottom: 0 !important;
 }
