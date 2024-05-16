@@ -10,7 +10,6 @@ const usePerfil = () => {
     const getUser = async () => {
         const localUser =  JSON.parse(localStorage.getItem('user'))
         const res = await request.get(urlApi + '/user/' + localUser._id)
-        console.log(res.data.body)
         if (res) {
             const { adminMethods, userMethods } = res.data.body
             const user = res.data.body
@@ -25,7 +24,8 @@ const usePerfil = () => {
     return {
         userMethods,
         adminMethods,
-        user
+        user,
+        getUser
     }
 }
 
