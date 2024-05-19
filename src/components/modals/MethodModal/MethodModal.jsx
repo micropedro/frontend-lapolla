@@ -10,7 +10,7 @@ const AddBankModal = ({ show, handleClose }) => {
     const [ dataForm, setDataForm ] = useState({});
     const { sendForm, setMethodName, setImageUrl } = useMethods()
     
-    const handleSave = () => {
+    const handleSave = async () => {
         // se declara "e" para que sea compatible con el metodo sendForm
         const e = {
             target: Object.keys(dataForm).reduce((acc, key) => {
@@ -19,9 +19,9 @@ const AddBankModal = ({ show, handleClose }) => {
             }, {}),
             preventDefault: () => {}
         }
-        sendForm(e)
+        await sendForm(e)
+        await getUser()
         setDataForm({})
-        getUser()
         // Después de guardar los datos, cierra el modal
         handleClose();
     };
