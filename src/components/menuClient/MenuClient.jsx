@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './menuClient.module.css'
 import logo from '../../images/logo.png';
+import userStore from '../../store/userStore'
 
 // eslint-disable-next-line react/prop-types
 const MenuClient = ({ children }) => {
@@ -11,6 +12,7 @@ const MenuClient = ({ children }) => {
     const [activePath, setActivePath] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const { setUser } = userStore()
 
     const handleToggleMenu = () => {
         setExpanded(!expanded);
@@ -18,6 +20,7 @@ const MenuClient = ({ children }) => {
 
     const handleClose = () => {
         localStorage.removeItem('user');
+        setUser({ _id: '', level: 0 })
         navigate('/login');
         return null;
     }

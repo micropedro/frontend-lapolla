@@ -2,19 +2,18 @@ import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import userStore from "../../../store/userStore"
 import './withdrawModal.css';
-import usePerfil from '../../../hooks/usePerfil'
+// import usePerfil from '../../../hooks/usePerfil'
 import useRetiros from '../../../hooks/useRetiros'
 import useNotify from "../../../hooks/useNotify"
 
 // eslint-disable-next-line react/prop-types
 const WithdrawModal = ({ show, onHide }) => {
-    const [method, setMethod] = useState('');
     const { notify } = useNotify()
     const [amount, setAmount] = useState('');
     const [ methodSelected, setMethodSelected] = useState('');
     const { addRetiro } = useRetiros()
-    const { userMethods, setUserMethods } = usePerfil()
-    const [ detailsMethodAdmin, setDetailsMethodAdmin] = useState({})
+    // const { userMethods } = usePerfil()
+    const [ setDetailsMethodAdmin] = useState({})
     const { user } = userStore()
 
     const handleChangeMethod = (event) => {
@@ -24,7 +23,7 @@ const WithdrawModal = ({ show, onHide }) => {
             return false
         }
         
-        const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
+        // const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
      
         setDetailsMethodAdmin(event.target.value)
         setMethodSelected(event.target.value)

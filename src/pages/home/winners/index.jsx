@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import styles from './winners.module.css'
+import useQuinielas from '../../../hooks/useQuinielas'
 
 const Winners = () => {
+
+    const { quinielas } = useQuinielas()
+    console.log(quinielas)
+
     return (<>
         <div className='mt-5'>
             <h2 className='text-warning text-center'>Ganadores</h2>

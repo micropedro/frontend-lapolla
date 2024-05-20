@@ -27,27 +27,27 @@ function CarouselFadeExample() {
             <Carousel fade>
                 <Carousel.Item>
                     <div style={imgContainer}>
-                        <div className={styles.btnApp1}>
+                        {/* <div className={styles.btnApp1}>
                             <a href='https://github.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={play} width={"100px"} alt="Play Store" />
                             </a>
                             <a href='https://githubs.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={store} width={"100%"} />
                             </a>
-                        </div>
+                        </div> */}
                         <img src={banner1} style={img} loading="lazy" />
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div style={imgContainer}>
-                        <div className={styles.btnApp2}>
+                        {/* <div className={styles.btnApp2}>
                             <a href='https://github.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={play} width={"100px"} alt="Play Store" />
                             </a>
                             <a href='https://githubs.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={store} width={"100%"} />
                             </a>
-                        </div>
+                        </div> */}
                         <img src={banner2} style={img} loading="lazy" />
                     </div>
                 </Carousel.Item>
@@ -57,9 +57,9 @@ function CarouselFadeExample() {
                             <a href='https://github.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={play} width={"100px"} alt="Play Store" />
                             </a>
-                            <a href='https://githubs.com/' target='_blank' rel="noreferrer">
+                            {/* <a href='https://githubs.com/' target='_blank' rel="noreferrer">
                                 <img className={styles.btnAppWidth} src={store} width={"100%"} />
-                            </a>
+                            </a> */}
                         </div>
                         <img src={banner3} style={img} loading="lazy" />
                     </div>

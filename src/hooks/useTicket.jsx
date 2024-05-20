@@ -63,7 +63,6 @@ const useTicket = () => {
             } else throw 'No se ha podido guardar el ticket'
 
         } catch (error) {
-            console.log(error)
             notify.error(error?.response?.data?.message || error)
         } finally {
             setVisible(false)
@@ -80,7 +79,6 @@ const useTicket = () => {
                 return res.data.body
             } else throw 'Ah ocurrido un error'
         } catch (error) {
-            console.log(error)
             notify.error(error.message || error)
             return []
         } finally {
