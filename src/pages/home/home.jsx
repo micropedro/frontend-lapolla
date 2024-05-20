@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <div className='bg-granja-2'>
             <Menu />
-            <div className="container pt-4">    
+            <div className="container pt-4 carrousel">    
                 <Carrousels />       
             </div>
             <div className="container">

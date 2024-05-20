@@ -50,12 +50,8 @@ const Nuevo = () => {
                     <form action="" onSubmit={handleForm}>
                         <div className="flex-between">
                             <h4>Datos del {defaultMethod?.methodName}</h4>
-
-
                         </div>
-
-                        {loading ? <div className="py-5 text-center"><Spinner />
-                        </div> :
+                        {loading ? <div className="py-5 text-center"><Spinner /></div> :
                             <div className="p-4">
 
                                 {defaultMethod?.banco ? <>

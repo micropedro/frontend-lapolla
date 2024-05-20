@@ -8,12 +8,13 @@ import AnimalsButtons from "@/components/animalsButtons"
 import { Link } from 'react-router-dom';
 import ClientTicket from "../../../components/modals/clientTicket"
 import useUserStore from "../../../store/userStore"
+import Spinner from "../../../components/spinner"
 
 const Taquilla = () => {
 
     const type = 1
 
-    const { animals, handleSelectedAnimal, saveTicketClient, setType } = useVentas()
+    const { animals, handleSelectedAnimal, saveTicketClient, setType, loading } = useVentas()
     const { user } = useUserStore()
 
     useEffect(() => {
@@ -21,11 +22,20 @@ const Taquilla = () => {
     }, [])
 
     return (<>
+        {loading && (
+            <div className="row">
+                <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100">
+                    <Spinner />
+                </div> 
+            </div>
+        )}
         <div>
             <ClientTicket />
         </div>
         <div className='px-4 pt-4 text-light mb-3'>
+        
             <div className="row">
+               
                 <div className="col-md-3">
                     <h2 className="bg-warning text-light px-2 py-1 rounded text-center">Gran Quiniela</h2> 
                 </div>
@@ -37,13 +47,14 @@ const Taquilla = () => {
                 </div>
                 <div className="col-md-3 d-flex justify-content-end">
                     <div>
-                        <p>Saldo: {user.balance} bs</p>
+                        <p>Saldo: {user.balance} bs</p>            
                         <button onClick={saveTicketClient} className="btn btn-success"> Comprar Ticket </button>
                     </div>
                 </div>
               
             </div>
             <div>Seleccionados {animals.length}  {type === 1 ? '/ 6' : type === 2 ? '/ 3' : ""}</div>
+            
             <div className="animals-content">
                 {animals.length > 0 && animals.map((i, index) => {
                     return <div onClick={() => handleSelectedAnimal(i)} key={index} className="m-1 p-2 anim-btn text-light">
@@ -51,6 +62,7 @@ const Taquilla = () => {
                     </div>
                 })}
             </div>
+           
         </div>
         {type && <AnimalsButtons handle={handleSelectedAnimal} />}
     </>)

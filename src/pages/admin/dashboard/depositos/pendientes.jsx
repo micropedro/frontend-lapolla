@@ -24,21 +24,21 @@ const Pendientes = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {deposits.filter(deposit => deposit.state === 1).length > 0 ? deposits.filter(deposit => deposit.state === 1).map((deposit) => {
+                    {deposits.filter(deposit => deposit.status === 1).length > 0 ? deposits.filter(deposit => deposit.status === 1).map((deposit) => {
                         return <tr key={deposit._id} >
                             <td>
-                                {formatDate(deposit.depositDate)}
+                                {formatDate(deposit.date)}
                             </td>
-                            <td>{deposit.operation}</td>
+                            <td>{deposit.operationRef}</td>
                             <td>
-                                {deposit.monto}
+                                {deposit.amount}
                             </td>
-                            <td>{deposit.methodName}</td>
-                            <td> {depositStatus(deposit.state)} </td>
+                            <td>{deposit.adminMethod.methodName}</td>
+                            <td> {depositStatus(deposit.status)} </td>
                             <td className="td-buttons">
                                 <div className="deposit-buttons">
-                                    <button onClick={() => updateDeposit({ state: 2, _id: deposit._id })} className="btn btn-success btn-sm mx-1 mb-1"> Aprobar </button>
-                                    <button onClick={() => updateDeposit({ state: 3, _id: deposit._id })} className="btn btn-danger btn-sm mx-1 mb-1"> Rechazar </button>
+                                    <button onClick={() => updateDeposit({ status: 2, _id: deposit._id })} className="btn btn-success btn-sm mx-1 mb-1"> Aprobar </button>
+                                    <button onClick={() => updateDeposit({ status: 3, _id: deposit._id })} className="btn btn-danger btn-sm mx-1 mb-1"> Rechazar </button>
                                 </div>
                             </td>
                         </tr>

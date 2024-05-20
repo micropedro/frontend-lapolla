@@ -692,3 +692,23 @@ body{
 .mw-2{
     min-width: 280px;
 }
+
+@media (max-width: 576px) { 
+    .carrousel{
+        width: 100%;
+        padding: 0 !important;
+    }
+
+    .carrousel img{
+        border-radius: 0 !important;
+    }
+ }
+ .tr-gran-quiniela td{
+    background-color: rgba(82, 207, 92, 0.548);
+    color: #6e3535;
+ }
+
+ .tr-mini-quiniela td{
+    background-color: rgba(204, 235, 30, 0.63);
+    color: rgb(75, 13, 13);
+ }
