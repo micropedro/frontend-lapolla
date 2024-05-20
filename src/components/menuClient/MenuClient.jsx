@@ -27,7 +27,6 @@ const MenuClient = ({ children }) => {
     useEffect(() => {
         setActivePath(location.pathname)
         setExpanded(!expanded)
-        console.log(location.pathname)
     }, [location])
 
     return (

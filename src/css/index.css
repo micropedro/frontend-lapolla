@@ -667,7 +667,6 @@ body{
 }
 
 .avatar-icon-container {
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -679,7 +678,7 @@ body{
 }
 
 .avartar-icon {
-    font-size: 90px;
+    font-size: 70px;
 }
 
 .bg-dark-blue {
@@ -713,4 +712,13 @@ body{
     color: rgb(75, 13, 13);
  }
 
- 
+ .code-card{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+ }
+
+ .mh-100{
+    min-height: 130px;
+ }

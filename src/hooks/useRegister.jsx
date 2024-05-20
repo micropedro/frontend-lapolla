@@ -59,7 +59,7 @@ const useRegister = () => {
             await request.post(url, data)
             setLoading(false)
             notify.success('¡Se ha registrado correctamente! ¡Puede iniciar sesión ahora!')
-            navigate('/dashboard')
+            navigate('/lobby')
 
         } catch (error) {
             setLoading(false)

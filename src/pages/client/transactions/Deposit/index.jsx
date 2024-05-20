@@ -7,10 +7,12 @@ const Deposit = () => {
 
     const { deposits } = useDepositStore()
     const { user } = userStore()
-    const { adminMethods } = user
-   
+
+    
+
     const method = (idMethod) => {
-        if(!adminMethods) return null
+        const { adminMethods } = user
+        if (!adminMethods) return null
         return adminMethods.filter(method => {
             return method._id === idMethod
         })[0]
@@ -18,19 +20,19 @@ const Deposit = () => {
 
     return (
         deposits.length > 0 ? (
-            deposits.map( dep => (
+            deposits.map(dep => (
                 <div className="col-12 card p-4 mt-1" key={dep._id}>
                     <div className='d-flex justify-content-around align-items-center text-lg'>
                         <div className={`${styles.itemWin} d-flex flex-column align-items-center`}>
-                            <span><i className="bi bi-box-arrow-right"/> Deposito</span>
+                            <span><i className="bi bi-box-arrow-right" /> Deposito</span>
                             <span className={`${styles.itemWinText} d-flex align-items-center gap-2`}>
                                 <i className="bi bi-cash text-gray"></i>
                                 <span className='text-gray'>BS. {dep.amount}</span>
                             </span>
                             <span className='text-gray fs-6'>ref: {dep.operationRef}</span>
                         </div>
-                    
-                        <div className={`${styles.itemNum}`}>           
+
+                        <div className={`${styles.itemNum}`}>
                             <div className={`${styles.containerMethod} d-flex`}>
                                 <div className={`d-flex align-items-center gap-1`}>
                                     <img style={{ width: '25px' }} src={method(dep.adminMethodId)?.imageUrl} />
@@ -71,7 +73,7 @@ const Deposit = () => {
                                     <span>{method(dep.adminMethodId)?.tipo}</span>
                                 </div>
                             )}
-                        </div>                 
+                        </div>
                         <div className={`${styles.itemDate} d-flex flex-column`}>
                             <span><i className="bi bi-calendar"></i> {formatDate2(dep.date)}</span>
                             <span><i className="bi bi-clock-history"></i> {getTime(dep.date)}</span>

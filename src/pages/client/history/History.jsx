@@ -12,13 +12,13 @@ const History = () => {
         tickets,
         loading,
         TEXTSTATUS,
-        dataLocal,
+        /* dataLocal,
         queryTickets,
-        handleDate
+        handleDate */
     } = useHistory()
 
     return (<>
-        <div className='container mt-3'>
+        <div className='container-fluid mt-3'>
             <div className='row pb-2'>
                 <h2 className='text-warning' >Historial de jugadas</h2>
                 {/* <nav className="navbar bg-body-tertiary">
@@ -32,7 +32,7 @@ const History = () => {
                 </nav> */}
             </div>
             <div className="row text-white justify-content-center">
-                <div className="col-md-3 d-flex align-items-center gap-1">
+                {/*  <div className="col-md-3 d-flex align-items-center gap-1">
                     <label htmlFor="startDate" className="form-label">Desde:</label>
                     <input
                         type="date"
@@ -51,17 +51,16 @@ const History = () => {
                         value={dataLocal.to}
                         onChange={handleDate}
                     />
-                </div>
-                <div className="col-md-2">
+                </div> */}
+                {/* <div className="col-md-2">
                     <button
                         className="btn btn-primary"
                         onClick={() => queryTickets()}
                     >Consultar</button>
-                </div>
+                </div> */}
             </div>
 
-
-            <div className='row text-center'>
+            <div className='row text-center mb-5'>
                 {loading && (
                     <div className='mt-5'>
                         <Placeholder as="p" animation="glow">
@@ -80,29 +79,35 @@ const History = () => {
                 )}
                 {tickets.length > 0 ? tickets.map((ticket, index) => {
                     return (
-                        <div className='col-12' key={index}>
+                        <div className='col-12 col-md-6' key={index}>
                             <div className='card mt-4'>
-                                <div className=' d-flex justify-content-around align-items-center fs-4'>
-                                    <div className={`${styles.itemWin} d-flex flex-column align-items-center`}>
-                                        <span># {ticket.code}</span>
-                                        <span className={`${styles.itemWinText} d-flex align-items-center gap-2`}>
-                                            <i className="bi bi-trophy"></i>
-                                            <span className={`${styles.itemBadgestatus} badge text-bg-${TEXTSTATUS[ticket.status].color}`}>{TEXTSTATUS[ticket.status].text}</span>
-                                        </span>
-                                    </div>
-                                    <div className={styles.itemNum}>
-                                        <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
-                                        <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-
-                                            {ticket.animals.map((animal, index) => (
-                                                <p key={index} className={styles.number}>{formatIf37(animal.id)}</p>
-                                            ))}
-
+                                <div className="container-fluid">
+                                    <div className='row text-center'>
+                                        <div className='col-12 col-sm-6 col-md-4 code-card'>
+                                            <div># {ticket.code}</div>
+                                            <div className='flex-center'>
+                                                <i className="bi bi-trophy"></i>
+                                                <span className={`${styles.itemBadgestatus} badge text-bg-${TEXTSTATUS[ticket.status].color}`}>{TEXTSTATUS[ticket.status].text}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className={`${styles.itemDate} d-flex flex-column`}>
-                                        <span><i className="bi bi-calendar"></i> {formatDate(ticket.date)}</span>
-                                        <span><i className="bi bi-clock-history"></i> {getTime(ticket.date)}</span>
+                                        <div className='col-12 col-sm-6 col-md-4 code-card pt-3'>
+                                            <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
+                                            <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
+
+                                                {ticket.animals.map((animal, index) => (
+                                                    <p key={index} className={styles.number}>{formatIf37(animal.id)}</p>
+                                                ))}
+
+                                            </div>
+                                        </div>
+                                        <div className='col-12 col-sm-12 col-md-4 code-card'>
+                                            <div>
+                                                <span><i className="bi bi-calendar"></i> {formatDate(ticket.date)}</span>
+                                            </div>
+                                            <div>
+                                                <span><i className="bi bi-clock-history"></i> {getTime(ticket.date)}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +115,6 @@ const History = () => {
                     )
                 }) : !loading ? <p className='h3 mt-5'>No hay datos para mostrar</p> : null}
             </div>
-
         </div>
     </>)
 }

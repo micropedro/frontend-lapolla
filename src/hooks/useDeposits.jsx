@@ -94,7 +94,6 @@ const useDeposits = () => {
         setLoading(true)
         try {
             const deposits = await request.get(urlApi + "/deposits")
-            console.log("depositos: ", deposits.data.body)
             setDeposits(deposits.data.body)
             setLoading(false)
         } catch (error) {
@@ -136,8 +135,8 @@ const useDeposits = () => {
     }
 
     useEffect(() => {
-        getDeposits()
-        getDepositUser()
+       /*  getDeposits() */
+       /*  getDepositUser() */
     }, [])
 
     const findUserByCi = async (e) => {
