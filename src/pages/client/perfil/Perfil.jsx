@@ -12,7 +12,7 @@ import useLoadingStore from "../../../store/loadingStore"
 const Perfil = () => {
 
     const { user, getUser } = usePerfil()
-   
+
     const [showBank, setShowBank] = useState(false)
     const [idMethod, setIdMethod] = useState("")
     const { loading } = useLoadingStore()
@@ -21,7 +21,7 @@ const Perfil = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
- 
+
     const handleDeleteMethod = () => {
         deleteMethod(idMethod)
         setIdMethod('')
@@ -37,10 +37,10 @@ const Perfil = () => {
             <Modal.Body>esta seguro de eliminar este metodo de pago?</Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-            cerrar
+                    cerrar
                 </Button>
                 <Button variant="danger" onClick={handleDeleteMethod}>
-            Eliminar
+                    Eliminar
                 </Button>
             </Modal.Footer>
         </Modal>
@@ -53,7 +53,7 @@ const Perfil = () => {
             <div className="row">
                 <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100" style={{ zIndex: 1060 }}>
                     <Spinner />
-                </div> 
+                </div>
             </div>
         )}
         <div className='container mt-3'>
@@ -61,36 +61,36 @@ const Perfil = () => {
                 <h2 className="text-warning">Perfil de usuario</h2>
             </div>
         </div>
-        <div className='row p-5 pt-1'>
-            <div className='col-md-12 col-lg-5 mb-3'>
-                <div className="card">
-                    <div className='avatar'>
-                        <div className='avatar-icon-container'>
-                            <i className="bi bi-person-circle avartar-icon" />
-                        </div>
-                        <div>
-                            <div className="card-body">
+        <div className='row p-2 pt-1'>
+            <div className='col-12 col-md-6 col-lg-5 mb-3'>
+                <div className="card p-3">
+                    <div className='container-fluid'>
+                        <div className="row">
+                            <div className='col-12 col-md-4'>
+                                <i className="bi bi-person-circle avartar-icon" />
+                            </div>
+                            <div className="col-12 col-md-8">
                                 <h3 className="card-text">
                                     {user && user.name}
                                 </h3>
                                 <p className="card-text"><i className="bi bi-envelope" /> {user && user.email}</p>
                                 <p className="card-text"><i className="bi bi-telephone-fill" /> {user && user.phone}</p>
-                                {/* <p className="card-text"><i className="bi bi-pin-map-fill" /> Los cocos 211, Tucupita Delta Amacuto</p> */}
                                 <p className="card-text"><i className="bi bi-calendar-fill" /> Desde {user && formatDate(user.date)}</p>
+                                {/* <p className="card-text"><i className="bi bi-pin-map-fill" /> Los cocos 211, Tucupita Delta Amacuto</p> */}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='col-md-12 col-lg-7 mb-3'>
+            <div className='col-12 col-md-6 col-lg-7 mb-3'>
                 <div className="card">
                     <div className="row p-3">
-                        <div className="col-6">
+                        <div className="col-6 mb-3">
                             <h4>
-                                Metodos de pago registrados
+                                Metodos de pago
                             </h4>
                         </div>
-                        <div className="col-6">
+                        <div className="col-6 mb-3">
                             <button onClick={() => setShowBank(true)} className="btn btn-success w-100">
                                 <i className="bi bi-house-add" style={{ fontSize: '20px' }} /> Agregar Metodo de pago
                             </button>
@@ -98,8 +98,8 @@ const Perfil = () => {
                         <div className="col-12">
                             <div className="row">
                                 {user.userMethods && user.userMethods.map((method) => {
-                                    return (<div key={method._id} className="col-6 mb-3 h-100">
-                                        <div className='card'>
+                                    return (<div key={method._id} className="col-12 col-md-6 mb-3">
+                                        <div className='card mh-100'>
                                             <div className="card-body">
                                                 <div className='flex-between'>
                                                     <img src={method.imageUrl} height={"30px"} alt="" />
