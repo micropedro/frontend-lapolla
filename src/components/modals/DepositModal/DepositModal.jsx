@@ -1,25 +1,53 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './depositModal.css'
+import useDeposits from '../../../hooks/useDeposits';
+import usePerfil from '../../../hooks/usePerfil'
+import useMethods from '../../../hooks/useMethods'
+import useNotify from "../../../hooks/useNotify"
 
 // eslint-disable-next-line react/prop-types
 const DepositModal = ({ show, onHide }) => {
-    const [method, setMethod] = useState('');
     const [amount, setAmount] = useState('');
     const [transactionNumber, setTransactionNumber] = useState('');
-    /*     const [fromAccount, setFromAccount] = useState(''); */
+    const { addDeposit } = useDeposits()
+    const [ methodSelected, setMethodSelected] = useState('');
+    const { setMethodName, setImageUrl } = useMethods()
+    const { notify } = useNotify()
+    const { adminMethods } = usePerfil()
+    const [ detailsMethodAdmin, setDetailsMethodAdmin] = useState({})
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Aquí puedes enviar los datos a tu backend para procesar el depósito
-        /*  console.log('Método de pago:', method);
-         console.log('Monto:', amount);
-         console.log('Número de operación:', transactionNumber);
-         console.log('Cuenta de origen:', fromAccount); */
-        // Cerrar el modal después de enviar el formulario
-        onHide();
-    };
+    const handleSave = async (e) => {
+        e.preventDefault()
+        try {
+            onHide();
+            await addDeposit({
+                methodSelected,
+                transactionNumber,
+                amount
+            }) 
+            notify.success("Deposito registrado correctamente")
+        } catch(e) {
+            notify.error("ha ocurrido un error")
+        } finally {
+            setMethodSelected("")
+            setTransactionNumber('')
+            setAmount('')
+        }
+    }
 
+    const handleChangeMethod = (event) => {
+        if(event.target.value === "0") {
+            setMethodSelected("")
+            setDetailsMethodAdmin({})
+            return false
+        }
+        const [methodCurrent] = adminMethods.filter(method => method._id === event.target.value)
+        setDetailsMethodAdmin(methodCurrent)
+        setMethodName(methodCurrent.methodName)
+        setImageUrl(methodCurrent.imageUrl)
+        setMethodSelected(event.target.value)
+    }
     return (
         <Modal show={show} onHide={onHide} centered>
             <div className="modal-content bg-white shadow-md rounded">
@@ -27,16 +55,40 @@ const DepositModal = ({ show, onHide }) => {
                     <Modal.Title className="text-lg font-bold">Depósito de dinero</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="method">
-                            <Form.Label>Método de pago</Form.Label>
-                            <Form.Control as="select" value={method} onChange={(e) => setMethod(e.target.value)}>
-                                <option value="">Seleccione el método de pago</option>
-                                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
-                                <option value="Transferencia bancaria">Transferencia bancaria</option>
-                                <option value="PayPal">PayPal</option>
+                    <Form onSubmit={handleSave}>
+                        <Form.Group controlId="select">
+                            <Form.Label>Metodo de pago:</Form.Label>
+                            <Form.Control as="select" onChange={handleChangeMethod} >
+                                {[{ methodName: "Seleccione metodo de pago", _id: '0'  }].concat(adminMethods).map( method => {
+                                    return (
+                                        <option key={method._id} value={method._id}>{method.methodName}</option>
+                                    )
+                                })}
                             </Form.Control>
                         </Form.Group>
+                        <div className='mt-3 mb-3 d-flex flex-column text-center'>
+                            {detailsMethodAdmin?.imageUrl && (
+                                <div className='d-flex gap-2 justify-content-center align-items-center'>
+                                    <img style={{ width: '50px' }} src={detailsMethodAdmin?.imageUrl} />
+                                    <span>{detailsMethodAdmin?.methodName}</span>
+                                </div>
+                            )}
+                            {detailsMethodAdmin?.banco && (                   
+                                <span>{detailsMethodAdmin?.nombre}</span>
+                            )}
+                            {detailsMethodAdmin?.cedula && (             
+                                <span>CI: {detailsMethodAdmin?.cedula}</span>
+                            )}
+                            {detailsMethodAdmin?.correo && (
+                                <span>{detailsMethodAdmin?.correo}</span>
+                            )}
+                            {detailsMethodAdmin?.telefono && (
+                                <span>TELF: {detailsMethodAdmin?.telefono}</span>
+                            )}
+                            {detailsMethodAdmin?.tipo && (
+                                <span>{detailsMethodAdmin?.tipo}</span>
+                            )}
+                        </div>
                         <Form.Group controlId="amount">
                             <Form.Label>Monto</Form.Label>
                             <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
@@ -46,7 +98,7 @@ const DepositModal = ({ show, onHide }) => {
                             <Form.Control type="text" value={transactionNumber} onChange={(e) => setTransactionNumber(e.target.value)} />
                         </Form.Group>
                         <div className="text-right mt-3">
-                            <Button variant="primary" type="submit">Realizar depósito</Button>
+                            <Button variant="primary" type='submit'>Realizar depósito</Button>
                         </div>
                     </Form>
                 </Modal.Body>

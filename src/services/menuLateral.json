@@ -13,12 +13,6 @@
             "status": true
         },
         {
-            "name": "Ventas",
-            "icon": "bi bi-person-workspace",
-            "link": "/dashboard/ventas",
-            "status": true
-        },
-        {
             "name": "Cargar Animalitos",
             "icon": "bi bi-file-earmark-arrow-up",
             "link": "/dashboard/cargar",
@@ -37,27 +31,39 @@
             "status": true
         },
         {
-            "name": "Quinielas",
-            "icon": "bi bi-diagram-3",
-            "link": "/dashboard/quinielas",
-            "status": false
+            "name": "Retiros",
+            "icon": "bi bi-envelope",
+            "link": "/dashboard/retiros",
+            "status": true
         },
         {
             "name": "Reporte de caja",
             "icon": "bi bi-bar-chart",
             "link": "/dashboard/reporte",
-            "status": false
+            "status": true
+        },
+        {
+            "name": "Resultados",
+            "icon": "bi bi-diagram-3",
+            "link": "/dashboard/resultados",
+            "status": true
         },
         {
             "name": "Mensajes",
             "icon": "bi bi-envelope",
             "link": "/dashboard/mensajes",
+            "status": true
+        },
+        {
+            "name": "Ventas",
+            "icon": "bi bi-person-workspace",
+            "link": "/dashboard/ventas",
             "status": false
         },
         {
-            "name": "Retiros",
-            "icon": "bi bi-envelope",
-            "link": "/dashboard/retiros",
+            "name": "Quinielas",
+            "icon": "bi bi-diagram-3",
+            "link": "/dashboard/quinielas",
             "status": false
         }
     ]

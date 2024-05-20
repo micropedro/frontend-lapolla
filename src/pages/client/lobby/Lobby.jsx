@@ -3,8 +3,10 @@ import logoMq from '../../../images/miniquiniela.png'
 import { Link } from 'react-router-dom';
 /* import AlertLobby from './alertLobby'; */
 import Cards from '../../../components/Cards';
+import useReportes from "../../../hooks/useReportes"
 
 const Lobby = () => {
+    const { polla } = useReportes()
     return (<>
         <div className='container mt-3'>
             <div className='row pb-2'>
@@ -12,7 +14,7 @@ const Lobby = () => {
                     <h2 className='text-warning'>Lobby</h2>
                     <div>
                         <div className='text-lg text-end text-light'>Premio Acumulado</div>
-                        <div> <h2 className='text-warning'> BS. 258.000,00 </h2> </div>
+                        <div> <h2 className='text-warning'> BS. {polla} </h2> </div>
                     </div>
                 </div>
             </div>

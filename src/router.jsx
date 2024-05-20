@@ -27,6 +27,7 @@ import Quiniela from './pages/client/quiniela/Quiniela'
 import TemplateClient from './components/templateClient/TemplateClient'
 import Mensajes from './pages/admin/dashboard/mensajes'
 import Retiros from './pages/admin/dashboard/retiros/retiros'
+import Resultados from './pages/admin/dashboard/resultados/resultados'
 
 const Router = () => {
     return (<>
@@ -46,13 +47,13 @@ const Router = () => {
             <Route path="/dashboard/config" element={<Dashboard><Config /></Dashboard>} />
             <Route path="/dashboard/depositos" element={<Dashboard><Depositos /></Dashboard>} />
             <Route path="/dashboard/mensajes" element={<Dashboard><Mensajes /></Dashboard>} />
-
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
             <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
             <Route path="/dashboard/retiros" element={<Dashboard><Retiros /></Dashboard>} />
+            <Route path="/dashboard/resultados" element={<Dashboard><Resultados /></Dashboard>} />
 
             <Route element={<TemplateClient />}>
                 <Route path="/lobby/" element={<Lobby />} />

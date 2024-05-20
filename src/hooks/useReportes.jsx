@@ -29,7 +29,6 @@ const useReportes = () => {
         })
 
         const polla = (config.precioGranQuiniela * todayTickets.length) * config.premioCasa / 100
-        console.log(polla)
         setPolla(polla)
     }
 

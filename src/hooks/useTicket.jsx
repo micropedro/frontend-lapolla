@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import loadingStore from "../store/loadingStore"
 import useUsers from "../hooks/useUsers"
 import useErrorManager from "./useErrorManager"
-useErrorManager
+
 const useTicket = () => {
     const errorManager = useErrorManager()
     const { setLoading } = loadingStore()
@@ -63,7 +63,6 @@ const useTicket = () => {
             } else throw 'No se ha podido guardar el ticket'
 
         } catch (error) {
-            console.log(error)
             notify.error(error?.response?.data?.message || error)
         } finally {
             setVisible(false)
@@ -71,8 +70,8 @@ const useTicket = () => {
         }
     }
 
+    // eslint-disable-next-line no-unused-vars
     const getTickets = async (from, to) => {
-        console.log(from, to)
         try {
             setLoading(true)
             const res = await request.get(`${urlApi}/gettickets/${user._id}`)
@@ -80,7 +79,6 @@ const useTicket = () => {
                 return res.data.body
             } else throw 'Ah ocurrido un error'
         } catch (error) {
-            console.log(error)
             notify.error(error.message || error)
             return []
         } finally {

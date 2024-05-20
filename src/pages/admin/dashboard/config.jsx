@@ -45,10 +45,11 @@ const Config = () => {
                     </div>
                     <div className="row mb-2">
                         <div className="col-5 text-lg">
-                            Hora Gran Quiniela <b className="mx-2"> {config.horaGranQuiniela}:00 </b>
+                            Hora Gran Quiniela <b className="mx-2"> {config.horaGranQuiniela}</b>
                         </div>
                         <div className="col-7">
-                            <input max={23} min={0} onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} />
+                            <input type="time" name="" id="" onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} value={config.horaGranQuiniela} className="form-control" />
+                            {/* <input max={23} min={0} onChange={(e) => setConfig({ ...config, horaGranQuiniela: e.target.value })} className="form-control" type="number" value={config.horaGranQuiniela} /> */}
                         </div>
                     </div>
                     <div className="row">

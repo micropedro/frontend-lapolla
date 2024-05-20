@@ -2,13 +2,25 @@
 import useNotify from "./useNotify"
 import useTicketStore from "../store/ticketStore"
 import { useState, useEffect } from "react"
+import loadingStore from "../store/loadingStore"
+import urlApi from "../services/urlApi"
+import request from "../services/request"
+
 const useVentas = () => {
 
     const [menu, setMenu] = useState("taquilla")
-    const { animals, setAnimals, setVisible, type, setType } = useTicketStore()
+    const { animals, setAnimals, setVisible, type, setType, setTicketCode } = useTicketStore()
+    const { loading, setLoading } = loadingStore()
     const { notify } = useNotify()
 
     useEffect(() => () => setAnimals([]), [])
+
+    const getTicketCode = async () => {
+        const code = await request.get(`${urlApi}/secrettoken`)
+        setTicketCode(code.data.body.ticketCode)
+        setVisible(true)
+        setLoading(false)
+    }
 
     const handleSelectedAnimal = (animal) => {
 
@@ -42,15 +54,18 @@ const useVentas = () => {
         if (!type) return notify.error('debe elegir un tipo de quiniela')
         if (type === 1 && animals.length < 6) return notify.error('debe elegir 6 animalitos')
         if (type === 2 && animals.length <= 2) return notify.error('debe elegir 3 animalitos')
-        setVisible(true)
+        setLoading(true)
+        getTicketCode()
     }
 
     return {
         setAnimals,
         animals,
+        loading,
         handleSelectedAnimal,
         saveAndPrint,
         saveTicketClient,
+        getTicketCode,
         type,
         setType,
         menu, setMenu

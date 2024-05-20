@@ -7,12 +7,13 @@ import { useEffect } from "react"
 import AnimalsButtons from "@/components/animalsButtons"
 import useUserStore from "../../../store/userStore"
 import { Link } from 'react-router-dom';
+import Spinner from "../../../components/spinner"
 
 const Taquilla = () => {
 
     const type = 2
 
-    const { animals, handleSelectedAnimal, saveTicketClient, setType } = useVentas()
+    const { animals, handleSelectedAnimal, saveTicketClient, setType, loading } = useVentas()
     const { user } = useUserStore()
 
     useEffect(() => {
@@ -20,6 +21,13 @@ const Taquilla = () => {
     }, [])
 
     return (<>
+        {loading && (
+            <div className="row">
+                <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100">
+                    <Spinner />
+                </div> 
+            </div>
+        )}
         <div>
             <ClientTicket />
         </div>

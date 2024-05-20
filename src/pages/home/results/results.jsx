@@ -3,8 +3,8 @@ import Cards from '../../../components/Cards';
 const Results = () => {
 
     const activa = 1
-    const lotto = 2
-    const granjita = 3
+    const lotto = 3
+    const granjita = 2
 
     return (
         <div className='container-fluid'>

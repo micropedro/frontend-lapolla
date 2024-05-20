@@ -8,6 +8,14 @@ const formatDate = (date, daysAgo = 0) => {
     })
 }
 
+export const formatDate2 = (_date) => {
+    const date = new Date(_date)
+    const dia = String(date.getDate() + 1).padStart(2, '0')
+    const mes = String(date.getMonth()).padStart(2, '0')
+    const anio = date.getFullYear()
+    return dia + '-' + mes + '-' + anio
+}
+
 export const getTime = (dateString) => {
     const date = new Date(dateString);
     const hours = String(date.getHours()).padStart(2, '0');

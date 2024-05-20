@@ -4,6 +4,7 @@ import styles from './history.module.css';
 import Placeholder from 'react-bootstrap/Placeholder';
 import formatDate, { getTime } from '../../../services/formatDate'
 import useHistory from '../../../hooks/useHistory';
+import { formatIf37 } from '../../../services/utils';
 
 const History = () => {
 
@@ -33,38 +34,38 @@ const History = () => {
             <div className="row text-white justify-content-center">
                 <div className="col-md-3 d-flex align-items-center gap-1">
                     <label htmlFor="startDate" className="form-label">Desde:</label>
-                    <input 
-                        type="date" 
-                        className="form-control" 
-                        id="from" 
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="from"
                         value={dataLocal.from}
-                        onChange={handleDate} 
+                        onChange={handleDate}
                     />
                 </div>
                 <div className="col-md-3 d-flex align-items-center gap-1">
                     <label htmlFor="endDate" className="form-label">Hasta: </label>
-                    <input 
-                        type="date" 
-                        className="form-control" 
-                        id="to" 
-                        value={dataLocal.to} 
-                        onChange={handleDate} 
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="to"
+                        value={dataLocal.to}
+                        onChange={handleDate}
                     />
                 </div>
                 <div className="col-md-2">
-                    <button 
+                    <button
                         className="btn btn-primary"
                         onClick={() => queryTickets()}
                     >Consultar</button>
                 </div>
             </div>
-            
+
 
             <div className='row text-center'>
                 {loading && (
                     <div className='mt-5'>
                         <Placeholder as="p" animation="glow">
-                            <Placeholder xs={12}  />
+                            <Placeholder xs={12} />
                         </Placeholder>
                         <Placeholder as="p" animation="wave">
                             <Placeholder xs={12} />
@@ -75,10 +76,9 @@ const History = () => {
                         <Placeholder as="p" animation="wave">
                             <Placeholder xs={12} />
                         </Placeholder>
-                        
                     </div>
                 )}
-                {tickets.length > 0 ? tickets.map((ticket, index) => {               
+                {tickets.length > 0 ? tickets.map((ticket, index) => {
                     return (
                         <div className='col-12' key={index}>
                             <div className='card mt-4'>
@@ -93,10 +93,11 @@ const History = () => {
                                     <div className={styles.itemNum}>
                                         <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            
-                                            {ticket.animals.map((a, index) => (
-                                                <p key={index} className={styles.number}>{a.id}</p>
+
+                                            {ticket.animals.map((animal, index) => (
+                                                <p key={index} className={styles.number}>{formatIf37(animal.id)}</p>
                                             ))}
+
                                         </div>
                                     </div>
                                     <div className={`${styles.itemDate} d-flex flex-column`}>
@@ -107,7 +108,7 @@ const History = () => {
                             </div>
                         </div>
                     )
-                } ) : !loading ? <p className='h3 mt-5'>No hay datos para mostrar</p> : null}
+                }) : !loading ? <p className='h3 mt-5'>No hay datos para mostrar</p> : null}
             </div>
 
         </div>

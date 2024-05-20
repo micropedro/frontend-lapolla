@@ -5,23 +5,22 @@ import { convertCeroNumber } from "../../services/utils"
 import loadingStore from "../../store/loadingStore"
 import useConfig from "../../hooks/useConfig"
 import Spinner from "../../components/spinner"
-import { getTicketCode } from "../../services/utils"
-import { useEffect } from "react"
+// import urlApi from "../../services/urlApi"
+// import request from "../../services/request"
+
 const ClientTicket = () => {
 
     const { loading } = loadingStore()
     const { saveTicketClient } = useTicket()
     const { config } = useConfig()
-    const { visible, setVisible, animals, setTicketCode } = useTicketStore()
-    
-    useEffect(() => setTicketCode(getTicketCode()), [])
+    const { visible, setVisible, animals, ticketCode } = useTicketStore()
 
     if (visible) return (<div className="bg-modal">
         <div className="ticket-body p-3">
             <div>
                 <div className="text-center">
                     <h2>apuestaslapolla.com</h2>
-                    <div>Nro Ticket. 234 - <i>Codigo: ******</i></div>
+                    <div>Nro Ticket - <i>Codigo: {ticketCode}</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                     </p>

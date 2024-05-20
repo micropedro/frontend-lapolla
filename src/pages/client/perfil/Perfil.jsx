@@ -1,15 +1,61 @@
-import BancoModal from '../../../components/modals/BancoModal/BancoModal'
+import MethodModal from '../../../components/modals/MethodModal/MethodModal'
 import { useState } from 'react'
 import formatDate from '../../../services/formatDate'
 import usePerfil from '../../../hooks/usePerfil'
+import useMethods from '../../../hooks/useMethods'
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Spinner from "../../../components/spinner"
+import useLoadingStore from "../../../store/loadingStore"
+// import useUser from '../../../hooks/useUser'
 
 const Perfil = () => {
 
-    const { userMethods, user } = usePerfil()
+    const { user, getUser } = usePerfil()
+   
     const [showBank, setShowBank] = useState(false)
+    const [idMethod, setIdMethod] = useState("")
+    const { loading } = useLoadingStore()
+    const { deleteMethod } = useMethods()
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+ 
+    const handleDeleteMethod = () => {
+        deleteMethod(idMethod)
+        setIdMethod('')
+        getUser()
+        handleClose()
+    }
+
+    const ModalConfirm = () => {
+        return <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal.Header closeButton>
+                <Modal.Title>Eliminar metodo de pago</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>esta seguro de eliminar este metodo de pago?</Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+            cerrar
+                </Button>
+                <Button variant="danger" onClick={handleDeleteMethod}>
+            Eliminar
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    }
 
     return (<>
-        {<BancoModal show={showBank} handleClose={setShowBank} />}
+        <ModalConfirm />
+        {<MethodModal show={showBank} handleClose={setShowBank} />}
+        {loading && (
+            <div className="row">
+                <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100" style={{ zIndex: 1060 }}>
+                    <Spinner />
+                </div> 
+            </div>
+        )}
         <div className='container mt-3'>
             <div className='row pb-2'>
                 <h2 className="text-warning">Perfil de usuario</h2>
@@ -51,7 +97,7 @@ const Perfil = () => {
                         </div>
                         <div className="col-12">
                             <div className="row">
-                                {userMethods && userMethods.map((method) => {
+                                {user.userMethods && user.userMethods.map((method) => {
                                     return (<div key={method._id} className="col-6 mb-3 h-100">
                                         <div className='card'>
                                             <div className="card-body">
@@ -66,6 +112,12 @@ const Perfil = () => {
                                                 {method.tipo && <p className='mb-0'>{method.tipo} </p>}
                                                 {method.cedula && <p className='mb-0'>{method.cedula} </p>}
                                                 {method.nombre && <p className='mb-0'>{method.nombre} </p>}
+                                            </div>
+                                            <div className="position-absolute bottom-0 end-0 m-2" onClick={() => {
+                                                setIdMethod(method._id)
+                                                handleShow(true)
+                                            }}>
+                                                <i className="bi bi-trash3 text-danger" style={{ cursor: 'pointer' }}></i>
                                             </div>
                                         </div>
                                     </div>)

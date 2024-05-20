@@ -1,0 +1,92 @@
+.btnApp1{
+    top: 10px;
+    left: 400px;
+    width: 150px;
+    position: absolute;
+    z-index: 2;
+}
+
+.btnApp2{
+    top: 10px;
+    left: 780px;
+    width: 150px;
+    position: absolute;
+    z-index: 2;
+}
+
+.btnApp3{
+    top: 130px;
+    left: 950px;
+    width: 150px;
+    position: absolute;
+    z-index: 2;
+}
+
+.btnAppWidth{
+    width: 100%;
+    min-width: 150px;
+    z-index: 10000;
+    margin-top: 2px;
+}
+
+ @media (max-width: 992px) { 
+    .btnApp1{
+        display: none;
+    }
+    .btnApp2{
+        display: none;
+    }
+    .btnApp3{
+        display: none;
+    }
+}
+@media (min-width: 992px) { 
+    .btnApp1{
+        left: 260px !important;
+    }
+    .btnApp2{
+        top: 0px;
+        left: 560px !important;
+    }
+    .btnApp3{
+        top: 90px;
+        left: 680px !important;
+    }
+    .btnAppWidth{
+        max-width: 130px;      
+        min-width: 130px;      
+    }
+}
+
+ @media (min-width: 1200px) { 
+    .btnApp1{
+        top: 5px;
+        left: 310px !important;
+    }
+    .btnApp2{
+        top: 0px;
+        left: 680px !important;
+    }
+    .btnApp3{
+        top: 110px;
+        left: 810px !important;
+    }
+    .btnAppWidth{
+        max-width: 150px;      
+        min-width: 150px;      
+    }
+ }
+
+@media (min-width: 1400px) { 
+    .btnApp1{
+        left: 380px !important;
+    }
+    .btnApp2{
+        top: 10px;
+        left: 800px !important;
+    }
+    .btnApp3{
+        top: 140px;
+        left: 950px !important;
+    }
+ }

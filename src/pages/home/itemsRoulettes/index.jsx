@@ -2,6 +2,7 @@ import farm from '../../../images/granja.png'
 import lotto from '../../../images/lotto.png'
 import roulette from '../../../images/roulette.png'
 import style from './itemsRoulettes.module.css'
+import { Link } from 'react-router-dom'
 
 const ItemsRoulettes = () => {
     return (
@@ -20,8 +21,8 @@ const ItemsRoulettes = () => {
             <div className="row mt-5 pt-5 text-center d-flex justify-content-center">
                 <div className='col-md-12 col-lg-6 '>
                     <div className='d-flex'>
-                        <button className={`${style.btnRegister} btn btn-primary form-control mx-2`}>Registrarse</button>
-                        <button className={`${style.btnLogin} btn btn-secondary form-control mx-2`}>Login</button>
+                        <Link to="./register" className={`${style.btnRegister} btn btn-primary form-control mx-2`}>Registrarse</Link>
+                        <Link to="./login" className={`${style.btnLogin} btn btn-secondary form-control mx-2`}>Login</Link>
                     </div>
                 </div>
             </div>
