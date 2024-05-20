@@ -6,15 +6,17 @@ import urlApi from "../services/urlApi"
 import useDepositStore from "../store/depositStore"
 import useErrorManager from "./useErrorManager"
 import useLoadingStore from "../store/loadingStore"
+import useUserStore from "../store/userStore"
 import useNotify from "./useNotify"
 
 const useDeposits = () => {
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
     const erroManager = useErrorManager()
-    const { setDeposits, setFindedUser, userSelected } = useDepositStore()
+    const { setDeposits, setFindedUser, userSelected, deposits } = useDepositStore()
     const [tab, setTab] = useState(2)
     const { actualMethods, defaultMethod, setDefaultMethod } = useMethods()
+    const { user } = useUserStore()
 
     const updateDeposit = async ({ state, _id }) => {
 
@@ -88,6 +90,7 @@ const useDeposits = () => {
     }
 
     const getDeposits = async () => {
+        if(user.level === 5) return // --> no llenar el estado de depositos del administrador
         setLoading(true)
         try {
             const deposits = await request.get(urlApi + "/deposits")
@@ -100,8 +103,41 @@ const useDeposits = () => {
         }
     }
 
+    const getDepositUser = async () => {
+        if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
+        try {
+            setLoading(true)
+            const deposits = await request.get(urlApi + "/deposit/" + user._id) ?? []
+            setDeposits(deposits?.data?.body ?? [])
+            setLoading(false)
+        } catch (error) {
+            erroManager(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const addDeposit = async (data) => {
+        try {
+            setLoading(true)
+            await request.post(urlApi + "/deposits/save", { 
+                userId: user._id,
+                adminMethodId: data.methodSelected,
+                operationRef: data.transactionNumber,
+                amount: Number(data.amount)
+            })
+            getDepositUser()
+            setLoading(false)
+        } catch (error) {
+            erroManager(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     useEffect(() => {
         getDeposits()
+        getDepositUser()
     }, [])
 
     const findUserByCi = async (e) => {
@@ -130,7 +166,7 @@ const useDeposits = () => {
     }
 
     return {
-        handleMethod, actualMethods,
+        handleMethod, actualMethods, deposits, addDeposit,
         defaultMethod, setDefaultMethod,
         tab, setTab, Methods, handleForm,
         updateDeposit, findUserByCi

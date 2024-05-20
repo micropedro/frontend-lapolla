@@ -1,4 +1,4 @@
-import BancoModal from '../../../components/modals/BancoModal/BancoModal'
+import MethodModal from '../../../components/modals/MethodModal/MethodModal'
 import { useState } from 'react'
 import formatDate from '../../../services/formatDate'
 import usePerfil from '../../../hooks/usePerfil'
@@ -11,7 +11,7 @@ import useLoadingStore from "../../../store/loadingStore"
 
 const Perfil = () => {
 
-    const { user, userMethods } = usePerfil()
+    const { user, getUser } = usePerfil()
    
     const [showBank, setShowBank] = useState(false)
     const [idMethod, setIdMethod] = useState("")
@@ -25,6 +25,7 @@ const Perfil = () => {
     const handleDeleteMethod = () => {
         deleteMethod(idMethod)
         setIdMethod('')
+        getUser()
         handleClose()
     }
 
@@ -47,10 +48,10 @@ const Perfil = () => {
 
     return (<>
         <ModalConfirm />
-        {<BancoModal show={showBank} handleClose={setShowBank} />}
+        {<MethodModal show={showBank} handleClose={setShowBank} />}
         {loading && (
             <div className="row">
-                <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100">
+                <div className="bg-dark bg-opacity-50 position-fixed d-flex justify-content-center align-items-center min-vh-100" style={{ zIndex: 1060 }}>
                     <Spinner />
                 </div> 
             </div>
@@ -96,7 +97,7 @@ const Perfil = () => {
                         </div>
                         <div className="col-12">
                             <div className="row">
-                                {userMethods && userMethods.map((method) => {
+                                {user.userMethods && user.userMethods.map((method) => {
                                     return (<div key={method._id} className="col-6 mb-3 h-100">
                                         <div className='card'>
                                             <div className="card-body">

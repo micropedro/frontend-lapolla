@@ -71,8 +71,8 @@ const useTicket = () => {
         }
     }
 
+    // eslint-disable-next-line no-unused-vars
     const getTickets = async (from, to) => {
-        console.log(from, to)
         try {
             setLoading(true)
             const res = await request.get(`${urlApi}/gettickets/${user._id}`)

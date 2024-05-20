@@ -7,17 +7,22 @@ import useErrorManager from "./useErrorManager"
 import useModalStore from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
 import { Spinner } from "react-bootstrap"
+import useUserStore from "../store/userStore"
+
 const useRetiros = () => {
     const { setLoading } = useLoadingStore()
     const { setVisible, setText, setButtonText, setClickEvent,setFillBtn } = useModalStore()
     const errorManager = useErrorManager()
+    const { user } = useUserStore()
     const { setRetiros, retiros } = useRetiroStore()
-
+   
     const getRetiros = async (state) => {
+        if(user.level === 5) return // --> no llenar el estado de retiros del administrador
         try { 
             setLoading(true)
             const response = await request.get(urlApi + "/withdraws" + (state || ""))
             if (response) setRetiros(response.data.body)
+           
             setLoading(false)
             return response
         } catch (error) {
@@ -73,13 +78,41 @@ const useRetiros = () => {
         </div>)
     }
 
-    useEffect(() => { getRetiros() }, [])
+    const getRetirosUser = async () => {
+        if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
+        const response = await request.get(urlApi + "/withdraw/" + user._id)
+        if (response) setRetiros(response?.data?.body || [])
+    }
+
+    const addRetiro = async (data) => {
+        try {
+            setLoading(true)
+            await request.post(urlApi + "/withdraws/", { 
+                userId: user._id,
+                payMethodId: data.payMethodId,
+                amount: Number(data.amount)
+            })
+            getRetirosUser()
+            setLoading(false)
+        } catch (error) {
+            errorManager(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        getRetiros()
+        getRetirosUser()
+    }, [])
 
     return {
+        addRetiro,
         getRetiros,
         retiros,
         aproveWhithdraw,
-        handleModal
+        handleModal,
+        getRetirosUser
     }
 }
 
