@@ -6,12 +6,17 @@
 
 .bgSidebar{
     background-color: #081c41;
-    min-width: 110px;
-    width: 10%;
+    height: 100vh;
+    overflow-y: hidden;
+    position: fixed;
+    width: 12%;
+    left: 0px;
 }
 
+.flex-end{
+    display: flex;
+}
 .sidebar{
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,11 +43,14 @@
 }
 
 .content{
-    width: 90%;
+    width: 88%;
+    margin-left: 12%;
+    min-height: 100vh;
 }
 
 @media (max-width: 768px) { 
     .content{
         width: 100%;
+        margin-left: 0%;
     }
-}
+} 
