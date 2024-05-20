@@ -35,6 +35,8 @@ const Transactions = () => {
         setShowWithdraw(false);
     };
 
+    console.log("first")
+
     return (<>
         <DepositModal show={showDepositModal} onHide={handleHideDepositModal} />
         <WithdrawModal show={showWithdraw} onHide={handleHideWithdrawModal} />
@@ -43,13 +45,12 @@ const Transactions = () => {
                 <div className='col-12 col-md-6'>
                     <h2 className='text-warning'> Transacciones </h2>
                 </div>
-                <div className="col-12 col-md-6">
-                    <div className='d-flex gap-2'>
+                <div className="col-12 col-md-6 text-end">
+                    <div className='d-flex gap-2 justify-content-end'>
                         <button onClick={handleShowDepositModal} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
                         <button onClick={handleShowWithdrawModal} style={{ width: '150px' }} className="btn btn-warning btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
                     </div>
                 </div>
-
 
                 {/* <div className="col-md-3 d-flex align-items-center gap-1">
                     <label htmlFor="startDate" className="form-label">Desde:</label>
@@ -66,12 +67,7 @@ const Transactions = () => {
             <div className='row pt-5'>
                 <div className=''>
                     <h4 className={styles.h3}>Historial de Transacciones:</h4>
-                    <Tabs
-                        defaultActiveKey="deposit"
-                        id="tab"
-                        className="mb-3"
-                        justify="end"
-                    >
+                    <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end">
                         <Tab eventKey="deposit" title="Depositos">
                             {loading ? <LoaderBar /> : <Deposit />}
                         </Tab>
@@ -80,9 +76,7 @@ const Transactions = () => {
                         </Tab>
                     </Tabs>
                 </div>
-
             </div>
-
         </div>
     </>)
 }
