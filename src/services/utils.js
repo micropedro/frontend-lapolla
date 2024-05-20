@@ -67,3 +67,7 @@ export const validateUserType = (userLevel, levelForm) => {
 }
 
 export const formatIf37 = (idAnimal) => idAnimal === 37 ? "00" : idAnimal
+
+export const am_pm_format = (hora) => {
+    return hora < 12 ? hora + " AM" : (hora - 12) + " PM";
+}

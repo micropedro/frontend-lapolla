@@ -33,7 +33,11 @@ const useDeposits = () => {
     }
 
     const handleMethod = (id) => {
+
+        console.log(id)
+
         const newMethod = actualMethods.filter(method => method._id === id)
+        console.log(newMethod[0])
         setDefaultMethod(newMethod[0])
     }
 
@@ -46,18 +50,10 @@ const useDeposits = () => {
             if (!defaultMethod) throw new Error('Debe seleccionar un metodo de pago')
 
             const body = {
-                methodName: defaultMethod.methodName,
-                nombre: e.target.name.value,
-                cedula: e.target.ci.value,
-                correo: e.target.email.value,
-                telefono: e.target.phone.value,
-                operation: e.target.operation.value,
-                cuenta: e.target.account.value,
-                banco: e.target.bank.value,
-                tipo: e.target.type.value,
-                depositDate: e.target.operationDate.value,
                 userId: userSelected._id,
-                monto: e.target.monto.value
+                operationRef: e.target.operation.value,
+                amount: Number(e.target.monto.value),
+                adminMethodId: defaultMethod._id
             }
 
             const res = await request.post(urlApi + '/deposits/save', body)
@@ -98,6 +94,7 @@ const useDeposits = () => {
         setLoading(true)
         try {
             const deposits = await request.get(urlApi + "/deposits")
+            console.log("depositos: ", deposits.data.body)
             setDeposits(deposits.data.body)
             setLoading(false)
         } catch (error) {
@@ -144,7 +141,7 @@ const useDeposits = () => {
     }, [])
 
     const findUserByCi = async (e) => {
-        if(e?.target) {
+        if (e?.target) {
             e.preventDefault()
         }
         setLoading(true)

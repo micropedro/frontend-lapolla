@@ -14,7 +14,6 @@ function Reporte() {
     const { handleModal, handleDelete } = useReport()
     const { reports } = useReportStore()
     return (
-
         <>
             <DeleteReportModal />
             <ReportModal />
@@ -49,7 +48,7 @@ function Reporte() {
                                     <td>{report.agenciaAmount}</td>
                                     <td>{report.premio}</td>
                                     <td>{report.homeBalance}</td>
-                                    <td> <button onClick={() => handleDelete(report._id)} className="btn btn-danger"> Eliminar </button> </td>
+                                    <td> <button onClick={() => handleDelete(report._id)} className="btn btn-danger"> X </button> </td>
                                 </tr>)
                             })}
                         </tbody>

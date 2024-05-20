@@ -24,21 +24,15 @@ const Aprobados = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {deposits.filter(deposit => deposit.state === 2).length > 0 ? deposits.filter(deposit => deposit.state === 2).map((deposit) => {
+                    {deposits.filter(deposit => deposit.status === 2).length > 0 ? deposits.filter(deposit => deposit.status === 2).map((deposit) => {
                         return <tr key={deposit._id} >
                             <td>
-                                {formatDate(deposit.depositDate)}
+                                {formatDate(deposit.date)}
                             </td>
-                            <td>{deposit.operation}</td>
-                            <td>{deposit.monto}</td>
+                            <td>{deposit.operationRef}</td>
+                            <td>{deposit.amount}</td>
                             <td>{deposit.methodName}</td>
-                            <td> {depositStatus(deposit.state)} </td>
-                            {/* <td className="td-buttons">
-                                <div className="deposit-buttons">
-                                    <button onClick={() => updateDeposit({ state: 3, _id: deposit._id })} className="btn btn-danger mx-1 mb-1"> Rechazar </button>
-                                    <button onClick={() => updateDeposit({ state: 1, _id: deposit._id })} className="btn btn-warning mx-1 mb-1"> Pendiente </button>
-                                </div>
-                            </td> */}
+                            <td>{depositStatus(deposit.status)}</td>
                         </tr>
                     })
                         : <tr>
