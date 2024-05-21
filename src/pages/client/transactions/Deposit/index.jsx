@@ -8,8 +8,6 @@ const Deposit = () => {
     const { deposits } = useDepositStore()
     const { user } = userStore()
 
-    
-
     const method = (idMethod) => {
         const { adminMethods } = user
         if (!adminMethods) return null
@@ -80,7 +78,7 @@ const Deposit = () => {
                         </div>
                     </div>
                 </div>
-            ))) : <p className='text-center'>No hay retiros registrados</p>
+            ))) : <p className='text-center'>No hay depósitos registrados</p>
     )
 }
 

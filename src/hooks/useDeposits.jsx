@@ -135,8 +135,8 @@ const useDeposits = () => {
     }
 
     useEffect(() => {
-       /*  getDeposits() */
-       /*  getDepositUser() */
+        getDeposits()
+        getDepositUser()
     }, [])
 
     const findUserByCi = async (e) => {
