@@ -8,6 +8,7 @@ import useModalStore from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
 import { Spinner } from "react-bootstrap"
 import useUserStore from "../store/userStore"
+import { useLocation } from 'react-router-dom';
 
 const useRetiros = () => {
     const { setLoading } = useLoadingStore()
@@ -15,6 +16,7 @@ const useRetiros = () => {
     const errorManager = useErrorManager()
     const { user } = useUserStore()
     const { setRetiros, retiros } = useRetiroStore()
+    const location = useLocation();
    
     const getRetiros = async (state) => {
         if(user.level === 5) return // --> no llenar el estado de retiros del administrador
@@ -79,7 +81,7 @@ const useRetiros = () => {
     }
 
     const getRetirosUser = async () => {
-        if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
+        //if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
         const response = await request.get(urlApi + "/withdraw/" + user._id)
         if (response) setRetiros(response?.data?.body || [])
     }
@@ -102,8 +104,14 @@ const useRetiros = () => {
     }
 
     useEffect(() => {
-        getRetiros()
-        getRetirosUser()
+        const urlCurrent = new URL(location.pathname, window.location.origin);
+        const isTransacctionPage = urlCurrent.pathname.slice(1) === 'transactions';
+        if(user.level === 1 && !isTransacctionPage){
+            getRetiros()
+        }else{
+            setRetiros([])
+            getRetirosUser()
+        }
     }, [])
 
     return {
