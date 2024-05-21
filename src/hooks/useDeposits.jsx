@@ -107,12 +107,12 @@ const useDeposits = () => {
     }
 
     const getDepositUser = async () => {
-        if (user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
+        //if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
         try {
             setLoading(true)
             const deposits = await request.get(urlApi + "/deposit/" + user._id) ?? []
             setDeposits(deposits?.data?.body ?? [])
-            setLoading(false)
+            // setLoading(false)
         } catch (error) {
             erroManager(error)
         } finally {
@@ -139,9 +139,14 @@ const useDeposits = () => {
     }
 
     useEffect(() => {
-        getDeposits()
-        getDepositUser()
-        console.log("sdfs")
+        const urlCurrent = new URL(location.pathname, window.location.origin);
+        const isTransacctionPage = urlCurrent.pathname.slice(1) === 'transactions';
+        if(user.level === 1 && !isTransacctionPage){
+            getDeposits()
+        }else{
+            setDeposits([])
+            getDepositUser()
+        }
     }, [])
 
     const findUserByCi = async (e) => {

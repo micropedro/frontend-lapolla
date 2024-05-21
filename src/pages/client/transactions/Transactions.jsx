@@ -32,7 +32,6 @@ const Transactions = () => {
     const handleHideWithdrawModal = () => {
         setShowWithdraw(false);
     };
-    
 
     return (<>
         <DepositModal show={showDepositModal} onHide={handleHideDepositModal} />
@@ -62,14 +61,26 @@ const Transactions = () => {
                     </div> */}
             </div>
             <div className='row pt-5'>
-                <div className=''>
+                <div className='col-12'>
                     <h4 className={styles.h3}>Historial de Transacciones:</h4>
                     <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end">
-                        <Tab eventKey="deposit" title="Depositos">
-                            {loading ? <LoaderBar /> : <Deposit />}
+                        <Tab eventKey="deposit" title="Depósitos">
+                            {loading ? <LoaderBar /> :
+                                <div className="container-fluid">
+                                    <div className='row'>
+                                        <Deposit />
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                         <Tab eventKey="withdraw" title="Retiros">
-                            {loading ? <LoaderBar /> : <Withdraw />}
+                            {loading ? <LoaderBar /> :
+                                <div className="container-fluid">
+                                    <div className='row'>
+                                        <Withdraw />
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                     </Tabs>
                 </div>

@@ -14,36 +14,30 @@ const WithdrawModal = ({ show, onHide }) => {
 
     const { addRetiro } = useRetiros()
     // const { userMethods } = usePerfil()
-    /* const [detalMethodAdmin, setDetailsMethodAdmin] = useState({}) */
+    // const [ , setDetailsMethodAdmin] = useState({})
     const { user } = userStore()
 
     const handleChangeMethod = (event) => {
         if (event.target.value === "0") {
-            /* setDetailsMethodAdmin({}) */
+            // setDetailsMethodAdmin({})
             setMethodSelected("")
             return false
         }
 
-        console.log(event.target.value)
-        /* setDetailsMethodAdmin(event.target.value) */
+        // const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
+        // setDetailsMethodAdmin(event.target.value)
         setMethodSelected(event.target.value)
     }
 
     const handleSave = async () => {
         try {
             onHide();
-            const data = {
-                payMethodId: methodSelected,
-                amount
-            }
-            console.log(data)
-            await addRetiro(data)
-
-            notify.success("Retiro registrado correctamente")
+            const data = { payMethodId: methodSelected, amount }
+            const res = await addRetiro(data)
+            if (res) notify.success("Retiro registrado correctamente")
         } catch (e) {
             notify.error("ha ocurrido un error")
         } finally {
-            /* setMethodSelected("") */
             setAmount('')
         }
     }
