@@ -38,7 +38,7 @@ const Deposit = () => {
                                 </div>
                                 {dep.status === 1 && (<span className={`${styles.itemBadge} badge text-bg-warning`}>En proceso</span>)}
                                 {dep.status === 2 && (<span className={`${styles.itemBadge} badge text-bg-success`}>Completado</span>)}
-                                {dep.status === 2 && (<span className={`${styles.itemBadge} badge text-bg-danger`}>Anulado</span>)}
+                                {dep.status === 3 && (<span className={`${styles.itemBadge} badge text-bg-danger`}>Anulado</span>)}
 
                             </div>
                             {method(dep.adminMethodId)?.banco && (

@@ -35,9 +35,9 @@ const Withdraw = () => {
                                     <img style={{ width: '25px' }} src={method(ret.payMethod._id)?.imageUrl} />
                                     <span className={styles.bank}>{method(ret.adminMethodId)?.methodName}</span>
                                 </div>
-                                {ret.status === 1 && (<span className={`${styles.itemBadge} badge text-bg-warning`}>En proceso</span>)}
-                                {ret.status === 2 && (<span className={`${styles.itemBadge} badge text-bg-success`}>Completado</span>)}
-                                {ret.status === 2 && (<span className={`${styles.itemBadge} badge text-bg-danger`}>Anulado</span>)}
+                                {ret.state === 1 && (<span className={`${styles.itemBadge} badge text-bg-warning`}>En proceso</span>)}
+                                {ret.state === 2 && (<span className={`${styles.itemBadge} badge text-bg-success`}>Completado</span>)}
+                                {ret.state === 3 && (<span className={`${styles.itemBadge} badge text-bg-danger`}>Anulado</span>)}
                             </div>
                             {method(ret.payMethod._id)?.banco && (
                                 <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>

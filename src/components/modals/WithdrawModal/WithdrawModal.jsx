@@ -13,19 +13,18 @@ const WithdrawModal = ({ show, onHide }) => {
     const [ methodSelected, setMethodSelected] = useState('');
     const { addRetiro } = useRetiros()
     // const { userMethods } = usePerfil()
-    const [ setDetailsMethodAdmin] = useState({})
+    // const [ , setDetailsMethodAdmin] = useState({})
     const { user } = userStore()
 
     const handleChangeMethod = (event) => {
         if(event.target.value === "0") {
-            setDetailsMethodAdmin({})
+            // setDetailsMethodAdmin({})
             setMethodSelected("")
             return false
         }
         
         // const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
-     
-        setDetailsMethodAdmin(event.target.value)
+        // setDetailsMethodAdmin(event.target.value)
         setMethodSelected(event.target.value)
     }
 
