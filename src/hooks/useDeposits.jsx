@@ -18,13 +18,16 @@ const useDeposits = () => {
     const { actualMethods, defaultMethod, setDefaultMethod } = useMethods()
     const { user } = useUserStore()
 
-    const updateDeposit = async ({ state, _id }) => {
+    const updateDeposit = async ({ status, _id }) => {
+
+        console.log("status: ", status, "id: ", _id)
 
         setLoading(true)
 
         try {
-            const body = { state, _id }
-            await request.post(urlApi + '/deposits/update', body)
+            const body = { status, _id }
+            const response = await request.post(urlApi + '/deposits/update', body)
+            console.log(response.data.body)
         } catch (error) {
             erroManager(error)
         }
@@ -90,7 +93,8 @@ const useDeposits = () => {
     }
 
     const getDeposits = async () => {
-        if(user.level === 5) return // --> no llenar el estado de depositos del administrador
+        /* if (user.level === 5) return */ // --> no llenar el estado de depositos del administrador
+        //no me toques mi codigo!!!
         setLoading(true)
         try {
             const deposits = await request.get(urlApi + "/deposits")
@@ -119,7 +123,7 @@ const useDeposits = () => {
     const addDeposit = async (data) => {
         try {
             setLoading(true)
-            await request.post(urlApi + "/deposits/save", { 
+            await request.post(urlApi + "/deposits/save", {
                 userId: user._id,
                 adminMethodId: data.methodSelected,
                 operationRef: data.transactionNumber,

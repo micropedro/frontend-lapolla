@@ -48,9 +48,9 @@
     min-height: 100vh;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 767px) { 
     .content{
         width: 100%;
         margin-left: 0%;
     }
-} 
+}

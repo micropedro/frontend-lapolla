@@ -14,11 +14,11 @@ const usePendientes = () => {
         return hour + ':' + min
     }
     
-    const depositStatus = (state) => {
+    const depositStatus = (status) => {
 
-        if (state === 1) return <div className="bg-warning text-light flex-center"> Pendiente </div>
-        if (state === 2) return <div className="bg-success text-light flex-center"> aprobado </div>
-        if (state === 3) return <div className="bg-danger text-light flex-center"> Anulado </div>
+        if (status === 1) return <div className="bg-warning text-light flex-center">{status}  Pendiente </div>
+        if (status === 2) return <div className="bg-success text-light flex-center">{status} aprobado </div>
+        if (status === 3) return <div className="bg-danger text-light flex-center">{status} Anulado </div>
 
     }
 

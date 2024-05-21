@@ -1,28 +1,29 @@
-import { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+/* eslint-disable react/prop-types */
+import { Modal, Button, Form } from 'react-bootstrap'
 import userStore from "../../../store/userStore"
-import './withdrawModal.css';
-// import usePerfil from '../../../hooks/usePerfil'
+import './withdrawModal.css'
 import useRetiros from '../../../hooks/useRetiros'
 import useNotify from "../../../hooks/useNotify"
+import useWithdrawModalStore from "./store"
 
-// eslint-disable-next-line react/prop-types
 const WithdrawModal = ({ show, onHide }) => {
+
+    const { amount, setAmount, methodSelected, setMethodSelected } = useWithdrawModalStore()
+
     const { notify } = useNotify()
-    const [amount, setAmount] = useState('');
-    const [ methodSelected, setMethodSelected] = useState('');
+
     const { addRetiro } = useRetiros()
     // const { userMethods } = usePerfil()
     // const [ , setDetailsMethodAdmin] = useState({})
     const { user } = userStore()
 
     const handleChangeMethod = (event) => {
-        if(event.target.value === "0") {
+        if (event.target.value === "0") {
             // setDetailsMethodAdmin({})
             setMethodSelected("")
             return false
         }
-        
+
         // const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
         // setDetailsMethodAdmin(event.target.value)
         setMethodSelected(event.target.value)
@@ -31,15 +32,12 @@ const WithdrawModal = ({ show, onHide }) => {
     const handleSave = async () => {
         try {
             onHide();
-            await addRetiro({
-                payMethodId: methodSelected,
-                amount
-            }) 
-            notify.success("Retiro registrado correctamente")
-        } catch(e) {
+            const data = { payMethodId: methodSelected, amount }
+            const res = await addRetiro(data)
+            if (res) notify.success("Retiro registrado correctamente")
+        } catch (e) {
             notify.error("ha ocurrido un error")
         } finally {
-            setMethodSelected("")
             setAmount('')
         }
     }
@@ -56,13 +54,13 @@ const WithdrawModal = ({ show, onHide }) => {
                             <Form.Label>Metodo de pago:</Form.Label>
                             {user?.userMethods && (
                                 <Form.Control as="select" onChange={handleChangeMethod} >
-                                    {[{ methodName: "Seleccione metodo de pago", _id: '0'  }].concat(user.userMethods).map( method => {
+                                    {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(user.userMethods).map(method => {
                                         return (
                                             <option key={method._id} value={method._id}>{method.methodName}</option>
                                         )
                                     })}
                                 </Form.Control>
-                            )}     
+                            )}
                         </Form.Group>
                         <Form.Group controlId="amount">
                             <Form.Label>Monto</Form.Label>

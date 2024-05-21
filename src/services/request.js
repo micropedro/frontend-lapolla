@@ -19,7 +19,7 @@ const request = {
         const localToken = JSON.parse(localStorage.getItem('user'))
         axios.defaults.headers.delete['Authorization'] = `Bearer ${localToken?.token || ''}`
         return await axios.delete(url, body)
-    },
+    }
 }
 
 export default request

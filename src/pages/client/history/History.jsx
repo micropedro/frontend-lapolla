@@ -99,6 +99,7 @@ const History = () => {
                                                 ))}
 
                                             </div>
+                                            <div>{ticket.quinielaType === "1" ? <> Gran </> : <> Mini </>} Quiniela</div>
                                         </div>
                                         <div className='col-12 col-sm-12 col-md-4 code-card'>
                                             <div>

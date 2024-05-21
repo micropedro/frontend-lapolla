@@ -15,9 +15,7 @@ const Transactions = () => {
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdraw, setShowWithdraw] = useState(false);
 
-    const {
-        loading
-    } = useHistory()
+    const { loading } = useHistory()
 
     const handleShowDepositModal = () => {
         setShowDepositModal(true);
@@ -45,8 +43,8 @@ const Transactions = () => {
                 </div>
                 <div className="col-12 col-md-6 text-end">
                     <div className='d-flex gap-2 justify-content-end'>
-                        <button onClick={handleShowDepositModal} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
-                        <button onClick={handleShowWithdrawModal} style={{ width: '150px' }} className="btn btn-warning btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
+                        <button onClick={() => handleShowDepositModal()} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
+                        <button onClick={() => handleShowWithdrawModal()} style={{ width: '150px' }} className="btn btn-warning btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
                     </div>
                 </div>
 
@@ -63,14 +61,26 @@ const Transactions = () => {
                     </div> */}
             </div>
             <div className='row pt-5'>
-                <div className=''>
+                <div className='col-12'>
                     <h4 className={styles.h3}>Historial de Transacciones:</h4>
                     <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end">
                         <Tab eventKey="deposit" title="Depósitos">
-                            {loading ? <LoaderBar /> : <Deposit />}
+                            {loading ? <LoaderBar /> :
+                                <div className="container-fluid">
+                                    <div className='row'>
+                                        <Deposit />
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                         <Tab eventKey="withdraw" title="Retiros">
-                            {loading ? <LoaderBar /> : <Withdraw />}
+                            {loading ? <LoaderBar /> :
+                                <div className="container-fluid">
+                                    <div className='row'>
+                                        <Withdraw />
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                     </Tabs>
                 </div>
