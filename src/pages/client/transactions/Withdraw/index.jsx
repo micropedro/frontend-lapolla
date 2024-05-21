@@ -76,7 +76,7 @@ const Withdraw = () => {
                         </div>
                     </div>
                 </div>
-            ))) : <p className='text-center'>No hay depósitos registrados</p>
+            ))) : <p className='text-center'>No hay retiros registrados</p>
     )
 }
 

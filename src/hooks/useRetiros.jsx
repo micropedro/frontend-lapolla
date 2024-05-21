@@ -102,8 +102,8 @@ const useRetiros = () => {
     }
 
     useEffect(() => {
-       /*  getRetiros() */
-       /*  getRetirosUser() */
+        getRetiros()
+        getRetirosUser()
     }, [])
 
     return {

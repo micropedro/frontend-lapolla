@@ -35,8 +35,6 @@ const Transactions = () => {
         setShowWithdraw(false);
     };
 
-    console.log("first")
-
     return (<>
         <DepositModal show={showDepositModal} onHide={handleHideDepositModal} />
         <WithdrawModal show={showWithdraw} onHide={handleHideWithdrawModal} />
@@ -68,7 +66,7 @@ const Transactions = () => {
                 <div className=''>
                     <h4 className={styles.h3}>Historial de Transacciones:</h4>
                     <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end">
-                        <Tab eventKey="deposit" title="Depositos">
+                        <Tab eventKey="deposit" title="Depósitos">
                             {loading ? <LoaderBar /> : <Deposit />}
                         </Tab>
                         <Tab eventKey="withdraw" title="Retiros">
