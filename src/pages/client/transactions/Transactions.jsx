@@ -15,9 +15,7 @@ const Transactions = () => {
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdraw, setShowWithdraw] = useState(false);
 
-    const {
-        loading
-    } = useHistory()
+    const { loading } = useHistory()
 
     const handleShowDepositModal = () => {
         setShowDepositModal(true);
@@ -34,8 +32,7 @@ const Transactions = () => {
     const handleHideWithdrawModal = () => {
         setShowWithdraw(false);
     };
-
-    console.log("first")
+    
 
     return (<>
         <DepositModal show={showDepositModal} onHide={handleHideDepositModal} />
@@ -47,8 +44,8 @@ const Transactions = () => {
                 </div>
                 <div className="col-12 col-md-6 text-end">
                     <div className='d-flex gap-2 justify-content-end'>
-                        <button onClick={handleShowDepositModal} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
-                        <button onClick={handleShowWithdrawModal} style={{ width: '150px' }} className="btn btn-warning btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
+                        <button onClick={() => handleShowDepositModal()} style={{ width: '150px' }} className="btn btn-success btn-lg"><i className="bi bi-house-add"></i> Depositar</button>
+                        <button onClick={() => handleShowWithdrawModal()} style={{ width: '150px' }} className="btn btn-warning btn-lg"><i className="bi bi-house-dash"></i> Retirar</button>
                     </div>
                 </div>
 

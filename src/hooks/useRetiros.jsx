@@ -11,20 +11,22 @@ import useUserStore from "../store/userStore"
 
 const useRetiros = () => {
     const { setLoading } = useLoadingStore()
-    const { setVisible, setText, setButtonText, setClickEvent,setFillBtn } = useModalStore()
+    const { setVisible, setText, setButtonText, setClickEvent, setFillBtn } = useModalStore()
     const errorManager = useErrorManager()
     const { user } = useUserStore()
     const { setRetiros, retiros } = useRetiroStore()
-   
+
     const getRetiros = async (state) => {
-        if(user.level === 5) return // --> no llenar el estado de retiros del administrador
-        try { 
+        /* if (user.level === 5) return */ // --> no llenar el estado de retiros del administrador
+        try {
             setLoading(true)
-            const response = await request.get(urlApi + "/withdraws" + (state || ""))
-            if (response) setRetiros(response.data.body)
-           
+            console.log("state: ", state)
+            /* const response = await request.get(urlApi + "/withdraws")
+            console.log(response) */
+            //if (response) setRetiros(response.data.body)
+            //console.log(response)
+
             setLoading(false)
-            return response
         } catch (error) {
             setLoading(false)
             errorManager(error)
@@ -39,7 +41,7 @@ const useRetiros = () => {
             setFillBtn(false)
             const responseUpdate = await request.put(urlApi + "/withdraws", { _id })
             if (!responseUpdate) throw new Error("Error en la peticion de retiros")
-            getRetiros()
+            await getRetiros()
             setVisible(false)
             setFillBtn(true)
         } catch (error) {
@@ -79,19 +81,23 @@ const useRetiros = () => {
     }
 
     const getRetirosUser = async () => {
-        if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
+        if (user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
         const response = await request.get(urlApi + "/withdraw/" + user._id)
         if (response) setRetiros(response?.data?.body || [])
     }
 
     const addRetiro = async (data) => {
+
+        console.log(data)
         try {
             setLoading(true)
-            await request.post(urlApi + "/withdraws/", { 
+            const body = {
                 userId: user._id,
                 payMethodId: data.payMethodId,
                 amount: Number(data.amount)
-            })
+            }
+            console.log(body)
+            await request.post(urlApi + "/withdraws/", body)
             getRetirosUser()
             setLoading(false)
         } catch (error) {
@@ -102,8 +108,13 @@ const useRetiros = () => {
     }
 
     useEffect(() => {
-       /*  getRetiros() */
-       /*  getRetirosUser() */
+        getRetirosUser()
+        console.log("retirosUser")
+    }, [])
+
+    useEffect(() => {
+        getRetiros()
+        console.log("retiros")
     }, [])
 
     return {

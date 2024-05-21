@@ -1,13 +1,11 @@
-import useDepositStore from "../../../../store/depositStore"
 import usePendientes from "../../../../hooks/usePendientes"
 import useDeposits from "../../../../hooks/useDeposits"
 import useLoadingStore from "../../../../store/loadingStore"
 import { Spinner } from "react-bootstrap"
 const Pendientes = () => {
     const { loading } = useLoadingStore()
-    const { updateDeposit } = useDeposits()
+    const { updateDeposit, deposits } = useDeposits()
     const { formatDate, depositStatus } = usePendientes()
-    const { deposits } = useDepositStore()
     return (
         <div>
             {loading ? <div className="text-center py-5">
@@ -33,7 +31,9 @@ const Pendientes = () => {
                             <td>
                                 {deposit.amount}
                             </td>
-                            <td>{deposit.adminMethod.methodName}</td>
+                            <td>
+                                {deposit.adminMethod?.methodName || "Error: "+deposit._id}
+                            </td>
                             <td> {depositStatus(deposit.status)} </td>
                             <td className="td-buttons">
                                 <div className="deposit-buttons">

@@ -8,14 +8,11 @@ const Deposit = () => {
     const { deposits } = useDepositStore()
     const { user } = userStore()
 
-    
-
     const method = (idMethod) => {
         const { adminMethods } = user
+        console.log(adminMethods)
         if (!adminMethods) return null
-        return adminMethods.filter(method => {
-            return method._id === idMethod
-        })[0]
+        return adminMethods.filter(method => method._id === idMethod)[0]
     }
 
     return (

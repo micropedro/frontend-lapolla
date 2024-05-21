@@ -34,7 +34,10 @@ const MenuClient = ({ children }) => {
             <div className="row g-0">
                 <div className='col-12'>
                     <Navbar expand="md" className="d-block d-md-none p-2">
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" className='bg-light' onClick={() => handleToggleMenu()} />
+                        <div className='flex-between'>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" className='bg-light' onClick={() => handleToggleMenu()} />
+                            <b className='text-light' >Saldo: 3000 BS.</b>
+                        </div>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto text-light mt-3">
                                 <Nav.Link as={Link} to="/lobby" className='text-light'> <i className='bi bi-controller px-1' /> Lobby</Nav.Link>

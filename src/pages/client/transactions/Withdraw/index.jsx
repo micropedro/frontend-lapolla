@@ -7,29 +7,26 @@ const Withdraw = () => {
 
     const { user } = userStore()
     const { retiros } = useRetiros()
-    const { userMethods } = user
 
     const method = (idMethod) => {
-        if(!userMethods) return null
-        return userMethods.filter(method => {
-            return method._id === idMethod
-        })[0]
+        if (!user.userMethods) return null
+        return user.userMethods.filter(method => method._id === idMethod)[0]
     }
-   
+
     return (
         retiros.length > 0 ? (
-            retiros.map( ret => (
+            retiros.map(ret => (
                 <div className="col-12 card p-4 mt-1" key={ret._id}>
                     <div className='d-flex justify-content-around align-items-center text-lg'>
                         <div className={`${styles.itemWin} d-flex flex-column align-items-center`}>
-                            <span><i className="bi bi-box-arrow-right"/> Retiro</span>
+                            <span><i className="bi bi-box-arrow-right" /> Retiro</span>
                             <span className={`${styles.itemWinText} d-flex align-items-center gap-2`}>
                                 <i className="bi bi-cash text-gray"></i>
                                 <span className='text-gray'>BS. {ret.amount}</span>
                             </span>
                         </div>
-                    
-                        <div className={`${styles.itemNum}`}>           
+
+                        <div className={`${styles.itemNum}`}>
                             <div className={`${styles.containerMethod} d-flex`}>
                                 <div className={`d-flex align-items-center gap-1`}>
                                     <img style={{ width: '25px' }} src={method(ret.payMethod._id)?.imageUrl} />
@@ -69,7 +66,7 @@ const Withdraw = () => {
                                     <span>{method(ret.payMethod._id)?.tipo}</span>
                                 </div>
                             )}
-                        </div>                 
+                        </div>
                         <div className={`${styles.itemDate} d-flex flex-column`}>
                             <span><i className="bi bi-calendar"></i> {formatDate2(ret.date)}</span>
                             <span><i className="bi bi-clock-history"></i> {getTime(ret.date)}</span>
