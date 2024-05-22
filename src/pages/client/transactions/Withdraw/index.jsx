@@ -38,11 +38,13 @@ const Withdraw = () => {
                                         <span>{ret.payMethod._id.banco}</span>
                                     </div>
                                 )}
+
                                 {ret.payMethod._id.nombre && (
                                     <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
                                         <span>{ret.payMethod._id.nombre}</span>
                                     </div>
                                 )}
+                                
                                 {ret.payMethod._id.cedula && (
                                     <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
                                         <span>{ret.payMethod._id.cedula}</span>

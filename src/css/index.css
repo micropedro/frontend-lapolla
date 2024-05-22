@@ -10,7 +10,7 @@
     --border-light-2: rgb(230, 230, 230);
 }
 
-body{
+body {
     min-width: 320px;
 }
 
@@ -632,7 +632,7 @@ body{
 }
 
 .bg-granja-2 {
-    background: linear-gradient(rgba(122, 0, 47, 0.733),rgba(2, 2, 102, 0.781)), url(../images/bg-lobby.png);
+    background: linear-gradient(rgba(122, 0, 47, 0.733), rgba(2, 2, 102, 0.781)), url(../images/bg-lobby.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -685,40 +685,55 @@ body{
     background-color: #081c41;
     color: white;
 }
-.mw-1{
+
+.mw-1 {
     min-width: 180px;
 }
-.mw-2{
+
+.mw-2 {
     min-width: 280px;
 }
 
-@media (max-width: 576px) { 
-    .carrousel{
+@media (max-width: 576px) {
+    .carrousel {
         width: 100%;
         padding: 0 !important;
     }
 
-    .carrousel img{
+    .carrousel img {
         border-radius: 0 !important;
     }
- }
- .tr-gran-quiniela td{
+}
+
+.tr-gran-quiniela td {
     background-color: rgba(82, 207, 92, 0.548);
     color: #6e3535;
- }
+}
 
- .tr-mini-quiniela td{
+.tr-mini-quiniela td {
     background-color: rgba(204, 235, 30, 0.63);
     color: rgb(75, 13, 13);
- }
+}
 
- .code-card{
+.code-card {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
- }
+}
 
- .mh-100{
+.mh-100 {
     min-height: 130px;
- }
+}
+
+.btn-result {
+    background-color: #003f88;
+    color: #b3cce7;
+    border-radius: 4px;
+}
+
+.btn-result:hover {
+    background-color: #0e56a8;
+    color: #c9d7e6;
+    cursor: pointer;
+}

@@ -47,13 +47,16 @@ const useUsers = () => {
     }
 
     useEffect(() => { getUsers() }, [])
+
+    const getUserName = (userId) => (users.filter(user => user._id === userId)[0]).name
     
     return {
         users,
         deleteModal,
         getUsers,
         _findUserByCi,
-        findUserByCi
+        findUserByCi,
+        getUserName
     }
 }
 
