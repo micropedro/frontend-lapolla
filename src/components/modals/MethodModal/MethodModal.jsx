@@ -56,6 +56,7 @@ const AddBankModal = ({ show, handleClose }) => {
                     cuenta: method.cuenta ? true : false,
                     telefono: method.telefono ? true : false,
                     tipo: method.tipo ? true : false,
+                    nombre: method.nombre ? true : false,
                     secondary: method.secondary ? true : false,
                     // imageUrl: method.imageUrl
                 }
