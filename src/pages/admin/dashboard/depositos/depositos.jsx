@@ -1,5 +1,4 @@
 import useDeposits from "../../../../hooks/useDeposits"
-import Anulados from "./anulados"
 import Aprobados from "./aprobados"
 import Nuevo from "./nuevo"
 import Pendientes from "./pendientes"
@@ -19,8 +18,8 @@ const Depositos = () => {
         <hr className="m-0 p-0" />
         {tab === 1 && <Nuevo />}
         {tab === 2 && <Pendientes />}
-        {tab === 3 && <Aprobados />}
-        {tab === 4 && <Anulados />}
+        {tab === 3 && <Aprobados id={2} />}
+        {tab === 4 && <Aprobados id={3} />}
     </>
     )
 }
