@@ -48,7 +48,10 @@ const useUsers = () => {
 
     useEffect(() => { getUsers() }, [])
 
-    const getUserName = (userId) => (users.filter(user => user._id === userId)[0]).name
+    const getUserName = (userId) => {
+    
+        return users.length > 0 ? (users.filter(user => user._id === userId)[0]).name : ""
+    }
     
     return {
         users,

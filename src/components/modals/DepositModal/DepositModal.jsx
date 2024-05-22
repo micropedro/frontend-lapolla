@@ -5,30 +5,36 @@ import useDeposits from '../../../hooks/useDeposits';
 import usePerfil from '../../../hooks/usePerfil'
 import useMethods from '../../../hooks/useMethods'
 import useNotify from "../../../hooks/useNotify"
-
+import useErrorManager from '../../../hooks/useErrorManager';
 // eslint-disable-next-line react/prop-types
 const DepositModal = ({ show, onHide }) => {
+    const errorManager = useErrorManager()
     const [amount, setAmount] = useState('');
     const [transactionNumber, setTransactionNumber] = useState('');
     const { addDeposit } = useDeposits()
-    const [ methodSelected, setMethodSelected] = useState('');
+    const [methodSelected, setMethodSelected] = useState('');
     const { setMethodName, setImageUrl } = useMethods()
     const { notify } = useNotify()
     const { adminMethods } = usePerfil()
-    const [ detailsMethodAdmin, setDetailsMethodAdmin] = useState({})
+    const [detailsMethodAdmin, setDetailsMethodAdmin] = useState({})
 
     const handleSave = async (e) => {
         e.preventDefault()
+
+        if (!methodSelected) return notify.error("Debe seleccionar un metodo de pago")
+        if (!transactionNumber) return notify.error("Debe indicar un numero de transaccion")
+        if (!amount) return notify.error("Debe indicar un monto")
+
         try {
             onHide();
-            await addDeposit({
+            const res = await addDeposit({
                 methodSelected,
                 transactionNumber,
                 amount
-            }) 
-            notify.success("Deposito registrado correctamente")
-        } catch(e) {
-            notify.error("ha ocurrido un error")
+            })
+            if (res) notify.success("Deposito registrado correctamente")
+        } catch (error) {
+            errorManager(error)
         } finally {
             setMethodSelected("")
             setTransactionNumber('')
@@ -37,7 +43,7 @@ const DepositModal = ({ show, onHide }) => {
     }
 
     const handleChangeMethod = (event) => {
-        if(event.target.value === "0") {
+        if (event.target.value === "0") {
             setMethodSelected("")
             setDetailsMethodAdmin({})
             return false
@@ -59,7 +65,7 @@ const DepositModal = ({ show, onHide }) => {
                         <Form.Group controlId="select">
                             <Form.Label>Metodo de pago:</Form.Label>
                             <Form.Control as="select" onChange={handleChangeMethod} >
-                                {[{ methodName: "Seleccione metodo de pago", _id: '0'  }].concat(adminMethods).map( method => {
+                                {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(adminMethods).map(method => {
                                     return (
                                         <option key={method._id} value={method._id}>{method.methodName}</option>
                                     )
@@ -73,10 +79,10 @@ const DepositModal = ({ show, onHide }) => {
                                     <span>{detailsMethodAdmin?.methodName}</span>
                                 </div>
                             )}
-                            {detailsMethodAdmin?.banco && (                   
+                            {detailsMethodAdmin?.banco && (
                                 <span>{detailsMethodAdmin?.nombre}</span>
                             )}
-                            {detailsMethodAdmin?.cedula && (             
+                            {detailsMethodAdmin?.cedula && (
                                 <span>CI: {detailsMethodAdmin?.cedula}</span>
                             )}
                             {detailsMethodAdmin?.correo && (
