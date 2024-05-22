@@ -6,8 +6,8 @@ import useMethods from '../../../hooks/useMethods'
 const Metodos = () => {
 
     const { loading } = useLoadingStore()
-    const { handleSelected, sendForm, deleteMethod, itemType,
-        methodName, setMethodName, selected, actualMethods, imageUrl,
+    const { handleSelected, handleSelectedSecondary, sendForm, deleteMethod, itemType,
+        methodName, setMethodName, selected, actualMethods, imageUrl, selectedSecondary,
         setImageUrl } = useMethods()
 
     return (
@@ -21,42 +21,7 @@ const Metodos = () => {
                 <Spinner color={'black'} />
             </div> :
                 <>
-                    <table className='table table-border' >
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Imagen</th>
-                                <th>Datos</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {actualMethods && actualMethods.map((i, index) => {
-                                return (<tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{i.methodName}</td>
-                                    <td>
-                                        <img width={"100px"} src={i.imageUrl} alt="" />
-                                    </td>
-                                    <td>
-                                        <div> {i.correo && <> <b> Correo </b>{i.correo}</>} </div>
-                                        <div> {i.cuenta && <> <b> cuenta </b>{i.cuenta}</>} </div>
-                                        <div> {i.tipo && <> <b> tipo </b>{i.tipo}</>} </div>
-                                        <div> {i.telefono && <> <b> telefono </b>{i.telefono}</>} </div>
-                                        <div> {i.cedula && <> <b> cedula </b>{i.cedula}</>} </div>
-                                        <div> {i.banco && <> <b> banco </b>{i.banco}</>} </div>
-                                        <div> {i.nombre && <> <b> nombre </b>{i.nombre}</>} </div>
-                                        <div> <b>userId:</b> {i.userId} </div>
-                                        <div> <b>MethodId:</b> {i._id} </div>
-                                    </td>
-                                    <td>
-                                        <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
-                                    </td>
-                                </tr>)
-                            })}
-                        </tbody>
-                    </table>
+
 
                     <div className='container mb-5 bg-gray-2 radius p-4 text-dark'>
                         <div className="row">
@@ -72,8 +37,8 @@ const Metodos = () => {
                                     <div className="row">
                                         {datos && datos.map((dato, index) => {
                                             return (<div key={index} className="form-check col-6">
-                                                <input onChange={handleSelected} name={dato} className="form-check-input" type="checkbox" checked={selected.includes(dato)} id="flexCheckDefault" />
-                                                <label className="form-check-label" htmlFor="flexCheckDefault">
+                                                <input onChange={handleSelected} name={dato} className="form-check-input" type="checkbox" checked={selected.includes(dato)} id={"flexCheckDefault" + index} />
+                                                <label className="form-check-label" htmlFor={"flexCheckDefault" + index}>
                                                     {dato}
                                                 </label>
                                             </div>)
@@ -81,9 +46,20 @@ const Metodos = () => {
                                     </div>
                                 </div>
 
+                                <div>
+                                    Diferenciador : <b> {selectedSecondary} </b>
+                                    {selected && selected.map((dato, index) => {
+                                        return (<div key={index} className="form-check col-6">
+                                            <input onChange={() => handleSelectedSecondary(dato)} name={"radio_secondary"} className="form-check-input" type="radio" id={"flexCheckDefaultSec" + index} />
+                                            <label className="form-check-label" htmlFor={"flexCheckDefaultSec" + index}>
+                                                {dato}
+                                            </label>
+                                        </div>)
+                                    })}
+                                </div>
                             </div>
                             <div className="col-6">
-                                <h4>{methodName}</h4>
+                                <h4>{methodName} {selectedSecondary && `(${selectedSecondary})`} </h4>
                                 <form onSubmit={sendForm}>
                                     {selected.length > 0 && selected.map((item, index) => {
                                         return <div className='col-12' key={index}>
@@ -96,6 +72,47 @@ const Metodos = () => {
                             </div>
                         </div>
                     </div>
+                    <table className='table table-border' >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                                <th>Datos</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {actualMethods && actualMethods.map((i, index) => {
+                                return (<tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>
+                                        {i.methodName}
+                                        <br />
+                                        {i.secondary}
+                                    </td>
+                                    <td>
+                                        <img width={"100px"} src={i.imageUrl} alt="" />
+                                    </td>
+                                    <td>
+                                        <div> {i.correo && <> <b> Correo </b>{i.correo}</>} </div>
+                                        <div> {i.cuenta && <> <b> cuenta </b>{i.cuenta}</>} </div>
+                                        <div> {i.tipo && <> <b> tipo </b>{i.tipo}</>} </div>
+                                        <div> {i.telefono && <> <b> telefono </b>{i.telefono}</>} </div>
+                                        <div> {i.cedula && <> <b> cedula </b>{i.cedula}</>} </div>
+                                        <div> {i.banco && <> <b> banco </b>{i.banco}</>} </div>
+                                        <div> {i.nombre && <> <b> nombre </b>{i.nombre}</>} </div>
+                                        <div> <b>userId:</b> {i.userId} </div>
+                                        <div> <b>MethodId:</b> {i._id} </div>
+
+                                    </td>
+                                    <td>
+                                        <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
+                                    </td>
+                                </tr>)
+                            })}
+                        </tbody>
+                    </table>
                 </>}
         </Guard >
     )

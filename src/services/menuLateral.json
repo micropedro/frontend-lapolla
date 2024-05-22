@@ -49,12 +49,6 @@
             "status": true
         },
         {
-            "name": "Mensajes",
-            "icon": "bi bi-envelope",
-            "link": "/dashboard/mensajes",
-            "status": true
-        },
-        {
             "name": "Ventas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/ventas",
@@ -64,6 +58,12 @@
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
+            "status": false
+        },
+        {
+            "name": "Mensajes",
+            "icon": "bi bi-envelope",
+            "link": "/dashboard/mensajes",
             "status": false
         }
     ]
