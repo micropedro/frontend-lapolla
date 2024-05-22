@@ -49,6 +49,7 @@ const useMethods = () => {
         const banco = e.target.banco?.value || ""
         const nombre = e.target.nombre?.value || ""
         const telefono = e.target.telefono?.value || ""
+        const secondary = e.target.secondary?.value || ""
 
         const datosPreProccess = {
             correo,
@@ -71,8 +72,10 @@ const useMethods = () => {
             telefono,
             imageUrl,
             userId: user._id,
-            secondary: datosPreProccess[selectedSecondary]
+            secondary: datosPreProccess[selectedSecondary] | secondary
         }
+
+        console.log(datos)
 
         try {
             const response = await request.post(urlApi + '/admin/methods/addMethod', datos)
