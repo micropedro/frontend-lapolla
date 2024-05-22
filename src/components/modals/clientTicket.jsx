@@ -15,11 +15,11 @@ const ClientTicket = () => {
     const { config } = useConfig()
     const { visible, setVisible, animals, ticketCode } = useTicketStore()
 
-    if (visible) return (<div className="bg-modal">
-        <div className="ticket-body p-3">
+    if (visible) return (<div className="bg-modal p-2">
+        <div className="card p-3">
             <div>
                 <div className="text-center">
-                    <h2>apuestaslapolla.com</h2>
+                    <h3>apuestaslapolla.com</h3>
                     <div>Nro Ticket - <i>Codigo: {ticketCode}</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
