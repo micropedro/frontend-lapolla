@@ -20,14 +20,12 @@ const useDeposits = () => {
 
     const updateDeposit = async ({ status, _id }) => {
 
-        console.log("status: ", status, "id: ", _id)
-
         setLoading(true)
 
         try {
             const body = { status, _id }
-            const response = await request.post(urlApi + '/deposits/update', body)
-            console.log(response.data.body)
+            await request.post(urlApi + '/deposits/update', body)
+            
         } catch (error) {
             erroManager(error)
         }
@@ -150,9 +148,8 @@ const useDeposits = () => {
     }, [])
 
     const findUserByCi = async (e) => {
-        if (e?.target) {
-            e.preventDefault()
-        }
+        if (e?.target) e.preventDefault()
+        
         setLoading(true)
         try {
             const ci = e?.target?.ci?.value || e

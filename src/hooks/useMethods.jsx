@@ -15,10 +15,10 @@ const useMethods = () => {
     const [methodName, setMethodName] = useState("")
     const [selected, setSelected] = useState([])
     const [selectedSecondary, setSelectedSecondary] = useState(null)
+    const [textSecondary, setTextSecondary] = useState(null)
     const [actualMethods, setActualMethods] = useState([])
     const [defaultMethod, setDefaultMethod] = useState({ _id: undefined })
     const [imageUrl, setImageUrl] = useState("")
-
 
     const resetVariables = () => {
         setMethodName("")
@@ -72,10 +72,8 @@ const useMethods = () => {
             telefono,
             imageUrl,
             userId: user._id,
-            secondary: datosPreProccess[selectedSecondary] | secondary
+            secondary: datosPreProccess[selectedSecondary] || secondary
         }
-
-        console.log(datos)
 
         try {
             const response = await request.post(urlApi + '/admin/methods/addMethod', datos)
@@ -92,6 +90,7 @@ const useMethods = () => {
     const itemType = (item) => item === 'correo' ? 'email' : 'text'
 
     const handleSelected = (e) => {
+
         if (e.target.checked) {
             //si selected incluye e.target.name no envia 
             if (!selected.includes(e.target.name)) setSelected([...selected, e.target.name])
@@ -102,6 +101,10 @@ const useMethods = () => {
     }
 
     const handleSelectedSecondary = (dato) => setSelectedSecondary(dato || "")
+
+    const handleInputs = (e)=>{
+        if(e.target.name === selectedSecondary) setTextSecondary(e.target.value)
+    }
 
     const getActualMethods = async () => {
         setLoading(true)
@@ -137,7 +140,8 @@ const useMethods = () => {
         deleteMethod,
         defaultMethod, setDefaultMethod,
         imageUrl, setImageUrl,
-        selectedSecondary, handleSelectedSecondary
+        selectedSecondary, handleSelectedSecondary,
+        handleInputs,textSecondary
     }
 }
 export default useMethods

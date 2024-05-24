@@ -3,17 +3,11 @@ import Guard from '../../../components/Guard'
 import useUsers from '../../../hooks/useUsers'
 import DeleteUserModal from '../../../components/modals/deleteUserModal'
 import { Link } from 'react-router-dom'
-
-import useLoadingStore from '../../../store/loadingStore'
-import Spinner from '../../../components/spinner'
 import PaginationTable from '../../../components/paginationTable'
-
-
 
 const Users = () => {
 
-    const { loading } = useLoadingStore()
-    const { users, deleteModal, _findUserByCi,getUsers } = useUsers()
+    const { users, deleteModal, _findUserByCi, getUsers, filterUser } = useUsers()
 
     return (<Guard >
         <DeleteUserModal />
@@ -24,19 +18,19 @@ const Users = () => {
             </Link>
         </div>
         <hr />
+        <div className='flex-between mb-3'>
+            <button onClick={getUsers} className='btn btn-primary'> Cargar todos </button>
+            <button onClick={() => filterUser(2)} className='btn btn-warning'> Administradores </button>
+            <button onClick={() => filterUser(3)} className='btn btn-warning'> Gruperos </button>
+            <button onClick={() => filterUser(4)} className='btn btn-warning'> Agencias </button>
+            <button onClick={() => filterUser(5)} className='btn btn-warning'> Clientes </button>
+            <form onSubmit={(e) => _findUserByCi(e)}>
+                <input name='ci' type="text" className='input-buscar' placeholder='cedula' required />
+                <button className='btn-buscar bg-primary text-light'> Buscar </button>
+            </form>
+        </div>
+        <PaginationTable users={users} deleteModal={deleteModal} />
 
-        {loading ? <div className='text-center p-5'>
-            <Spinner color={'black'} />
-        </div> : <>
-            <div className='flex-between mb-3'>
-                <button onClick={getUsers} className='btn btn-primary'> Cargar todos </button>
-                <form onSubmit={(e) => _findUserByCi(e)}>
-                    <input name='ci' type="text" className='input-buscar' placeholder='cedula' required />
-                    <button className='btn-buscar bg-primary text-light'> Buscar </button>
-                </form>
-            </div>
-            <PaginationTable users={users} deleteModal={deleteModal} />
-        </>}
     </Guard>
     )
 }

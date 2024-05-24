@@ -5,17 +5,16 @@ import useTicketStore from "../store/ticketStore"
 import useUserStore from "../store/userStore"
 import { useNavigate } from "react-router-dom"
 import loadingStore from "../store/loadingStore"
-import useUsers from "../hooks/useUsers"
 import useErrorManager from "./useErrorManager"
-
+import useUser from './useUser';
 const useTicket = () => {
     const errorManager = useErrorManager()
+    const { getUser } = useUser()
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user, setUser } = useUserStore()
     const { animals, type, ticketCode, setVisible, setAnimals } = useTicketStore()
     const { notify } = useNotify()
-    const { findUserByCi } = useUsers()
 
     const handlePrint = async () => {
         setLoading(true)
@@ -26,13 +25,14 @@ const useTicket = () => {
         if (!body.user) throw new Error("No user")
         if (!body.type) throw new Error("No type")
         if (!body.code) throw new Error("No code")
-        if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: "+body.animals.length
+        if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: " + body.animals.length
 
         try {
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {
-                const userRefresh = await findUserByCi(user.ci)
-                setUser(userRefresh)
+                const _user = await getUser(user._id)
+                const newUser = { ...user, balance: _user.balance }
+                setUser(newUser)
                 navigate("/print")
             } else {
                 throw 'No se ha podido guardar el ticket'
@@ -53,13 +53,11 @@ const useTicket = () => {
         try {
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {
-                notify.success("Compra de ticket exitosa")
-                const userRefresh = await findUserByCi(user.ci)
+                const _user = await getUser(user._id)
+                const newUser = { ...user, balance: _user.balance }
+                setUser(newUser)
                 setAnimals([])
-                const dataLocalOld = JSON.parse(localStorage.getItem('user')) || {}
-                const dataLocalRefresh = { ...dataLocalOld, ...userRefresh }
-                localStorage.setItem('user', JSON.stringify(dataLocalRefresh));
-                setUser(userRefresh)
+                notify.success("Compra de ticket exitosa")
             } else throw 'No se ha podido guardar el ticket'
 
         } catch (error) {

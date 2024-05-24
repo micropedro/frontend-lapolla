@@ -26,41 +26,41 @@ const Deposit = () => {
                                 <div className={`col-12 col-sm-6 col-md-4 code-card `}>
                                     <div className={`${styles.containerMethod} d-flex`}>
                                         <div className={`d-flex align-items-center gap-1`}>
-                                            <img style={{ width: '25px' }} src={dep.adminMethod.imageUrl} />
-                                            <span className={styles.bank}>{dep.adminMethod.methodName}</span>
+                                            <img style={{ width: '25px' }} src={dep.adminMethod?.imageUrl} />
+                                            <span className={styles.bank}>{dep.adminMethod?.methodName}</span>
                                         </div>
                                         {dep.status === 1 && (<span className={`${styles.itemBadge} badge text-bg-warning`}>En proceso</span>)}
                                         {dep.status === 2 && (<span className={`${styles.itemBadge} badge text-bg-success`}>Completado</span>)}
                                         {dep.status === 3 && (<span className={`${styles.itemBadge} badge text-bg-danger`}>Anulado</span>)}
                                     </div>
-                                    {dep.adminMethod.banco && (
+                                    {dep.adminMethod?.banco && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.banco}</span>
+                                            <span>{dep.adminMethod?.banco}</span>
                                         </div>
                                     )}
-                                    {dep.adminMethod.nombre && (
+                                    {dep.adminMethod?.nombre && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.nombre}</span>
+                                            <span>{dep.adminMethod?.nombre}</span>
                                         </div>
                                     )}
-                                    {dep.adminMethod.cedula && (
+                                    {dep.adminMethod?.cedula && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.cedula}</span>
+                                            <span>{dep.adminMethod?.cedula}</span>
                                         </div>
                                     )}
-                                    {dep.adminMethod.correo && (
+                                    {dep.adminMethod?.correo && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.correo}</span>
+                                            <span>{dep.adminMethod?.correo}</span>
                                         </div>
                                     )}
-                                    {dep.adminMethod.telefono && (
+                                    {dep.adminMethod?.telefono && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.telefono}</span>
+                                            <span>{dep.adminMethod?.telefono}</span>
                                         </div>
                                     )}
-                                    {dep.adminMethod.tipo && (
+                                    {dep.adminMethod?.tipo && (
                                         <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                            <span>{dep.adminMethod.tipo}</span>
+                                            <span>{dep.adminMethod?.tipo}</span>
                                         </div>
                                     )}
                                 </div>

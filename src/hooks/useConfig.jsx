@@ -38,7 +38,6 @@ const useConfig = () => {
             }
 
             const res = await request.post(urlApi + "/config/update", body)
-            console.log(res)
             if (!res) throw 'No se pudo actualizar la configuracion'
             getConfig()
             notify.success("Guardado con exito")

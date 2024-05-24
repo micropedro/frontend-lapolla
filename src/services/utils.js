@@ -71,3 +71,9 @@ export const formatIf37 = (idAnimal) => idAnimal === 37 ? "00" : idAnimal
 export const am_pm_format = (hora) => {
     return hora < 12 ? hora + " AM" : (hora - 12) + " PM";
 }
+
+export const cleanMethods = (methods) => methods.filter((obj, index, self) =>
+    index === self.findIndex(t => t.methodName === obj.methodName)
+)
+
+export const isertSelectedSecondaryMethodName = (method) => method.banco && method.banco + " " + method.tipo || method.correo || method.nombre || method.cedula || method.cedula || method.tipo || method.telefono

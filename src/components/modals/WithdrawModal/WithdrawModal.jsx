@@ -5,9 +5,14 @@ import './withdrawModal.css'
 import useRetiros from '../../../hooks/useRetiros'
 import useNotify from "../../../hooks/useNotify"
 import useWithdrawModalStore from "./store"
+import { isertSelectedSecondaryMethodName } from '../../../services/utils'
+import MethodSelected from '../../methodSelected/methodSelected'
+import useErrorManager from '../../../hooks/useErrorManager'
+import useUsers from '../../../hooks/useUser'
 
 const WithdrawModal = ({ show, onHide }) => {
-
+    const errorManager = useErrorManager()
+    const { actualizeUserBalance } = useUsers()
     const { amount, setAmount, methodSelected, setMethodSelected } = useWithdrawModalStore()
 
     const { notify } = useNotify()
@@ -34,9 +39,11 @@ const WithdrawModal = ({ show, onHide }) => {
             onHide();
             const data = { payMethodId: methodSelected, amount }
             const res = await addRetiro(data)
+            //actualizar saldo del usuario
+            await actualizeUserBalance()
             if (res) notify.success("Retiro registrado correctamente")
-        } catch (e) {
-            notify.error("ha ocurrido un error")
+        } catch (error) {
+            errorManager(error)
         } finally {
             setAmount('')
         }
@@ -52,16 +59,20 @@ const WithdrawModal = ({ show, onHide }) => {
                     <Form>
                         <Form.Group controlId="select">
                             <Form.Label>Metodo de pago:</Form.Label>
+
                             {user?.userMethods && (
                                 <Form.Control as="select" onChange={handleChangeMethod} >
                                     {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(user.userMethods).map(method => {
                                         return (
-                                            <option key={method._id} value={method._id}>{method.methodName}</option>
+                                            <option key={method._id} value={method._id}>{method.methodName} {isertSelectedSecondaryMethodName(method)}</option>
                                         )
                                     })}
                                 </Form.Control>
                             )}
                         </Form.Group>
+
+                        {methodSelected && <MethodSelected method={methodSelected} userMethods={user?.userMethods} />}
+
                         <Form.Group controlId="amount">
                             <Form.Label>Monto</Form.Label>
                             <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />

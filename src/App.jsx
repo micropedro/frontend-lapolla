@@ -4,18 +4,18 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import './css/index.css'
 import RouterX from './router'
 import Notification from './components/notification'
-// import { useEffect } from 'react'
-// import useInitApp from './hooks/useInitApp'
+import useInitApp from './hooks/useInitApp'
 import DevEnvironment from './components/devEnvironment'
 import LoadingModal from './components/modals/loadingModal'
 import 'react-toastify/dist/ReactToastify.css'
 import useNotify from './hooks/useNotify'
 import './css/tostify.css'
 import Modal from './components/modals/modal'
+import { useEffect } from 'react'
 const App = () => {
     const { ToastContainer } = useNotify()
-    // const { initApp } = useInitApp()
-    // useEffect(() => { initApp() }, [])
+    const { initApp } = useInitApp()
+    useEffect(() => { initApp() }, [])
 
     return (<>
         <Modal />
