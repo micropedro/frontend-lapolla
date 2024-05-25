@@ -8,58 +8,21 @@ import { formatIf37 } from '../../../services/utils';
 
 const History = () => {
 
-    const {
-        tickets,
-        loading,
-        TEXTSTATUS,
-        /* dataLocal,
-        queryTickets,
-        handleDate */
-    } = useHistory()
+    const { tickets, loading, TEXTSTATUS, handleOptions, options } = useHistory()
 
     return (<>
         <div className='container-fluid mt-3'>
             <div className='row pb-2'>
-                <h2 className='text-warning' >Historial de jugadas</h2>
-                {/* <nav className="navbar bg-body-tertiary">
-                    <div className="container">
-                        <a className="navbar-brand" href="#">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><Link to="/history">Historial</Link></li>
-                            </ol>
-                        </a>
+                <div className='flex-between'>
+                    <h2 className='text-warning' >Historial de jugadas</h2>
+                    <div>
+                        <button onClick={() => handleOptions(1)} className={`btn text-light ${options === 1 && 'border'}`}>Mis tickets</button>
+                        <button onClick={() => handleOptions(2)} className={`btn text-light ${options === 2 && 'border'}`}>Otros Jugadores</button>
                     </div>
-                </nav> */}
+                </div>
             </div>
             <div className="row text-white justify-content-center">
-                {/*  <div className="col-md-3 d-flex align-items-center gap-1">
-                    <label htmlFor="startDate" className="form-label">Desde:</label>
-                    <input
-                        type="date"
-                        className="form-control"
-                        id="from"
-                        value={dataLocal.from}
-                        onChange={handleDate}
-                    />
-                </div>
-                <div className="col-md-3 d-flex align-items-center gap-1">
-                    <label htmlFor="endDate" className="form-label">Hasta: </label>
-                    <input
-                        type="date"
-                        className="form-control"
-                        id="to"
-                        value={dataLocal.to}
-                        onChange={handleDate}
-                    />
-                </div> */}
-                {/* <div className="col-md-2">
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => queryTickets()}
-                    >Consultar</button>
-                </div> */}
             </div>
-
             <div className='row text-center mb-5'>
                 {loading && (
                     <div className='mt-5'>
@@ -84,6 +47,7 @@ const History = () => {
                                 <div className="container-fluid">
                                     <div className='row text-center'>
                                         <div className='col-12 col-sm-6 col-md-4 code-card'>
+                                            <div className='text-sm'>{ticket.user.name}</div>
                                             <div># {ticket.code}</div>
                                             <div className='flex-center'>
                                                 <i className="bi bi-trophy"></i>
@@ -91,15 +55,14 @@ const History = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-sm-6 col-md-4 code-card pt-3'>
+                                            <div>{ticket.quinielaType === "1" ? <> Gran </> : <> Mini </>} Quiniela</div>
                                             <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
                                             <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-
                                                 {ticket.animals.map((animal, index) => (
-                                                    <p key={index} className={styles.number}>{formatIf37(animal.id)}</p>
+                                                    <div key={index} className='pt-2'>{formatIf37(animal.id)}</div>
                                                 ))}
 
                                             </div>
-                                            <div>{ticket.quinielaType === "1" ? <> Gran </> : <> Mini </>} Quiniela</div>
                                         </div>
                                         <div className='col-12 col-sm-12 col-md-4 code-card'>
                                             <div>

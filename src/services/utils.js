@@ -76,4 +76,25 @@ export const cleanMethods = (methods) => methods.filter((obj, index, self) =>
     index === self.findIndex(t => t.methodName === obj.methodName)
 )
 
-export const isertSelectedSecondaryMethodName = (method) => method.banco && method.banco + " " + method.tipo || method.correo || method.nombre || method.cedula || method.cedula || method.tipo || method.telefono
+export const isertSelectedSecondaryMethodName = (method) =>
+    method.banco && method.banco + " " + method.tipo ||
+    method.correo || method.nombre || method.cedula ||
+    method.cedula || method.tipo || method.telefono
+
+export const dateFormated = () => {
+
+    const date = new Date()
+    const fechaAyer = new Date()
+    fechaAyer.setDate(fechaAyer.getDate() - 1)
+
+    const hoyDate = date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0") + "-" + String(date.getDate()).padStart(2, "0")
+
+    const ayerDate = fechaAyer.getFullYear() + "-" + String(fechaAyer.getMonth() + 1).padStart(2, "0") + "-" + String(fechaAyer.getDate()).padStart(2, "0")
+
+    const hoy = hoyDate + "/" + hoyDate
+
+    const ayer = ayerDate + "/" + ayerDate
+
+    return { ayer, hoy }
+
+} 

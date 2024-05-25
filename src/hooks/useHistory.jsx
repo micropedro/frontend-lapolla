@@ -6,13 +6,15 @@ import formatDate from '../services/formatDate'
 const useHistory = () => {
 
     const { getTickets } = useTicket()
-    const [ tickets, setTickets ] = useState([])
+    const [tickets, setTickets] = useState([])
+    const [options, setOptions] = useState(1)
     const { loading } = loadingStore()
-    const [ dataLocal, setDataLocal ] = useState({
+    
+    const [dataLocal, setDataLocal] = useState({
         from: formatDate(new Date()).split('/').reverse().join('-'),
         to: formatDate(new Date()).split('/').reverse().join('-')
     })
-   
+
     const stateTickets = async () => {
         const tickets = await getTickets(dataLocal.from, dataLocal.to);
         setTickets(tickets);
@@ -35,8 +37,21 @@ const useHistory = () => {
         setTickets([])
         stateTickets()
     }
-    
-    useEffect(() => {stateTickets()}, [])
+
+    const handleOptions = (option) => {
+        if (option === 1) {
+            setOptions(1)
+            console.log(option)
+        }
+
+        if (option === 2) {
+            setOptions(2)
+            console.log(option)
+
+        }
+    }
+
+    useEffect(() => { stateTickets() }, [])
 
     return {
         tickets,
@@ -44,7 +59,8 @@ const useHistory = () => {
         TEXTSTATUS,
         dataLocal,
         queryTickets,
-        handleDate
+        handleDate,
+        handleOptions, options
     }
 }
 

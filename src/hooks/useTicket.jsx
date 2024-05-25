@@ -7,27 +7,31 @@ import { useNavigate } from "react-router-dom"
 import loadingStore from "../store/loadingStore"
 import useErrorManager from "./useErrorManager"
 import useUser from './useUser';
+import { useEffect, useState } from "react"
 const useTicket = () => {
+
     const errorManager = useErrorManager()
     const { getUser } = useUser()
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user, setUser } = useUserStore()
-    const { animals, type, ticketCode, setVisible, setAnimals } = useTicketStore()
+    const { animals, type, ticketCode, setVisible, setAnimals, tickets, setTickets } = useTicketStore()
     const { notify } = useNotify()
+
+    const [playingTickets, setPlayingTickets] = useState([])
 
     const handlePrint = async () => {
         setLoading(true)
 
         const body = { animals, user, type, code: ticketCode }
 
-        if (!body.animals) throw new Error("No animals")
-        if (!body.user) throw new Error("No user")
-        if (!body.type) throw new Error("No type")
-        if (!body.code) throw new Error("No code")
-        if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: " + body.animals.length
-
         try {
+            if (!body.animals) throw "No animals"
+            if (!body.user) throw "No user"
+            if (!body.type) throw "No type"
+            if (!body.code) throw "No code"
+            if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: " + body.animals.length
+
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {
                 const _user = await getUser(user._id)
@@ -41,6 +45,7 @@ const useTicket = () => {
 
         } catch (error) {
             errorManager(error)
+        } finally {
             setLoading(false)
         }
     }
@@ -74,20 +79,29 @@ const useTicket = () => {
             setLoading(true)
             const res = await request.get(`${urlApi}/gettickets/${user._id}`)
             if (res) {
+                setTickets(res.data.body)
                 return res.data.body
             } else throw 'Ah ocurrido un error'
         } catch (error) {
-            notify.error(error.message || error)
+            errorManager(error)
             return []
         } finally {
             setLoading(false)
         }
     }
 
+    useEffect(() => {
+        getTickets();
+        //setTodayTickets(345)
+    }, [])
+
     return {
         handlePrint,
         saveTicketClient,
-        getTickets
+        getTickets,
+        tickets,
+        playingTickets,
+        setPlayingTickets
     }
 }
 
