@@ -11,7 +11,7 @@ const useHistory = () => {
     const { loading } = loadingStore()
     
     const [dataLocal, setDataLocal] = useState({
-        from: formatDate(new Date()).split('/').reverse().join('-'),
+        from: formatDate(new Date()).split('/').reverse().join('-'), 
         to: formatDate(new Date()).split('/').reverse().join('-')
     })
 

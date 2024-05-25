@@ -22,6 +22,7 @@ const Ventas = () => {
                 <NavButton text={textMenu[1]} />
                 <NavButton text={textMenu[2]} />
             </div>
+           
         </nav>
         <section>
             {menu === textMenu[0] && <Taquilla />}

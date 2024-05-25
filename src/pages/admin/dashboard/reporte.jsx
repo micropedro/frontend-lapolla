@@ -11,12 +11,13 @@ import DeleteReportModal from "../../../components/modals/deleteReportModal"
 function Reporte() {
 
     const { loaidng } = useLoadingStore()
-    const { handleModal, handleDelete } = useReport()
+    const { handleModal, handleDelete, saveReport } = useReport()
     const { reports } = useReportStore()
+
     return (
         <>
             <DeleteReportModal />
-            <ReportModal />
+            <ReportModal handleExec={saveReport}  />
             <div className="flex-between">
                 <h2>Reporte general</h2>
                 <button onClick={() => handleModal()} className="btn btn-primary" > Generar reporte </button>

@@ -3,10 +3,21 @@ import { convertCeroNumber } from "../../../services/utils"
 import dateNow from "../../../services/dateNow"
 import useNotify from '../../../hooks/useNotify'
 import formatDate from "../../../services/formatDate"
+import request from "../../../services/request"
+import urlApi from '../../../services/urlApi'
+import useLoadingStore from "../../../store/loadingStore"
+import useErrorManager from "../../../hooks/useErrorManager"
+import ReportModal from "../../../components/modals/reportModal"
+import useModalStore from "../../../store/modalStore"
+import useDateStore from "../../../store/dateStore"
 
 const Reporte = () => {
     const { notify } = useNotify()
     const { reportes, listType, setListType, reportesFiltered, setReportesFiltered } = useReportes()
+    const { setVisible } = useModalStore()
+    const { loading, setLoading } = useLoadingStore()
+    const errorManager = useErrorManager()
+    const { dateStore } = useDateStore()
 
     const filter = (discound) => {
         const date = new Date()
@@ -15,12 +26,37 @@ const Reporte = () => {
         setReportesFiltered(list)
         if (list.length === 0) notify.error('No se encontraron registros en esta fecha')
     }
+   
+    const generateReport = async () => {
+        setLoading(true)
+        setVisible(false)
+        try {
+            await request.post(`${urlApi}/report/staf/`,
+                {
+                    date: dateStore.from
+                }
+            )
+            notify.success('Reporte generado')
+        } catch (error) {
+            errorManager(error)
+        }finally {
+            setLoading(false)  
+        }
+      
+    }
 
     return (<>
+        <ReportModal handleExec={generateReport} />
         <div className="container-fluid mt-3">
             <div className="row">
                 <div className="col-12">
-                    <h3>Reporte de ventas (Agencia)</h3>
+                    <div className="d-flex justify-content-between p-2">
+                        <h3>Reporte de ventas (Agencia)</h3>
+                        <button onClick={() => setVisible(true)} className="btn btn-primary" style={{ width: "170px"}}>
+                            {loading ? (<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>) 
+                                : (<i className="bi bi-archive"> Cierre de Caja</i> )}
+                        </button>
+                    </div>
                     <div className="card p-4 text-lg">
                         <div className="flex-between">
                             <div>Tickets vendidos: <b> {reportes.length} </b></div>

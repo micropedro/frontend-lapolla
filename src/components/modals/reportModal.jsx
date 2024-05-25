@@ -1,10 +1,14 @@
 import useModalStore from "../../store/modalStore"
 import useReportStore from "../../store/reportStore"
-import useReport from "../../hooks/useReport"
-const ReportModal = () => {
-    const { saveReport } = useReport()
+import useDateStore from "../../store/dateStore";
+
+// eslint-disable-next-line react/prop-types
+const ReportModal = ({ handleExec }) => {
+  
     const { setReportDate, reportDate } = useReportStore()
     const { visible, setVisible } = useModalStore()
+    const { dateStore, setDateStore } = useDateStore()
+
     if (visible) return (
         <div className="bg-modal">
             <div className="body-modal">
@@ -13,10 +17,20 @@ const ReportModal = () => {
                         <div className="pb-2">
                             Elegir fecha de reporte
                         </div>
-                        <input onChange={(e) => setReportDate(e.target.value)} type="date" name="" id="" className="form-control mb-4" />
+                        <input onChange={(e) => {
+                            setReportDate(e.target.value)
+                            console.log({
+                                from: e.target.value,
+                                to: e.target.value
+                            })
+                            setDateStore({
+                                from: e.target.value,
+                                to: e.target.value
+                            })
+                        }} type="date" name="" id="from" className="form-control mb-4" defaultValue={dateStore.from}/>
                         <hr />
                     </div>
-                    <button className='btn btn-warning mx-2' onClick={() => saveReport(reportDate)} > Generar </button>
+                    <button className='btn btn-warning mx-2' onClick={() => handleExec(reportDate)}> Generar </button>
                     <button onClick={() => setVisible(false)} className='btn btn-danger mx-2'> Cancelar </button>
                 </div>
 

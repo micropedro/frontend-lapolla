@@ -6,6 +6,7 @@ import useUserStore from '../store/userStore'
 import useReportesStore from '../store/reportesStore'
 import { useEffect } from 'react'
 import useConfig from './useConfig'
+
 const useReportes = () => {
     const { config } = useConfig()
     const { reportes, setReportes, listType, setListType, reportesFiltered, setReportesFiltered, polla, setPolla } = useReportesStore()
