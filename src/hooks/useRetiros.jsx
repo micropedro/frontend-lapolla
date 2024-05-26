@@ -98,9 +98,10 @@ const useRetiros = () => {
                 amount: Number(data.amount)
             }
             console.log(body)
-            await request.post(urlApi + "/withdraws/", body)
-            getRetirosUser()
+            const res  = await request.post(urlApi + "/withdraws/", body)
+            await getRetirosUser()
             setLoading(false)
+            return res
         } catch (error) {
             errorManager(error)
         } finally {

@@ -7,8 +7,9 @@ import useNotify from "../../hooks/useNotify"
 import useErrorManager from "../../hooks/useErrorManager"
 
 const useDeleteUserModal = () => {
+
     const errorManager = useErrorManager()
-    const notify = useNotify()
+    const { notify } = useNotify()
     const { setLoading, setText } = useLoadingModalStore()
     const { getUsers } = useUsers()
     const { setVisible } = useModalStore()
@@ -16,20 +17,20 @@ const useDeleteUserModal = () => {
     const closeModal = () => setVisible(false)
 
     const deleteUser = async ({ _id, name }) => {
-        setVisible(false)
-        setText("Eliminando usuario: " + name)
-        setLoading(true)
         try {
+            setVisible(false)
+            setText("Eliminando usuario: " + name)
+            setLoading(true)
+            if (!_id) throw "Id es requerido, code error 1"
             const response = await request.post(urlApi + "/admin/deleteuser", { _id })
             if (response.data.status === 200) {
-                setLoading(false)
                 notify.success('Usuario eliminado con exito')
-                getUsers()
+                await getUsers()
             }
         } catch (error) {
             errorManager(error)
+        } finally {
             setLoading(false)
-            console.log(error.response.data.message || error)
         }
     }
 

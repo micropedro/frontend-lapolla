@@ -8,7 +8,7 @@ const Metodos = () => {
     const { loading } = useLoadingStore()
     const { handleSelected, handleSelectedSecondary, sendForm, deleteMethod, itemType,
         methodName, setMethodName, selected, actualMethods, imageUrl, selectedSecondary,
-        setImageUrl } = useMethods()
+        setImageUrl, handleInputs, textSecondary } = useMethods()
 
     return (
         <Guard >
@@ -21,8 +21,6 @@ const Metodos = () => {
                 <Spinner color={'black'} />
             </div> :
                 <>
-
-
                     <div className='container mb-5 bg-gray-2 radius p-4 text-dark'>
                         <div className="row">
                             <div className="col-6">
@@ -59,12 +57,13 @@ const Metodos = () => {
                                 </div>
                             </div>
                             <div className="col-6">
-                                <h4>{methodName} {selectedSecondary && `(${selectedSecondary})`} </h4>
+                                <h4>{methodName}
+                                    {textSecondary && `(${textSecondary})`} </h4>
                                 <form onSubmit={sendForm}>
                                     {selected.length > 0 && selected.map((item, index) => {
                                         return <div className='col-12' key={index}>
                                             {item}
-                                            <input required type={itemType(item)} name={item} className='form-control' placeholder={`Ingrese ${item}`} />
+                                            <input onChange={handleInputs} required type={itemType(item)} name={item} className='form-control' placeholder={`Ingrese ${item}`} />
                                         </div>
                                     })}
                                     <button className='btn btn-lg btn-success mt-4 w-100'> Guardar este Metodo de pago </button>
@@ -83,7 +82,7 @@ const Metodos = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {actualMethods && actualMethods.map((i, index) => {
+                            {actualMethods && actualMethods.filter(i => !i.deleted).map((i, index) => {
                                 return (<tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>
@@ -104,9 +103,9 @@ const Metodos = () => {
                                         <div> {i.nombre && <> <b> nombre </b>{i.nombre}</>} </div>
                                         <div> <b>userId:</b> {i.userId} </div>
                                         <div> <b>MethodId:</b> {i._id} </div>
-
                                     </td>
                                     <td>
+                                        {console.log(i._id)}
                                         <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
                                     </td>
                                 </tr>)

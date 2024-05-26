@@ -7,9 +7,9 @@ import useLoadingStore from "../store/loadingStore"
 import request from "../services/request"
 import useNotify from '../hooks/useNotify'
 import useDeposits from "./useDeposits"
-
+import useErrorManager from "./useErrorManager"
 const useUsers = () => {
-
+    const errorManager = useErrorManager()
     const { findUserByCi } = useDeposits()
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
@@ -25,13 +25,13 @@ const useUsers = () => {
             const usersList = users.data.body
             if (!usersList) throw 'Usuarios no encontrados'
             if (usersList.length > 0) setUsers(usersList)
-            
+            return usersList
         } catch (error) {
-            const message = error
-            notify.error(message)
+            errorManager(error)
+        } finally {
+            setLoading(false)
         }
 
-        setLoading(false)
     }
 
     const deleteModal = (user) => {
@@ -46,20 +46,26 @@ const useUsers = () => {
         else notify.error('Usuario no encontrado')
     }
 
-    useEffect(() => { getUsers() }, [])
 
-    const getUserName = (userId) => {
-    
-        return users.length > 0 ? (users.filter(user => user._id === userId)[0]).name : ""
+    const getUserName = (userId) => users.length > 0 ? (users.filter(user => user._id === userId)[0]).name : ""
+
+    const filterUser = async (level) => {
+        const users = await getUsers()
+        console.log(users)
+        const filteredUsers = users.filter(user => user.level === level)
+        setUsers(filteredUsers)
+        setLoading(false)
     }
-    
+
+    useEffect(() => { getUsers() }, [])
     return {
         users,
         deleteModal,
         getUsers,
         _findUserByCi,
         findUserByCi,
-        getUserName
+        getUserName,
+        filterUser
     }
 }
 

@@ -2,28 +2,37 @@ import { useState, useCallback } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import usePerfil from '../../../hooks/usePerfil'
 import useMethods from '../../../hooks/useMethods'
-
+import { cleanMethods } from '../../../services/utils'
+import useErrorManager from '../../../hooks/useErrorManager';
 // eslint-disable-next-line react/prop-types
 const AddBankModal = ({ show, handleClose }) => {
+    const errorManager = useErrorManager()
     const [methodSelected, setMethodSelected] = useState('');
     const { adminMethods, getUser } = usePerfil()
+
     const [dataForm, setDataForm] = useState({});
     const { sendForm, setMethodName, setImageUrl } = useMethods()
 
     const handleSave = async () => {
-        // se declara "e" para que sea compatible con el metodo sendForm
-        const e = {
-            target: Object.keys(dataForm).reduce((acc, key) => {
-                acc[key] = { value: dataForm[key] };
-                return acc;
-            }, {}),
-            preventDefault: () => { }
+        try {
+            // se declara "e" para que sea compatible con el metodo sendForm
+            const e = {
+                target: Object.keys(dataForm).reduce((acc, key) => {
+                    acc[key] = { value: dataForm[key] }
+                    return acc;
+                }, {}),
+                preventDefault: () => { }
+            }
+
+            e.target.secondary = { value: "client" }
+            await sendForm(e)
+            await getUser()
+            setDataForm({})
+            // Después de guardar los datos, cierra el modal
+            handleClose();
+        } catch (error) {
+            errorManager(error)
         }
-        await sendForm(e)
-        await getUser()
-        setDataForm({})
-        // Después de guardar los datos, cierra el modal
-        handleClose();
     };
 
     const handleChangeMethod = (event) => {
@@ -64,7 +73,6 @@ const AddBankModal = ({ show, handleClose }) => {
 
         return Object.keys(method).map(m => {
             if (!method[m]) return false
-            console.log(m)
             if (m === "secondary") {
                 return (
                     <Form.Group key={m} controlId={m}>
@@ -97,9 +105,9 @@ const AddBankModal = ({ show, handleClose }) => {
                     <Form.Group controlId="select">
                         <Form.Label>Metodo de pago:</Form.Label>
                         <Form.Control as="select" onChange={handleChangeMethod} >
-                            {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(adminMethods).map(method => {
+                            {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(cleanMethods(adminMethods)).map(method => {
                                 return (
-                                    <option key={method._id} value={method._id}>{method.methodName} - {method.secondary}</option>
+                                    <option key={method._id} value={method._id}>{method.methodName}</option>
                                 )
                             })}
                         </Form.Control>

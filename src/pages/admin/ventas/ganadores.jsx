@@ -16,7 +16,7 @@ const Ganadores = () => {
                     <h3>Comprobacion de ganadores</h3>
                     <div className="input-group mb-3">
                         <form onSubmit={handler} className="w-100 d-flex">
-                            <input onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="Ingresa el codigo del ticket" maxLength={5} />
+                            <input onChange={(e) => setCode(e.target.value)} type="text" className="form-control" placeholder="Ingresa el codigo del ticket" maxLength={6} />
                             <div className="input-group-append">
                                 {loading ?
                                     <button disabled className="btn btn-secondary">  <Spinner />  </button>

@@ -15,10 +15,10 @@ const request = {
         axios.defaults.headers.put['Authorization'] = `Bearer ${localToken?.token || ''}`
         return await axios.put(url, body)
     },
-    delete: async (url, body) => {
+    delete: async (url) => {
         const localToken = JSON.parse(localStorage.getItem('user'))
         axios.defaults.headers.delete['Authorization'] = `Bearer ${localToken?.token || ''}`
-        return await axios.delete(url, body)
+        return await axios.delete(url)
     }
 }
 

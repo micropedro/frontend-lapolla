@@ -20,7 +20,9 @@ const useGanadores = () => {
     const winnerTicket = async () => {
         try {
             setLoading(true)
+            console.log("dfgdfg")
             const res = await request.get(urlApi + "/tickets/find/one/" + code)
+            console.log("res: ",res)
             const ticket = res.data.body
             const ticketType = ticket.quinielaType
             const ticketAnimals = ticket.animals
@@ -57,7 +59,7 @@ const useGanadores = () => {
             setLoading(false)
 
         } catch (error) {
-            errorManager(error);
+            errorManager(error)
             setLoading(false)
             setTicket(false)
         }

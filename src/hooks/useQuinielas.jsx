@@ -4,10 +4,13 @@ import useErrorManager from "../hooks/useErrorManager"
 import useLoadingStore from "../store/loadingStore"
 import useQuinielasStore from "../store/quinielasStore"
 import { getAllQuinielas, createQuiniela } from "../controllers/quinielasController"
+import { getTiketsDeHoy, getTiketsDeAyer } from "../controllers/ticketController"
+import useTicket from "./useTicket"
 const useQuinielas = () => {
 
+    const { playingTickets, setPlayingTickets } = useTicket()
     const { setLoading } = useLoadingStore()
-    const { quinielas, setQuinielas } = useQuinielasStore()
+    const { quinielas, setQuinielas, menu, setMenu } = useQuinielasStore()
     const errorManager = useErrorManager()
 
     const getQuinielas = async () => {
@@ -38,11 +41,36 @@ const useQuinielas = () => {
         }
     }
 
+    const handler = async (dia) => {
+        setLoading(true)
+        setPlayingTickets([])
+        try {
+            if (dia === 'ayer') {
+                const res = await getTiketsDeAyer()
+                console.log(res.data.body)
+                setPlayingTickets(res.data.body)
+            }
+            if (dia === 'hoy') {
+                const res = await getTiketsDeHoy()
+                console.log(res.data.body)
+                setPlayingTickets(res.data.body)
+            }
+        } catch (error) {
+            errorManager(error)
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
     useEffect(() => { getQuinielas() }, [])
 
     return {
         quinielas,
-        createNewQuiniela
+        createNewQuiniela,
+        menu, setMenu,
+        handler,
+        playingTickets
     }
 }
 

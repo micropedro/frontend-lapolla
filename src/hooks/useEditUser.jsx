@@ -31,7 +31,6 @@ const useEditUser = () => {
         
         try {
             const response = await axios.post(urlApi + "/admin/updateuser", user)
-            console.log(response)
             if (response.status === 200) {
                 notify.success("Se guardaron todos los cambios")
                 getUsers()
