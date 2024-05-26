@@ -105,6 +105,7 @@ const Metodos = () => {
                                         <div> <b>MethodId:</b> {i._id} </div>
                                     </td>
                                     <td>
+                                        {console.log(i._id)}
                                         <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
                                     </td>
                                 </tr>)

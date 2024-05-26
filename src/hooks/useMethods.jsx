@@ -102,8 +102,8 @@ const useMethods = () => {
 
     const handleSelectedSecondary = (dato) => setSelectedSecondary(dato || "")
 
-    const handleInputs = (e)=>{
-        if(e.target.name === selectedSecondary) setTextSecondary(e.target.value)
+    const handleInputs = (e) => {
+        if (e.target.name === selectedSecondary) setTextSecondary(e.target.value)
     }
 
     const getActualMethods = async () => {
@@ -118,16 +118,20 @@ const useMethods = () => {
     }
 
     const deleteMethod = async (_id) => {
+        console.log(_id)
         setLoading(true)
-        const response = await request.post(urlApi + '/admin/methods/delete', { _id })
-        if (response.data.status === 200) {
+        try {
+            const response = await request.delete(urlApi + '/admin/methods/delete/'+_id)
+            console.log(response)
+            if (!response) throw 'Error deleting method'
             await getActualMethods()
             resetVariables()
             notify.success(response.data.message)
-        } else {
-            notify.error("Ocurrio un error en la peticion")
+        } catch (error) {
+            errorManager(error)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     useEffect(() => {
@@ -141,7 +145,7 @@ const useMethods = () => {
         defaultMethod, setDefaultMethod,
         imageUrl, setImageUrl,
         selectedSecondary, handleSelectedSecondary,
-        handleInputs,textSecondary
+        handleInputs, textSecondary
     }
 }
 export default useMethods
