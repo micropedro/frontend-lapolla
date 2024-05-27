@@ -62,7 +62,7 @@ const WithdrawModal = ({ show, onHide }) => {
 
                             {user?.userMethods && (
                                 <Form.Control as="select" onChange={handleChangeMethod} >
-                                    {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(user.userMethods).map(method => {
+                                    {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(user.userMethods).filter(i => !i.deleted).map(method => {
                                         return (
                                             <option key={method._id} value={method._id}>{method.methodName} {isertSelectedSecondaryMethodName(method)}</option>
                                         )

@@ -65,7 +65,7 @@ const DepositModal = ({ show, onHide }) => {
                         <Form.Group controlId="select">
                             <Form.Label>Metodo de pago:</Form.Label>
                             <Form.Control as="select" onChange={handleChangeMethod} >
-                                {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(adminMethods).map(method => {
+                                {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(adminMethods).filter(i => !i.deleted).map(method => {
                                     return (
                                         <option key={method._id} value={method._id}>{method.methodName} {method.secondary}</option>
                                     )
