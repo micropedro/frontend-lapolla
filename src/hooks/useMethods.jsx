@@ -6,6 +6,7 @@ import useNotify from "./useNotify"
 import useLoadingStore from "../store/loadingStore"
 import userStore from "../store/userStore"
 import useErrorManager from "../hooks/useErrorManager"
+import { updateMethodChangeType } from "../controllers/methodController"
 
 const useMethods = () => {
     const errorManager = useErrorManager()
@@ -19,6 +20,8 @@ const useMethods = () => {
     const [actualMethods, setActualMethods] = useState([])
     const [defaultMethod, setDefaultMethod] = useState({ _id: undefined })
     const [imageUrl, setImageUrl] = useState("")
+    const [tipoDeCambio, setTipoDeCambio] = useState(1)
+    const [change, setChange] = useState({})
 
     const resetVariables = () => {
         setMethodName("")
@@ -72,7 +75,8 @@ const useMethods = () => {
             telefono,
             imageUrl,
             userId: user._id,
-            secondary: datosPreProccess[selectedSecondary] || secondary
+            secondary: datosPreProccess[selectedSecondary] || secondary,
+            tipoDeCambio
         }
 
         try {
@@ -107,12 +111,13 @@ const useMethods = () => {
     }
 
     const getActualMethods = async () => {
-        setLoading(true)
+        /*  setLoading(true) */
         const response = await request.get(urlApi + '/admin/methods/getMethods/' + user._id)
         const meth = response?.data?.body
         if (meth) {
             setDefaultMethod(meth[0])
             setActualMethods(response.data.body)
+            return response.data.body
         }
         setLoading(false)
     }
@@ -121,7 +126,7 @@ const useMethods = () => {
         console.log(_id)
         setLoading(true)
         try {
-            const response = await request.delete(urlApi + '/admin/methods/delete/'+_id)
+            const response = await request.delete(urlApi + '/admin/methods/delete/' + _id)
             console.log(response)
             if (!response) throw 'Error deleting method'
             await getActualMethods()
@@ -132,6 +137,24 @@ const useMethods = () => {
         } finally {
             setLoading(false)
         }
+    }
+
+    const handleEditChangeType = ({ _id, tipoDeCambio }) => {
+        setChange({ _id, tipoDeCambio })
+    }
+
+    const saveChangeType = async () => {
+        try {
+            const res = await updateMethodChangeType(change)
+            if (res.data.body) notify.success(res.data.message)
+            await getActualMethods()
+
+        } catch (error) {
+            errorManager(error)
+        } finally {
+            setLoading(false)
+        }
+
     }
 
     useEffect(() => {
@@ -145,7 +168,9 @@ const useMethods = () => {
         defaultMethod, setDefaultMethod,
         imageUrl, setImageUrl,
         selectedSecondary, handleSelectedSecondary,
-        handleInputs, textSecondary
+        handleInputs, textSecondary,
+        tipoDeCambio, setTipoDeCambio,
+        handleEditChangeType, saveChangeType, change
     }
 }
 export default useMethods

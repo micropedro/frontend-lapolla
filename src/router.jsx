@@ -28,11 +28,15 @@ import TemplateClient from './components/templateClient/TemplateClient'
 import Mensajes from './pages/admin/dashboard/mensajes'
 import Retiros from './pages/admin/dashboard/retiros/retiros'
 import Resultados from './pages/admin/dashboard/resultados/resultados'
+import Terminos from './pages/politicas/terminosycondiciones'
+import Politicas from './pages/politicas/politicasdeprivacidad'
 
 const Router = () => {
     return (<>
 
         <Routes>
+            <Route path="/terminos-y-condiciones" element={<Terminos />} />
+            <Route path="/politicas-de-privacidad" element={<Politicas />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

@@ -5,8 +5,8 @@ import useUserStore from "../../store/userStore"
 
 const Menu = () => {
 
-    const { user } = useUserStore() 
-  
+    const { user } = useUserStore()
+
     return (<div className="bg-dark p-2 border-bottom border-secondary" >
         <div className="container">
             <div className="row">
@@ -20,13 +20,13 @@ const Menu = () => {
                             <Link to='/login' className="mx-2">
                                 <button className="btn btn-warning mx-1  px-4 box-shadow-btn-landing btn-land-1 form-control mb-1">
                                     <i className="bi bi-box-arrow-in-right mx-2" />
-                                Iniciar sesion
+                                    Iniciar sesion
                                 </button>
                             </Link>
                             <Link to='/register' className="mx-2" >
                                 <button className="btn btn-warning mx-1  px-4 box-shadow-btn-landing btn-land-2 form-control mb-1">
                                     <i className="bi bi-cloud-arrow-up mx-2" />
-                                Registrarme
+                                    Registrarme
                                 </button>
                             </Link>
                         </div>
@@ -35,13 +35,13 @@ const Menu = () => {
                             <Link to='/lobby' className="mx-2">
                                 <button className="btn btn-warning mx-1  px-4 box-shadow-btn-landing btn-land-1 form-control mb-1">
                                     <i className="bi bi-controller mx-2"></i>
-                                Lobby
+                                    Lobby
                                 </button>
                             </Link>
                         </div>
                     )}
-                    
-                    
+
+
                 </div>
             </div>
         </div>
