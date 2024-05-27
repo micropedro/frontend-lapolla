@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { logoPng } from '../../images/images'
+import images from '../../images/images'
 const Politicasdeprivacidad = () => {
     return (
         <div className="bg-dark min-h-100 p-5">
@@ -10,7 +10,7 @@ const Politicasdeprivacidad = () => {
                         Politicas de Privacidad
                     </h2>
                     <Link to={'/'}>
-                        <img height={'100px'} src={logoPng} alt="" />
+                        <img height={'100px'} src={images.logoPng} alt="" />
                     </Link>
                 </div>
                 <hr />
