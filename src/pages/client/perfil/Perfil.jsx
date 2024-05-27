@@ -90,7 +90,7 @@ const Perfil = () => {
                             </div>
                             <div className="col-12">
                                 <div className="row">
-                                    {user.userMethods && user.userMethods.map((method) => {
+                                    {user.userMethods && user.userMethods.filter(i => !i.deleted).map((method) => {
                                         return (<div key={method._id} className="col-12 col-md-6 mb-3">
                                             <div className='card mh-100'>
                                                 <div className="card-body">
