@@ -5,7 +5,50 @@ import Spinner from "../../../../components/spinner"
 import useAnimal from "../../../../hooks/useAnimals"
 import useLoadingStore from "../../../../store/loadingStore"
 import { am_pm_format } from "../../../../services/utils"
-import { formatDate2 } from '../../../../services/formatDate'
+import formatDate from '../../../../services/formatDate'
+import images from '../../../../images/images'
+
+const ModalResult = ({ status, setModal }) => {
+    const { deleteAnimal } = useAnimal()
+    const closeModal = () => {
+        setModal(false)
+    }
+
+    if (status) return (<div className="bg-modal">
+        <div className="card p-4">
+            <div className="flex-between">
+                <h4>
+                    {status.name}
+                </h4>
+
+                <h3>
+                    Nro.{status.animalId}
+                </h3>
+            </div>
+            <div className="flex-between">
+                <div>
+                    {am_pm_format(status.hora)}
+                </div>
+                <div>
+                    {formatDate(status.fecha)}
+                </div>
+            </div>
+            <div>
+                {status.roulet === 1 && "Ruleta Activa"}
+                {status.roulet === 2 && "La granjita"}
+                {status.roulet === 3 && "Loto Activo"}
+            </div>
+            <div>
+                <img src={images.animals.filter(i => i.id === status.animalId)[0].image} alt="" />
+            </div>
+            <div className="flex-between">
+                <button onClick={() => deleteAnimal(status._id,closeModal)} className="btn text-danger"> Eliminar </button>
+                <button className="btn border my-3" onClick={closeModal}> Cerrar </button>
+            </div>
+        </div>
+    </div>)
+}
+
 
 const Resultados = () => {
     const { animals } = useAnimal()
@@ -17,38 +60,9 @@ const Resultados = () => {
         setModal(animal)
     }
 
-    const closeModal = () => {
-        setModal(false)
-    }
-
-    const ModalResult = ({ status }) => {
-        if (status) return (<div className="bg-modal">
-            <div className="card p-4">
-                <div className="flex-between">
-                    <h4>
-                        {status.name}
-                    </h4>
-                    <h3>
-                        Nro.{status.animalId}
-                    </h3>
-                </div>
-                {am_pm_format(status.hora)}
-                <input className="form-control" type="time" name="" id="" />
-                {formatDate2(status.fecha)}
-                <input className="form-control mb-2" type="date" name="" id="" />
-                {status.roulet === 1 && "Ruleta Activa"}
-                {status.roulet === 2 && "La granjita"}
-                {status.roulet === 3 && "Loto Activo"}
-
-                {status.fecha}
-                <button className="btn border my-3" onClick={closeModal}> Cerrar </button>
-            </div>
-        </div>)
-    }
-
     return (
         <div>
-            <ModalResult status={modal} />
+            <ModalResult status={modal} setModal={setModal} />
             <div>
                 <div className="flex-between pt-4">
                     <h2>Resultados</h2>

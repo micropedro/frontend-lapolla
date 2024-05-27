@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './footer.module.css';
 
 const Footer = () => {
@@ -25,8 +26,8 @@ const Footer = () => {
                             <i className="bi bi-android2"></i> Descargar App
                         </button>
                         <h5>Términos y Condiciones</h5>
-                        <p><a href="#">Términos de Servicio</a></p>
-                        <p><a href="#">Política de Privacidad</a></p>
+                        <p><Link to={'/terminos-y-condiciones'}>Términos de Servicio</Link></p>
+                        <p><Link to={'/politicas-de-privacidad'}>Política de Privacidad</Link></p>
                     </div>
                 </div>
                 <hr />

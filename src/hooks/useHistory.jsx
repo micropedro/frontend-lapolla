@@ -5,18 +5,18 @@ import formatDate from '../services/formatDate'
 
 const useHistory = () => {
 
-    const { getTickets } = useTicket()
+    const { getTickets, getAllTickets } = useTicket()
     const [tickets, setTickets] = useState([])
     const [options, setOptions] = useState(1)
     const { loading } = loadingStore()
-    
+
     const [dataLocal, setDataLocal] = useState({
-        from: formatDate(new Date()).split('/').reverse().join('-'), 
+        from: formatDate(new Date()).split('/').reverse().join('-'),
         to: formatDate(new Date()).split('/').reverse().join('-')
     })
 
     const stateTickets = async () => {
-        const tickets = await getTickets(dataLocal.from, dataLocal.to);
+        const tickets = await getTickets();
         setTickets(tickets);
     };
 
@@ -34,24 +34,28 @@ const useHistory = () => {
     }
 
     const queryTickets = () => {
-        setTickets([])
         stateTickets()
     }
 
-    const handleOptions = (option) => {
+    const stateAllTickets = async () => {
+        const _tickets = await getAllTickets(dataLocal)
+        console.log(_tickets)
+        setTickets(_tickets)
+    }
+
+    const handleOptions = async (option) => {
         if (option === 1) {
             setOptions(1)
-            console.log(option)
+            await stateTickets()
         }
 
         if (option === 2) {
             setOptions(2)
-            console.log(option)
-
+            await stateAllTickets()
         }
     }
 
-    useEffect(() => { stateTickets() }, [])
+    useEffect(() => { stateTickets(); setOptions(1) }, [])
 
     return {
         tickets,

@@ -8,7 +8,7 @@ const Metodos = () => {
     const { loading } = useLoadingStore()
     const { handleSelected, handleSelectedSecondary, sendForm, deleteMethod, itemType,
         methodName, setMethodName, selected, actualMethods, imageUrl, selectedSecondary,
-        setImageUrl, handleInputs, textSecondary } = useMethods()
+        setImageUrl, handleInputs, textSecondary, tipoDeCambio, setTipoDeCambio, handleEditChangeType, saveChangeType,change } = useMethods()
 
     return (
         <Guard >
@@ -26,6 +26,8 @@ const Metodos = () => {
                             <div className="col-6">
                                 <h4>Nombre del metodo</h4>
                                 <input value={methodName} onChange={(e) => setMethodName(e.target.value)} type="text" className='form-control mb-3' placeholder='Ingrese el nombre del metodo de pago' />
+                                <h4>Tipo de cambio</h4>
+                                <input type="number" className='mb-3 form-control' step={0.01} value={tipoDeCambio} onChange={(e) => setTipoDeCambio(e.target.value)} id="" />
                                 <div className="flex-between">
                                     <h4>Url de a imagen</h4>
                                     <a target='_blanc' href="https://es.imgbb.com/">subir en imgbb.com</a>
@@ -89,6 +91,15 @@ const Metodos = () => {
                                         {i.methodName}
                                         <br />
                                         {i.secondary}
+                                        <div>
+                                            Tipo de cambio
+                                        </div>
+                                        <div>
+                                            <input className='form-control mb-2' onChange={(e) => handleEditChangeType({ _id: i._id, tipoDeCambio: e.target.value })} type="number" step={0.01} defaultValue={i.tipoDeCambio} name="" id="" />
+                                            {change._id === i._id &&
+                                                <button onClick={saveChangeType} className='btn btn-primary mb-2'>Guardar</button>
+                                            }
+                                        </div>
                                     </td>
                                     <td>
                                         <img width={"100px"} src={i.imageUrl} alt="" />

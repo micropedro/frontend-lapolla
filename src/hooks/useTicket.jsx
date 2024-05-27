@@ -77,10 +77,29 @@ const useTicket = () => {
     const getTickets = async (from, to) => {
         try {
             setLoading(true)
-            const res = await request.get(`${urlApi}/gettickets/${user._id}`)
+            if (user._id) {
+                const res = await request.get(`${urlApi}/gettickets/${user._id}`)
+                if (res) {
+                    setTickets(res.data.body)
+                    return res.data.body
+                } else throw 'Ah ocurrido un error'
+            }
+        } catch (error) {
+            errorManager(error)
+            return []
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const getAllTickets = async ({ from, to }) => {
+        try {
+            setLoading(true)
+            const res = await request.get(`${urlApi}/tickets/${from}/${to}`)
             if (res) {
-                setTickets(res.data.body)
-                return res.data.body
+                const filtered = res.data.body.filter(ticket => ticket.user._id !== user._id)
+                setTickets(filtered)
+                return filtered
             } else throw 'Ah ocurrido un error'
         } catch (error) {
             errorManager(error)
@@ -99,6 +118,7 @@ const useTicket = () => {
         handlePrint,
         saveTicketClient,
         getTickets,
+        getAllTickets,
         tickets,
         playingTickets,
         setPlayingTickets

@@ -24,7 +24,7 @@ const History = () => {
             <div className="row text-white justify-content-center">
             </div>
             <div className='row text-center mb-5'>
-                {loading && (
+                {loading ? (
                     <div className='mt-5'>
                         <Placeholder as="p" animation="glow">
                             <Placeholder xs={12} />
@@ -39,8 +39,7 @@ const History = () => {
                             <Placeholder xs={12} />
                         </Placeholder>
                     </div>
-                )}
-                {tickets.length > 0 ? tickets.map((ticket, index) => {
+                ) : tickets.length > 0 ? tickets.map((ticket, index) => {
                     return (
                         <div className='col-12 col-md-6' key={index}>
                             <div className='card mt-4'>
@@ -77,7 +76,7 @@ const History = () => {
                             </div>
                         </div>
                     )
-                }) : !loading ? <p className='h3 mt-5'>No hay datos para mostrar</p> : null}
+                }) : !loading ? <p className='h3 mt-5 text-light'>No hay datos para mostrar</p> : null}
             </div>
         </div>
     </>)

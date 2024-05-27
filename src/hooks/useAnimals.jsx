@@ -4,7 +4,10 @@ import useAnimalsStore from "../store/animalsStore"
 import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useErrorManager from "./useErrorManager"
+import useLoadingStore from "../store/loadingStore"
+
 const useAnimal = () => {
+    const { setLoading } = useLoadingStore()
     const errorManager = useErrorManager()
     const { setAnimals, animals } = useAnimalsStore()
 
@@ -37,11 +40,27 @@ const useAnimal = () => {
         } catch (error) { errorManager(error) }
     }
 
+    const deleteAnimal = async (animalId,closeModal) => {
+        try {
+            setLoading(true)
+            const result = await request.delete(urlApi + '/animals/' + animalId)
+            console.log(result.data)
+            
+            await getAnimals()
+            closeModal()
+        } catch (error) {
+            errorManager(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     useEffect(() => { getAnimals() }, [])
 
     return {
         animals,
-        getAnimals
+        getAnimals,
+        deleteAnimal
     }
 }
 
