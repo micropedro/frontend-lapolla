@@ -78,7 +78,7 @@ const useCargarAnimales = () => {
                 notFalsy(data.roulet)
             ])) { return notify.error('A ocurrido un error al intentar guardar el animalito') }
             
-            // await request.post(urlApi + '/animals', data)
+            await request.post(urlApi + '/animals', data)
             console.log('cargado')
             notify.success("Cargado con exito")
 
