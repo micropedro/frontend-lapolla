@@ -55,6 +55,12 @@
             "status": false
         },
         {
+            "name": "Recargas",
+            "icon": "bi bi-person-workspace",
+            "link": "/dashboard/recargas",
+            "status": false
+        },
+        {
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
