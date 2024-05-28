@@ -25,6 +25,8 @@ const AddBankModal = ({ show, handleClose }) => {
             }
 
             e.target.secondary = { value: "client" }
+            e.target.adminMethodId = { value: methodSelected }
+        
             await sendForm(e)
             await getUser()
             setDataForm({})
@@ -56,6 +58,7 @@ const AddBankModal = ({ show, handleClose }) => {
 
     const RenderForm = useCallback(() => {
         if (methodSelected === "") return null
+        console.log(methodSelected)
         const [method] = adminMethods.filter(method => method._id === methodSelected)
             .map(method => {
                 return {
@@ -66,7 +69,7 @@ const AddBankModal = ({ show, handleClose }) => {
                     telefono: method.telefono ? true : false,
                     tipo: method.tipo ? true : false,
                     nombre: method.nombre ? true : false,
-                    secondary: method.secondary ? true : false,
+                    secondary: method.secondary ? true : false
                     // imageUrl: method.imageUrl
                 }
             })

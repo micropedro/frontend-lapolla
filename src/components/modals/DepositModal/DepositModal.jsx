@@ -6,6 +6,7 @@ import usePerfil from '../../../hooks/usePerfil'
 import useMethods from '../../../hooks/useMethods'
 import useNotify from "../../../hooks/useNotify"
 import useErrorManager from '../../../hooks/useErrorManager';
+import { handleAmount } from '../../../services/utils'
 // eslint-disable-next-line react/prop-types
 const DepositModal = ({ show, onHide }) => {
     const errorManager = useErrorManager()
@@ -54,6 +55,9 @@ const DepositModal = ({ show, onHide }) => {
         setImageUrl(methodCurrent.imageUrl)
         setMethodSelected(event.target.value)
     }
+
+
+
     return (
         <Modal show={show} onHide={onHide} centered>
             <div className="modal-content bg-white shadow-md rounded">
@@ -73,6 +77,7 @@ const DepositModal = ({ show, onHide }) => {
                             </Form.Control>
                         </Form.Group>
                         <div className='mt-3 mb-3 d-flex flex-column text-center'>
+
                             {detailsMethodAdmin?.imageUrl && (
                                 <div className='d-flex gap-2 justify-content-center align-items-center'>
                                     <img style={{ width: '50px' }} src={detailsMethodAdmin?.imageUrl} />
@@ -95,10 +100,29 @@ const DepositModal = ({ show, onHide }) => {
                                 <span>{detailsMethodAdmin?.tipo}</span>
                             )}
                         </div>
+                        <div>
+                            {detailsMethodAdmin.tipoDeCambio !== 1 && (
+                                <div className='text-dark flex-between'>
+                                    <div>
+                                        Tipo de cambio :
+                                    </div>
+                                    <div>
+                                        {detailsMethodAdmin.tipoDeCambio}
+                                    </div>
+
+                                </div>
+                            )}
+                        </div>
                         <Form.Group controlId="amount">
                             <Form.Label>Monto</Form.Label>
-                            <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                            <Form.Control type="number" step={'0.01'} value={amount} onChange={(e) => setAmount(e.target.value)} />
                         </Form.Group>
+                        <div className='mt-3'>
+                            Total a recibir
+                        </div>
+                        <div className='text-center'>
+                            <h1 className='mb-0'>{handleAmount(detailsMethodAdmin.tipoDeCambio, amount) || "0"} Bs</h1>
+                        </div>
                         <Form.Group controlId="transactionNumber">
                             <Form.Label>Número de operación</Form.Label>
                             <Form.Control type="text" value={transactionNumber} onChange={(e) => setTransactionNumber(e.target.value)} />

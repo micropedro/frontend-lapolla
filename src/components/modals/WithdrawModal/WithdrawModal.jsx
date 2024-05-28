@@ -9,11 +9,15 @@ import { isertSelectedSecondaryMethodName } from '../../../services/utils'
 import MethodSelected from '../../methodSelected/methodSelected'
 import useErrorManager from '../../../hooks/useErrorManager'
 import useUsers from '../../../hooks/useUser'
+import { useEffect, useState } from 'react'
+import { handleAmount } from '../../../services/utils'
 
 const WithdrawModal = ({ show, onHide }) => {
     const errorManager = useErrorManager()
     const { actualizeUserBalance } = useUsers()
     const { amount, setAmount, methodSelected, setMethodSelected } = useWithdrawModalStore()
+    const [amountError, setAmountError] = useState(false)
+    const [totalAmount, setTotalAmount] = useState()
 
     const { notify } = useNotify()
 
@@ -23,21 +27,22 @@ const WithdrawModal = ({ show, onHide }) => {
     const { user } = userStore()
 
     const handleChangeMethod = (event) => {
-        if (event.target.value === "0") {
+        const metodo = JSON.parse(event.target.value)
+        if (metodo._id === "0") {
             // setDetailsMethodAdmin({})
-            setMethodSelected("")
+            setMethodSelected({})
             return false
         }
 
         // const [methodCurrent] = userMethods.filter(method => method._id === event.target.value)
         // setDetailsMethodAdmin(event.target.value)
-        setMethodSelected(event.target.value)
+        setMethodSelected(metodo)
     }
 
     const handleSave = async () => {
         try {
             onHide();
-            const data = { payMethodId: methodSelected, amount }
+            const data = { payMethodId: methodSelected._id, amount }
             const res = await addRetiro(data)
             //actualizar saldo del usuario
             await actualizeUserBalance()
@@ -46,6 +51,24 @@ const WithdrawModal = ({ show, onHide }) => {
             errorManager(error)
         } finally {
             setAmount('')
+        }
+    }
+
+    const calc = (amount) => {
+        const redondeado = handleAmount(methodSelected.adminMethodId.tipoDeCambio, amount)
+        setTotalAmount(redondeado)
+        handleError(redondeado)
+    }
+
+    useEffect(() => {
+        if (amount) calc(amount)
+    }, [amount,methodSelected])
+
+    const handleError = (totalAmount) => {
+        if (user.balance < totalAmount) {
+            setAmountError("Saldo Insuficiente")
+        } else {
+            setAmountError(false)
         }
     }
 
@@ -64,19 +87,28 @@ const WithdrawModal = ({ show, onHide }) => {
                                 <Form.Control as="select" onChange={handleChangeMethod} >
                                     {[{ methodName: "Seleccione metodo de pago", _id: '0' }].concat(user.userMethods).filter(i => !i.deleted).map(method => {
                                         return (
-                                            <option key={method._id} value={method._id}>{method.methodName} {isertSelectedSecondaryMethodName(method)}</option>
+                                            <option key={method._id} value={JSON.stringify(method)}> {method.methodName} {isertSelectedSecondaryMethodName(method)}</option>
                                         )
                                     })}
                                 </Form.Control>
                             )}
                         </Form.Group>
 
-                        {methodSelected && <MethodSelected method={methodSelected} userMethods={user?.userMethods} />}
+                        {methodSelected && <MethodSelected method={methodSelected?._id} userMethods={user?.userMethods} />}
 
                         <Form.Group controlId="amount">
                             <Form.Label>Monto</Form.Label>
-                            <Form.Control type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                            <Form.Control type="number" value={amount} onChange={(e) => { setAmount(e.target.value); calc(amount) }} />
                         </Form.Group>
+                        <div>
+                            Total a recibir
+                            <div className='text-center'>
+                                <h1 className='mb-0'>{totalAmount} Bs</h1>
+                            </div>
+                            <div className='text-center text-danger'>
+                                {amountError}
+                            </div>
+                        </div>
                         <div className="text-right mt-3">
                             <Button variant="primary" onClick={handleSave}>Registrar retiro</Button>
                         </div>

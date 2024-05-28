@@ -97,4 +97,6 @@ export const dateFormated = () => {
 
     return { ayer, hoy }
 
-} 
+}
+
+export const handleAmount = (tipoDeCambio, amount) => (Math.floor(amount * tipoDeCambio * 100)) / 100

@@ -76,7 +76,8 @@ const useMethods = () => {
             imageUrl,
             userId: user._id,
             secondary: datosPreProccess[selectedSecondary] || secondary,
-            tipoDeCambio
+            tipoDeCambio,
+            adminMethodId:e.target.adminMethodId.value
         }
 
         try {

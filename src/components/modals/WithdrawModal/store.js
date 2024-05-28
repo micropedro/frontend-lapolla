@@ -11,6 +11,10 @@ const useWithdrawModalStore = createWithEqualityFn((set) => ({
     setMethodSelected: (newMethodSelected) => set(() => ({
         methodSelected: newMethodSelected
     })),
+    totalAmount:0, 
+    setTotalAmount: (newtotalAmount) => set(() => ({
+        totalAmount: newtotalAmount
+    })),
 }))
 
 export default useWithdrawModalStore
