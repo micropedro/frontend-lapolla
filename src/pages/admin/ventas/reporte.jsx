@@ -21,9 +21,9 @@ const Reporte = () => {
     const { loading, setLoading } = useLoadingStore()
     const errorManager = useErrorManager()
     const { dateStore } = useDateStore()
-    const [ dataTable, setDataTable ] = useState([])
+    const [dataTable, setDataTable] = useState([])
     const { user } = useUserStore()
-   
+
     const generateReport = async () => {
         setLoading(true)
         setVisible(false)
@@ -37,10 +37,10 @@ const Reporte = () => {
             notify.success('Reporte generado')
         } catch (error) {
             errorManager(error)
-        }finally {
-            setLoading(false)  
+        } finally {
+            setLoading(false)
         }
-      
+
     }
 
     const getDataReports = async () => {
@@ -48,7 +48,7 @@ const Reporte = () => {
             const data = await request.get(`${urlApi}/reports/${user._id}`)
             setDataTable(data.data.body)
         } catch (error) {
-            errorManager(error)
+            console.log(error)
         }
     }
 
@@ -63,38 +63,40 @@ const Reporte = () => {
                 <div className="col-12">
                     <div className="d-flex justify-content-between p-2">
                         <h3>Reporte de ventas (Agencia)</h3>
-                        <button onClick={() => setVisible(true)} className="btn btn-primary" style={{ width: "170px"}}>
-                            {loading ? (<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>) 
-                                : (<i className="bi bi-archive"> Cierre de Caja</i> )}
+                        <button onClick={() => setVisible(true)} className="btn btn-primary" style={{ width: "170px" }}>
+                            {loading ? (<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>)
+                                : (<i className="bi bi-archive"> Cierre de Caja</i>)}
                         </button>
                     </div>
-                    <div className="card p-4 text-lg">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Vendidos</th>
-                                    <th>Total BS</th>
-                                    <th>Comisión Agencias</th>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Vendidos</th>
+                                <th>Total BS</th>
+                                <th>Comisión Agencias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataTable.length > 0 ? dataTable.map((data, index) => (
+                                <tr key={index}>
+                                    <td>{formatDate(data.date)}</td>
+                                    <td>{data.ticketsSold}</td>
+                                    <td>{data.totalSold}</td>
+                                    <td>
+                                        {user.level === 4 && data.agenciaAmount}
+                                        {user.level === 3 && data.gruperoAmount}
+                                        {user.level === 2 && data.adminAmount}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {dataTable.map((data, index) => (
-                                    <tr key={index}>
-                                        <td>{formatDate(data.date)}</td>
-                                        <td>{data.ticketsSold}</td>
-                                        <td>{data.totalSold}</td>
-                                        <td>
-                                            {user.level === 4 && data.agenciaAmount}
-                                            {user.level === 3 && data.gruperoAmount}
-                                            {user.level === 2 && data.adminAmount}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div> 
+                            )) : <tr>
+                                <td colSpan={4} className='text-center'>
+                                    No se encontraron Reportes
+                                </td>
+                            </tr>}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </>

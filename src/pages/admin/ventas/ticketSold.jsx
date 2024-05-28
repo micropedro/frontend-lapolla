@@ -1,22 +1,19 @@
 import { convertCeroNumber } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
 import formatDate from "../../../services/formatDate"
-import useNotify from '../../../hooks/useNotify'
 
 const TicketSold = () => {
 
     const { listType, setListType, reportesFiltered } = useReportes()
     const { reportes, setReportesFiltered } = useReportes()
-    const { notify } = useNotify()
 
     const filter = (discound) => {
         const date = new Date()
         const queryDate = formatDate(date, discound)
         const list = reportes.filter((_reporte) => formatDate(_reporte.date) === queryDate)
         setReportesFiltered(list)
-        if (list.length === 0) notify.error('No se encontraron registros en esta fecha')
     }
- 
+
     return (<div className="container">
         <div className="row">
             <div className="col-12">
@@ -46,11 +43,7 @@ const TicketSold = () => {
                                 </b>
                             </div>
                             <div>
-                                {
-
-                                    date
-
-                                }</div>
+                                {date}</div>
                             <div>
                                 {reporte.animals.map((animal, index2) => {
                                     return (<span className="mx-2" key={index2}>{animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-{animal.name}, </span>)
@@ -70,7 +63,7 @@ const TicketSold = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
+                            {reportesFiltered.length > 0 ? reportesFiltered.map((reporte, index) => {
                                 const date = new Date(reporte.date)
                                 const dia = String(date.getDate()).padStart(2, '0')
                                 const anio = date.getFullYear()
@@ -82,15 +75,16 @@ const TicketSold = () => {
                                     <td>{reporte.hora}</td>
                                     <td className="text-end">{reporte.animals.map((animal) => `${animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-${animal.name}, `)}</td>
                                 </tr>)
-                            })}
+                            }) : <tr>
+                                <td colSpan={8}>
+                                    No se encontraron reportes
+                                </td>
+                            </tr>}
                         </tbody>
-
                     </table>
                 </>}
             </div>
-
         </div>
-
     </div>)
 }
 export default TicketSold
