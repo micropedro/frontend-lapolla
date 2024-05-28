@@ -1,31 +1,28 @@
-import useReportes from "../../../hooks/useReportes"
-import { convertCeroNumber } from "../../../services/utils"
-import dateNow from "../../../services/dateNow"
+// import useReportes from "../../../hooks/useReportes"
+
+// import dateNow from "../../../services/dateNow"
 import useNotify from '../../../hooks/useNotify'
-import formatDate from "../../../services/formatDate"
+
 import request from "../../../services/request"
 import urlApi from '../../../services/urlApi'
+import formatDate from '../../../services/formatDate'
 import useLoadingStore from "../../../store/loadingStore"
 import useErrorManager from "../../../hooks/useErrorManager"
 import ReportModal from "../../../components/modals/reportModal"
 import useModalStore from "../../../store/modalStore"
 import useDateStore from "../../../store/dateStore"
+import useUserStore from '../../../store/userStore'
+import { useEffect, useState } from "react"
 
 const Reporte = () => {
     const { notify } = useNotify()
-    const { reportes, listType, setListType, reportesFiltered, setReportesFiltered } = useReportes()
+    // const { reportes } = useReportes()
     const { setVisible } = useModalStore()
     const { loading, setLoading } = useLoadingStore()
     const errorManager = useErrorManager()
     const { dateStore } = useDateStore()
-
-    const filter = (discound) => {
-        const date = new Date()
-        const queryDate = formatDate(date, discound)
-        const list = reportes.filter((_reporte) => formatDate(_reporte.date) === queryDate)
-        setReportesFiltered(list)
-        if (list.length === 0) notify.error('No se encontraron registros en esta fecha')
-    }
+    const [ dataTable, setDataTable ] = useState([])
+    const { user } = useUserStore()
    
     const generateReport = async () => {
         setLoading(true)
@@ -36,6 +33,7 @@ const Reporte = () => {
                     date: dateStore.from
                 }
             )
+            await getDataReports()
             notify.success('Reporte generado')
         } catch (error) {
             errorManager(error)
@@ -44,6 +42,19 @@ const Reporte = () => {
         }
       
     }
+
+    const getDataReports = async () => {
+        try {
+            const data = await request.get(`${urlApi}/reports/${user._id}`)
+            setDataTable(data.data.body)
+        } catch (error) {
+            errorManager(error)
+        }
+    }
+
+    useEffect(() => {
+        getDataReports()
+    }, [])
 
     return (<>
         <ReportModal handleExec={generateReport} />
@@ -58,87 +69,32 @@ const Reporte = () => {
                         </button>
                     </div>
                     <div className="card p-4 text-lg">
-                        <div className="flex-between">
-                            <div>Tickets vendidos: <b> {reportes.length} </b></div>
-                            <div>{dateNow.fecha} {dateNow.horas}:{dateNow.minutos} {dateNow.periodo}</div>
-                        </div>
-                        <div>
-                            Total de ventas <b> {reportes.length * 25} BS </b>
-                        </div>
-                        <div>
-                            Total a pagar <b> {reportes.length * 25 * 0.80} BS </b>
-                        </div>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Vendidos</th>
+                                    <th>Total BS</th>
+                                    <th>Comisión Agencias</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {dataTable.map((data, index) => (
+                                    <tr key={index}>
+                                        <td>{formatDate(data.date)}</td>
+                                        <td>{data.ticketsSold}</td>
+                                        <td>{data.totalSold}</td>
+                                        <td>
+                                            {user.level === 4 && data.agenciaAmount}
+                                            {user.level === 3 && data.gruperoAmount}
+                                            {user.level === 2 && data.adminAmount}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div className="flex-between">
-                    <div>
-                        <button onClick={() => filter(0)} className="btn">Hoy</button>
-                        <button onClick={() => filter(1)} className="btn">Ayer</button>
-                        <button onClick={() => filter(2)} className="btn"> -2 dias </button>
-                        <button onClick={() => filter(3)} className="btn"> -3 dias </button>
-                        <button onClick={() => filter(4)} className="btn"> -4 dias </button>
-                        <button onClick={() => filter(5)} className="btn"> -5 dias </button>
-                    </div>
-                    <div>
-                        <button onClick={() => setListType(true)} className="btn text-dark"> <i className="bi bi-grid-fill" /> </button>
-                        <button onClick={() => setListType(false)} className="btn text-dark"> <i className="bi bi-list-ul" /> </button>
-                    </div>
-                </div>
-
-                {listType ? reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
-                    const date = new Date(reporte.date).getDate()
-                    return <div key={index} className="col-3 mb-3 text-center">
-                        <div className="card h-100 p-2">
-                            <b>Nro. {index + 1}</b>
-                            <div>
-                                <b className="text-success">
-                                    {reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}
-                                </b>
-                            </div>
-                            <div>
-                                {
-
-                                    date
-
-                                }</div>
-                            <div>
-                                {reporte.animals.map((animal, index2) => {
-                                    return (<span className="mx-2" key={index2}>{animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-{animal.name}, </span>)
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                }) : <>
-                    <table className="table text-center">
-                        <thead>
-                            <tr>
-                                <th> Nro </th>
-                                <th> Tipo </th>
-                                <th> Fecha </th>
-                                <th> Hora </th>
-                                <th className="text-end">Jugada</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
-                                const date = new Date(reporte.date)
-                                const dia = String(date.getDate()).padStart(2, '0')
-                                const anio = date.getFullYear()
-                                const mes = String(date.getMonth() + 1).padStart(2, '0')
-                                return (<tr key={index}>
-                                    <td> {index} </td>
-                                    <td>{reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}</td>
-                                    <td>{dia}-{mes}-{anio}</td>
-                                    <td>{reporte.hora}</td>
-                                    <td className="text-end">{reporte.animals.map((animal) => `${animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-${animal.name}, `)}</td>
-                                </tr>)
-                            })}
-                        </tbody>
-
-                    </table>
-                </>
-                }
-
+                </div> 
             </div>
         </div>
     </>
