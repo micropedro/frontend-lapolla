@@ -37,50 +37,52 @@ const useMethods = () => {
     }
 
     const sendForm = async (e) => {
-        e.preventDefault()
-        if (!methodName) return notify.warn("Debe porporcionar un nombre para el metodo de pago")
-
-        if (!imageUrl) return notify.warn("Debe porporcionar una imagen")
-
-        if (!validateImage(imageUrl)) return notify.warn("Debe porporcionar una imagen valida")
-
-        setLoading(true)
-        const correo = e.target.correo?.value || ""
-        const cuenta = e.target.cuenta?.value || ""
-        const tipo = e.target.tipo?.value || ""
-        const cedula = e.target.cedula?.value || ""
-        const banco = e.target.banco?.value || ""
-        const nombre = e.target.nombre?.value || ""
-        const telefono = e.target.telefono?.value || ""
-        const secondary = e.target.secondary?.value || ""
-
-        const datosPreProccess = {
-            correo,
-            cuenta,
-            tipo,
-            cedula,
-            banco,
-            nombre,
-            telefono
-        }
-
-        const datos = {
-            correo,
-            cuenta,
-            tipo,
-            cedula,
-            banco,
-            nombre,
-            methodName,
-            telefono,
-            imageUrl,
-            userId: user._id,
-            secondary: datosPreProccess[selectedSecondary] || secondary,
-            tipoDeCambio,
-            adminMethodId:e.target.adminMethodId.value
-        }
-
         try {
+            e.preventDefault()
+            if (!methodName) throw "Debe porporcionar un nombre para el metodo de pago"
+
+            if (!imageUrl) throw "Debe porporcionar una imagen"
+
+            if (!validateImage(imageUrl)) throw "Debe porporcionar una imagen valida"
+
+            setLoading(true)
+            const correo = e.target.correo?.value || ""
+            const cuenta = e.target.cuenta?.value || ""
+            const tipo = e.target.tipo?.value || ""
+            const cedula = e.target.cedula?.value || ""
+            const banco = e.target.banco?.value || ""
+            const nombre = e.target.nombre?.value || ""
+            const telefono = e.target.telefono?.value || ""
+            const secondary = e.target.secondary?.value || ""
+            const adminMethodId = e?.target?.adminMethodId?.value || '000000000000000000000000'
+
+            const datosPreProccess = {
+                correo,
+                cuenta,
+                tipo,
+                cedula,
+                banco,
+                nombre,
+                telefono
+            }
+
+            const datos = {
+                correo,
+                cuenta,
+                tipo,
+                cedula,
+                banco,
+                nombre,
+                methodName,
+                telefono,
+                imageUrl,
+                userId: user._id,
+                secondary: datosPreProccess[selectedSecondary] || secondary,
+                tipoDeCambio,
+                adminMethodId
+            }
+
+
             const response = await request.post(urlApi + '/admin/methods/addMethod', datos)
             if (response) notify.success(response.data.message)
             await getActualMethods()

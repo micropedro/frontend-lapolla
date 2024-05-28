@@ -109,7 +109,7 @@ const Perfil = () => {
                                                     {method.tipo && <p className='mb-0'>{method.tipo} </p>}
                                                     {method.cedula && <p className='mb-0'>{method.cedula} </p>}
                                                     {method.nombre && <p className='mb-0'>{method.nombre} </p>}
-                                                    {method.adminMethodId.tipoDeCambio && <><b>Tipo de cambio:</b> {method.adminMethodId.tipoDeCambio} Bs</> }
+                                                    {method?.adminMethodId?.tipoDeCambio && <><b>Tipo de cambio:</b> {method.adminMethodId.tipoDeCambio} Bs</> }
                                                 </div>
                                                 <div className="position-absolute bottom-0 end-0 m-2" onClick={() => {
                                                     setIdMethod(method._id)
