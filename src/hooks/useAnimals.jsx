@@ -59,6 +59,7 @@ const useAnimal = () => {
 
     return {
         animals,
+        setAnimals,
         getAnimals,
         deleteAnimal
     }
