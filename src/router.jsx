@@ -30,6 +30,7 @@ import Retiros from './pages/admin/dashboard/retiros/retiros'
 import Resultados from './pages/admin/dashboard/resultados/resultados'
 import Terminos from './pages/politicas/terminosycondiciones'
 import Politicas from './pages/politicas/politicasdeprivacidad'
+import Recargas from './pages/admin/dashboard/recargas/recargas'
 
 const Router = () => {
     return (<>
@@ -42,6 +43,7 @@ const Router = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/recuperacion" element={<Recuperacion />} />
             <Route path="/print" element={<Print />} />
+            <Route path="/dashboard/recargas" element={<Dashboard><Recargas /></Dashboard>} />
             <Route path="/dashboard/users" element={<Dashboard><Users /></Dashboard>} />
             <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
             <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />

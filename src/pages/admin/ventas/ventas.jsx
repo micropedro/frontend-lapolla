@@ -1,5 +1,6 @@
 import Guard from "../../../components/Guard"
 import Taquilla from "./taquilla"
+import TicketSold from "./ticketSold"
 import Reporte from "./reporte"
 import Ganadores from "./ganadores"
 import NavButton from "../../../components/navButton"
@@ -21,6 +22,7 @@ const Ventas = () => {
                 <NavButton text={textMenu[0]} />
                 <NavButton text={textMenu[1]} />
                 <NavButton text={textMenu[2]} />
+                <NavButton text={textMenu[3]} />
             </div>
            
         </nav>
@@ -28,6 +30,7 @@ const Ventas = () => {
             {menu === textMenu[0] && <Taquilla />}
             {menu === textMenu[1] && <Reporte />}
             {menu === textMenu[2] && <Ganadores />}
+            {menu === textMenu[3] && <TicketSold />}
         </section>
     </Guard >
     )

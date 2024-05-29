@@ -67,6 +67,7 @@ const Perfil = () => {
                                         {user && user.name}
                                     </h3>
                                     <p className="card-text"><i className="bi bi-envelope" /> {user && user.email}</p>
+                                    <p className="card-text"><i className="bi bi-card-checklist" /> CI: {user && user.ci}</p>
                                     <p className="card-text"><i className="bi bi-telephone-fill" /> {user && user.phone}</p>
                                     <p className="card-text"><i className="bi bi-calendar-fill" /> Desde {user && formatDate(user.date)}</p>
                                     {/* <p className="card-text"><i className="bi bi-pin-map-fill" /> Los cocos 211, Tucupita Delta Amacuto</p> */}
@@ -98,6 +99,9 @@ const Perfil = () => {
                                                         <img src={method.imageUrl} height={"30px"} alt="" />
                                                         <h5 className="card-title">{method.methodName}</h5>
                                                     </div>
+                                                    {/* id de este {method._id} 
+                                                    <div> id del admin {method.adminMethodId._id} </div>
+                                                    <div>{method.adminMethodId.methodName}</div> */}
                                                     {method.correo && <p className='mb-0'>{method.correo} </p>}
                                                     {method.telefono && <p className='mb-0'>{method.telefono} </p>}
                                                     {method.banco && <p className='mb-0'>{method.banco} </p>}
@@ -105,6 +109,7 @@ const Perfil = () => {
                                                     {method.tipo && <p className='mb-0'>{method.tipo} </p>}
                                                     {method.cedula && <p className='mb-0'>{method.cedula} </p>}
                                                     {method.nombre && <p className='mb-0'>{method.nombre} </p>}
+                                                    {method?.adminMethodId?.tipoDeCambio && <><b>Tipo de cambio:</b> {method.adminMethodId.tipoDeCambio} Bs</> }
                                                 </div>
                                                 <div className="position-absolute bottom-0 end-0 m-2" onClick={() => {
                                                     setIdMethod(method._id)

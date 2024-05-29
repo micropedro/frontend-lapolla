@@ -18,7 +18,6 @@ const useUsers = () => {
 
     const getUsers = async () => {
         setLoading(true)
-
         try {
             const users = await request.get(urlApi + '/users')
             /* console.log(users) */

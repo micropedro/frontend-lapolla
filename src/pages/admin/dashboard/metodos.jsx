@@ -106,17 +106,16 @@ const Metodos = () => {
                                     </td>
                                     <td>
                                         <div> {i.correo && <> <b> Correo </b>{i.correo}</>} </div>
-                                        <div> {i.cuenta && <> <b> cuenta </b>{i.cuenta}</>} </div>
-                                        <div> {i.tipo && <> <b> tipo </b>{i.tipo}</>} </div>
-                                        <div> {i.telefono && <> <b> telefono </b>{i.telefono}</>} </div>
-                                        <div> {i.cedula && <> <b> cedula </b>{i.cedula}</>} </div>
-                                        <div> {i.banco && <> <b> banco </b>{i.banco}</>} </div>
-                                        <div> {i.nombre && <> <b> nombre </b>{i.nombre}</>} </div>
-                                        <div> <b>userId:</b> {i.userId} </div>
-                                        <div> <b>MethodId:</b> {i._id} </div>
+                                        <div> {i.cuenta && <> <b> Cuenta </b>{i.cuenta}</>} </div>
+                                        <div> {i.tipo && <> <b> Tipo de cuenta </b>{i.tipo}</>} </div>
+                                        <div> {i.telefono && <> <b> Telefono </b>{i.telefono}</>} </div>
+                                        <div> {i.cedula && <> <b> Cedula </b>{i.cedula}</>} </div>
+                                        <div> {i.banco && <> <b> Banco </b>{i.banco}</>} </div>
+                                        <div> {i.nombre && <> <b> Nombre </b>{i.nombre}</>} </div>
+                                        {/* <div> <b>userId:</b> {i.userId} </div>
+                                        <div> <b>MethodId:</b> {i._id} </div> */}
                                     </td>
                                     <td>
-                                        {console.log(i._id)}
                                         <button onClick={() => deleteMethod(i._id)} className='btn btn-danger'> - </button>
                                     </td>
                                 </tr>)

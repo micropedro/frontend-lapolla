@@ -6,7 +6,7 @@ export const objectEmpty = (object) => {
 
 export const convertCeroNumber = (number) => number > 0 && number < 10 ? `0${number}` : number
 
-export const textMenu = ["Taquilla", "Reporte", "Ganadores"]
+export const textMenu = ["Taquilla", "Reporte", "Ganadores", "Tickets vendidos"]
 
 export const getMiliseconds = (date) => {
     const [fecha, hora] = date.split(" ")
@@ -97,4 +97,6 @@ export const dateFormated = () => {
 
     return { ayer, hoy }
 
-} 
+}
+
+export const handleAmount = (tipoDeCambio, amount) => (Math.floor(amount * tipoDeCambio * 100)) / 100

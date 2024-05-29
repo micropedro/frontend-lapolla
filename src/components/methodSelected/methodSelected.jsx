@@ -12,8 +12,6 @@ const ortographi = {
 
 const MethodSelected = ({ method, userMethods }) => {
 
-    console.log(method, userMethods)
-
     if (userMethods && userMethods.length > 0 && method) {
         const metodo = userMethods.filter(i => i._id === method)[0]
 
