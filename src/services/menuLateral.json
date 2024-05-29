@@ -52,24 +52,18 @@
             "name": "Ventas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/ventas",
-            "status": false
+            "status": true
         },
         {
             "name": "Recargas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/recargas",
-            "status": false
+            "status": true
         },
         {
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
-            "status": false
-        },
-        {
-            "name": "Mensajes",
-            "icon": "bi bi-envelope",
-            "link": "/dashboard/mensajes",
             "status": false
         }
     ]
