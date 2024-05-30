@@ -3,14 +3,15 @@ import useLoadingStore from '../../../store/loadingStore'
 import Spinner from '../../../components/spinner'
 import { datos } from '../../../services/metodos.json'
 import useMethods from '../../../hooks/useMethods'
+import permisions from '../../../services/permissions'
 const Metodos = () => {
-
     const { loading } = useLoadingStore()
     const { handleSelected, handleSelectedSecondary, sendForm, deleteMethod, itemType,
         methodName, setMethodName, selected, actualMethods, imageUrl, selectedSecondary,
-        setImageUrl, handleInputs, textSecondary, tipoDeCambio, setTipoDeCambio, handleEditChangeType, saveChangeType,change } = useMethods()
+        setImageUrl, handleInputs, textSecondary, tipoDeCambio, setTipoDeCambio, handleEditChangeType, saveChangeType, change } = useMethods()
 
-    return (
+    // 1 es el index del menu lateral
+    if (permisions.permit(1)) return (
         <Guard >
             <div className='flex-between px-4 pt-3'>
                 <h2> Metodos de pago </h2>

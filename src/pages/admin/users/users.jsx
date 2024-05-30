@@ -4,12 +4,13 @@ import useUsers from '../../../hooks/useUsers'
 import DeleteUserModal from '../../../components/modals/deleteUserModal'
 import { Link } from 'react-router-dom'
 import PaginationTable from '../../../components/paginationTable'
+import permisions from '../../../services/permissions'
 
 const Users = () => {
 
     const { users, deleteModal, _findUserByCi, getUsers, filterUser } = useUsers()
 
-    return (<Guard >
+    if (permisions.permit(0)) return (<Guard >
         <DeleteUserModal />
         <div className='flex-between px-4 pt-3'>
             <h2> Administracion de usuarios</h2>

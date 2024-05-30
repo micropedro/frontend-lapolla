@@ -1,10 +1,11 @@
 import useConfig from "../../../hooks/useConfig"
 import useLoadingStore from "../../../store/loadingStore"
 import Spinner from "../../../components/spinner"
+import permisions from "../../../services/permissions"
 const Config = () => {
     const { loading } = useLoadingStore()
     const { config, updateConfig, setConfig, handleHoras } = useConfig()
-    return (
+    if (permisions.permit(3)) return (
         <div>
             <div className="flex-between pt-4">
                 <h2>Configuracion</h2>

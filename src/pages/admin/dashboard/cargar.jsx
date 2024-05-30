@@ -3,9 +3,12 @@ import AnimalsButtons from "../../../components/animalsButtons"
 import dateNow from "../../../services/dateNow"
 import useCargarAnimales from "../../../hooks/useCargarAnimales"
 import Hora from '../../../components/hora'
+import permisions from "../../../services/permissions"
+
 const Cargar = () => {
     const { animalSelected, handle, save, handleHora, formattedDate, hora, radioRoulet, setRadioRoulet, handleFecha } = useCargarAnimales()
-    return (
+    
+    if (permisions.permit(2)) return (
         <Guard>
             <div className="mt-3 px-2">
                 <div className="w-100 p-3 bg-dark text-light rounded flex-between-start">

@@ -4,67 +4,124 @@
             "name": "Usuarios",
             "icon": "bi bi-people",
             "link": "/dashboard/users",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3,
+                4
+            ]
         },
         {
             "name": "Métodos de pago",
             "icon": "bi bi-credit-card",
             "link": "/dashboard/metodos",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3
+            ]
         },
         {
             "name": "Cargar Animalitos",
             "icon": "bi bi-file-earmark-arrow-up",
             "link": "/dashboard/cargar",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3
+            ]
         },
         {
             "name": "Configuracion",
             "icon": "bi bi-boxes",
             "link": "/dashboard/config",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3
+            ]
         },
         {
             "name": "Depositos",
             "icon": "bi bi-credit-card",
             "link": "/dashboard/depositos",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2
+            ]
         },
         {
             "name": "Retiros",
             "icon": "bi bi-envelope",
             "link": "/dashboard/retiros",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2
+            ]
         },
         {
             "name": "Reporte de caja",
             "icon": "bi bi-bar-chart",
             "link": "/dashboard/reporte",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3
+            ]
         },
         {
             "name": "Resultados",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/resultados",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3,
+                4
+            ]
         },
         {
             "name": "Ventas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/ventas",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3,
+                4
+            ]
         },
         {
             "name": "Recargas",
             "icon": "bi bi-person-workspace",
             "link": "/dashboard/recargas",
-            "status": true
+            "status": true,
+            "permissions": [
+                1,
+                2,
+                3,
+                4
+            ]
         },
         {
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
             "link": "/dashboard/quinielas",
-            "status": false
+            "status": false,
+            "permissions": [
+                1,
+                2,
+                3
+            ]
         }
     ]
 }

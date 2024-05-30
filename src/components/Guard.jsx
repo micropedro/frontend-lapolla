@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import permissions from '../services/permissions'
 const Guard = ({ children }) => {
 
     const navigate = useNavigate()
 
-    const [access, setAccess] = useState()
-
+    const [access, setAccess] = useState(false)
 
     useEffect(() => {
-        //falta agregar los tipos de usuarios que va a entrar 1 2 3 4
-        if (!localStorage.getItem('user')) {
+        const user = permissions.getUser()
+        if (user && permissions.guard.includes(user.level)) {
+            setAccess(true)
+        } else {
+            localStorage.removeItem('user')
             setAccess(false)
             navigate('/login')
-        } else {
-            setAccess(true)
         }
-    }, [])
+
+    }, [access])
 
     return access ? children : 'Error de autenticacion de usuario...'
 

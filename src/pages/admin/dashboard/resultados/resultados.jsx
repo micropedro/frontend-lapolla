@@ -7,6 +7,7 @@ import useLoadingStore from "../../../../store/loadingStore"
 import { am_pm_format } from "../../../../services/utils"
 import formatDate from '../../../../services/formatDate'
 import images from '../../../../images/images'
+import permisions from "../../../../services/permissions"
 
 const ModalResult = ({ status, setModal }) => {
     const { deleteAnimal } = useAnimal()
@@ -60,7 +61,7 @@ const Resultados = () => {
         setModal(animal)
     }
 
-    return (
+    if (permisions.permit(7)) return (
         <div>
             <ModalResult status={modal} setModal={setModal} />
             <div>

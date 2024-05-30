@@ -1,23 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
-/* import useRetiros from '../hooks/useRetiros'; */
+import useRetiros from '../hooks/useRetiros';
 import useRetiroStore from '../store/retirosStore';
 import { menu } from '../services/menuLateral.json'
 const useSideMenu = () => {
     const { retiros } = useRetiroStore()
-    /* const { getRetiros } = useRetiros() */
+    const { getRetiros } = useRetiros()
 
     const [selected, setSelected] = useState(0)
 
     useEffect(() => {
-        const direction = menu
-            .map((it, idx) => { return { link: it.link, id: idx } })
-            .filter(item => item.link === window.location.pathname)[0].id
-
-        setSelected(direction)
-
-        /* if (!retiros) getRetiros() */
+        const direction = menu.map((it, idx) => {
+            return { link: it.link, id: idx }
+        }).filter(item => item.link === window.location.pathname)[0]?.id
+        if (direction) setSelected(direction)
+        getRetiros()
     }, [])
 
     const Pending = ({ index }) => {
@@ -29,5 +25,6 @@ const useSideMenu = () => {
     return { setSelected, selected, Pending }
 
 }
+
 
 export default useSideMenu
