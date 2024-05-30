@@ -32,8 +32,10 @@ const useRecargas = () => {
             await getUser()
             reset()
         } catch (error) {
+            console.log(error)
             errorManager(error)
         } finally {
+            reset()
             setLoading(false)
         }
     }

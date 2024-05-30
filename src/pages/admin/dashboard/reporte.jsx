@@ -7,6 +7,7 @@ import useLoadingStore from "../../../store/loadingStore"
 import Spinner from "../../../components/spinner"
 import ReportModal from "../../../components/modals/reportModal"
 import DeleteReportModal from "../../../components/modals/deleteReportModal"
+import permisions from "../../../services/permissions"
 
 function Reporte() {
 
@@ -14,10 +15,10 @@ function Reporte() {
     const { handleModal, handleDelete, saveReport } = useReport()
     const { reports } = useReportStore()
 
-    return (
+    if (permisions.permit(6)) return (
         <>
             <DeleteReportModal />
-            <ReportModal handleExec={saveReport}  />
+            <ReportModal handleExec={saveReport} />
             <div className="flex-between">
                 <h2>Reporte general</h2>
                 <button onClick={() => handleModal()} className="btn btn-primary" > Generar reporte </button>
@@ -42,7 +43,7 @@ function Reporte() {
                             {reports && reports.map((report, index) => {
                                 return (<tr key={index}>
                                     <td>{formatDate2(report.creationDate)}</td>
-                                    <td> { report.ticketsSold } </td>
+                                    <td> {report.ticketsSold} </td>
                                     <td>{report.totalSold}</td>
                                     <td>{report.adminAmount}</td>
                                     <td>{report.gruperoAmount}</td>

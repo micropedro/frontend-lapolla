@@ -22,7 +22,7 @@ const useErrorManager = () => {
 
         } catch (error) {
             console.log(error)
-            notify.error(error)
+            notify.error(error || "Ocurrio un error desconocido")
         }
     }
 }

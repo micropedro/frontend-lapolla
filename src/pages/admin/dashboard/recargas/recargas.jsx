@@ -1,12 +1,13 @@
 import Guard from "../../../../components/Guard";
 import useRecargas from "../../../../hooks/useRecargas"
+import permisions from "../../../../services/permissions";
 import Modal from "./modal";
 const Recargas = () => {
 
     const { userRecharge, setUserCi, userCi, getUserToRecharge, setModal,
         confirmRecharge, setAmountToRecharge, amountToRecharge } = useRecargas()
 
-    return (
+    if (permisions.permit(9)) return (
         <Guard>
             <Modal confirmRecharge={confirmRecharge} />
             <div className='flex-between px-4 pt-3'>

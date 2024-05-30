@@ -5,12 +5,13 @@ import useQuinielas from "../../../../hooks/useQuinielas"
 import PastQuinielas from "./pastQuinielas"
 import QuinielasTickets from "./QuinielasTickets"
 import useLoadingStore from "../../../../store/loadingStore"
+import permisions from "../../../../services/permissions"
 
 const Quinielas = () => {
     const { loading } = useLoadingStore()
     const { createNewQuiniela, menu, setMenu, handler, playingTickets } = useQuinielas()
 
-    return (<Guard>
+    if (permisions.permit(10)) return (<Guard>
         <div>
             <div className='flex-between px-4 pt-3'>
                 <h2> Quinielas </h2>
@@ -26,7 +27,7 @@ const Quinielas = () => {
                 {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
                 {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
             </>}
-            {menu === 3 && <PastQuinielas />  }
+            {menu === 3 && <PastQuinielas />}
         </div >
     </Guard >
     )

@@ -7,11 +7,12 @@ import NavButton from "../../../components/navButton"
 import useMenuVentas from "../../../store/menuVentasStore"
 import { textMenu } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
+import permisions from "../../../services/permissions"
 const Ventas = () => {
     const { polla } = useReportes()
     const { menu } = useMenuVentas()
 
-    return (<Guard>
+    if (permisions.permit(8)) return (<Guard>
         <nav className="bg-dark flex-between p-2">
             <div>
                 <h3 className="text-light m-0">

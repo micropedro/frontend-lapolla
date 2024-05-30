@@ -3,13 +3,14 @@ import useEditUserStore from "../../../store/editUserStore"
 import useLoadingStore from "../../../store/loadingStore"
 import Spinner from '../../../components/spinner'
 import useUserStore from "../../../store/userStore"
+import permisions from "../../../services/permissions"
 const EditUser = () => {
     const { user } = useUserStore()
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()
 
-    return (<>
+    if (permisions.editUser.includes(permisions.getUser().level)) return (<>
 
         <div className='px-4 pt-3'>
             <h2> Editando usuario </h2>

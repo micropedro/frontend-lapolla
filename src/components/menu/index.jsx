@@ -38,6 +38,14 @@ const Menu = () => {
                                     Lobby
                                 </button>
                             </Link>
+                            {user.level !== 5 && <>
+                                <Link to='/dashboard/users' className="mx-2">
+                                    <button className="btn btn-warning mx-1  px-4 box-shadow-btn-landing btn-land-2 form-control mb-1">
+                                        <i className="bi bi-list mx-2"></i>
+                                        Admin
+                                    </button>
+                                </Link>
+                            </>}
                         </div>
                     )}
 

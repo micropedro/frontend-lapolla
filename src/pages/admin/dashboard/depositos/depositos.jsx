@@ -1,11 +1,12 @@
 import useDeposits from "../../../../hooks/useDeposits"
+import permisions from "../../../../services/permissions"
 import Aprobados from "./aprobados"
 import Nuevo from "./nuevo"
 import Pendientes from "./pendientes"
 
 const Depositos = () => {
     const { tab, setTab } = useDeposits()
-    return (<>
+    if (permisions.permit(4)) return (<>
         <div className="nav-depositos">
             <h2 className="p-2 m-0">Depositos</h2>
             <div className="">

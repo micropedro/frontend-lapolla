@@ -1,10 +1,11 @@
 import { useState } from "react"
 import Pending from "./pending"
 import Aproved from "./aproved"
+import permisions from "../../../../services/permissions"
 const Retiros = () => {
 
     const [tab, setTab] = useState(1)
-    return (<>
+    if (permisions.permit(5)) return (<>
         <div className="nav-depositos">
             <h2 className="p-2 m-0">Retiros</h2>
             <div className="">
