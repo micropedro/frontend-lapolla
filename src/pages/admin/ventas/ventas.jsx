@@ -20,12 +20,11 @@ const Ventas = () => {
                 </h3>
             </div>
             <div>
-                <NavButton text={textMenu[0]} />
-                <NavButton text={textMenu[1]} />
+                {permisions.taquilla.includes(permisions.getUser().level) && <NavButton text={textMenu[0]} />}
+                {permisions.taquilla.includes(permisions.getUser().level) && <NavButton text={textMenu[1]} />}
                 <NavButton text={textMenu[2]} />
-                <NavButton text={textMenu[3]} />
+                {permisions.taquilla.includes(permisions.getUser().level) && <NavButton text={textMenu[3]} />}
             </div>
-           
         </nav>
         <section>
             {menu === textMenu[0] && <Taquilla />}

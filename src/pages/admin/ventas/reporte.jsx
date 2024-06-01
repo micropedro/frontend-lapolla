@@ -1,60 +1,16 @@
-// import useReportes from "../../../hooks/useReportes"
-
-// import dateNow from "../../../services/dateNow"
-import useNotify from '../../../hooks/useNotify'
-
-import request from "../../../services/request"
-import urlApi from '../../../services/urlApi'
 import formatDate from '../../../services/formatDate'
 import useLoadingStore from "../../../store/loadingStore"
-import useErrorManager from "../../../hooks/useErrorManager"
 import ReportModal from "../../../components/modals/reportModal"
 import useModalStore from "../../../store/modalStore"
-import useDateStore from "../../../store/dateStore"
 import useUserStore from '../../../store/userStore'
-import { useEffect, useState } from "react"
+import useReportes from '../../../hooks/useReportes'
 
 const Reporte = () => {
-    const { notify } = useNotify()
-    // const { reportes } = useReportes()
+    const { dataTable,generateReport } = useReportes()
     const { setVisible } = useModalStore()
-    const { loading, setLoading } = useLoadingStore()
-    const errorManager = useErrorManager()
-    const { dateStore } = useDateStore()
-    const [dataTable, setDataTable] = useState([])
+    const { loading } = useLoadingStore()
+    
     const { user } = useUserStore()
-
-    const generateReport = async () => {
-        setLoading(true)
-        setVisible(false)
-        try {
-            await request.post(`${urlApi}/report/staf/`,
-                {
-                    date: dateStore.from
-                }
-            )
-            await getDataReports()
-            notify.success('Reporte generado')
-        } catch (error) {
-            errorManager(error)
-        } finally {
-            setLoading(false)
-        }
-
-    }
-
-    const getDataReports = async () => {
-        try {
-            const data = await request.get(`${urlApi}/reports/${user._id}`)
-            setDataTable(data.data.body)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        getDataReports()
-    }, [])
 
     return (<>
         <ReportModal handleExec={generateReport} />

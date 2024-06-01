@@ -1,18 +1,10 @@
 import { convertCeroNumber } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
-import formatDate from "../../../services/formatDate"
+
 
 const TicketSold = () => {
 
-    const { listType, setListType, reportesFiltered } = useReportes()
-    const { reportes, setReportesFiltered } = useReportes()
-
-    const filter = (discound) => {
-        const date = new Date()
-        const queryDate = formatDate(date, discound)
-        const list = reportes.filter((_reporte) => formatDate(_reporte.date) === queryDate)
-        setReportesFiltered(list)
-    }
+    const { listType, setListType, reportesFiltered , filter } = useReportes()
 
     return (<div className="container">
         <div className="row">

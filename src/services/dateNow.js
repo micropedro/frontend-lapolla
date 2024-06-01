@@ -4,13 +4,19 @@ const minutos = date.getMinutes()
 const horas = date.getHours()
 const periodo = horas >= 12 ? 'PM' : 'AM';
 const seconds = date.getSeconds()
+const anio = date.getFullYear()
+const mes = String(date.getMonth() + 1).padStart(2, '0')
+const dia = String(date.getDate()).padStart(2, '0')
 
 const dateNow = {
     fecha,
     minutos,
     periodo,
     seconds,
-    horas
+    horas,
+    anio,
+    mes,
+    dia
 }
 
 export default dateNow

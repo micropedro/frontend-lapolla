@@ -3,6 +3,18 @@ class Permisions {
     guard = [1, 2, 3, 4]
     addUser = [1, 2, 3]
     editUser = [1, 2, 3]
+
+    taquilla = [4]
+    reporte = [2,3,4]
+    ticketsVendidos = [4]
+
+    levelUserDirection = ['/',
+        '/dashboard/users',
+        '/dashboard/users',
+        '/dashboard/users',
+        '/dashboard/ventas',
+        '/Lobby']
+
     getUser = () => {
         const localUser = localStorage.getItem('user')
         if (localUser) {
@@ -10,6 +22,7 @@ class Permisions {
         }
         return false
     }
+
     permit = (indexMenu) => {
         if (!this.getUser() || !menuLateral.menu[indexMenu].permissions.includes(this.getUser().level)) {
             localStorage.removeItem('user')
@@ -18,6 +31,7 @@ class Permisions {
         return true
     }
 }
+
 const permisions = new Permisions
 
 export default permisions

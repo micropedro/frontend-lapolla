@@ -5,6 +5,7 @@ import { useState } from 'react'
 import useLoadingStore from '../store/loadingStore'
 import useNotify from './useNotify'
 import request from "../services/request"
+import permisions from '../services/permissions'
 const useLogin = () => {
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
@@ -36,8 +37,10 @@ const useLogin = () => {
             localStorage.setItem('user', userString)
             notify.success("Inicio de sesion exitoso")
             setLoading(false)
+ 
+            const levelUserDirection = permisions.levelUserDirection 
 
-            navigate(user.level === 5 ? '/Lobby' : '/dashboard/users')
+            navigate(levelUserDirection[user.level])
 
         } catch (error) {
             setLoading(false)

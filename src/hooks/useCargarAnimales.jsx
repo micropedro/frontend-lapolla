@@ -8,6 +8,7 @@ import useNotify from "./useNotify"
 import useErrorManager from "./useErrorManager"
 import { verify, notFalsy } from "../services/verify"
 import formatDate from '../services/formatDate'
+import dateNow from "../services/dateNow"
 
 const useCargarAnimales = () => {
     const errorManager = useErrorManager()
@@ -20,8 +21,9 @@ const useCargarAnimales = () => {
     const [hora, setHora] = useState(8)
     const [inputDate, setInputDate] = useState(null)
 
-    const currentDate = new Date()
-    const formattedDate = currentDate.toISOString().split('T')[0]
+    const formattedDate = dateNow.anio + '-' + dateNow.mes + '-' + dateNow.dia
+
+    console.log(formattedDate)
 
     const handle = (animal) => setAnimalSelected(animal)
 
@@ -48,7 +50,10 @@ const useCargarAnimales = () => {
     useEffect(() => {
         const date = new Date()
         const animalHour = date.getHours()
-        handleHora(animalHour)
+        if (animalHour < 8) handleHora(8)
+        if (animalHour >= 8 && animalHour <= 21) handleHora(animalHour)
+        if (animalHour > 21) handleHora(21)
+
         const fecha = date.getFullYear() + '-' + (String(date.getMonth() + 1).padStart(2, '0')) + '-' + (String(date.getDate()).padStart(2, '0'))
         handleFecha(fecha)
         loadAnimals()
