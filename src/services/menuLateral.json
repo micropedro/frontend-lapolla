@@ -3,13 +3,13 @@
         {
             "name": "Usuarios",
             "icon": "bi bi-people",
+            
             "link": "/dashboard/users",
             "status": true,
             "permissions": [
                 1,
                 2,
-                3,
-                4
+                3
             ]
         },
         {
@@ -51,8 +51,7 @@
             "link": "/dashboard/depositos",
             "status": true,
             "permissions": [
-                1,
-                2
+                1
             ]
         },
         {
@@ -61,8 +60,7 @@
             "link": "/dashboard/retiros",
             "status": true,
             "permissions": [
-                1,
-                2
+                1
             ]
         },
         {
@@ -71,9 +69,7 @@
             "link": "/dashboard/reporte",
             "status": true,
             "permissions": [
-                1,
-                2,
-                3
+                1
             ]
         },
         {
@@ -106,7 +102,6 @@
             "link": "/dashboard/recargas",
             "status": true,
             "permissions": [
-                1,
                 2,
                 3,
                 4

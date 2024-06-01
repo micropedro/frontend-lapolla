@@ -31,6 +31,7 @@ import Resultados from './pages/admin/dashboard/resultados/resultados'
 import Terminos from './pages/politicas/terminosycondiciones'
 import Politicas from './pages/politicas/politicasdeprivacidad'
 import Recargas from './pages/admin/dashboard/recargas/recargas'
+import ReportUser from './pages/admin/dashboard/reportUser/reportUser'
 
 const Router = () => {
     return (<>
@@ -59,7 +60,8 @@ const Router = () => {
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
             <Route path="/dashboard/retiros" element={<Dashboard><Retiros /></Dashboard>} />
             <Route path="/dashboard/resultados" element={<Dashboard><Resultados /></Dashboard>} />
-
+            <Route path="/dashboard/reportuser" element={<Dashboard><ReportUser /></Dashboard>} />
+            
             <Route element={<TemplateClient />}>
                 <Route path="/lobby/" element={<Lobby />} />
                 <Route path="/mini/" element={<Mini />} />

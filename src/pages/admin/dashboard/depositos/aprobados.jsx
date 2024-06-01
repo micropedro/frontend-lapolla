@@ -28,12 +28,12 @@ const Aprobados = ({ id }) => {
                     {deposits.filter(deposit => deposit.status === id).length > 0 ? deposits.filter(deposit => deposit.status === id).map((deposit) => {
                         return <tr key={deposit._id} >
                             <td>
-                                {formatDate(deposit.date)}
+                                {formatDate(deposit?.date)}
                             </td>
-                            <td>{deposit.operationRef}</td>
-                            <td>{deposit.amount}</td>
-                            <td>{deposit.adminMethod.methodName}</td>
-                            <td>{depositStatus(deposit.status)}</td>
+                            <td>{deposit?.operationRef}</td>
+                            <td>{deposit?.amount}</td>
+                            <td>{deposit?.adminMethod?.methodName || "Metodo eliminado"}</td>
+                            <td>{depositStatus(deposit?.status)}</td>
                         </tr>
                     })
                         : <tr>

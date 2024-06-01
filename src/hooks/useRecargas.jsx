@@ -7,22 +7,29 @@ import useLoadingStore from "../store/loadingStore"
 import usePerfil from "./usePerfil"
 
 const useRecargas = () => {
+
     const { getUser } = usePerfil()
-    const { setLoading } = useLoadingStore()
+    const { setLoading, loading } = useLoadingStore()
     const errorManager = useErrorManager()
     const { userRecharge, setUserRecharge, userCi, setUserCi, setModal, amountToRecharge, setAmountToRecharge } = useRecargasStore()
     const { notify } = useNotify()
 
-    const getUserToRecharge = async () => {
+    const getUserToRecharge = async (e = false) => {
+        if (e) e.preventDefault()
+        console.log(e.target)
         try {
+            setLoading(true)
             const res = await request.get(urlApi + '/user/ci/' + userCi)
             setUserRecharge(res.data.body)
         } catch (error) {
             errorManager(error)
+        } finally {
+            setLoading(false)
         }
     }
 
     const confirmRecharge = async () => {
+
         try {
             setLoading(true)
             const _id = userRecharge._id
@@ -55,7 +62,8 @@ const useRecargas = () => {
         setModal,
         confirmRecharge,
         setAmountToRecharge,
-        amountToRecharge
+        amountToRecharge,
+        loading
     }
 }
 

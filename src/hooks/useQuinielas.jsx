@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import useErrorManager from "../hooks/useErrorManager"
 import useLoadingStore from "../store/loadingStore"
 import useQuinielasStore from "../store/quinielasStore"
-import { getAllQuinielas, createQuiniela } from "../controllers/quinielasController"
+import { getAllQuinielas, createQuiniela, closeGranQuiniela } from "../controllers/quinielasController"
 import { getTiketsDeHoy, getTiketsDeAyer } from "../controllers/ticketController"
 import useTicket from "./useTicket"
 const useQuinielas = () => {
@@ -63,6 +63,11 @@ const useQuinielas = () => {
 
     }
 
+    const cerrarGranQuiniela = async ()=>{
+        const res = await closeGranQuiniela()
+        console.log(res.data)
+    }
+
     useEffect(() => { getQuinielas() }, [])
 
     return {
@@ -70,7 +75,8 @@ const useQuinielas = () => {
         createNewQuiniela,
         menu, setMenu,
         handler,
-        playingTickets
+        playingTickets,
+        cerrarGranQuiniela
     }
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 const Hora = ({ handleHora, hora }) => {
     return (
         <select defaultValue={hora} className="btn-cargar" name="hora" id="hora" onChange={(e) => handleHora(e.target.value)}>
