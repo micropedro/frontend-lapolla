@@ -7,7 +7,7 @@ import useNotify from "../../../hooks/useNotify"
 
 const Print = () => {
     const { notify } = useNotify()
-    const { setVisible, animals, setAnimals, ticketCode } = useTicketStore()
+    const { setVisible, animals, setAnimals, ticketCode, ticketData } = useTicketStore()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,16 +22,22 @@ const Print = () => {
         <div className="ticket-body p-3">
             <div>
                 <div className="text-center">
-                    <h2>apuestaslapolla.com</h2>
-                    <div>NRO TICKET. 234 - <i>CODIGO: {ticketCode}</i></div>
+                    <h4>apuestaslapolla.com</h4>
+                    <div><i>CODIGO: {ticketCode}</i></div>
                     <p className="text-center">
-                        {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                        <div>
+                            Comprado el {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                        </div>
                     </p>
                 </div>
                 <div>----------------------------</div>
                 <h4>
                     GRAN QUINIELA 25.BS
                 </h4>
+                <div> Nº: {ticketData?.count} </div>
+                <div>
+                    Para jugar el: {ticketData?.fechaQuiniela}
+                </div>
                 <div>----------------------------</div>
                 <div className="container-fluid mx-400">
                     <div className="row">

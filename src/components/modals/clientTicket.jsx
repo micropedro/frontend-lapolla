@@ -19,7 +19,7 @@ const ClientTicket = () => {
         <div className="card p-3">
             <div>
                 <div className="text-center">
-                    <h3>apuestaslapolla.com</h3>
+                    <h4>apuestaslapolla.com</h4>
                     <div>Nro Ticket - <i>Codigo: {ticketCode}</i></div>
                     <p className="text-center">
                         {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}

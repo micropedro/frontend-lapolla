@@ -8,6 +8,11 @@ class Permisions {
     reporte = [2,3,4]
     ticketsVendidos = [4]
 
+    userBtnAdmin = [1]
+    userBtnGroup = [1,2]
+    userBtnAgencia = [1,2,3]
+    userBtnClient = [1]
+
     levelUserDirection = ['/',
         '/dashboard/users',
         '/dashboard/users',

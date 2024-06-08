@@ -8,28 +8,30 @@ import loadingStore from "../store/loadingStore"
 import useErrorManager from "./useErrorManager"
 import useUser from './useUser';
 import { useEffect, useState } from "react"
-const useTicket = () => {
+import getTicketCode from "../services/getTicketCode"
+import { getCurrentTicketData } from "../controllers/ticketController"
+import formatDate from "../services/formatDate"
 
+const useTicket = () => {
     const errorManager = useErrorManager()
     const { getUser } = useUser()
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user, setUser } = useUserStore()
-    const { animals, type, ticketCode, setVisible, setAnimals, tickets, setTickets } = useTicketStore()
+    const { animals, type, setVisible, setAnimals, tickets, setTickets, setTicketData } = useTicketStore()
     const { notify } = useNotify()
-
     const [playingTickets, setPlayingTickets] = useState([])
 
     const handlePrint = async () => {
-        setLoading(true)
-
-        const body = { animals, user, type, code: ticketCode }
-
         try {
+            setLoading(true)
+            const code = await getTicketCode()
+            const body = { animals, user, type, code }
+
+            if (!code) throw "Error al obtener el codigo de ticket"
             if (!body.animals) throw "No animals"
             if (!body.user) throw "No user"
             if (!body.type) throw "No type"
-            if (!body.code) throw "No code"
             if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: " + body.animals.length
 
             const res = await request.post(`${urlApi}/tickets`, body)
@@ -53,9 +55,12 @@ const useTicket = () => {
     const saveTicketClient = async () => {
         setLoading(true)
 
-        const body = { animals, user, type, code: ticketCode }
 
         try {
+
+            const code = await getTicketCode()
+            const body = { animals, user, type, code }
+
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {
                 const _user = await getUser(user._id)
@@ -109,6 +114,22 @@ const useTicket = () => {
         }
     }
 
+    const getTicketData = async (quinielaType) => {
+        const currentTicket = await getCurrentTicketData(quinielaType)
+        const quiniela = currentTicket.data.body
+        const count = quiniela.count
+        const date = new Date(quiniela.fechaQuiniela)
+        const _fechaQuiniela = date.setDate(date.getDate() + 2)
+        const fechaQuiniela = formatDate(_fechaQuiniela)
+        const ticketCount = 1
+        const data = {
+            count,
+            fechaQuiniela,
+            ticketCount
+        }
+        if (currentTicket) setTicketData(data)
+    }
+
     useEffect(() => {
         getTickets();
         //setTodayTickets(345)
@@ -121,7 +142,8 @@ const useTicket = () => {
         getAllTickets,
         tickets,
         playingTickets,
-        setPlayingTickets
+        setPlayingTickets,
+        getTicketData
     }
 }
 

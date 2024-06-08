@@ -102,6 +102,7 @@
             "link": "/dashboard/recargas",
             "status": true,
             "permissions": [
+                1,
                 2,
                 3,
                 4

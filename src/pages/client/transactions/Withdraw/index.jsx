@@ -17,7 +17,7 @@ const Withdraw = () => {
                                 <span><i className="bi bi-box-arrow-right" /> Retiro</span>
                                 <span className={`${styles.itemWinText} d-flex align-items-center gap-2`}>
                                     <i className="bi bi-cash text-gray"></i>
-                                    <span className='text-gray'>BS. {ret.amount}</span>
+                                    <span className='text-gray'>{ret.tipoDeCambio === 1 ? "BS" : "$"}. {ret.amount}</span>
                                 </span>
                             </div>
 

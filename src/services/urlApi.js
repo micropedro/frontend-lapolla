@@ -5,6 +5,6 @@ const urlApi = env === "true" ? pathLocale : pathProduction */
 
 //production
 import { pathProduction } from '../config.json'
-const urlApi = pathProduction 
+const urlApi = pathProduction
 
 export default urlApi

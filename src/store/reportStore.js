@@ -13,6 +13,10 @@ const useReportStore = createWithEqualityFn((set) => ({
     setReports: (newReports) => set(() => ({
         reports: newReports
     })),
+    total: 0,
+    setTotal: (newTotal) => set(() => ({
+        total: newTotal
+    })),
 
 }))
 

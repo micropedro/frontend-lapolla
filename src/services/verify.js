@@ -1,7 +1,7 @@
 export function verify(arrayData) {
-    const lenght = arrayData.length
+    const length = arrayData.length
     const filtered = arrayData.filter((data) => data)
-    if (lenght !== filtered.length) return false
+    if (length !== filtered.length) return false
     return true
 }
 

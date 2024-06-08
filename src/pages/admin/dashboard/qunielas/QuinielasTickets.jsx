@@ -16,10 +16,14 @@ const QuinielasTickets = ({ tickets, menu }) => {
             <div className="container-fluid">
 
                 {menu === 1 && <div className="row g-1">
-                    <div className="col-12 px-1 mb-2 d-flex gap-2">
-                        <div className="border p-2 shadow d-inline-flex">
-                            Animalitos de hoy: sdf sdf sd fsd fsdfsdfd sdf sdf
-                            {animals.length > 0 ? animals.map((animal, index) => <div key={index} className="d-flex mx-1">{formatIf37(animal.animalId)} {animals.length > index + 1 && ','} </div>) : "sin animales"}
+                    <div className="col-12 px-1 mb-2 d-flex gap-2 ">
+                        <div className="border p-2 shadow">
+                            <div>
+                                Animalitos de hoy:
+                            </div>
+                            <div>
+                                {animals.length > 0 ? animals.map((animal, index) => <div key={index} className="d-flex mx-1">{formatIf37(animal.animalId)} {animals.length > index + 1 && ','} </div>) : "sin animales"}
+                            </div>
                         </div>
                         <div className="border p-2 shadow">
                             Tickets vendidos:

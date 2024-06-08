@@ -6,10 +6,10 @@ import useUserStore from '../../../store/userStore'
 import useReportes from '../../../hooks/useReportes'
 
 const Reporte = () => {
-    const { dataTable,generateReport } = useReportes()
+    const { dataTable, generateReport } = useReportes()
     const { setVisible } = useModalStore()
     const { loading } = useLoadingStore()
-    
+
     const { user } = useUserStore()
 
     return (<>
@@ -31,6 +31,8 @@ const Reporte = () => {
                                 <th>Vendidos</th>
                                 <th>Total BS</th>
                                 <th>Comisión Agencias</th>
+                                <th>Total a pagar</th>
+                                <th>Pagos</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +45,14 @@ const Reporte = () => {
                                         {user.level === 4 && data.agenciaAmount}
                                         {user.level === 3 && data.gruperoAmount}
                                         {user.level === 2 && data.adminAmount}
+                                    </td>
+                                    <td>
+                                        -{data.totalSold - data.agenciaAmount}
+                                    </td>
+                                    <td>
+                                        <button className='btn btn-primary'>
+                                            Pagar
+                                        </button>
                                     </td>
                                 </tr>
                             )) : <tr>

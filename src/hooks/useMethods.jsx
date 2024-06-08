@@ -29,6 +29,7 @@ const useMethods = () => {
         setSelectedSecondary(null)
         setDefaultMethod({ _id: undefined })
         setImageUrl("")
+        setTextSecondary("")
     }
 
     const validateImage = (image) => {

@@ -747,3 +747,13 @@ body {
 .min-h-100{
     min-height: 100vh;
 }
+.recargas-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.hover-light-blue:hover{
+    background-color: #cae3ff;
+}

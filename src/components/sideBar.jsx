@@ -18,10 +18,15 @@ const SideBar = () => {
             <div>
                 <h5 className='welcomeSidebarText'>Bienvenido,</h5>
                 <div className='text-gray'>
-                    {user.name && <span className='sidebarNameEmail'> {user.name} </span>}
+                    {user?.name && <span className='sidebarNameEmail'> {user?.name} </span>}
 
-                    {user.email && <span className='sidebarNameEmail'> {user.email} </span>}
-                    {money(user.balance) } BS
+                    {user?.email && <span className='sidebarNameEmail'> {user?.email} </span>}
+
+                    {user?.ci && <span className='sidebarNameEmail'> {user?.ci} </span>}
+
+                    <div className={user.balance >= 0 ? 'text-light' : 'text-danger'}>
+                        {money(user.balance)} BS
+                    </div>
                 </div>
             </div>
             <div className='mt-4'>
@@ -42,7 +47,7 @@ const SideBar = () => {
                 </Link>}
 
             </div>
-        </div>
+        </div >
     </>)
 }
 
