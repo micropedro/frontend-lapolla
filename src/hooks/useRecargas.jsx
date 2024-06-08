@@ -5,6 +5,8 @@ import useRecargasStore from "../store/recargasStore"
 import useNotify from "./useNotify"
 import useLoadingStore from "../store/loadingStore"
 import usePerfil from "./usePerfil"
+import { useState } from "react"
+import { postRecharge } from "../controllers/recargasController"
 
 const useRecargas = () => {
 
@@ -13,6 +15,7 @@ const useRecargas = () => {
     const errorManager = useErrorManager()
     const { userRecharge, setUserRecharge, userCi, setUserCi, setModal, amountToRecharge, setAmountToRecharge } = useRecargasStore()
     const { notify } = useNotify()
+    const [menu, setMenu] = useState(1)
 
     const getUserToRecharge = async (e = false) => {
         if (e) e.preventDefault()
@@ -34,7 +37,7 @@ const useRecargas = () => {
             setLoading(true)
             const _id = userRecharge._id
             const amount = amountToRecharge
-            const res = await request.post(urlApi + "/transaction", { _id, amount })
+            const res = await postRecharge({ _id, amount })
             if (res) notify.success(res.data.message)
             await getUser()
             reset()
@@ -63,7 +66,8 @@ const useRecargas = () => {
         confirmRecharge,
         setAmountToRecharge,
         amountToRecharge,
-        loading
+        loading,
+        menu, setMenu
     }
 }
 

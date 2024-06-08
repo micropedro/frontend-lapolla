@@ -19,7 +19,7 @@ const EditUser = () => {
         <div>
             <form onSubmit={(e) => sendUserForm(e)}>
                 <input type="hidden" disabled name="_id" value={editUser._id} />
-                <table className="table">
+                <table className="table table-striped">
                     <tbody>
                         <tr>
                             <td>Id</td>
@@ -61,13 +61,15 @@ const EditUser = () => {
                             <td>Administrador</td>
                             <td>
                                 {/*  {user.admin || <span className="text-danger">Sin administrador</span>} */}
-                                <input defaultValue={editUser.admin} name="admin" type="text" className="form-control" placeholder="Ingrese el id del administrador" />
+                                {editUser?.admin?.name || "No posee"}
+                                <input defaultValue={editUser?.admin?._id} name="admin" type="text" className="form-control" placeholder="Ingrese el id del administrador" />
                             </td>
                         </tr>
                         <tr>
                             <td>Grupero</td>
                             <td>
-                                <input defaultValue={editUser.grupero} name="grupero" type="text" className="form-control" placeholder="Ingrese el id del grupero" />
+                                {editUser?.grupero?.name || "No posee"}
+                                <input defaultValue={editUser?.grupero?._id} name="grupero" type="text" className="form-control" placeholder="Ingrese el id del grupero" />
                                 {/*  {user.grupero || <span className="text-danger">Sin grupero</span>}  */}
                             </td>
                         </tr>

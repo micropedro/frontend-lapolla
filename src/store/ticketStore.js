@@ -24,7 +24,11 @@ const useTicketStore = createWithEqualityFn((set) => ({
     tickets: false,
     setTickets: (newTickets) => set(() => ({
         tickets: newTickets
-    }))
+    })),
+    ticketData: {},
+    setTicketData: (newTicketData) => set(() => ({
+        ticketData: newTicketData
+    })),
 }))
 
 export default useTicketStore

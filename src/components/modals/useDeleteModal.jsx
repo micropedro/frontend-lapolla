@@ -22,7 +22,7 @@ const useDeleteUserModal = () => {
             setText("Eliminando usuario: " + name)
             setLoading(true)
             if (!_id) throw "Id es requerido, code error 1"
-            const response = await request.post(urlApi + "/admin/deleteuser", { _id })
+            const response = await request.delete(urlApi + "/admin/deleteuser/" + _id)
             if (response.data.status === 200) {
                 notify.success('Usuario eliminado con exito')
                 await getUsers()

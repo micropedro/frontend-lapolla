@@ -4,6 +4,8 @@ import Spinner from '../../../components/spinner'
 import { datos } from '../../../services/metodos.json'
 import useMethods from '../../../hooks/useMethods'
 import permisions from '../../../services/permissions'
+import BancSelect from '../../../components/bancSelect/bancSelect'
+import { Link } from 'react-router-dom'
 const Metodos = () => {
     const { loading } = useLoadingStore()
     const { handleSelected, handleSelectedSecondary, sendForm, deleteMethod, itemType,
@@ -22,7 +24,7 @@ const Metodos = () => {
                 <Spinner color={'black'} />
             </div> :
                 <>
-                    <div className='container mb-5 bg-gray-2 radius p-4 text-dark'>
+                    <div className='container mb-3 bg-gray-2 radius p-4 text-dark'>
                         <div className="row">
                             <div className="col-6">
                                 <h4>Nombre del metodo</h4>
@@ -65,8 +67,22 @@ const Metodos = () => {
                                 <form onSubmit={sendForm}>
                                     {selected.length > 0 && selected.map((item, index) => {
                                         return <div className='col-12' key={index}>
-                                            {item}
-                                            <input onChange={handleInputs} required type={itemType(item)} name={item} className='form-control' placeholder={`Ingrese ${item}`} />
+                                            {item === "banco" ? <>
+                                                Banco
+                                                <BancSelect change={handleInputs} name={item} />
+                                            </> :
+                                                item === "tipo" ? <>
+                                                    Tipo de cuenta
+                                                    <select onChange={handleInputs} name={item} className='form-select' >
+                                                        <option value="corriente"> Corriente </option>
+                                                        <option value="ahorros"> Ahorros </option>
+                                                    </select>
+                                                </> :
+                                                    <>
+                                                        {item}
+                                                        <input onChange={handleInputs} required type={itemType(item)} name={item} className='form-control' placeholder={`Ingrese ${item}`} />
+                                                    </>
+                                            }
                                         </div>
                                     })}
                                     <button className='btn btn-lg btn-success mt-4 w-100'> Guardar este Metodo de pago </button>
@@ -74,6 +90,13 @@ const Metodos = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className='text-end pb-2'>
+                        <Link to='/dashboard/historialChanges' >
+                            <button className='btn text-primary'> <i className='bi bi-list' /> Historial de tipos de cambio </button>
+                        </Link>
+                    </div>
+
                     <table className='table table-border' >
                         <thead>
                             <tr>

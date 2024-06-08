@@ -12,7 +12,7 @@ import permisions from "../../../services/permissions"
 function Reporte() {
 
     const { loaidng } = useLoadingStore()
-    const { handleModal, handleDelete, saveReport } = useReport()
+    const { handleModal, handleDelete, saveReport, date1, date2, findDates, total } = useReport()
     const { reports } = useReportStore()
 
     if (permisions.permit(6)) return (
@@ -22,6 +22,17 @@ function Reporte() {
             <div className="flex-between">
                 <h2>Reporte general</h2>
                 <button onClick={() => handleModal()} className="btn btn-primary" > Generar reporte </button>
+            </div>
+            <div className="flex-between">
+                <div>
+                    Filtrar
+                    <input ref={date1} type="date" className="mx-3" />
+                    <input ref={date2} type="date" className="mx-3" />
+                    <button onClick={findDates}> Buscar </button>
+                </div>
+                <div className="d-inline-flex">
+                    Ganancias totales: <h3 className="mx-2"> Bs. {total && total}</h3> 
+                </div>
             </div>
             <hr />
             {loaidng ? <div className="text-center p-5"><Spinner color="blue" /></div> :

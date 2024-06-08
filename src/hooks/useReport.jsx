@@ -1,29 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import useReportStore from "../store/reportStore"
 import useErrorManage from "../hooks/useErrorManager"
 import useModalStore from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
-import { getAllReports, createReport, deleteReport } from "../controllers/reportController"
-import { useEffect } from "react"
+import { getAllReports, createReport, deleteReport, getReportsOfDates } from "../controllers/reportController"
+import { useEffect, useRef } from "react"
 import useModalDeleteReportStore from "../store/modalDeleteReportStore"
+import { validate } from "../services/validate"
+import useNotify from "./useNotify"
+import useDateStore from "../store/dateStore"
 const useReport = () => {
-
+    const { dateStore } = useDateStore()
+    const { notify } = useNotify()
+    const { required } = validate
+    const date1 = useRef()
+    const date2 = useRef()
     const { setVisibleDeleteReport, setTextDeleteReport, setClickEventDeleteReport, setButtonTextDeleteReport } = useModalDeleteReportStore()
-
     const { setLoading } = useLoadingStore()
-
     const { setVisible } = useModalStore()
-
     const erroManager = useErrorManage()
-    const { setReports, reportDate, setReportDate } = useReportStore()
+    const { setReports, reportDate, setReportDate, total, setTotal } = useReportStore()
+
+    const getTotalArray = (reportsData)=> reportsData.map(i => i.homeBalance).reduce((a, b) => a + b, 0)
 
     const getReports = async () => {
         try {
             setLoading(true)
             const { data } = await getAllReports()
-            setReports(data.body)
+            setReportDate(dateStore.from)
+            const reportsData = data.body
+            setReports(reportsData)
             setLoading(false)
-            return data.body
+            const _total = getTotalArray(reportsData)
+            setTotal(_total)
+            return reportsData
         } catch (error) {
             setReports([])
             setLoading(false)
@@ -35,7 +44,6 @@ const useReport = () => {
         try {
             setLoading(true)
             setVisible(false)
-            console.log(reportDate)
             await createReport(reportDate)
             await getReports()
         } catch (error) {
@@ -74,10 +82,35 @@ const useReport = () => {
 
     useEffect(() => { getReports() }, [])
 
+    const findDates = async () => {
+        try {
+            setLoading(true)
+            const from = date1.current.value
+            const to = new Date(date2.current.value)
+            to.setHours(to.getHours() + 4)
+            required(from, "Ingrese una fecha de inicio")
+            required(to, "Ingrese una fecha de finalizacion")
+
+            const response = await getReportsOfDates({ from, to })
+            const arrayReports = response.data.body
+            const _total = getTotalArray(arrayReports)
+            setTotal(_total)
+            if (!arrayReports) return notify.success("No se encontraron reportes")
+            setReports(arrayReports)
+
+        } catch (error) {
+            erroManager(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return {
         handleModal,
         saveReport,
-        handleDelete
+        handleDelete,
+        date1, date2, findDates,
+        total
     }
 }
 

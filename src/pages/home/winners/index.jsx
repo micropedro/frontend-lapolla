@@ -35,7 +35,7 @@ const WinnerDetails = ({ quiniela }) => {
                 <p className={styles.cardP}>{quiniela?.tipoQuiniela === 1 ? "Gran Quiniela" : "Mini Quiniela"}</p>
                 <p className={styles.cardP}>{formatDate2(quiniela?.fechaQuiniela)}</p>
             </div>
-            <p className={styles.countWinners}>{quiniela.winners.lenght} ganadores</p>
+            <p className={styles.countWinners}>{quiniela.winners.length} ganadores</p>
             <p className={styles.awards}>Premio {(quiniela.acumulado * quiniela.porcentajePremio ) / 100} BS</p>
         </div>)
 }
