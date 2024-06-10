@@ -3,7 +3,7 @@ import { cleanMethods } from '../../../services/utils'
 import useMethodModal from './useMethodModal';
 // eslint-disable-next-line react/prop-types
 const AddBankModal = ({ show, handleClose }) => {
-    const { handleChangeMethod, RenderForm, adminMethods, setDataForm, handleSave } = useMethodModal(handleClose)
+    const { handleChangeMethod, RenderForm, adminMethods, setDataForm, handleSave } = useMethodModal()
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -27,12 +27,12 @@ const AddBankModal = ({ show, handleClose }) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => {
-                    setDataForm({})
-                    handleClose(false)
+                    setDataForm({});
+                    handleClose();
                 }}>
                     Cerrar
                 </Button>
-                <Button type='submit' variant="primary" onClick={handleSave}>
+                <Button type='submit' variant="primary" onClick={() => { handleSave(); handleClose() }}>
                     Guardar
                 </Button>
             </Modal.Footer>

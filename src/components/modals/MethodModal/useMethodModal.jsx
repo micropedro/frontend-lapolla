@@ -12,7 +12,7 @@ const useMethodModal = () => {
     const { adminMethods, getUser, user } = usePerfil()
     const { sendForm, setMethodName, setImageUrl } = useMethods()
 
-    const handleSave = async (handleClose) => {
+    const handleSave = async () => {
         try {
             // se declara "e" para que sea compatible con el metodo sendForm
             const e = {
@@ -30,7 +30,6 @@ const useMethodModal = () => {
             await getUser()
             setDataForm({})
             // Después de guardar los datos, cierra el modal
-            handleClose();
         } catch (error) {
             errorManager(error)
         }

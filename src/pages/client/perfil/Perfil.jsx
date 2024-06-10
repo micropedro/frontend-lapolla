@@ -16,14 +16,15 @@ const Perfil = () => {
     const [idMethod, setIdMethod] = useState("")
     const { loading } = useLoadingStore()
     const { deleteMethod } = useMethods()
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [show, setShow] = useState(false)
 
-    const handleDeleteMethod = () => {
-        deleteMethod(idMethod)
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+
+    const handleDeleteMethod = async () => {
+        await deleteMethod(idMethod)
         setIdMethod('')
-        getUser()
+        await getUser()
         handleClose()
     }
 
