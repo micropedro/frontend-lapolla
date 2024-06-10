@@ -55,14 +55,18 @@ const WithdrawModal = ({ show, onHide }) => {
     }
 
     const calc = (amount) => {
-        const redondeado = handleAmount(methodSelected.adminMethodId.tipoDeCambio, amount)
-        setTotalAmount(redondeado)
-        handleError(redondeado)
+        console.log(amount)
+        console.log(methodSelected)
+        if (methodSelected?.adminMethodId?.tipoDeCambio) {
+            const redondeado = handleAmount(methodSelected?.adminMethodId?.tipoDeCambio, amount)
+            setTotalAmount(redondeado)
+            handleError(redondeado)
+        }
     }
 
     useEffect(() => {
         if (amount) calc(amount)
-    }, [amount,methodSelected])
+    }, [amount, methodSelected])
 
     const handleError = (totalAmount) => {
         if (user.balance < totalAmount) {
