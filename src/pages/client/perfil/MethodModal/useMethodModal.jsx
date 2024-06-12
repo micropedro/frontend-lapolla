@@ -1,7 +1,7 @@
-import useErrorManager from '../../../hooks/useErrorManager';
-import BancSelect from '../../bancSelect/bancSelect';
-import usePerfil from '../../../hooks/usePerfil'
-import useMethods from '../../../hooks/useMethods'
+import useErrorManager from '../../../../hooks/useErrorManager';
+import BancSelect from '../../../../components/bancSelect/bancSelect';
+import usePerfil from '../../../../hooks/usePerfil'
+import useMethods from '../../../../hooks/useMethods'
 import { useState, useCallback } from 'react';
 import { Form } from 'react-bootstrap';
 
@@ -9,27 +9,50 @@ const useMethodModal = () => {
     const errorManager = useErrorManager()
     const [methodSelected, setMethodSelected] = useState('')
     const [dataForm, setDataForm] = useState({})
-    const { adminMethods, getUser, user } = usePerfil()
+    const { adminMethods, getUser, user,handleClose } = usePerfil()
     const { sendForm, setMethodName, setImageUrl } = useMethods()
 
-    const handleSave = async () => {
+    const handleSave = async (e) => {
+        e.preventDefault()
         try {
             // se declara "e" para que sea compatible con el metodo sendForm
-            const e = {
+            /* const e = {
                 target: Object.keys(dataForm).reduce((acc, key) => {
                     acc[key] = { value: dataForm[key] }
                     return acc;
                 }, {}),
                 preventDefault: () => { }
+            } */
+
+            const correo = e.target.correo?.value || ""
+            const cuenta = e.target.cuenta?.value || ""
+            const tipo = e.target.tipo?.value || ""
+            const cedula = e.target.cedula?.value || ""
+            const banco = e.target.banco?.value || ""
+            const nombre = e.target.nombre?.value || ""
+            const telefono = e.target.telefono?.value || ""
+            const secondary = e.target.secondary?.value || "client"
+            const adminMethodId = e?.target?.adminMethodId?.value || '000000000000000000000000'
+
+            const e2 = {
+                target: {
+                    correo: { value: correo },
+                    cuenta: { value: cuenta },
+                    tipo: { value: tipo },
+                    cedula: { value: cedula },
+                    banco: { value: banco },
+                    nombre: { value: nombre },
+                    telefono: { value: telefono },
+                    secondary: { value: secondary },
+                    adminMethodId: { value: adminMethodId },
+                },
+                preventDefault: () => { }
             }
 
-            e.target.secondary = { value: "client" }
-            e.target.adminMethodId = { value: methodSelected }
-
-            await sendForm(e)
+            handleClose()
+            await sendForm(e2)
             await getUser()
-            setDataForm({})
-            // Después de guardar los datos, cierra el modal
+            
         } catch (error) {
             errorManager(error)
         }
@@ -67,7 +90,6 @@ const useMethodModal = () => {
                     tipo: method.tipo ? true : false,
                     nombre: method.nombre ? true : false,
                     secondary: method.secondary ? true : false
-                    // imageUrl: method.imageUrl
                 }
             })
 
@@ -98,10 +120,7 @@ const useMethodModal = () => {
                                     : meth === "correo" ?
                                         <input type="email" name={meth} value={user.email} className='form-control' />
                                         :
-                                        <Form.control
-                                            type="text"
-                                            name={meth}
-                                        />
+                                        <Form.Control type="text" name={meth} />
                         }
                     </Form.Group>
                 )
@@ -110,8 +129,8 @@ const useMethodModal = () => {
     }, [methodSelected]);
 
     return {
-        handleChangeMethod, RenderForm, adminMethods, setDataForm,
-        handleSave
+        handleChangeMethod, RenderForm, setDataForm,
+        handleSave,setMethodSelected
     }
 }
 

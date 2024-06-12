@@ -1,53 +1,18 @@
-import MethodModal from '../../../components/modals/MethodModal/MethodModal'
-import { useState } from 'react'
+import MethodModal from './MethodModal/MethodModal'
 import formatDate from '../../../services/formatDate'
 import usePerfil from '../../../hooks/usePerfil'
-import useMethods from '../../../hooks/useMethods'
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import Spinner from "../../../components/spinner"
 import useLoadingStore from "../../../store/loadingStore"
-// import useUser from '../../../hooks/useUser'
+import ModalConfirmDelete from './modalConfirmDelete'
 
 const Perfil = () => {
 
-    const { user, getUser } = usePerfil()
-    const [showBank, setShowBank] = useState(false)
-    const [idMethod, setIdMethod] = useState("")
+    const { user, setModalAddMethod, setIdMethod, handleShow } = usePerfil()
     const { loading } = useLoadingStore()
-    const { deleteMethod } = useMethods()
-    const [show, setShow] = useState(false)
-
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
-
-    const handleDeleteMethod = async () => {
-        await deleteMethod(idMethod)
-        setIdMethod('')
-        await getUser()
-        handleClose()
-    }
-
-    const ModalConfirm = () => {
-        return <Modal show={show} onHide={handleClose} animation={false}>
-            <Modal.Header closeButton>
-                <Modal.Title>Eliminar metodo de pago</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>esta seguro de eliminar este metodo de pago?</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    cerrar
-                </Button>
-                <Button variant="danger" onClick={handleDeleteMethod}>
-                    Eliminar
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    }
 
     return (<>
-        <ModalConfirm />
-        {<MethodModal show={showBank} handleClose={setShowBank} />}
+        <ModalConfirmDelete />
+        <MethodModal />
         {loading && (<div className='bg-modal'><Spinner /></div>)}
         <div className='container mt-3'>
             <div className='row pb-2'>
@@ -86,7 +51,7 @@ const Perfil = () => {
                                 </h4>
                             </div>
                             <div className="col-6 mb-3">
-                                <button onClick={() => setShowBank(true)} className="btn btn-success w-100">
+                                <button onClick={() => setModalAddMethod(true)} className="btn btn-success w-100">
                                     <i className="bi bi-house-add" style={{ fontSize: '20px' }} /> Agregar Metodo de pago
                                 </button>
                             </div>
@@ -110,7 +75,7 @@ const Perfil = () => {
                                                     {method.tipo && <p className='mb-0'>{method.tipo} </p>}
                                                     {method.cedula && <p className='mb-0'>{method.cedula} </p>}
                                                     {method.nombre && <p className='mb-0'>{method.nombre} </p>}
-                                                    {method?.adminMethodId?.tipoDeCambio && <><b>Tipo de cambio:</b> {method.adminMethodId.tipoDeCambio} Bs</> }
+                                                    {method?.adminMethodId?.tipoDeCambio && <><b>Tipo de cambio:</b> {method.adminMethodId.tipoDeCambio} Bs</>}
                                                 </div>
                                                 <div className="position-absolute bottom-0 end-0 m-2" onClick={() => {
                                                     setIdMethod(method._id)

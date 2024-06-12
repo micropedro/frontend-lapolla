@@ -2,6 +2,7 @@ import { Spinner } from "react-bootstrap"
 import useLoadingStore from "../../../../store/loadingStore"
 import useRetiros from "../../../../hooks/useRetiros"
 import formatDate from "../../../../services/formatDate"
+import {getTime2} from "../../../../services/formatDate"
 import Status from "../../../../components/Status"
 
 const Pending = () => {
@@ -26,7 +27,7 @@ const Pending = () => {
                         {retiros.filter(_retiro => _retiro.state === 1).length > 0 ? retiros.filter(retiro => retiro.state === 1).map((retiro) => {
                             return <tr key={retiro._id} >
                                 <td>
-                                    {formatDate(retiro.date)}
+                                    {formatDate(retiro.date)} - {getTime2(retiro.date)}
                                 </td>
                                 <td>{retiro.amount}</td>
                                 <td>

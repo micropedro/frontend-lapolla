@@ -58,7 +58,6 @@ const MenuClient = ({ children }) => {
                 </div>
             </div>
         </div>
-
     )
 }
 
