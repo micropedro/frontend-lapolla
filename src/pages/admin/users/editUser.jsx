@@ -6,12 +6,14 @@ import useUserStore from "../../../store/userStore"
 import permisions from "../../../services/permissions"
 import Form from 'react-bootstrap/Form';
 import useBlock from "../../../hooks/useBlock"
+import Badge from 'react-bootstrap/Badge';
+
 const EditUser = () => {
     const { user } = useUserStore()
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()
-    const { block, handleBlock, load } = useBlock()
+    const { handleBlock, load } = useBlock()
 
     if (permisions.editUser.includes(permisions.getUser().level)) return (<>
         {load && (<div className='bg-modal'><Spinner /></div>)}
@@ -87,14 +89,20 @@ const EditUser = () => {
                             <td> {editUser.balance} </td>
                         </tr>
                         <tr>
-                            <td>Bloqueado</td>
-                            <td> <Form.Check
-                                type="switch"
-                                id="custom-switch"
-                                label={ block ? "Desbloquear usuario" :  "Bloquear usuario"}
-                                checked={editUser.block}
-                                onChange={handleBlock}
-                            /> </td>
+                            <td>Status de usuario</td>
+                            <td> 
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch"
+                                        label={ editUser.block ? "Desbloquear usuario" :  "Bloquear usuario"}
+                                        checked={editUser.block}
+                                        onChange={handleBlock}
+                                    />
+                                    { editUser.block ? <Badge bg="danger">Usuario bloquedo</Badge> : <Badge bg="success">Usuario Activo</Badge> }
+                                   
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td className="pt-5"></td>

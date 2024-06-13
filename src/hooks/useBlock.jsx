@@ -9,19 +9,19 @@ import useErrorManager from "./useErrorManager"
 
 const useBlock = () => {
     const errorManager = useErrorManager()
-    const [ block, setBlock ] = useState(false)
     const [ load, setLoad] = useState(false)
-    const { editUser } = useEditUserStore()
+    const { editUser, setEditUser } = useEditUserStore()
     const { notify } = useNotify()
 
     const handleBlock = async () => {
         setLoad(true)
-        setBlock(!block)
+       
         try {
-            await request.post(urlApi + "/blockUser", {
+            const response = await request.post(urlApi + "/blockUser", {
                 _id: editUser._id
             })
-            notify.success("Usuario Bloqueda correctamente")
+            setEditUser({ ...editUser, block: !editUser.block })
+            notify.success(response.data.message)
         } catch (error) {
             errorManager(error)
         }finally{
@@ -30,8 +30,6 @@ const useBlock = () => {
     }
 
     return {
-        block,
-        setBlock,
         handleBlock,
         load
     }
