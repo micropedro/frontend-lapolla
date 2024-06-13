@@ -18,7 +18,7 @@ const EditUser = () => {
     if (permisions.editUser.includes(permisions.getUser().level)) return (<>
         {load && (<div className='bg-modal'><Spinner /></div>)}
         <div className='px-4 pt-3'>
-            <h2> Editando usuario </h2>
+            <h2 className="h2-plain" > Editando usuario </h2>
         </div>
         <hr />
         <div>

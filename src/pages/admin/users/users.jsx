@@ -13,7 +13,7 @@ const Users = () => {
     if (permisions.permit(0)) return (<Guard >
         <DeleteUserModal />
         <div className='flex-between px-4 pt-3'>
-            <h2> Administracion de usuarios</h2>
+            <h2 className="h2-plain" > Administracion de usuarios</h2>
             <Link to='/dashboard/addUsers'>
                 <button className='btn btn-primary'> <i className='bi bi-person-plus' /> </button>
             </Link>

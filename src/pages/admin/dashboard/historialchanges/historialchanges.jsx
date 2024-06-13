@@ -5,7 +5,7 @@ const HistorialChanges = () => {
 
     return (
         <div className="p-2">
-            <h2>Historial de cambios</h2>
+            <h2 className="h2-plain" >Historial de cambios</h2>
             <hr />
             <div>
                 <table className="table">

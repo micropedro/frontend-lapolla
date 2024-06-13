@@ -15,7 +15,7 @@ const Taquilla = () => {
         </div>
         <div className='px-4 pt-3'>
             <div className="flex-between">
-                <h2> Taquilla de ventas </h2>
+                <h2 className="h2-plain" > Taquilla de ventas </h2>
                 <button onClick={saveAndPrint} className="btn btn-primary"> Imprimir </button>
             </div>
             <div className="flex-between">

@@ -7,7 +7,7 @@ const AddUsers = () => {
     const { sendUserForm } = useAddUsers()
     if (permisions.addUser.includes(permisions.getUser().level)) return (<>
         <div className='px-4 pt-3'>
-            <h2> Agregar Nuevo Usuario </h2>
+            <h2 className="h2-plain" > Agregar Nuevo Usuario </h2>
         </div>
         <hr />
         <div>

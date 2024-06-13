@@ -8,7 +8,7 @@ const Config = () => {
     if (permisions.permit(3)) return (
         <div>
             <div className="flex-between pt-4">
-                <h2>Configuracion</h2>
+                <h2 className="h2-plain" >Configuracion</h2>
                 {loading ? <button className="btn btn-primary px-3"> <Spinner /> </button> : <button onClick={updateConfig} className="btn btn-primary"> Guardar </button>}
 
             </div>

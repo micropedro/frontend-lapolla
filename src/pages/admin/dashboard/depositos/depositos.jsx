@@ -8,7 +8,7 @@ const Depositos = () => {
     const { tab, setTab } = useDeposits()
     if (permisions.permit(4)) return (<>
         <div className="nav-depositos">
-            <h2 className="p-2 m-0">Depositos</h2>
+            <h2 className="h2-plain p-2 m-0">Depositos</h2>
             <div className="">
                 <button onClick={() => setTab(1)} className={tab === 1 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Nuevo Deposito </button>
                 <button onClick={() => setTab(2)} className={tab === 2 ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}> Pendientes </button>
