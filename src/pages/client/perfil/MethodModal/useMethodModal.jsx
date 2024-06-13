@@ -8,57 +8,26 @@ import { Form } from 'react-bootstrap';
 const useMethodModal = () => {
     const errorManager = useErrorManager()
     const [methodSelected, setMethodSelected] = useState('')
-    const [dataForm, setDataForm] = useState({})
-    const { adminMethods, getUser, user,handleClose } = usePerfil()
+    const { adminMethods, getUser, user, handleClose, idMethSelected, setIdMethSelected } = usePerfil()
+
     const { sendForm, setMethodName, setImageUrl } = useMethods()
 
     const handleSave = async (e) => {
         e.preventDefault()
         try {
-            // se declara "e" para que sea compatible con el metodo sendForm
-            /* const e = {
-                target: Object.keys(dataForm).reduce((acc, key) => {
-                    acc[key] = { value: dataForm[key] }
-                    return acc;
-                }, {}),
-                preventDefault: () => { }
-            } */
-
-            const correo = e.target.correo?.value || ""
-            const cuenta = e.target.cuenta?.value || ""
-            const tipo = e.target.tipo?.value || ""
-            const cedula = e.target.cedula?.value || ""
-            const banco = e.target.banco?.value || ""
-            const nombre = e.target.nombre?.value || ""
-            const telefono = e.target.telefono?.value || ""
-            const secondary = e.target.secondary?.value || "client"
-            const adminMethodId = e?.target?.adminMethodId?.value || '000000000000000000000000'
-
-            const e2 = {
-                target: {
-                    correo: { value: correo },
-                    cuenta: { value: cuenta },
-                    tipo: { value: tipo },
-                    cedula: { value: cedula },
-                    banco: { value: banco },
-                    nombre: { value: nombre },
-                    telefono: { value: telefono },
-                    secondary: { value: secondary },
-                    adminMethodId: { value: adminMethodId },
-                },
-                preventDefault: () => { }
-            }
-
             handleClose()
-            await sendForm(e2)
+            await sendForm(e)
             await getUser()
-            
+
         } catch (error) {
             errorManager(error)
         }
     };
 
     const handleChangeMethod = (event) => {
+        setIdMethSelected(event.target.value)
+        console.log(event.target.value)
+
         if (event.target.value === "0") {
             setMethodSelected("")
             return false
@@ -68,14 +37,6 @@ const useMethodModal = () => {
         setImageUrl(methodCurrent.imageUrl)
         setMethodSelected(event.target.value)
     }
-
-    const handleChangeForm = ({ target }) => {
-        const { name, value } = target;
-        setDataForm(prevDataForm => ({
-            ...prevDataForm,
-            [name]: value
-        }));
-    };
 
     const RenderForm = useCallback(() => {
         if (methodSelected === "") return null
@@ -89,11 +50,13 @@ const useMethodModal = () => {
                     telefono: method.telefono ? true : false,
                     tipo: method.tipo ? true : false,
                     nombre: method.nombre ? true : false,
-                    secondary: method.secondary ? true : false
+                    secondary: method.secondary ? true : false,
+                    adminMethodId: true
                 }
             })
 
         return Object.keys(method).map(meth => {
+
             if (!method[meth]) return false
             if (meth === "secondary") {
                 return (
@@ -104,23 +67,19 @@ const useMethodModal = () => {
             } else {
                 return (
                     <Form.Group key={meth} controlId={meth}>
-                        <Form.Label>{meth}</Form.Label>
+                        <Form.Label>{meth !== "adminMethodId" && meth}</Form.Label>
                         {meth === "banco" ?
-                            <BancSelect change={handleChangeForm} name={meth} />
+                            <BancSelect name={meth} />
                             : meth === "cedula" ?
-                                <input
-                                    className='form-control'
-                                    type="text"
-                                    name={meth}
-                                    value={user.ci}
-                                />
+                                <input className='form-control' type="text" name={meth} value={user.ci} readOnly />
                                 : meth === "telefono" ?
-                                    <input type="text" name={meth} value={user.phone} className='form-control' />
+                                    <input type="text" name={meth} value={user.phone} readOnly className='form-control' />
 
                                     : meth === "correo" ?
-                                        <input type="email" name={meth} value={user.email} className='form-control' />
-                                        :
-                                        <Form.Control type="text" name={meth} />
+                                        <input type="email" name={meth} value={user.email} readOnly className='form-control' />
+                                        : meth === "adminMethodId" ?
+                                            <input type="hidden" value={idMethSelected} name={meth} /> :
+                                            <Form.Control type="text" name={meth} />
                         }
                     </Form.Group>
                 )
@@ -129,8 +88,8 @@ const useMethodModal = () => {
     }, [methodSelected]);
 
     return {
-        handleChangeMethod, RenderForm, setDataForm,
-        handleSave,setMethodSelected
+        handleChangeMethod, RenderForm,
+        handleSave, setMethodSelected
     }
 }
 

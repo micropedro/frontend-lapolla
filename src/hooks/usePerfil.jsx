@@ -8,7 +8,7 @@ import usePerfilStore from '../store/perfilStore'
 const usePerfil = () => {
 
     const { modalAddMethod, setModalAddMethod, show, setShow, idMethod, setIdMethod,
-        userMethods, setUserMethods, adminMethods, setAdminMethods } = usePerfilStore()
+        userMethods, setUserMethods, adminMethods, setAdminMethods, idMethSelected, setIdMethSelected } = usePerfilStore()
 
     const { deleteMethod } = useMethods()
     const { user, setUser } = userStore()
@@ -55,7 +55,8 @@ const usePerfil = () => {
         setShow,
         handleShow,
         handleDeleteMethod,
-        handleClose
+        handleClose, 
+        idMethSelected, setIdMethSelected
     }
 }
 

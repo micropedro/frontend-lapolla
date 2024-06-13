@@ -21,6 +21,10 @@ const usePerfilStore = createWithEqualityFn((set) => ({
     setAdminMethods: (newState) => set(() => ({
         adminMethods: newState
     })),
+    idMethSelected:null,
+    setIdMethSelected: (newState) => set(() => ({
+        idMethSelected: newState
+    }))
 }))
 
 export default usePerfilStore

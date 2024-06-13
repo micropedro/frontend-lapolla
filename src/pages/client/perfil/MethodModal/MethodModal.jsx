@@ -5,7 +5,7 @@ import usePerfil from '../../../../hooks/usePerfil';
 
 const MethodModal = () => {
     const { modalAddMethod, setModalAddMethod, handleClose, adminMethods } = usePerfil()
-    const { handleChangeMethod, RenderForm, setDataForm, handleSave } = useMethodModal()
+    const { handleChangeMethod, RenderForm, handleSave } = useMethodModal()
 
     return (
         <Modal show={modalAddMethod} onHide={setModalAddMethod}>
@@ -27,11 +27,11 @@ const MethodModal = () => {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant='' onClick={() => { setDataForm({}); handleClose(); }}>
+                    <Button variant='' onClick={() => { handleClose(); }}>
                         Cerrar
                     </Button>
                     {/* <input type="submit" className='btn btn-primary' value="Guardar" /> */}
-                    <Button type='submit' variant="primary" /* onClick={() => { handleSave();  handleClose()  }} */>
+                    <Button type='submit' variant="primary">
                         Guardar
                     </Button>
                 </Modal.Footer>

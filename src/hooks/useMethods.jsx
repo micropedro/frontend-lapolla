@@ -54,7 +54,7 @@ const useMethods = () => {
             const banco = e.target.banco?.value || ""
             const nombre = e.target.nombre?.value || ""
             const telefono = e.target.telefono?.value || ""
-            const secondary = e.target.secondary?.value || ""
+            const secondary = e.target.secondary?.value || "client"
             const adminMethodId = e?.target?.adminMethodId?.value || '000000000000000000000000'
 
             const datosPreProccess = {
