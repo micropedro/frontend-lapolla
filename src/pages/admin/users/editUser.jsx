@@ -4,14 +4,17 @@ import useLoadingStore from "../../../store/loadingStore"
 import Spinner from '../../../components/spinner'
 import useUserStore from "../../../store/userStore"
 import permisions from "../../../services/permissions"
+import Form from 'react-bootstrap/Form';
+import useBlock from "../../../hooks/useBlock"
 const EditUser = () => {
     const { user } = useUserStore()
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()
+    const { block, handleBlock, load } = useBlock()
 
     if (permisions.editUser.includes(permisions.getUser().level)) return (<>
-
+        {load && (<div className='bg-modal'><Spinner /></div>)}
         <div className='px-4 pt-3'>
             <h2> Editando usuario </h2>
         </div>
@@ -82,6 +85,16 @@ const EditUser = () => {
                         <tr>
                             <td>Balance</td>
                             <td> {editUser.balance} </td>
+                        </tr>
+                        <tr>
+                            <td>Bloqueado</td>
+                            <td> <Form.Check
+                                type="switch"
+                                id="custom-switch"
+                                label={ block ? "Desbloquear usuario" :  "Bloquear usuario"}
+                                checked={editUser.block}
+                                onChange={handleBlock}
+                            /> </td>
                         </tr>
                         <tr>
                             <td className="pt-5"></td>
