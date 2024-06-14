@@ -6,6 +6,7 @@ import useUserStore from "../../../store/userStore"
 import permisions from "../../../services/permissions"
 import Form from 'react-bootstrap/Form';
 import useBlock from "../../../hooks/useBlock"
+import usePrePaid from "../../../hooks/usePrePaid"
 import Badge from 'react-bootstrap/Badge';
 
 const EditUser = () => {
@@ -13,10 +14,11 @@ const EditUser = () => {
     const { loading } = useLoadingStore()
     const { editUser } = useEditUserStore()
     const { sendUserForm } = useEditUser()
-    const { handleBlock, load } = useBlock()
-
+    const { handleBlock } = useBlock()
+    const { handlePrePaid } = usePrePaid()
+    
     if (permisions.editUser.includes(permisions.getUser().level)) return (<>
-        {load && (<div className='bg-modal'><Spinner /></div>)}
+        {loading && (<div className='bg-modal'><Spinner /></div>)}
         <div className='px-4 pt-3'>
             <h2 className="h2-plain" > Editando usuario </h2>
         </div>
@@ -96,11 +98,25 @@ const EditUser = () => {
                                         type="switch"
                                         id="custom-switch"
                                         label={ editUser.block ? "Desbloquear usuario" :  "Bloquear usuario"}
-                                        checked={editUser.block}
+                                        checked={editUser?.block || false}
                                         onChange={handleBlock}
                                     />
                                     { editUser.block ? <Badge bg="danger">Usuario bloquedo</Badge> : <Badge bg="success">Usuario Activo</Badge> }
-                                   
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Venta sin saldo</td>
+                            <td> 
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <Form.Check
+                                        type="switch"
+                                        id="custom-switch-prepaid"
+                                        label={editUser.prepaid ? "Activar" : "Desactivar"}
+                                        checked={!editUser?.prepaid}
+                                        onChange={handlePrePaid}
+                                    />
+                                    {editUser?.prepaid ? <Badge bg="danger">desactivadas las ventas sin saldo</Badge> : <Badge bg="success">ventas sin saldo activas</Badge> }
                                 </div>
                             </td>
                         </tr>

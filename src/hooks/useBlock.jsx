@@ -1,20 +1,20 @@
-import { useState } from "react"
 import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useEditUserStore from "../store/editUserStore"
 import useNotify from "./useNotify"
 import useErrorManager from "./useErrorManager"
+import useLoadingStore from "../store/loadingStore"
 
 // POST -> blockUser
 
 const useBlock = () => {
     const errorManager = useErrorManager()
-    const [ load, setLoad] = useState(false)
+    const { setLoading } = useLoadingStore()
     const { editUser, setEditUser } = useEditUserStore()
     const { notify } = useNotify()
 
     const handleBlock = async () => {
-        setLoad(true)
+        setLoading(true)
        
         try {
             const response = await request.post(urlApi + "/blockUser", {
@@ -23,15 +23,15 @@ const useBlock = () => {
             setEditUser({ ...editUser, block: !editUser.block })
             notify.success(response.data.message)
         } catch (error) {
+            setEditUser({ ...editUser, block: editUser.block }) // se coloca el mismo valor si falla
             errorManager(error)
         }finally{
-            setLoad(false)
+            setLoading(false)
         }
     }
 
     return {
-        handleBlock,
-        load
+        handleBlock
     }
 }
 
