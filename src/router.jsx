@@ -33,6 +33,7 @@ import Politicas from './pages/politicas/politicasdeprivacidad'
 import Recargas from './pages/admin/dashboard/recargas/recargas'
 import ReportUser from './pages/admin/dashboard/reportUser/reportUser'
 import HistorialChanges from './pages/admin/dashboard/changes/changes'
+import Premios from './pages/admin/dashboard/premios/premios'
 
 const Router = () => {
     return (<>
@@ -46,6 +47,8 @@ const Router = () => {
             <Route path="/recuperacion" element={<Recuperacion />} />
             <Route path="/print" element={<Print />} />
             <Route path="/dashboard/recargas" element={<Dashboard><Recargas /></Dashboard>} />
+            <Route path="/dashboard/premios" element={<Dashboard><Premios /></Dashboard>} />
+
             <Route path="/dashboard/users" element={<Dashboard><Users /></Dashboard>} />
             <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
             <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />
