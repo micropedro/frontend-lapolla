@@ -16,7 +16,7 @@ const Metodos = () => {
     if (permisions.permit(1)) return (
         <Guard >
             <div className='flex-between px-4 pt-3'>
-                <h2> Metodos de pago </h2>
+                <h2 className="h2-plain" > Metodos de pago </h2>
             </div>
             <hr />
             {loading ? <div className='text-center p-5 bg-gray-2 text-dark'>

@@ -14,7 +14,7 @@ const Quinielas = () => {
     if (permisions.permit(10)) return (<Guard>
         <div>
             <div className='flex-between px-4 pt-3'>
-                <h2> Quinielas </h2>
+                <h2 className="h2-plain" > Quinielas </h2>
                 <div>
                     <button onClick={() => { setMenu(1); handler("ayer") }} className="btn text-primary mx-2" > Jugando hoy </button>
                     <button onClick={() => { setMenu(2); handler("hoy") }} className="btn text-primary mx-2" > Nuevos Tickets </button>

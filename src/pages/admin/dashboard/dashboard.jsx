@@ -5,10 +5,14 @@ const Dashboard = ({ children }) => {
 
     return (<Guard>
         <div className="container-fluid bg-gray">
-            <div className="row g-4">
-                <SideBar />
-                <div className="col-10 col-md-8 col-lg-9 min-vh-100">
-                    {children}
+            <div className="row g-0">
+                <div className="col-12 bg-danger display-screen">
+                    <div className="bg-dark text-light vh-100 scroll section-side">
+                        <SideBar />
+                    </div >
+                    <div className="vh-100 scroll section-content bg-gray">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

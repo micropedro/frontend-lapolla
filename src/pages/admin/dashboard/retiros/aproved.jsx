@@ -3,6 +3,7 @@ import useLoadingStore from "../../../../store/loadingStore"
 import useRetiros from "../../../../hooks/useRetiros"
 import formatDate from "../../../../services/formatDate"
 import Status from "../../../../components/Status"
+import {getTime2} from "../../../../services/formatDate"
 const Aproved = () => {
     const { retiros } = useRetiros()
     const { loading } = useLoadingStore()
@@ -23,7 +24,7 @@ const Aproved = () => {
                     <tbody>
                         {retiros.filter(_retiro => _retiro.state === 2).length > 0 ? retiros.filter(retiro => retiro.state === 2).map((retiro) => {
                             return <tr key={retiro._id} >
-                                <td>{formatDate(retiro.date)}</td>
+                                <td>{formatDate(retiro.date)} - {getTime2(retiro.date)}</td>
                                 <td>{retiro.amount}</td>
                                 <td>
                                     <Status status={retiro.state} />

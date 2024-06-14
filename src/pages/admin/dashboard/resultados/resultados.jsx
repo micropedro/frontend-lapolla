@@ -66,7 +66,7 @@ const Resultados = () => {
             <ModalResult status={modal} setModal={setModal} />
             <div>
                 <div className="flex-between pt-4">
-                    <h2>Resultados</h2>
+                    <h2 className="h2-plain" >Resultados</h2>
                     <div>
                         Animalitos de hoy
                     </div>

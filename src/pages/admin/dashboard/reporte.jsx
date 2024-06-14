@@ -20,7 +20,7 @@ function Reporte() {
             <DeleteReportModal />
             <ReportModal handleExec={saveReport} />
             <div className="flex-between">
-                <h2>Reporte general</h2>
+                <h2 className="h2-plain" >Reporte general</h2>
                 <button onClick={() => handleModal()} className="btn btn-primary" > Generar reporte </button>
             </div>
             <div className="flex-between">

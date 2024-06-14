@@ -73,7 +73,7 @@ export const am_pm_format = (hora) => {
 }
 
 export const cleanMethods = (methods) => methods.filter((obj, index, self) =>
-    index === self.findIndex(t => t.methodName === obj.methodName)
+    index === self.findIndex(t => t.methodName === obj.methodName) && !obj.deleted
 )
 
 export const isertSelectedSecondaryMethodName = (method) =>

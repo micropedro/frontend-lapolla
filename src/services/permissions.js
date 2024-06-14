@@ -1,12 +1,19 @@
 import menuLateral from '../services/menuLateral.json'
 class Permisions {
+
+    //1 banca
+    //2 administrador
+    //3 grupero
+    //4 agencia
+    //5 cliente
+
     guard = [1, 2, 3, 4]
     addUser = [1, 2, 3]
     editUser = [1, 2, 3]
 
-    taquilla = [4]
-    reporte = [2,3,4]
-    ticketsVendidos = [4]
+    taquilla = [1,4]
+    reporte = [1,2,3,4]
+    ticketsVendidos = [1,4]
 
     userBtnAdmin = [1]
     userBtnGroup = [1,2]
