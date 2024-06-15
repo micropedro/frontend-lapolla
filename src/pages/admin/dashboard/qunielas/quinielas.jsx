@@ -6,10 +6,12 @@ import PastQuinielas from "./pastQuinielas"
 import QuinielasTickets from "./QuinielasTickets"
 import useLoadingStore from "../../../../store/loadingStore"
 import permisions from "../../../../services/permissions"
+import { useState } from "react"
 
 const Quinielas = () => {
     const { loading } = useLoadingStore()
     const { createNewQuiniela, menu, setMenu, handler, playingTickets,cerrarGranQuiniela } = useQuinielas()
+    const [ quinielaSelected, setQuinielaSelected ] = useState(1)
 
     if (permisions.permit(10)) return (<Guard>
         <div>
@@ -24,13 +26,13 @@ const Quinielas = () => {
                 </div>
             </div>
             <div className="text-end mt-3">
-                <button className="mx-2"> Gran quiniela </button>
-                <button> Mini Quiniela </button>
+                <button onClick={() => setQuinielaSelected(1)} className="mx-2"> Gran quiniela </button>
+                <button onClick={() => setQuinielaSelected(2)}> Mini Quiniela </button>
             </div>
             <hr className="mt-0"/>
             {loading && menu < 3 ? <div className="flex-center p-5"> <Spinner /> </div> : <>
-                {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
-                {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
+                {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} quinielaSelected={quinielaSelected} />}
+                {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} quinielaSelected={quinielaSelected} />}
             </>}
             {menu === 3 && <PastQuinielas />}
         </div >

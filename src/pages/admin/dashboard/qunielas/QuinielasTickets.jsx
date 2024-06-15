@@ -9,33 +9,58 @@ const MiniCard = ({ children }) => {
     </div>
 }
 
-
-const QuinielasTickets = ({ tickets, menu }) => {
+const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
 
     const [asiertos5, setAsiertos5] = useState(0)
     const [asiertos6, setAsiertos6] = useState(0)
+    const [aciertos3, setAciertos3] = useState(0)
+    const [typeTicket, setTypeTicket] = useState([])
     const { animals } = useAnimals()
+    const quinielaLabel = {
+        1: "Gran Quiniela",
+        2: "Mini Quiniela"
+    }
 
+    const aciertosGranQuiniela = (tickets) => {
+        let as5 = 0
+        let as6 = 0
+        tickets.forEach(ticket => {
+            let count = 0
+            ticket.animals.forEach(animal => {
+                const mapingAnimals = animals.map(a => a.animalId)
+                if (mapingAnimals.includes(animal.id)) count = count + 1
+            })
+            if (count === 5) as5 = as5 + 1
+            if (count === 6) as6 = as6 + 1
+        })
+        setAsiertos5(as5)
+        setAsiertos6(as6)
+    }
+
+    const aciertosMiniQuiniela = (tickets) => {
+        let ac3 = 0
+        tickets.forEach(ticket => {
+            let count = 0
+            ticket.animals.forEach(animal => {
+                const mapingAnimals = animals.map(a => a.animalId)
+                if (mapingAnimals.includes(animal.id)) count = count + 1
+            })
+            if (count === 3) ac3 = ac3 + 1
+        })
+        setAciertos3(ac3)
+    }
+
+    const MapTicket = (tickets) => tickets.filter( ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
 
     useEffect(() => {
-        if (tickets.length > 0) {
-            let as5 = 0
-            let as6 = 0
-            tickets.forEach(ticket => {
-                let count = 0
-                ticket.animals.forEach(animal => {
-                    const mapingAnimals = animals.map(a => a.animalId)
-                    if (mapingAnimals.includes(animal.id)) count = count + 1
-                })
-                if (count === 5) as5 = as5 + 1
-                if (count === 6) as6 = as6 + 1
-            })
-
-            setAsiertos5(as5)
-            setAsiertos6(as6)
+        setTypeTicket(() => MapTicket(tickets))
+        const ticketsAux = MapTicket(tickets)
+        if (typeTicket.length > 0) {
+            quinielaSelected === 1 && aciertosGranQuiniela(ticketsAux)
+            quinielaSelected === 2 && aciertosMiniQuiniela(ticketsAux)
         }
-    }, [tickets, animals])
-
+    }, [tickets, animals, quinielaSelected])
+    
     return (
         <div>
             <div className="container-fluid">
@@ -62,32 +87,44 @@ const QuinielasTickets = ({ tickets, menu }) => {
                                     <div>
                                         Tickets vendidos
                                     </div>
-                                    <MiniCard> {tickets.length} </MiniCard>
+                                    <MiniCard> {typeTicket.length} </MiniCard>
                                 </div>
                             </div>
-                            <div className="col-3 min-h-x">
-                                <div className="comun-wrap-quiniela bg-light-3">
-                                    <div>
-                                        Ganadores con 5 asiertos
+                            {quinielaSelected === 1 && (<>
+                                <div className="col-3 min-h-x">
+                                    <div className="comun-wrap-quiniela bg-light-3">
+                                        <div>
+                                        Ganadores con 5 aciertos
+                                        </div>
+                                        <MiniCard> {asiertos5} </MiniCard>
                                     </div>
-                                    <MiniCard> {asiertos5} </MiniCard>
                                 </div>
-                            </div>
-                            <div className="col-3 min-h-x">
-                                <div className="comun-wrap-quiniela bg-light-4">
-                                    <div>
-                                        Ganadores con 6 asiertos
+                                <div className="col-3 min-h-x">
+                                    <div className="comun-wrap-quiniela bg-light-4">
+                                        <div>
+                                        Ganadores con 6 aciertos
+                                        </div>
+                                        <MiniCard> {asiertos6} </MiniCard>
                                     </div>
-                                    <MiniCard> {asiertos6} </MiniCard>
                                 </div>
-                            </div>
+                            </>)}
+                            {quinielaSelected === 2 && (<>
+                                <div className="col-3 min-h-x">
+                                    <div className="comun-wrap-quiniela bg-light-3">
+                                        <div>
+                                        Ganadores con 3 aciertos
+                                        </div>
+                                        <MiniCard> {aciertos3} </MiniCard>
+                                    </div>
+                                </div>
+                            </>)}
                         </div>
                     </div>
                 </div>}
                 
                 <div className="row g-2">
-                    {tickets?.length > 0 && tickets.map((ticket) => {
-
+                   
+                    {typeTicket?.length > 0 && typeTicket.map((ticket) => {
                         return <div key={ticket._id} className="col-12 col-lg-6 col-xl-4">
                             <div className="card p-2">
                                 <div className="px-2 text-sm  flex-between ">
@@ -95,7 +132,7 @@ const QuinielasTickets = ({ tickets, menu }) => {
                                     <div>{String(ticket.count).padStart(3, "0")}-{ticket.code}</div>
                                 </div>
                                 <div className="px-2 mb-3 flex-between text-sm text-secondary">
-                                    <div className="">{ticket.quinielaType === "1" ? 'Gran' : 'Mini'} Quiniela</div>
+                                    <div className="">{quinielaLabel[ticket.quinielaType]}</div>
                                     <div className="">{formatDate(ticket.date)}</div>
                                 </div>
                                 <div className="container-fluid">
