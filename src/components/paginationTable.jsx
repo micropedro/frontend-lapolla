@@ -46,7 +46,7 @@ const PaginationTable = ({ users, deleteModal }) => {
                                 <td>{item.phone}</td>
                                 <td>{userType(item.level)}</td>
                                 <td>{item.ci}</td>
-                                <td>{item.balance}</td>
+                                <td>{ item.balance.toFixed(2)}</td>
                                 <td>
                                     <Link to="/dashboard/editUser" >
                                         <button onClick={() => setEditUser(item)} className='btn btn-warning mx-1'> <i className='bi bi-card-text' /> </button>

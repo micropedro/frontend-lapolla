@@ -23,7 +23,11 @@ const Quinielas = () => {
                     <button onClick={() => cerrarGranQuiniela()} className="btn btn-primary"> - Cerrar dia </button>
                 </div>
             </div>
-            <hr />
+            <div className="text-end mt-3">
+                <button className="mx-2"> Gran quiniela </button>
+                <button> Mini Quiniela </button>
+            </div>
+            <hr className="mt-0"/>
             {loading && menu < 3 ? <div className="flex-center p-5"> <Spinner /> </div> : <>
                 {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
                 {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
@@ -33,4 +37,5 @@ const Quinielas = () => {
     </Guard >
     )
 }
+
 export default Quinielas

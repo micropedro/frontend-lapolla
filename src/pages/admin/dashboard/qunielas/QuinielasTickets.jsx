@@ -1,42 +1,93 @@
-/* eslint-disable react/prop-types */
 import formatDate from "../../../../services/formatDate"
 import useAnimals from "../../../../hooks/useAnimals"
 import { formatIf37 } from "../../../../services/utils"
+import { useEffect, useState } from "react"
 
 const MiniCard = ({ children }) => {
-    return <div className="px-2 py-1 bg-success d-flex">
+    return <div className="minicard">
         {children}
     </div>
 }
 
+
 const QuinielasTickets = ({ tickets, menu }) => {
+
+    const [asiertos5, setAsiertos5] = useState(0)
+    const [asiertos6, setAsiertos6] = useState(0)
     const { animals } = useAnimals()
+
+
+    useEffect(() => {
+        if (tickets.length > 0) {
+            let as5 = 0
+            let as6 = 0
+            tickets.forEach(ticket => {
+                let count = 0
+                ticket.animals.forEach(animal => {
+                    const mapingAnimals = animals.map(a => a.animalId)
+                    if (mapingAnimals.includes(animal.id)) count = count + 1
+                })
+                if (count === 5) as5 = as5 + 1
+                if (count === 6) as6 = as6 + 1
+            })
+
+            setAsiertos5(as5)
+            setAsiertos6(as6)
+        }
+    }, [tickets, animals])
+
     return (
         <div>
             <div className="container-fluid">
 
-                {menu === 1 && <div className="row g-1">
-                    <div className="col-12 px-1 mb-2 d-flex gap-2 ">
-                        <div className="border p-2 shadow">
-                            <div>
-                                Animalitos de hoy:
+                {menu === 1 && <div className="row g-0">
+                    <div className="col-12">
+                        <div className="row mb-3">
+                            <div className="col-3 min-h-x">
+                                <div className="comun-wrap-quiniela bg-light-1">
+                                    <div className="mb-2">
+                                        Animalitos de hoy
+                                    </div>
+                                    <div className="row gap-2 flex-center" >
+                                        {animals.length > 0 ? animals.map((animal, index) => {
+                                            return (
+                                                <div key={index} className="result-animal-in">{formatIf37(animal.animalId)} {animals.length > index + 1} </div>
+                                            )
+                                        }) : <>sin animales</>}
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                {animals.length > 0 ? animals.map((animal, index) => <div key={index} className="d-flex mx-1">{formatIf37(animal.animalId)} {animals.length > index + 1 && ','} </div>) : "sin animales"}
+                            <div className="col-3 min-h-x">
+                                <div className="comun-wrap-quiniela bg-light-2">
+                                    <div>
+                                        Tickets vendidos
+                                    </div>
+                                    <MiniCard> {tickets.length} </MiniCard>
+                                </div>
+                            </div>
+                            <div className="col-3 min-h-x">
+                                <div className="comun-wrap-quiniela bg-light-3">
+                                    <div>
+                                        Ganadores con 5 asiertos
+                                    </div>
+                                    <MiniCard> {asiertos5} </MiniCard>
+                                </div>
+                            </div>
+                            <div className="col-3 min-h-x">
+                                <div className="comun-wrap-quiniela bg-light-4">
+                                    <div>
+                                        Ganadores con 6 asiertos
+                                    </div>
+                                    <MiniCard> {asiertos6} </MiniCard>
+                                </div>
                             </div>
                         </div>
-                        <div className="border p-2 shadow">
-                            Tickets vendidos:
-                            <MiniCard> {tickets.length} </MiniCard>
-                        </div>
-                        <div className="border p-2 shadow">Ganadores con 5 asiertos: {4}</div>
-                        <div className="border p-2 shadow">Ganadores con 6 asiertos: {4}</div>
-                        <hr />
                     </div>
-                </div>
-                }
+                </div>}
+                
                 <div className="row g-2">
                     {tickets?.length > 0 && tickets.map((ticket) => {
+
                         return <div key={ticket._id} className="col-12 col-lg-6 col-xl-4">
                             <div className="card p-2">
                                 <div className="px-2 text-sm  flex-between ">
