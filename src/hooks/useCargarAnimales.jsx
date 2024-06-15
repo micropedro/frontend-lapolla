@@ -23,8 +23,6 @@ const useCargarAnimales = () => {
 
     const formattedDate = dateNow.anio + '-' + dateNow.mes + '-' + dateNow.dia
 
-    console.log(formattedDate)
-
     const handle = (animal) => setAnimalSelected(animal)
 
     const handleHora = (hora) => {
@@ -73,6 +71,8 @@ const useCargarAnimales = () => {
                 fecha: inputDate + ' ' + hora + ':00:00',
                 roulet: radioRoulet
             }
+
+            console.log(data)
 
             if (!verify([
                 notFalsy(data.owner),

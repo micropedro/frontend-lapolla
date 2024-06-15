@@ -9,7 +9,6 @@ const MiniCard = ({ children }) => {
     </div>
 }
 
-
 const QuinielasTickets = ({ tickets, menu }) => {
 
     const [asiertos5, setAsiertos5] = useState(0)
@@ -84,7 +83,7 @@ const QuinielasTickets = ({ tickets, menu }) => {
                         </div>
                     </div>
                 </div>}
-                
+
                 <div className="row g-2">
                     {tickets?.length > 0 && tickets.map((ticket) => {
 
