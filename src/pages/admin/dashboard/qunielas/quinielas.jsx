@@ -6,10 +6,15 @@ import PastQuinielas from "./pastQuinielas"
 import QuinielasTickets from "./QuinielasTickets"
 import useLoadingStore from "../../../../store/loadingStore"
 import permisions from "../../../../services/permissions"
+import { useState } from "react"
+import { Link, useParams } from "react-router-dom"
 
 const Quinielas = () => {
+    const { id } = useParams()
+    console.log("id:" + id)
     const { loading } = useLoadingStore()
-    const { createNewQuiniela, menu, setMenu, handler, playingTickets,cerrarGranQuiniela } = useQuinielas()
+    const { createNewQuiniela, menu, setMenu, handler, playingTickets, cerrarGranQuiniela } = useQuinielas()
+    const [quinielaSelected, setQuinielaSelected] = useState(1)
 
     if (permisions.permit(10)) return (<Guard>
         <div>
@@ -24,14 +29,20 @@ const Quinielas = () => {
                 </div>
             </div>
             <div className="text-end mt-3">
-                <button className="mx-2"> Gran quiniela </button>
-                <button> Mini Quiniela </button>
+                <Link to='/dashboard/quinielas/granquiniela' >
+                    <button className={`${id === 'granquiniela' ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}`} onClick={() => setQuinielaSelected(1)}> Gran quiniela </button>
+                </Link>
+                <Link to='/dashboard/quinielas/miniquiniela' >
+                    <button className={`${id !== 'granquiniela' ? "btn-tab-active btn-dep" : "btn-tab-inanctive btn-dep"}`} onClick={() => setQuinielaSelected(2)}>
+                        Mini Quiniela
+                    </button>
+                </Link>
             </div>
-            <hr className="mt-0"/>
-            {loading && menu < 3 ? <div className="flex-center p-5"> <Spinner /> </div> : <>
-                {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
-                {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} />}
-            </>}
+            
+            {loading && menu < 3 ? <div className="flex-center p-5 bg-light"> <Spinner /> </div> : <div className="bg-light py-3">
+                {menu === 1 && <QuinielasTickets tickets={playingTickets} menu={menu} quinielaSelected={quinielaSelected} />}
+                {menu === 2 && <QuinielasTickets tickets={playingTickets} menu={menu} quinielaSelected={quinielaSelected} />}
+            </div>}
             {menu === 3 && <PastQuinielas />}
         </div >
     </Guard >
