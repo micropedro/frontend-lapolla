@@ -67,7 +67,10 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                     <div className="row gap-2 flex-center" >
                                         {animals.length > 0 ? animals.map((animal, index) => {
                                             return (
-                                                <div key={index} className="result-animal-in">{formatIf37(animal.animalId)} {animals.length > index + 1} </div>
+                                                <div key={index} className="result-animal-in">
+                                                    <div>{formatIf37(animal.animalId)}</div>
+                                                    <div className="text-gray">{animal.hora}</div>
+                                                </div>
                                             )
                                         }) : <>sin animales</>}
                                     </div>
@@ -123,7 +126,15 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 </div>
                                 <div className="px-2 text-sm  flex-between">
                                     {ticket.user.name}
-                                    <div>{String(ticket.count).padStart(3, "0")}-{ticket.code}</div>
+                                    <div className="text-end">
+                                        Estado
+                                        <div className="bg-gray px-2 text-dark text-center rounded mb-1">
+                                            {ticket.status === 1 && "Jugando"}
+                                            {ticket.status === 2 && "Ganador por Cobrar"}
+                                            {ticket.status === 3 && "Pagado"}
+                                        </div>
+                                        {String(ticket.count).padStart(3, "0")}-{ticket.code}
+                                    </div>
                                 </div>
                                 <div className="px-2 mb-3 flex-between text-sm text-secondary">
                                     <div className="">{formatDate(ticket.date)}</div>
@@ -131,9 +142,9 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 <div className="container-fluid">
                                     <div className="row">
                                         {ticket.animals.map((animal, index) => {
-                                            const arrayAnimals = []
-                                            animals.forEach(i => arrayAnimals.push(i.animalId))
-                                            const styleCard = arrayAnimals.includes(animal.id)
+                                            const arrayAnimals = animals.map(i => i.animalId)
+                                            const arrayAnimalsMini = animals.filter(i => [15, 16, 17, 18, 19].includes(Number(i.hora))).map(i => i.animalId)
+                                            const styleCard = ticket.quinielaType === "1" ? arrayAnimals.includes(animal.id) : arrayAnimalsMini.includes(animal.id)
 
                                             return (<div key={index} className="col-2 mb-2" >
                                                 <div className={`bg-${styleCard && menu === 1 ? "success text-light" : "secondary-light"} text-center`}>

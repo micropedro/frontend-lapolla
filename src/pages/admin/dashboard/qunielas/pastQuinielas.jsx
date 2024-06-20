@@ -5,7 +5,7 @@ import { formatDate2 } from "../../../../services/formatDate"
 const PastQuinielas = () => {
     const { loading } = useLoadingStore()
     const { quinielas } = useQuinielas()
-    return (<> {loading ? <div className="flex-center p-5"> <Spinner /> </div> :
+    return (<div className=""> {loading ? <div className="flex-center p-5"> <Spinner /> </div> :
         <table className="table text-center">
             <thead>
                 <tr>
@@ -39,7 +39,7 @@ const PastQuinielas = () => {
                 ))}
             </tbody>
         </table>
-    } </>)
+    } </div>)
 
 
 }
