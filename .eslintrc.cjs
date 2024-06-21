@@ -18,7 +18,7 @@ module.exports = {
     ],
     "react-hooks/exhaustive-deps":0,
     "react/prop-types":0,
-    'indent': ['error', 4]
+    'indent': ['error', 4],
   },
   globals: {
     __dirname: 'readonly',

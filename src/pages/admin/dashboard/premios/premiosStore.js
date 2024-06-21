@@ -5,10 +5,18 @@ const usePremiosStore = createWithEqualityFn((set) => ({
     setPremios: (newPremios) => set(() => ({
         premios: newPremios
     })),
-    modalDatos:true,
+    modalDatos:false,
     setModalDatos: (newModalDatos) => set(() => ({
         modalDatos: newModalDatos
     })),
+    typeModal: "",
+    setTypeModal: (typeMOdal) => set(() => ({
+        typeModal: typeMOdal
+    })),
+    premioSelected: "",
+    setPremioSelected: (premio) => set(() => ({
+        premioSelected: premio
+    }))
 }))
 
 export default usePremiosStore

@@ -1,15 +1,17 @@
-import usePremios from "./usePremios"
-const ModalDatos = () => {
-    const { modalDatos, setModalDatos } = usePremios()
+import usePremiosStore from "../../../admin/dashboard/premios/premiosStore"
 
-    if (modalDatos) return (<div className="bg-modal">
+const ModalDatos = ({ setModalDatos, typeModal }) => {
+    const { premioSelected } = usePremiosStore()
+
+    // Render del modal para datos del premio
+    if (typeModal === "data") return (<div className="bg-modal">
         <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
             <b className="text-center">
                 Datos Del pago
             </b>
             <hr className="mt-0" />
             <div>
-                <b className="d-block">Manuel Perez</b>
+                <b className="d-block">{premioSelected.ticket.user.email}</b>
                 <i className="bi bi-credit-card" /> Pago Movil
                 <div>CI: 20.853.601</div>
                 Telefono: 04141220527
@@ -29,6 +31,46 @@ const ModalDatos = () => {
             </div>
         </div>
     </div>)
+
+    // Render del modal para los datos del ticket
+    if (typeModal === "ticket") return (<div className="bg-modal">
+        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
+            <b className="text-center">
+            Ticket
+            </b>
+            <hr className="mt-0" />
+            <div>
+                <span className="d-block">Code: {premioSelected?.ticket?.code}</span>
+                <span className="d-block">Jugadas: {premioSelected.ticket.animals.map(animal => (`${animal.id} `))}</span>
+            </div>
+            <hr className="" />
+            <div className="text-end">
+                <div>
+                    <button onClick={()=>setModalDatos(false)} className="btn text-danger mx-3"> Cerrar </button>
+                </div>
+            </div>
+        </div>
+    </div>)
+
+    // Render del modal para los datos del usuario
+    if (typeModal === "user") return (<div className="bg-modal">
+        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
+            <b className="text-center">
+        Usuario
+            </b>
+            <hr className="mt-0" />
+            <div>
+                <b className="d-block">{premioSelected.ticket.user.email}</b>
+            </div>
+            <hr className="" />
+            <div className="text-end">
+                <div>
+                    <button onClick={()=>setModalDatos(false)} className="btn text-danger mx-3"> Cerrar </button>
+                </div>
+            </div>
+        </div>
+    </div>)
+
 }
 
 export default ModalDatos
