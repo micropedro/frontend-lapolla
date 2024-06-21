@@ -2,12 +2,7 @@ import formatDate from "../../../../services/formatDate"
 import useAnimals from "../../../../hooks/useAnimals"
 import { formatIf37 } from "../../../../services/utils"
 import { useEffect, useState } from "react"
-
-const MiniCard = ({ children }) => {
-    return <div className="minicard">
-        {children}
-    </div>
-}
+import MiniCard from "../../../../components/minicard/Minicard"
 
 const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
 
@@ -16,10 +11,6 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
     const [aciertos3, setAciertos3] = useState(0)
     const [typeTicket, setTypeTicket] = useState([])
     const { animals } = useAnimals()
-    const quinielaLabel = {
-        1: "Gran Quiniela",
-        2: "Mini Quiniela"
-    }
 
     const aciertosGranQuiniela = (tickets) => {
         let as5 = 0
@@ -50,7 +41,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
         setAciertos3(ac3)
     }
 
-    const MapTicket = (tickets) => tickets.filter( ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
+    const MapTicket = (tickets) => tickets.filter(ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
 
     useEffect(() => {
         setTypeTicket(() => MapTicket(tickets))
@@ -60,7 +51,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
             quinielaSelected === 2 && aciertosMiniQuiniela(ticketsAux)
         }
     }, [tickets, animals, quinielaSelected])
-    
+
     return (
         <div>
             <div className="container-fluid">
@@ -76,7 +67,10 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                     <div className="row gap-2 flex-center" >
                                         {animals.length > 0 ? animals.map((animal, index) => {
                                             return (
-                                                <div key={index} className="result-animal-in">{formatIf37(animal.animalId)} {animals.length > index + 1} </div>
+                                                <div key={index} className="result-animal-in">
+                                                    <div>{formatIf37(animal.animalId)}</div>
+                                                    <div className="text-gray">{animal.hora}</div>
+                                                </div>
                                             )
                                         }) : <>sin animales</>}
                                     </div>
@@ -94,7 +88,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-3">
                                         <div>
-                                        Ganadores con 5 aciertos
+                                            Ganadores con 5 aciertos
                                         </div>
                                         <MiniCard> {asiertos5} </MiniCard>
                                     </div>
@@ -102,7 +96,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-4">
                                         <div>
-                                        Ganadores con 6 aciertos
+                                            Ganadores con 6 aciertos
                                         </div>
                                         <MiniCard> {asiertos6} </MiniCard>
                                     </div>
@@ -112,7 +106,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-3">
                                         <div>
-                                        Ganadores con 3 aciertos
+                                            Ganadores con 3 aciertos
                                         </div>
                                         <MiniCard> {aciertos3} </MiniCard>
                                     </div>
@@ -121,26 +115,36 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                         </div>
                     </div>
                 </div>}
-                
+
                 <div className="row g-2">
-                   
+
                     {typeTicket?.length > 0 && typeTicket.map((ticket) => {
                         return <div key={ticket._id} className="col-12 col-lg-6 col-xl-4">
                             <div className="card p-2">
-                                <div className="px-2 text-sm  flex-between ">
+                                <div className="text-sm text-center text-success pb-2">
+                                    <b> {ticket.quinielaType === "1" ? "Gran Quiniela:" : "Mini Quiniela:"}</b> {ticket.idQuiniela.slice(-6)}
+                                </div>
+                                <div className="px-2 text-sm  flex-between">
                                     {ticket.user.name}
-                                    <div>{String(ticket.count).padStart(3, "0")}-{ticket.code}</div>
+                                    <div className="text-end">
+                                        Estado
+                                        <div className="bg-gray px-2 text-dark text-center rounded mb-1">
+                                            {ticket.status === 1 && "Jugando"}
+                                            {ticket.status === 2 && "Ganador por Cobrar"}
+                                            {ticket.status === 3 && "Pagado"}
+                                        </div>
+                                        {String(ticket.count).padStart(3, "0")}-{ticket.code}
+                                    </div>
                                 </div>
                                 <div className="px-2 mb-3 flex-between text-sm text-secondary">
-                                    <div className="">{quinielaLabel[ticket.quinielaType]}</div>
                                     <div className="">{formatDate(ticket.date)}</div>
                                 </div>
                                 <div className="container-fluid">
                                     <div className="row">
                                         {ticket.animals.map((animal, index) => {
-                                            const arrayAnimals = []
-                                            animals.forEach(i => arrayAnimals.push(i.animalId))
-                                            const styleCard = arrayAnimals.includes(animal.id)
+                                            const arrayAnimals = animals.map(i => i.animalId)
+                                            const arrayAnimalsMini = animals.filter(i => [15, 16, 17, 18, 19].includes(Number(i.hora))).map(i => i.animalId)
+                                            const styleCard = ticket.quinielaType === "1" ? arrayAnimals.includes(animal.id) : arrayAnimalsMini.includes(animal.id)
 
                                             return (<div key={index} className="col-2 mb-2" >
                                                 <div className={`bg-${styleCard && menu === 1 ? "success text-light" : "secondary-light"} text-center`}>

@@ -792,17 +792,18 @@ body {
 }
 
 .result-animal-in {
-    background-color: #242547;
+    background-color: #0000001e;
     color: whitesmoke;
-    width: 20px;
+    width: 48px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .minicard {
-    font-size: 40px;
+    font-size: 55px;
     line-height: 40px;
     text-align: center;
 }

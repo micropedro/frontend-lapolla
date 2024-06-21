@@ -111,7 +111,7 @@
         {
             "name": "Quinielas",
             "icon": "bi bi-diagram-3",
-            "link": "/dashboard/quinielas",
+            "link": "/dashboard/quinielas/granquiniela",
             "status": false,
             "permissions": [
                 1,

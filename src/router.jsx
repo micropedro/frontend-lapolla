@@ -59,7 +59,7 @@ const Router = () => {
             <Route path="/dashboard/mensajes" element={<Dashboard><Mensajes /></Dashboard>} />
             <Route path="/dashboard/loterias" element={<Dashboard><Loterias /></Dashboard>} />
             <Route path="/dashboard/ganadores" element={<Dashboard><Ganadores /></Dashboard>} />
-            <Route path="/dashboard/quinielas" element={<Dashboard><Quinielas /></Dashboard>} />
+            <Route path="/dashboard/quinielas/:id" element={<Dashboard><Quinielas /></Dashboard>} />
             <Route path="/dashboard/ventas" element={<Dashboard><Ventas /></Dashboard>} />
             <Route path="/dashboard/cargar" element={<Dashboard><Cargar /></Dashboard>} />
             <Route path="/dashboard/retiros" element={<Dashboard><Retiros /></Dashboard>} />
