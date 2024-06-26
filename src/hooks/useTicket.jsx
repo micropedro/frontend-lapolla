@@ -32,7 +32,7 @@ const useTicket = () => {
             if (!body.animals) throw "No animals"
             if (!body.user) throw "No user"
             if (!body.type) throw "No type"
-            if (body.animals.length !== 6 && body.animals.length !== 3) throw "Elija animales correctamente: " + body.animals.length
+            if (body.animals.length !== 6 && body.animals.length !== 4) throw "Elija animales correctamente: " + body.animals.length
 
             const res = await request.post(`${urlApi}/tickets`, body)
             if (res) {

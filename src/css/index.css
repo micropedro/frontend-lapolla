@@ -835,3 +835,31 @@ body {
 .bg-light-4 {
     background-color: #e19de7;
 }
+
+.run{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.bg-granjita{
+    background-color: #ddcf0f;
+    color: rgb(126, 85, 8);
+}
+
+.bg-loto{
+    background-color: #098b1b;
+    color: #05dd3b;
+}
+
+.bg-ruleta{
+    background-color: #b10385;
+    color: pink;
+}
+.run-format{
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    width: 55px;
+}

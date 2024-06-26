@@ -34,4 +34,9 @@ export const getTime2 = (dateString) => {
     return `${_hours}:${_minutes} ${Number(date.getHours()) < 12 ? ' AM' : ' PM'}`
 }
 
+export const nivel = {
+    4:"Agencia",
+    5:"Cliente"
+}
+
 export default formatDate

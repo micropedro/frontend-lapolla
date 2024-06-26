@@ -52,6 +52,10 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
         }
     }, [tickets, animals, quinielaSelected])
 
+    const roulet = (id) => {
+        return id === 1 ? "bg-ruleta" : id === 2 ? "bg-granjita" : "bg-loto"
+    }
+
     return (
         <div>
             <div className="container-fluid">
@@ -61,15 +65,20 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                         <div className="row mb-3">
                             <div className="col-3 min-h-x">
                                 <div className="comun-wrap-quiniela bg-light-1">
-                                    <div className="mb-2">
+                                    <div className="mb-2 w-100">
                                         Animalitos de hoy
+                                        <div className="run">
+                                            <div className="bg-ruleta run-format"> Ruleta A </div>
+                                            <div className="bg-granjita run-format"> Granjita </div>
+                                            <div className="bg-loto run-format"> Loto A </div>
+                                        </div>
                                     </div>
                                     <div className="row gap-2 flex-center" >
                                         {animals.length > 0 ? animals.map((animal, index) => {
                                             return (
-                                                <div key={index} className="result-animal-in">
+                                                <div key={index} className={`result-animal-in ${roulet(animal.roulet)}`}>
                                                     <div>{formatIf37(animal.animalId)}</div>
-                                                    <div className="text-gray">{animal.hora}</div>
+                                                    <div>{animal.hora}</div>
                                                 </div>
                                             )
                                         }) : <>sin animales</>}
@@ -106,7 +115,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-3">
                                         <div>
-                                            Ganadores con 3 aciertos
+                                            Ganadores con 4 aciertos
                                         </div>
                                         <MiniCard> {aciertos3} </MiniCard>
                                     </div>

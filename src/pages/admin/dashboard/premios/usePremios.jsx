@@ -1,7 +1,7 @@
 import usePremiosStore from "./premiosStore"
 import request from "../../../../services/request"
 import urlApi from "../../../../services/urlApi"
-import useLoadingStore from "../../../../store/loadingModalStore"
+import useLoadingStore from "../../../../store/loadingStore"
 import useErrorManager from "../../../../hooks/useErrorManager" // eslint-disable-line
 import { useEffect } from "react"
 
@@ -11,11 +11,17 @@ const usePremios = () => {
     const { setLoading } = useLoadingStore()
     const errorManager = useErrorManager()
 
+    const handleModal = (typeModal, premio) => {
+        setPremioSelected(premio)
+        setTypeModal(typeModal)
+        setModalDatos(true)
+    }
+
     const getData = async () => {
         try {
             setLoading(true)
             const res = await request.get(urlApi + '/premios')
-            setPremios(res.data.body)
+            if (res) setPremios(res.data.body)
         } catch (error) {
             errorManager(error)
         } finally {
@@ -33,7 +39,8 @@ const usePremios = () => {
         premios,
         typeModal,
         setTypeModal,
-        setPremioSelected
+        setPremioSelected,
+        handleModal
     }
 }
 
