@@ -25,14 +25,11 @@ const useQuinielas = () => {
         }
     }
 
-    const createNewQuiniela = async () => {
+    const createNewQuiniela = async (tipoQuiniela) => {
         try {
             setLoading(true)
-            const res = await createQuiniela()
+            const res = await createQuiniela(tipoQuiniela)
             if (!res) throw "Error al crear quinielas"
-            console.log(res)
-            console.log(res.data.body.granQuiniela.validated)
-            console.log(res.data.body.miniQuiniela.validated)
             await getQuinielas()
         } catch (error) {
             errorManager(error)

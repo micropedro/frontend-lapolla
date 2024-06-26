@@ -21,9 +21,9 @@ class Permisions {
     userBtnClient = [1]
 
     levelUserDirection = ['/',
-        '/dashboard/users',
-        '/dashboard/users',
-        '/dashboard/users',
+        '/dashboard/quinielas/granquiniela',
+        '/dashboard/quinielas/granquiniela',
+        '/dashboard/quinielas/granquiniela',
         '/dashboard/ventas',
         '/Lobby']
 

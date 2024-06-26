@@ -782,7 +782,84 @@ body {
     padding: 10px;
 }
 
-.h2-plain{
+.h2-plain {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 30px;
+}
+
+.result-animal-wrap {
+    background-color: #0077ff;
+}
+
+.result-animal-in {
+    background-color: #0000001e;
+    color: whitesmoke;
+    width: 48px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.minicard {
+    font-size: 55px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.comun-wrap-quiniela {
+    border-radius: 5px;
+    color: #0c2657;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    min-height: 100%;
+    text-align: center;
+    line-height: 20px;
+}
+.min-h-x{
+    min-height: 110px;
+}
+.bg-light-1 {
+    background-color: #e0e79d;
+}
+.bg-light-2 {
+    background-color: #9dc0e7;
+}
+.bg-light-3 {
+    background-color: #e7ae9d;
+}
+.bg-light-4 {
+    background-color: #e19de7;
+}
+
+.run{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.bg-granjita{
+    background-color: #ddcf0f;
+    color: rgb(126, 85, 8);
+}
+
+.bg-loto{
+    background-color: #098b1b;
+    color: #05dd3b;
+}
+
+.bg-ruleta{
+    background-color: #b10385;
+    color: pink;
+}
+.run-format{
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    width: 55px;
 }

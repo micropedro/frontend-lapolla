@@ -35,8 +35,8 @@ const useVentas = () => {
             }
             setAnimals([...animals, animal])
         } else if (type === 2) {
-            if (animals.length > 2) {
-                notify.error("Mini Quiniela, Solo puede seleccionar 3 animales")
+            if (animals.length > 3) {
+                notify.error("Mini Quiniela, Solo puede seleccionar 4 animales")
                 return
             }
             setAnimals([...animals, animal])
@@ -46,14 +46,14 @@ const useVentas = () => {
     const saveAndPrint = () => {
         if (!type) return notify.error('debe elegir un tipo de quiniela')
         if (type === 1 && animals.length < 6) return notify.error('debe elegir 6 animalitos')
-        if (type === 2 && animals.length < 2) return notify.error('debe elegir 3 animalitos')
+        if (type === 2 && animals.length < 4) return notify.error('debe elegir 4 animalitos')
         setVisible(true)
     }
 
     const saveTicketClient = () => {
         if (!type) return notify.error('debe elegir un tipo de quiniela')
         if (type === 1 && animals.length < 6) return notify.error('debe elegir 6 animalitos')
-        if (type === 2 && animals.length <= 2) return notify.error('debe elegir 3 animalitos')
+        if (type === 2 && animals.length < 4) return notify.error('debe elegir 4 animalitos')
         setLoading(true)
         getTicketCode()
     }
