@@ -3,7 +3,7 @@ import urlApi from "../services/urlApi"
 
 export const getAllReports = async () => {
     const res = await request.get(urlApi + '/report')
-    console.log(res)
+    /*  console.log(res) */
     return res
 }
 

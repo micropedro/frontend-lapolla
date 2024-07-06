@@ -44,7 +44,7 @@ const Print = () => {
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
                                 <div key={index} className="col-6">
-                                    <div > {animal.id} {animal.name}, </div>
+                                    <div > {animal.id === 37 ? "00" : animal.id} {animal.name}, </div>
                                 </div>
                             )
                         })}

@@ -1,78 +1,76 @@
-import formatDate from '../../../services/formatDate'
+
 import useLoadingStore from "../../../store/loadingStore"
-import ReportModal from "../../../components/modals/reportModal"
-import useModalStore from "../../../store/modalStore"
-import useUserStore from '../../../store/userStore'
-import useReportes from '../../../hooks/useReportes'
+import { Spinner } from "react-bootstrap"
+import { formatDate2 } from '../../../services/formatDate'
+import useReportUser from "../../../hooks/useReportUser"
+import ModalPago from "./modales/modalPago"
+import { totalAPagar } from "../../../services/utils"
+const tipo = { 1: "Gran quiniela", 2: "Mini Quiniela" }
 
-const Reporte = () => {
-    const { dataTable, generateReport } = useReportes()
-    const { setVisible } = useModalStore()
+const ReportUser = () => {
+
     const { loading } = useLoadingStore()
+    const { dataTable, handlePay } = useReportUser()
 
-    const { user } = useUserStore()
+    return (
+        <>
+            <ModalPago />
+            {loading ? <div className="text-center p-4"> <Spinner /> </div> : <>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Vendidos</th>
+                            <th>Tipo</th>
+                            <th>Precio</th>
+                            <th>acumulado</th>
+                            <th>estatus</th>
+                            <th>Porcentaje agencia</th>
+                            <th>Total a pagar</th>
+                            <th>¿Pagado?</th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-    return (<>
-        <ReportModal handleExec={generateReport} />
-        <div className="container-fluid mt-3">
-            <div className="row">
-                <div className="col-12">
-                    <div className="d-flex justify-content-between p-2">
-                        <h3>Reporte de ventas (Agencia)</h3>
-                        <button onClick={() => setVisible(true)} className="btn btn-primary" style={{ width: "170px" }}>
-                            {loading ? (<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>)
-                                : (<i className="bi bi-archive"> Cierre de Caja</i>)}
-                        </button>
-                    </div>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Vendidos</th>
-                                <th>Total BS</th>
-                                <th>Comisión Agencias</th>
-                                <th>Total a pagar</th>
-                                <th>Pagos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataTable.length > 0 ? dataTable.map((data, index) => (
-                                <tr key={index}>
-                                    <td>{formatDate(data.date)}</td>
-                                    <td>{data.ticketsSold}</td>
-                                    <td>{data.totalSold}</td>
+                    <tbody>
+                        {dataTable.length > 0 ? dataTable?.map((i) => {
+                            return (
+                                <tr key={i._id} className={i.status ? "bg-act" : "bg-fin"}>
+                                    <td> {formatDate2(i.fechaQuiniela)}</td>
+                                    <td> {i.tickets.length} </td>
+                                    <td>{tipo[i.tipoQuiniela]} {i._id.slice(-6)}</td>
+                                    <td>Bs.{i.precioQuiniela}</td>
+                                    <td>{i.acumulado}</td>
+                                    <td>{i.status ? <>Activa</> : <>Finalizada</>}</td>
+                                    <td>{i.tickets[0].user.percent} %</td>
                                     <td>
-                                        {user.level === 4 && data.agenciaAmount}
-                                        {user.level === 3 && data.gruperoAmount}
-                                        {user.level === 2 && data.adminAmount}
+                                        <span className="totalMoney">
+                                            {i?.transfer?.status === 1 ? 0 : totalAPagar(i.tickets, i.precioQuiniela).toFixed(2)} Bs
+                                        </span>
                                     </td>
                                     <td>
-                                        -{data.totalSold - data.agenciaAmount}
-                                    </td>
-                                    <td>
-                                        <button className='btn btn-primary'>
-                                            Pagar
-                                        </button>
+                                        {console.log(i.userPayd)}
+
+                                        {!i?.transfer ? <>
+                                            <button onClick={() => handlePay(i)} className="btn btn-primary">Pagar</button>
+                                        </>
+                                            : <>
+                                                {i?.transfer?.status === 0 && <div className="alert alert-warning"> Pendiente </div>}
+                                                {i?.transfer?.status === 1 && <div className="alert alert-success"> Aprobado </div>}
+                                                {i?.transfer?.status === 2 && <div className="alert alert-danger"> Rechazado </div>}
+                                            </>}
                                     </td>
                                 </tr>
-                            )) : <tr>
-                                <td colSpan={4} className='text-center'>
-                                    No se encontraron Reportes
-                                </td>
-                            </tr>}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </>
+                            )
+                        }) : <tr> <td colSpan={8} className="w-100 p-3 text-center bg-light">Sin Datos </td>  </tr>}
+                    </tbody>
+                </table>
+            </>}
+        </>
     )
 }
 
-
-
-
-export default Reporte
+export default ReportUser
 
 /* const listaFechas = [
     { id: "1", name: "item 1", date: "2024-03-11 10:30:15" },

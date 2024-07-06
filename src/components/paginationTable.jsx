@@ -5,9 +5,7 @@ import { userType } from '../services/utils'
 import { Link } from 'react-router-dom'
 import useLoadingStore from '../store/loadingStore';
 import useReportUser from '../store/reportUserStore';
-
-const PaginationTable = ({ users, deleteModal }) => {
-
+const PaginationTable = ({ users, deleteModal, handleSortSaldo, sortSaldo }) => {
     const { setReportUser } = useReportUser()
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()
@@ -24,7 +22,16 @@ const PaginationTable = ({ users, deleteModal }) => {
                         <th>Telefono</th>
                         <th>Tipo</th>
                         <th>Cedula</th>
-                        <th>Saldo</th>
+                        <th>
+                            <div className='sortSaldo'>
+                                Saldo
+                                {sortSaldo ?
+                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-danger btn-sm lh-1'> ↑ </button>
+                                    :
+                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-success btn-sm lh-1'> ↓  </button>
+                                }
+                            </div>
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -46,9 +53,11 @@ const PaginationTable = ({ users, deleteModal }) => {
                                 <td>{item.phone}</td>
                                 <td>{userType(item.level)}</td>
                                 <td>{item.ci}</td>
-                                <td>{ item.balance.toFixed(2)}</td>
+                                <td className={item.balance < 0 ? 'text-danger' : 'text-success'}>
+                                    Bs.{item.balance.toFixed(2)}
+                                </td>
                                 <td>
-                                    <Link to="/dashboard/editUser" >
+                                    <Link to={`/dashboard/editUser/${item._id}`} >
                                         <button onClick={() => setEditUser(item)} className='btn btn-warning mx-1'> <i className='bi bi-card-text' /> </button>
                                     </Link>
                                     <button onClick={() => deleteModal(item)} className='btn btn-danger mx-1'> <i className='bi bi-dash-square' />   </button>
@@ -86,7 +95,7 @@ const PaginationTable = ({ users, deleteModal }) => {
                     <option value={100}>100</option>
                 </Form.Control>
             </Pagination>
-        </div>
+        </div >
     );
 };
 

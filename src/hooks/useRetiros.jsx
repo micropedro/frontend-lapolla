@@ -18,11 +18,10 @@ const useRetiros = () => {
     const { setRetiros, retiros } = useRetiroStore()
     const location = useLocation();
    
-    const getRetiros = async (state) => {
+    const getRetiros = async () => {
         /* if (user.level === 5) return */ // --> no llenar el estado de retiros del administrador
         try {
             setLoading(true)
-            console.log("state: ", state)
             const response = await request.get(urlApi + "/withdraws")
             if (response) setRetiros(response.data.body)
             //console.log(response)
@@ -34,7 +33,7 @@ const useRetiros = () => {
         }
     }
 
-    const aproveWhithdraw = async (_id) => {
+    const approveWhithdraw = async (_id) => {
         //update retiro .put
         try {
             setText(<Spinner className="p-4"></Spinner>)
@@ -55,7 +54,7 @@ const useRetiros = () => {
 
     const handleModal = (retiro) => {
         const { _id, payMethod, amount } = retiro
-        setClickEvent(() => aproveWhithdraw(_id))
+        setClickEvent(() => approveWhithdraw(_id))
         setButtonText("Ya e pagado")
         setFillBtn(true)
         setVisible(true)
@@ -124,7 +123,7 @@ const useRetiros = () => {
         addRetiro,
         getRetiros,
         retiros,
-        aproveWhithdraw,
+        approveWhithdraw,
         handleModal,
         getRetirosUser
     }

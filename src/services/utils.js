@@ -6,7 +6,7 @@ export const objectEmpty = (object) => {
 
 export const convertCeroNumber = (number) => number > 0 && number < 10 ? `0${number}` : number
 
-export const textMenu = ["Taquilla", "Reporte", "Ganadores", "Tickets vendidos"]
+export const textMenu = ["Taquilla", "Reporte", "Ganadores", "Tickets vendidos","Pagos"]
 
 export const getMiliseconds = (date) => {
     const [fecha, hora] = date.split(" ")
@@ -100,3 +100,25 @@ export const dateFormated = () => {
 }
 
 export const handleAmount = (tipoDeCambio, amount) => (Math.floor(amount * tipoDeCambio * 100)) / 100
+
+export const jugandoPara = () => {
+    const date = new Date()
+    const hour = date.getHours()
+
+    if (hour < 10) {
+        return "Hoy a las 10 AM"
+    } else {
+        return "Mañana a las 10 AM"
+    }
+
+}
+
+export const totalAPagar = (tickets, precio) => {
+    let total = 0
+    if (Array.isArray(tickets) && tickets.length > 0) {
+        tickets.forEach(ticket => {
+            total = total + precio - ticket.report.agencia.amount
+        })
+    }
+    return total
+}

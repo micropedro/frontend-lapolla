@@ -72,7 +72,6 @@ const useCargarAnimales = () => {
                 roulet: radioRoulet
             }
 
-            console.log(data)
 
             if (!verify([
                 notFalsy(data.owner),
@@ -81,7 +80,6 @@ const useCargarAnimales = () => {
             ])) throw 'A ocurrido un error al intentar guardar el animalito'
 
             await request.post(urlApi + '/animals', data)
-            console.log('cargado')
             notify.success("Cargado con exito")
             await getAnimals()
 

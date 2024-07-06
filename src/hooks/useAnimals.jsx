@@ -43,8 +43,7 @@ const useAnimal = () => {
     const deleteAnimal = async (animalId,closeModal) => {
         try {
             setLoading(true)
-            const result = await request.delete(urlApi + '/animals/' + animalId)
-            console.log(result.data)
+            await request.delete(urlApi + '/animals/' + animalId)
             
             await getAnimals()
             closeModal()

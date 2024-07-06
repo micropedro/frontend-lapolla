@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from "react"
-
-const useUsers = (users) => {
+const usePagination = (users) => {
 
     //pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -9,7 +8,6 @@ const useUsers = (users) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
-
     const totalPages = Math.ceil(users.length / itemsPerPage);
 
     const nextPage = () => {
@@ -33,8 +31,9 @@ const useUsers = (users) => {
         prevPage,
         nextPage,
         setCurrentPage,
-        handleItemsPerPageChange
+        handleItemsPerPageChange,
+        
     }
 }
 
-export default useUsers
+export default usePagination

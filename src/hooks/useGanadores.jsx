@@ -20,9 +20,8 @@ const useGanadores = () => {
     const winnerTicket = async () => {
         try {
             setLoading(true)
-            console.log("dfgdfg")
             const res = await request.get(urlApi + "/tickets/find/one/" + code)
-            console.log("res: ",res)
+          
             const ticket = res.data.body
             const ticketType = ticket.quinielaType
             const ticketAnimals = ticket.animals
@@ -31,9 +30,9 @@ const useGanadores = () => {
             const ids = animals.map(animal => animal.animalId)
             const ticketsIds = ticketAnimals.map(animal => animal.id)
             if (ticket) {
-                console.log(ticket)
+                
                 const numerosRepetidos = ids.filter(num => ticketsIds.includes(num))
-                console.log(numerosRepetidos)
+              
 
                 if (ticketType === granQuniela && numerosRepetidos.length === 6) {
                     ticket.isWinner = true

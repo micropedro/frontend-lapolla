@@ -26,7 +26,6 @@ const useMethodModal = () => {
 
     const handleChangeMethod = (event) => {
         setIdMethSelected(event.target.value)
-        console.log(event.target.value)
 
         if (event.target.value === "0") {
             setMethodSelected("")

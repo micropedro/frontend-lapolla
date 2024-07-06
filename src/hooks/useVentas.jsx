@@ -5,21 +5,27 @@ import { useState, useEffect } from "react"
 import loadingStore from "../store/loadingStore"
 import urlApi from "../services/urlApi"
 import request from "../services/request"
+import useErrorManager from "./useErrorManager"
 
 const useVentas = () => {
-
+    const errorManager = useErrorManager()
     const [menu, setMenu] = useState("taquilla")
-    const { animals, setAnimals, setVisible, type, setType, setTicketCode } = useTicketStore()
+    const { animals, setAnimals, setVisible, type, setType, setTicketCode,setTicketNumber } = useTicketStore()
     const { loading, setLoading } = loadingStore()
     const { notify } = useNotify()
 
     useEffect(() => () => setAnimals([]), [])
 
     const getTicketCode = async () => {
-        const code = await request.get(`${urlApi}/secrettoken`)
-        setTicketCode(code.data.body.ticketCode)
-        setVisible(true)
-        setLoading(false)
+        try {
+            const code = await request.get(`${urlApi}/secrettoken`)
+            setTicketCode(code.data.body.ticketCode)
+            setTicketNumber(code.data.body.ticketNumber)
+            setVisible(true)
+            setLoading(false)
+        } catch (error) {
+            errorManager(error)
+        }
     }
 
     const handleSelectedAnimal = (animal) => {

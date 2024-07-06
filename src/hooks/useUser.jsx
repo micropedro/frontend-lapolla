@@ -15,7 +15,6 @@ const useUsers = () => {
             const res = await request.get(urlApi + '/user/' + idUser)
             const user = res.data.body
             if (!user) throw 'usuario no encontrado'
-            setLoading(false)
             return user
         } catch (error) {
             errorManager(error)

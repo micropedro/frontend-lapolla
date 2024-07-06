@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import useTicket from '../hooks/useTicket';
+import useTicket from './useTicket';
 import loadingStore from '../store/loadingStore';
 import formatDate from '../services/formatDate'
 
 const useHistory = () => {
 
     const { getTickets, getAllTickets } = useTicket()
+
     const [tickets, setTickets] = useState([])
     const [options, setOptions] = useState(1)
     const { loading } = loadingStore()
@@ -16,8 +17,8 @@ const useHistory = () => {
     })
 
     const stateTickets = async () => {
-        const tickets = await getTickets();
-        setTickets(tickets);
+        const tickets = await getTickets()
+        setTickets(tickets)
     };
 
     const handleDate = (data) => {
@@ -39,7 +40,7 @@ const useHistory = () => {
 
     const stateAllTickets = async () => {
         const _tickets = await getAllTickets(dataLocal)
-        console.log(_tickets)
+        
         setTickets(_tickets)
     }
 

@@ -51,7 +51,6 @@ const useReportes = () => {
 
                 const data = await request.get(`${urlApi}/reports/${id}`)
                 const reportes = data.data.body
-                console.log(reportes)
                 setDataTable(reportes)
                 getPolla()
                 return reportes
@@ -83,7 +82,6 @@ const useReportes = () => {
             const date = new Date()
             const queryDate = formatDate(date, discound)
             const reportes = await getReportes()
-            console.log(reportes)
             const list = reportes.filter((_reporte) => formatDate(_reporte.date) === queryDate)
             setReportesFiltered(list)
         } catch (error) {

@@ -8,6 +8,7 @@ import useMenuVentas from "../../../store/menuVentasStore"
 import { textMenu } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
 import permisions from "../../../services/permissions"
+import Pagos from "./pagos"
 const Ventas = () => {
     const { polla } = useReportes()
     const { menu } = useMenuVentas()
@@ -24,6 +25,7 @@ const Ventas = () => {
                 {permisions.taquilla.includes(permisions.getUser().level) && <NavButton text={textMenu[1]} />}
                 <NavButton text={textMenu[2]} />
                 {permisions.taquilla.includes(permisions.getUser().level) && <NavButton text={textMenu[3]} />}
+                {permisions.pagos.includes(permisions.getUser().level) && <NavButton text={textMenu[4]} />}
             </div>
         </nav>
         <section>
@@ -31,6 +33,7 @@ const Ventas = () => {
             {menu === textMenu[1] && <Reporte />}
             {menu === textMenu[2] && <Ganadores />}
             {menu === textMenu[3] && <TicketSold />}
+            {menu === textMenu[4] && <Pagos />}
         </section>
     </Guard >
     )

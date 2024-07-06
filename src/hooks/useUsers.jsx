@@ -5,18 +5,22 @@ import useUserStore from "../store/userStore"
 import useModal from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
 import request from "../services/request"
-/* import useNotify from '../hooks/useNotify' */
 import useDeposits from "./useDeposits"
 import useErrorManager from "./useErrorManager"
+
 const useUsers = () => {
+
     const errorManager = useErrorManager()
     const { findUserByCi } = useDeposits()
-    /* const { notify } = useNotify() */
     const { setLoading } = useLoadingStore()
     const { setVisible, setText, setUser } = useModal()
     const { users, setUsers } = useUserStore()
 
+    const [sortSaldo, setSortSaldo] = useState(true)
     const [filterduser, setFilterduser] = useState([])
+
+
+
 
     const getUsers = async () => {
         setLoading(true)
@@ -37,6 +41,8 @@ const useUsers = () => {
         }
     }
 
+
+
     const deleteModal = (user) => {
         setText(<div>
             ¿Seguro de Bloquear a este usuario?
@@ -55,6 +61,20 @@ const useUsers = () => {
     const filterUsersFinded = (text) => {
         const _users = users?.filter(user => user.name.includes(text))
         setFilterduser(_users)
+    }
+
+    const handleSortSaldo = () => {
+        setSortSaldo(!sortSaldo)
+        if (sortSaldo) {
+            const _users = users?.sort((a, b) => a.balance - b.balance)
+            setFilterduser(_users)
+        } else {
+            const _users = users?.sort((a, b) => b.balance - a.balance)
+            setFilterduser(_users)
+        }
+        /* const text = "sd"
+        const _users = users?.filter(user => user.name.includes(text))
+        setFilterduser(_users) */
     }
 
     const getUserName = (userId) => users.length > 0 ? (users.filter(user => user._id === userId)[0]).name : ""
@@ -77,7 +97,10 @@ const useUsers = () => {
         getUserName,
         filterUser,
         filterUsersFinded,
-        filterduser
+        filterduser,
+        setFilterduser,
+        sortSaldo, setSortSaldo,
+        handleSortSaldo
     }
 }
 

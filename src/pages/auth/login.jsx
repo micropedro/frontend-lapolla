@@ -21,7 +21,7 @@ const Login = () => {
                         <div className="mb-4">
                             <form onSubmit={e => { login(e) }}>
                                 <span>Correo</span>
-                                <input defaultValue={'manuelperez.0000@gmail.com'} name='email' type="email" className="form-control mb-3" placeholder="Ingrese su correo electronico" required />
+                                <input name='email' type="email" className="form-control mb-3" placeholder="Ingrese su correo electronico" required />
                                 <div className="flex-between">
                                     <span>Contraseña</span>
                                 </div>
