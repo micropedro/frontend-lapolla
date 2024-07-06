@@ -22,7 +22,7 @@ const Recuperacion = () => {
                         <div className="mb-4">
                             <form onSubmit={e => { sendTemporalPass(e) }}>
                                 <span>Correo</span>
-                                <input defaultValue={'manuelperez.0000@gmail.com'} name='email' type="email" className="form-control mb-3" placeholder="Ingrese su correo electronico" required />
+                                <input name='email' type="email" className="form-control mb-3" placeholder="Ingrese su correo electronico" required />
                                 <button className="btn btn-primary w-100">
                                     {loading ? <Spinner color='white' /> : 'Enviar correo'}
                                 </button>

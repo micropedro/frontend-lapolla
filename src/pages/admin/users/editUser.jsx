@@ -1,5 +1,4 @@
 import useEditUser from "../../../hooks/useEditUser"
-import useEditUserStore from "../../../store/editUserStore"
 import useLoadingStore from "../../../store/loadingStore"
 import Spinner from '../../../components/spinner'
 import useUserStore from "../../../store/userStore"
@@ -8,15 +7,14 @@ import Form from 'react-bootstrap/Form';
 import useBlock from "../../../hooks/useBlock"
 import usePrePaid from "../../../hooks/usePrePaid"
 import Badge from 'react-bootstrap/Badge';
-
 const EditUser = () => {
+
     const { user } = useUserStore()
     const { loading } = useLoadingStore()
-    const { editUser } = useEditUserStore()
-    const { sendUserForm } = useEditUser()
     const { handleBlock } = useBlock()
     const { handlePrePaid } = usePrePaid()
-    
+    const { sendUserForm, editUser,handleUserType } = useEditUser()
+
     if (permisions.editUser.includes(permisions.getUser().level)) return (<>
         {loading && (<div className='bg-modal'><Spinner /></div>)}
         <div className='px-4 pt-3'>
@@ -52,17 +50,19 @@ const EditUser = () => {
                         </tr>
                         <tr>
                             <td>Tipo de usuario</td>
-                            <td>
-                                <select defaultValue={editUser.level} name='level' style={{ color: "gray" }} className="form-select" >
-                                    <option value={99} style={{ color: "black" }}>Elija un tipo de usuario</option>
+                            {editUser.level === 1 ? <h5>Master</h5> :
+                                <td>
+                                    <select onChange={handleUserType} value={editUser.level} name='level' style={{ color: "gray" }} className="form-select" >
+                                        <option value={99} style={{ color: "black" }}>Elija un tipo de usuario</option>
 
-                                    {user.level === 1 && <option value={2}>Administrador</option>}
-                                    {[1, 2].includes(user.level) && <option value={3}>Grupero</option>}
-                                    {[1, 2, 3].includes(user.level) && <option value={4}>Agencia</option>}
-                                    {user.level === 1 && <option value={5}>Cliente</option>}
+                                        {user.level === 1 && <option value={2}>Administrador</option>}
+                                        {[1, 2].includes(user.level) && <option value={3}>Grupero</option>}
+                                        {[1, 2, 3].includes(user.level) && <option value={4}>Agencia</option>}
+                                        {user.level === 1 && <option value={5}>Cliente</option>}
 
-                                </select>
-                            </td>
+                                    </select>
+                                </td>
+                            }
                         </tr>
                         <tr>
                             <td>Administrador</td>
@@ -92,22 +92,22 @@ const EditUser = () => {
                         </tr>
                         <tr>
                             <td>Status de usuario</td>
-                            <td> 
+                            <td>
                                 <div className="d-flex justify-content-between align-items-center">
                                     <Form.Check
                                         type="switch"
                                         id="custom-switch"
-                                        label={ editUser.block ? "Desbloquear usuario" :  "Bloquear usuario"}
+                                        label={editUser.block ? "Desbloquear usuario" : "Bloquear usuario"}
                                         checked={editUser?.block || false}
                                         onChange={handleBlock}
                                     />
-                                    { editUser.block ? <Badge bg="danger">Usuario bloquedo</Badge> : <Badge bg="success">Usuario Activo</Badge> }
+                                    {editUser.block ? <Badge bg="danger">Usuario bloquedo</Badge> : <Badge bg="success">Usuario Activo</Badge>}
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>Venta sin saldo</td>
-                            <td> 
+                            <td>
                                 <div className="d-flex justify-content-between align-items-center">
                                     <Form.Check
                                         type="switch"
@@ -116,7 +116,7 @@ const EditUser = () => {
                                         checked={!editUser?.prepaid}
                                         onChange={handlePrePaid}
                                     />
-                                    {editUser?.prepaid ? <Badge bg="danger">desactivadas las ventas sin saldo</Badge> : <Badge bg="success">ventas sin saldo activas</Badge> }
+                                    {editUser?.prepaid ? <Badge bg="danger">desactivadas las ventas sin saldo</Badge> : <Badge bg="success">ventas sin saldo activas</Badge>}
                                 </div>
                             </td>
                         </tr>

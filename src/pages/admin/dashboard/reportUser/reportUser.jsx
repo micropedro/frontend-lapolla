@@ -1,67 +1,48 @@
-import { Link } from "react-router-dom"
 import useReportUser from "../../../../hooks/useReportUser"
 import useLoadingStore from "../../../../store/loadingStore"
 import { Spinner } from "react-bootstrap"
-import formatDate from '../../../../services/formatDate'
+import { formatDate2 } from '../../../../services/formatDate'
+const tipo = { 1: "Gran quiniela", 2: "Mini Quiniela" }
+
 const ReportUser = () => {
     const { loading } = useLoadingStore()
-    const { reportUser, dataTable, profit } = useReportUser()
-
-    const identifier = {
-        1: "master",
-        2: "admin",
-        3: "Grupero",
-        4: "Agencia",
-        5: "Cliente"
-    }
+    const { dataTable } = useReportUser()
 
     return (
-        <div className="container-fluid mt-3">
-            <div className="row">
-                <div className="col-12">
-                    <div className="d-flex justify-content-between">
-                        <h3>Reporte de ventas ({identifier[reportUser?.level]})</h3>
-                        <Link to='/dashboard/users'>
-                            <button className="btn btn-primary" style={{ width: "170px" }}>
-                                <i className="bi bi-arrow-left"> Regresar</i>
-                            </button>
-                        </Link>
-                    </div>
-                    <div className="card my-4 p-4">
-                        <div className="flex-between">
-                            <div><b>{reportUser.name}</b></div>
-                            <div>{reportUser.phone}</div>
-                            <div>{reportUser.email}</div>
-                        </div>
-                    </div>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Vendidos</th>
-                                <th>Total BS</th>
-                                <th>Comisión Agencias</th>
+        <>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Vendidos</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
+                        <th>acumulado</th>
+                        <th>estatus</th>
+                        <th>Porcentaje agencia</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                {loading ? <> <Spinner /> </> : <></>}
+                <tbody>
+                    {dataTable?.map((i) => {
+                        return (
+                            <tr key={i._id} className={i.status ? "bg-act":"bg-fin"}>
+                                <td> {formatDate2(i.fechaQuiniela)}</td>
+                                <td> {i.tickets.length} </td>
+                                <td>{tipo[i.tipoQuiniela]}</td>
+                                <td>Bs.{i.precioQuiniela}</td>
+                                <td>{i.acumulado}</td>
+                                <td>{i.status ? <>Activa</> : <>Finalizada</>}</td>
+                                <td>{i.tickets[0].user.percent} %</td>
+                                <td>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {loading ?
-                                <tr>
-                                    <td colSpan={4} className="text-center p-4"> <Spinner /> </td>
-                                </tr> : dataTable && dataTable.length > 0 && dataTable.map((table) => {
-                                    return (<tr key={table._id}>
-                                        {console.log(table)}
-                                        <td>{formatDate(table.creationDate)}</td>
-                                        <td>{table.ticketsSold}</td>
-                                        <td>{table.totalSold}</td>
-                                        <td>{profit(table)} </td>
-                                    </tr>)
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                        )
+                    })}
+                </tbody>
+            </table>
+        </>
     )
 }
 

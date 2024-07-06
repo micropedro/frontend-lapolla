@@ -22,7 +22,7 @@ const Taquilla = () => {
                 <div>
                     <b> {dateNow.fecha} </b>
                     <div>
-                        <button onClick={() => { setType(1); setAnimals([]) }} className="btn btn-primary"> Gran Quiniela </button>
+                        <button onClick={() => { setType(1); setAnimals([]);  }} className="btn btn-primary"> Gran Quiniela </button>
                         <button onClick={() => { setType(2); setAnimals([]) }} className="btn btn-primary mx-2"> Mini Quiniela </button>
                     </div>
                 </div>

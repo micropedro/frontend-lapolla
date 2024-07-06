@@ -54,11 +54,10 @@ const useTicket = () => {
 
     const saveTicketClient = async () => {
         setLoading(true)
-
-
         try {
 
             const code = await getTicketCode()
+
             const body = { animals, user, type, code }
 
             const res = await request.post(`${urlApi}/tickets`, body)
@@ -79,11 +78,11 @@ const useTicket = () => {
     }
 
     // eslint-disable-next-line no-unused-vars
-    const getTickets = async (from, to) => {
+    const getTickets = async () => {
         try {
             setLoading(true)
-            if (user._id) {
-                const res = await request.get(`${urlApi}/gettickets/${user._id}`)
+            if (user?._id) {
+                const res = await request.get(`${urlApi}/gettickets/${user?._id}`)
                 if (res) {
                     setTickets(res.data.body)
                     return res.data.body

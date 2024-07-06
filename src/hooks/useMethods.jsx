@@ -127,7 +127,7 @@ const useMethods = () => {
     }
 
     const deleteMethod = async (_id) => {
-        console.log(_id)
+       
         setLoading(true)
         try {
             const response = await request.delete(urlApi + '/admin/methods/delete/' + _id)

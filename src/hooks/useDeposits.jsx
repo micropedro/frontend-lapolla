@@ -35,10 +35,10 @@ const useDeposits = () => {
 
     const handleMethod = (id) => {
 
-        console.log(id)
+        
 
         const newMethod = actualMethods.filter(method => method._id === id)
-        console.log(newMethod[0])
+        /* console.log(newMethod[0]) */
         setDefaultMethod(newMethod[0])
     }
 

@@ -8,7 +8,7 @@ import permisions from '../../../services/permissions'
 
 const Users = () => {
 
-    const { deleteModal, _findUserByCi, filterUsersFinded, filterduser, getUsers, filterUser } = useUsers()
+    const { deleteModal, _findUserByCi, handleSortSaldo,sortSaldo, filterUsersFinded, filterduser, getUsers, filterUser } = useUsers()
 
     if (permisions.permit(0)) return (<Guard >
         <DeleteUserModal />
@@ -32,7 +32,7 @@ const Users = () => {
                 <button className='btn-buscar bg-primary text-light'> Buscar </button>
             </form>
         </div>
-        <PaginationTable users={filterduser} deleteModal={deleteModal} />
+        <PaginationTable users={filterduser} deleteModal={deleteModal} handleSortSaldo={handleSortSaldo} sortSaldo={sortSaldo} />
 
     </Guard>
     )

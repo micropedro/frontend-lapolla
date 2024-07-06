@@ -11,7 +11,6 @@ import { Link, useParams } from "react-router-dom"
 
 const Quinielas = () => {
     const { id } = useParams()
-    console.log("id:" + id)
     const { loading } = useLoadingStore()
     const { createNewQuiniela, menu, setMenu, handler, playingTickets } = useQuinielas()
     const [quinielaSelected, setQuinielaSelected] = useState(1)

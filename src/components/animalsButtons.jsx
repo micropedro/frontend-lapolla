@@ -12,7 +12,7 @@ const AnimalsButtons = ({ handle }) => {
                         {images.animals.map((animal, index) => (
                             <div key={index} className="animal-col">
                                 <div onClick={() => handle(animal)} className={!animals.includes(animal) ? "btn-animals" : "btn-animals-selected"}>
-                                    <img src={animal.image} className="w-100" />
+                                    <img src={animal.image} className="w-100 img-animals" />
                                 </div>
                             </div>
                         ))}

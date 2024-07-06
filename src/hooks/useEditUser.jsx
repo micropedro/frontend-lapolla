@@ -4,11 +4,32 @@ import useNotify from "./useNotify"
 import useUsers from "./useUsers"
 import request from "../services/request"
 import useErrorManager from "./useErrorManager"
+import useEditUserStore from "../store/editUserStore"
+import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+import useUser from './useUser'
 const useEditUser = () => {
+    const { getUser } = useUser()
+    const { editUser, setEditUser } = useEditUserStore()
     const errorManager = useErrorManager()
     const { getUsers } = useUsers()
     const { notify } = useNotify()
     const { setLoading } = useLoadingStore()
+
+    const { id } = useParams()
+
+    const fetchUserById = async () => {
+        const user = await getUser(id)
+        setEditUser(user)
+    }
+
+    useEffect(() => {
+        if (Object.keys(editUser).length === 0) fetchUserById(id)
+    }, [editUser])
+
+    const handleUserType = (e) => {
+        setEditUser({ ...editUser, level: e.target.value })
+    }
 
     const sendUserForm = async (e) => {
         e.preventDefault()
@@ -31,6 +52,8 @@ const useEditUser = () => {
             if (response) {
                 getUsers()
                 notify.success("Se guardaron todos los cambios")
+            } else {
+                throw "Ocurrio un error"
             }
         } catch (error) {
             errorManager(error)
@@ -40,7 +63,9 @@ const useEditUser = () => {
     }
 
     return {
-        sendUserForm
+        sendUserForm,
+        editUser,
+        handleUserType
     }
 }
 

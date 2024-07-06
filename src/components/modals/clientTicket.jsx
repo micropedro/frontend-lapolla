@@ -1,34 +1,34 @@
 import useTicketStore from "../../store/ticketStore"
-import dateNow from "../../services/dateNow"
 import useTicket from "../../hooks/useTicket"
-import { convertCeroNumber } from "../../services/utils"
+import { convertCeroNumber, jugandoPara } from "../../services/utils"
 import loadingStore from "../../store/loadingStore"
 import useConfig from "../../hooks/useConfig"
 import Spinner from "../../components/spinner"
-// import urlApi from "../../services/urlApi"
-// import request from "../../services/request"
+import { formatDate2, getTime2 } from "../../services/formatDate"
 
 const ClientTicket = () => {
 
     const { loading } = loadingStore()
     const { saveTicketClient } = useTicket()
     const { config } = useConfig()
-    const { visible, setVisible, animals, ticketCode } = useTicketStore()
+    const { visible, setVisible, animals } = useTicketStore()
 
     if (visible) return (<div className="bg-modal p-2">
         <div className="card p-3">
             <div>
                 <div className="text-center">
                     <h4>apuestaslapolla.com</h4>
-                    <div>Nro Ticket - <i>Codigo: {ticketCode}</i></div>
+
                     <p className="text-center">
-                        {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                        {formatDate2(Date.now())} -
+                        {getTime2(Date.now())}
                     </p>
                 </div>
                 <hr />
-                <h4>
-                    {animals.length === 3 ? `Mini Quiniela ${config.precioMiniQuiniela} Bs` : `Gran Quiniela ${config.precioGranQuiniela} Bs`}
+                <h4 className="text-center">
+                    {animals.length === 4 ? `Mini Quiniela ${config.precioMiniQuiniela} Bs` : `Gran Quiniela ${config.precioGranQuiniela} Bs`}
                 </h4>
+                <div className="text-center">Jugando  {jugandoPara()} </div>
                 <hr />
                 <div className="container mx-400">
                     <div className="row">
@@ -41,8 +41,6 @@ const ClientTicket = () => {
                         })}
                     </div>
                 </div>
-                <hr />
-                <hr />
             </div>
             <div>
                 <button onClick={() => setVisible(false)} className="btn btn-danger ticket-button"> Cancelar </button>

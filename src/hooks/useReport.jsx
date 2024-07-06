@@ -1,6 +1,6 @@
 import useReportStore from "../store/reportStore"
 import useErrorManage from "../hooks/useErrorManager"
-import useModalStore from "../store/modalStore"
+import useModalStore from "../store/modalStoreReport"
 import useLoadingStore from "../store/loadingStore"
 import { getAllReports, createReport, deleteReport, getReportsOfDates } from "../controllers/reportController"
 import { useEffect, useRef } from "react"
@@ -9,6 +9,7 @@ import { validate } from "../services/validate"
 import useNotify from "./useNotify"
 import useDateStore from "../store/dateStore"
 const useReport = () => {
+
     const { dateStore } = useDateStore()
     const { notify } = useNotify()
     const { required } = validate

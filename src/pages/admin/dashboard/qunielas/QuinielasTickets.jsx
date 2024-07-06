@@ -29,6 +29,8 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
     }
 
     const aciertosMiniQuiniela = (tickets) => {
+
+        //colocar el cero alante
         let ac3 = 0
         tickets.forEach(ticket => {
             let count = 0

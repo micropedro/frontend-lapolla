@@ -51,7 +51,7 @@ const Router = () => {
 
             <Route path="/dashboard/users" element={<Dashboard><Users /></Dashboard>} />
             <Route path="/dashboard/addUsers" element={<Dashboard><AddUsers /></Dashboard>} />
-            <Route path="/dashboard/editUser" element={<Dashboard><EditUser /></Dashboard>} />
+            <Route path="/dashboard/editUser/:id" element={<Dashboard><EditUser /></Dashboard>} />
             <Route path="/dashboard/metodos" element={<Dashboard><Metodos /></Dashboard>} />
             <Route path="/dashboard/reporte" element={<Dashboard><Reporte /></Dashboard>} />
             <Route path="/dashboard/config" element={<Dashboard><Config /></Dashboard>} />
