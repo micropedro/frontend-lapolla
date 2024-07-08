@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import useReportUserStore from "../store/reportUserStore"
 import request from "../services/request"
 import urlApi from "../services/urlApi"
@@ -10,16 +10,14 @@ import useUser from '../hooks/useUser'
 import { totalAPagar } from "../services/utils"
 import { validate } from "../services/validate"
 import dateNow from "../services/dateNow"
-import useNotify from "./useNotify"
 
 const useReportUser = () => {
-    const { notify } = useNotify()
+
+    const { reportUser, setDataTable } = useReportUserStore()
     const { getUser } = useUser()
     const { setVisible, dataModal, setDataModal, setMethods, setUserToPay, userToPay, selectMethod } = storeModal()
     const errorManager = useErrorManager()
     const { setLoading } = useLoadingStore()
-    const { reportUser } = useReportUserStore()
-    const [dataTable, setDataTable] = useState([])
     const { user } = useUserStore()
     const closeModal = () => setVisible(false)
     const refNumber = useRef()
@@ -59,27 +57,25 @@ const useReportUser = () => {
                 amount: totalAPagar(dataModal?.tickets, dataModal?.precioQuiniela),
                 payMethod: selectMethod?._id,
                 ref: refNumber?.current?.value,
-                idQuiniela: dataModal?._id
+                idQuiniela: dataModal?._id,
+                retransferir:dataModal?.transfer
             }
 
             validate.required(data?.ref.length > 0, "Debe ingresar un numero de referencia valido")
             validate.required([data?.from, data?.to, data?.amount, data?.payMethod, data?.idQuiniela])
             validate.isMongoId([data?.from, data?.to, data?.payMethod])
-            const resPago = await request.post(urlApi + '/pagoQuiniela', data)
-            /* if (resPago) notify.success("Pago agregado con exito") */
+            
+            await request.post(urlApi + '/pagoQuiniela', data)
             const from = `${dateNow.anio - 1}-${dateNow.mes}-${dateNow.dia}`
             const to = `${dateNow.anio}-${dateNow.mes}-${dateNow.dia}`
-            const responseDateTable =  await getDataTable(user?._id, from, to)
-            console.log("responseDateTable: ", responseDateTable)
+            await getDataTable(user?._id, from, to)
             closeModal()
             setLoading(false)
-
-            console.log(resPago)
 
         } catch (error) {
             setLoading(false)
             errorManager(error)
-        } 
+        }
     }
 
     useEffect(() => {
@@ -93,7 +89,6 @@ const useReportUser = () => {
     }, [])
 
     return {
-        dataTable,
         handlePay,
         confirmPay,
         refNumber

@@ -21,6 +21,7 @@ const Pagos = () => {
                         <th>Usuario</th>
                         <th>Monto</th>
                         <th>Metoto de pago</th>
+                        <th>Datos</th>
                         <th>Referencia</th>
                         <th>Opciones</th>
                     </tr>
@@ -32,6 +33,18 @@ const Pagos = () => {
                             <td>{pago.from.name}</td>
                             <td>{pago.amount}</td>
                             <td>{pago.payMethod.methodName} <img src={pago.payMethod.imageUrl} alt="" height={"50px"} /> </td>
+                            <td>
+                                <div>
+                                    {pago.payMethod?.banco && pago.payMethod.banco}
+                                </div>
+                                <div>
+                                    {pago.payMethod?.tipo && pago.payMethod.tipo}
+                                </div>
+                                <div>
+                                    {pago.payMethod?.nombre && pago.payMethod.nombre}
+
+                                </div>
+                            </td>
                             <td>{pago.ref}</td>
                             <td>
                                 {!pago.status ? <>
@@ -40,7 +53,9 @@ const Pagos = () => {
                                 </> : pago.status === 1 ? <>
                                     <div className="alert alert-success"> Aprobado </div>
                                 </> : <>
-                                    <div className="alert alert-danger"> Rechazado </div>
+                                    <div className="alert alert-danger"> 
+                                        Rechazado 
+                                    </div>
                                 </>}
                             </td>
                         </tr>)
