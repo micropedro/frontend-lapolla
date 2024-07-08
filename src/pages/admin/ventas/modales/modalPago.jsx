@@ -40,7 +40,6 @@ const ModalPago = () => {
                                     return <option key={i._id} value={i._id}> {i.methodName} </option>
                                 })}
                             </select>
-                            {console.log(selectMethod)}
                             {selectMethod !== "0" &&
                                 <div className="p-3">
                                     <span className="text-gray text-center mb-4">
@@ -63,7 +62,6 @@ const ModalPago = () => {
                                                 <div> {selectMethod?.tipoDeCambio && <><b>Tipo De Cambio:</b> {selectMethod?.tipoDeCambio}</>} </div>
                                             </div>
                                         </div>
-                                        <> {console.log(selectMethod)} </>
                                         <input ref={refNumber} className="form-control mb-2 border border-warning my-4 " placeholder="Ingrese numero de referencia" type="text" name="" id="" />
                                         <div className="mb-2 p-2 mt-3">
                                             Se reportara el pago a:

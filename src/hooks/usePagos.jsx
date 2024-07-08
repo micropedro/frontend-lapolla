@@ -4,8 +4,11 @@ import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useErrorManager from "./useErrorManager"
 import useUser from "./useUser"
+import useLoadingStore from "../store/loadingStore"
+
 const usePagos = () => {
-    const { user } = useUser()
+    const { setLoading } = useLoadingStore()
+    const { user, actualizeUserBalance } = useUser()
     const errorManager = useErrorManager()
     const [pagos, setPagos] = useState([])
 
@@ -21,11 +24,14 @@ const usePagos = () => {
 
     const approveTransfer = async (id) => {
         try {
+            setLoading(true)
             await request.put(urlApi + '/transfer/approve/' + id)
+            await actualizeUserBalance()
         } catch (error) {
             errorManager(error)
         } finally {
-            getPagos()
+            await getPagos()
+            setLoading(false)
         }
     }
 

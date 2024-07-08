@@ -5,12 +5,14 @@ import { formatDate2 } from '../../../services/formatDate'
 import useReportUser from "../../../hooks/useReportUser"
 import ModalPago from "./modales/modalPago"
 import { totalAPagar } from "../../../services/utils"
+import useReportUserStore from '../../../store/reportUserStore'
+
 const tipo = { 1: "Gran quiniela", 2: "Mini Quiniela" }
 
 const ReportUser = () => {
-
+    const { dataTable } = useReportUserStore()
     const { loading } = useLoadingStore()
-    const { dataTable, handlePay } = useReportUser()
+    const { handlePay } = useReportUser()
 
     return (
         <>
@@ -49,15 +51,16 @@ const ReportUser = () => {
                                         </span>
                                     </td>
                                     <td>
-                                        {console.log(i.userPayd)}
-
                                         {!i?.transfer ? <>
                                             <button onClick={() => handlePay(i)} className="btn btn-primary">Pagar</button>
                                         </>
                                             : <>
                                                 {i?.transfer?.status === 0 && <div className="alert alert-warning"> Pendiente </div>}
                                                 {i?.transfer?.status === 1 && <div className="alert alert-success"> Aprobado </div>}
-                                                {i?.transfer?.status === 2 && <div className="alert alert-danger"> Rechazado </div>}
+                                                {i?.transfer?.status === 2 && <div className="alert alert-danger"> 
+                                                    Rechazado 
+                                                    <button onClick={() => handlePay(i)} className="btn btn-primary">Pagar</button>
+                                                </div>}
                                             </>}
                                     </td>
                                 </tr>
@@ -71,29 +74,3 @@ const ReportUser = () => {
 }
 
 export default ReportUser
-
-/* const listaFechas = [
-    { id: "1", name: "item 1", date: "2024-03-11 10:30:15" },
-    { id: "2", name: "item 2", date: "2024-03-11 12:45:30" },
-    { id: "3", name: "item 3", date: "2024-03-11 14:20:00" }
-  ];
-  
-  // Función para convertir una fecha y hora en milisegundos
-  function convertirAMilisegundos(dateTimeStr) {
-    const [fecha, hora] = dateTimeStr.split(" ");
-    const [anio, mes, dia] = fecha.split("-");
-    const [hh, mm, ss] = hora.split(":");
-    return new Date(anio, mes - 1, dia, hh, mm, ss).getTime();
-  }
-  
-  // Define el rango de horas (por ejemplo, de 11:00:00 a 14:00:00)
-  const horaInicio = convertirAMilisegundos("2024-03-11 11:00:00");
-  const horaFin = convertirAMilisegundos("2024-03-11 14:00:00");
-  
-  // Filtra las fechas dentro del rango de horas
-  const fechasFiltradas = listaFechas.filter((item) => {
-    const fechaEnMilisegundos = convertirAMilisegundos(item.date);
-    return fechaEnMilisegundos >= horaInicio && fechaEnMilisegundos <= horaFin;
-  });
-  
-  console.log(fechasFiltradas); */
