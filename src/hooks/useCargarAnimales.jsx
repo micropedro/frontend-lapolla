@@ -6,8 +6,7 @@ import useAnimals from "../hooks/useAnimals"
 import useUserStore from "../store/userStore"
 import useNotify from "./useNotify"
 import useErrorManager from "./useErrorManager"
-import { verify, notFalsy } from "../services/verify"
-import formatDate from '../services/formatDate'
+/* import formatDate from '../services/formatDate' */
 import dateNow from "../services/dateNow"
 
 const useCargarAnimales = () => {
@@ -15,15 +14,25 @@ const useCargarAnimales = () => {
     const { user } = useUserStore()
     const { notify } = useNotify()
     const [animalSelected, setAnimalSelected] = useState()
-    const [radioRoulet, setRadioRoulet] = useState(null)
-    const { animals, setAnimals, getAnimals } = useAnimals()
+    const [animalSelected2, setAnimalSelected2] = useState()
+    const [animalSelected3, setAnimalSelected3] = useState()
+    const [radioRoulet, setRadioRoulet] = useState(1)
+    const { setAnimals, getAnimals } = useAnimals()
+    /* const { animals } = useAnimals() */
 
     const [hora, setHora] = useState(8)
     const [inputDate, setInputDate] = useState(null)
 
     const formattedDate = dateNow.anio + '-' + dateNow.mes + '-' + dateNow.dia
 
-    const handle = (animal) => setAnimalSelected(animal)
+    const handle = (animal) => {
+        if (radioRoulet === 1) {
+            setAnimalSelected(animal)
+        }
+        if (radioRoulet === 2) setAnimalSelected2(animal)
+        if (radioRoulet === 3) setAnimalSelected3(animal)
+
+    }
 
     const handleHora = (hora) => {
         return setHora(Number(hora))
@@ -31,14 +40,14 @@ const useCargarAnimales = () => {
 
     const handleFecha = (fecha) => setInputDate(fecha)
 
-    const isAnimalLoaded = () => {
-        const animalsRoulette = animals.filter(a => {
-            const dateLoaded = formatDate(a.fecha).split('/').reverse().join('-')
-            return a.roulet === radioRoulet && a.hora === hora && dateLoaded === inputDate
-        })
-        if (animalsRoulette.length > 0) return true
-        return false
-    }
+    /*  const isAnimalLoaded = () => {
+         const animalsRoulette = animals.filter(a => {
+             const dateLoaded = formatDate(a.fecha).split('/').reverse().join('-')
+             return a.roulet === radioRoulet && a.hora === hora && dateLoaded === inputDate
+         })
+         if (animalsRoulette.length > 0) return true
+         return false
+     } */
 
     const loadAnimals = async () => {
         const _animals = await getAnimals()
@@ -57,39 +66,36 @@ const useCargarAnimales = () => {
         loadAnimals()
     }, [])
 
-    const save = async (animal) => {
+    const save = async () => {
 
         try {
-
-            if (isAnimalLoaded()) throw 'Esta hora ya ha sido cargada'
+            //if (isAnimalLoaded()) throw 'Esta hora ya ha sido cargada'
 
             const data = {
                 owner: user._id,
-                animalId: animal.id,
-                name: animal.name,
+                animalRuletaActiva: animalSelected,
+                animalGranjita: animalSelected2,
+                animalLotoActivo: animalSelected3,
                 hora: hora,
-                fecha: inputDate + ' ' + hora + ':00:00',
-                roulet: radioRoulet
+                fecha: inputDate + ' ' + hora + ':00:00'
             }
 
+            const result = await request.post(urlApi + '/animals', data)
+            if (result.data.message === 'success') notify.success("Cargado con exito")
 
-            if (!verify([
-                notFalsy(data.owner),
-                notFalsy(data.name),
-                notFalsy(data.roulet)
-            ])) throw 'A ocurrido un error al intentar guardar el animalito'
-
-            await request.post(urlApi + '/animals', data)
-            notify.success("Cargado con exito")
+        } catch (error) {
+            errorManager(error)
+        } finally {
             await getAnimals()
-
-        } catch (error) { errorManager(error) }
+        }
 
     }
 
 
     return {
         animalSelected, setAnimalSelected,
+        animalSelected2, setAnimalSelected2,
+        animalSelected3, setAnimalSelected3,
         handle,
         save,
         hora, setHora,
