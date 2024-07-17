@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Pending from "./pending"
-import approved from "./approved"
+import Approved from "./approved"
 import permisions from "../../../../services/permissions"
 const Retiros = () => {
 
@@ -15,7 +15,7 @@ const Retiros = () => {
         </div>
         <hr className="m-0 p-0" />
         {tab === 1 && <Pending />}
-        {tab === 2 && <approved />}
+        {tab === 2 && <Approved />}
     </>
     )
 }

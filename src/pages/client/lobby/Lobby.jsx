@@ -3,24 +3,30 @@ import logoMq from '../../../images/miniquiniela.png'
 import { Link } from 'react-router-dom';
 /* import AlertLobby from './alertLobby'; */
 import Cards from '../../../components/Cards';
-import useReportes from "../../../hooks/useReportes"
+import useUserStore from '../../../store/userStore';
+import cash from '../../../services/cash';
 
 const Lobby = () => {
-    const { polla } = useReportes()
+    const { user } = useUserStore()
+
     return (<>
         <div className='container mt-3'>
             <div className='row pb-2'>
                 <div className="col-12 d-flex align-items-start justify-content-between">
                     <h2 className='text-warning'>Lobby</h2>
-                    <div>
+                    {/* <div>
                         <div className='text-lg text-end text-light'>Premio Acumulado</div>
                         <div> <h2 className='text-warning'> BS. {polla} </h2> </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             {/*  <AlertLobby /> */}
             <div className="row justify-content-center mb-4">
                 <div className="col-sm-12 col-md-5">
+                    <div className='text-light text-center'>
+                        Acumulado de ayer
+                        <h2 className='text-warning'> Bs. {cash(user?.config?.premioAcumuladoGran)} </h2>
+                    </div>
                     <div className='bg-btn-2'>
                         <Link to="/mini">
                             <img width="100%" className="hover-image" src={logoMq} alt="" />
@@ -28,6 +34,10 @@ const Lobby = () => {
                     </div>
                 </div>
                 <div className="col-sm-12 col-md-5">
+                    <div className='text-light text-center'>
+                        Acumulado de ayer
+                        <h2 className='text-warning'> Bs. {cash(user?.config?.premioAcumuladoMini)} </h2>
+                    </div>
                     <div className="bg-btn-1">
                         <Link to="/quiniela">
                             <img width="100%" className="hover-image" src={logoGq} alt="" />

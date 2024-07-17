@@ -17,6 +17,10 @@ const usePerfil = () => {
         const localUser = JSON.parse(localStorage.getItem('user'))
         const res = await request.get(urlApi + '/user/' + localUser._id)
 
+        console.log(localUser)
+
+        console.log(res)
+
         if (res) {
             const { adminMethods, userMethods } = res.data.body
             const user = res.data.body
@@ -55,7 +59,7 @@ const usePerfil = () => {
         setShow,
         handleShow,
         handleDeleteMethod,
-        handleClose, 
+        handleClose,
         idMethSelected, setIdMethSelected
     }
 }

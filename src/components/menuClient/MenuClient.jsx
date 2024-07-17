@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './menuClient.module.css'
 import logo from '../../images/logo.png';
 import useMenuClient from './useMenuClient';
-import { formatBalance } from '../../services/formatBalance';
+import cash from '../../services/cash';
 
 const MenuClient = ({ children }) => {
 
@@ -50,7 +50,7 @@ const MenuClient = ({ children }) => {
                                 Bienvenido <b> {user.name}</b>
                             </div>
                             <div className='d-flex text-lg'>
-                                Saldo: <h4 className='px-2'> BS. {formatBalance(user.balance)}</h4>
+                                Saldo: <h4 className='px-2'> BS. {cash(user.balance)}</h4>
                             </div>
                         </div>
                         {children}

@@ -5,7 +5,7 @@ import ClientTicket from "../../../components/modals/clientTicket"
 import { convertCeroNumber } from "@/services/utils"
 import { useEffect } from "react"
 import AnimalsButtons from "@/components/animalsButtons"
-import useUserStore from "../../../store/userStore"
+/* import useUserStore from "../../../store/userStore" */
 import { Link } from 'react-router-dom';
 import Spinner from "../../../components/spinner"
 
@@ -14,7 +14,7 @@ const Taquilla = () => {
     const type = 2
 
     const { animals, handleSelectedAnimal, saveTicketClient, setType, loading } = useVentas()
-    const { user } = useUserStore()
+    /* const { user } = useUserStore() */
 
     useEffect(() => {
         setType(2)
@@ -44,7 +44,7 @@ const Taquilla = () => {
                 </div>
                 <div className="col-md-3 d-flex justify-content-end">
                     <div>
-                        <p>Saldo: {user.balance} bs</p>
+                        {/* <p>Saldo: {user.balance} bs</p> */}
                         <button onClick={saveTicketClient} className="btn btn-success"> Comprar Ticket </button>
                     </div>
                 </div>
