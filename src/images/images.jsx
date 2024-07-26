@@ -1,4 +1,4 @@
-import logoPng from './logo.png'
+import logoPng from './logo3.png'
 import delfin from '../images/animals/0.png'
 import carnero from '../images/animals/1.png'
 import toro from '../images/animals/2.png'

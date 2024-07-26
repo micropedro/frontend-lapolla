@@ -1,14 +1,15 @@
 /* import { Link } from 'react-router-dom'; */
-
+import { Tab, Tabs } from '../../../components/tabs/Tabs';
 import styles from './history.module.css';
 import Placeholder from 'react-bootstrap/Placeholder';
-import formatDate, { getTime } from '../../../services/formatDate'
+import { formatDate2, getTime4 } from '../../../services/formatDate'
 import useHistory from '../../../hooks/useHistory';
 import { formatIf37 } from '../../../services/utils';
 
+
 const History = () => {
 
-    const { tickets, loading, TEXTSTATUS, handleOptions, options } = useHistory()
+    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle } = useHistory()
 
     return (<>
         <div className='container-fluid mt-3'>
@@ -20,6 +21,24 @@ const History = () => {
                         <button onClick={() => handleOptions(2)} className={`btn text-light ${options === 2 && 'border'}`}>Otros Jugadores</button>
                     </div>
                 </div>
+            </div>
+            <div>
+
+                <Tabs>
+                    <Tab status={tab1} onClick={() => handle(true)}> Gran Quiniela </Tab>
+                    <Tab status={tab2} onClick={() => handle(false)}> Mini Quiniela </Tab>
+                </Tabs>
+
+                {/* <div className='d-flex flex-between mt-3'>
+                    <div className='text-light'>
+                        Filtrar por fecha
+                    </div>
+                    <div className='d-flex mb-2 gap-2'>
+                        <input type="date" className='form-control filtradoFechaCliente' />
+                        <input type="date" className='form-control filtradoFechaCliente' />
+                        <button className='btn btn-primary'>Buscar</button>
+                    </div>
+                </div> */}
             </div>
             <div className="row text-white justify-content-center">
             </div>
@@ -39,7 +58,7 @@ const History = () => {
                             <Placeholder xs={12} />
                         </Placeholder>
                     </div>
-                ) : tickets.length > 0 ? tickets.map((ticket, index) => {
+                ) : fiteredTickets.length > 0 ? fiteredTickets.map((ticket, index) => {
                     return (
                         <div className='col-12 col-md-6' key={index}>
                             <div className='card mt-4'>
@@ -65,10 +84,10 @@ const History = () => {
                                         </div>
                                         <div className='col-12 col-sm-12 col-md-4 code-card'>
                                             <div>
-                                                <span><i className="bi bi-calendar"></i> {formatDate(ticket.date)}</span>
+                                                <span><i className="bi bi-calendar"></i> {formatDate2(ticket.date)}</span>
                                             </div>
                                             <div>
-                                                <span><i className="bi bi-clock-history"></i> {getTime(ticket.date)}</span>
+                                                <span><i className="bi bi-clock-history"></i> {getTime4(ticket.date)}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -6,7 +6,7 @@ export const objectEmpty = (object) => {
 
 export const convertCeroNumber = (number) => number > 0 && number < 10 ? `0${number}` : number
 
-export const textMenu = ["Taquilla", "Reporte", "Ganadores", "Tickets vendidos","Pagos"]
+export const textMenu = ["Taquilla", "Reporte", "Ganadores", "Tickets vendidos", "Pagos"]
 
 export const getMiliseconds = (date) => {
     const [fecha, hora] = date.split(" ")
@@ -48,11 +48,6 @@ export const getTicketCode = () => {
         ticketCode += randomDigit()
     }
     return ticketCode
-
-    /*let uuid = uuidv4();
-    uuid = uuid.replace(/[01iy\W_]/g, '')
-    uuid = uuid.slice(0, 6)
-    return uuid */
 }
 
 export const validateUserType = (userLevel, levelForm) => {
@@ -66,7 +61,7 @@ export const validateUserType = (userLevel, levelForm) => {
     return false
 }
 
-export const formatIf37 = (idAnimal) => idAnimal === 37 ? "00" : idAnimal
+export const formatIf37 = (idAnimal) => idAnimal === 37 ? "00" : idAnimal === 0 ? idAnimal : String(idAnimal).padStart(2, "0")
 
 export const am_pm_format = (hora) => {
     return hora < 12 ? hora + " AM" : hora === 12 ? hora + " PM" : (hora - 12) + " PM";
@@ -121,4 +116,44 @@ export const totalAPagar = (tickets, precio) => {
         })
     }
     return total
+}
+
+
+export const fechaJuego = (type) => {
+    const date = new Date()
+    const dia = date.getDate()
+    const mes = date.getMonth() + 1
+    const hora = date.getHours()
+    const anio = date.getFullYear()
+
+    const hoy = (dia, mes, anio) => `${String(dia).padStart(2, "0")}-${String(mes).padStart(2, "0")}-${anio}`
+    const manana = (date) => {
+        const newDate = new Date(date.setDate(date.getDate() + 1))
+        return `${String(newDate.getDate()).padStart(2, "0")}-${String(newDate.getMonth() + 1).padStart(2, "0")}-${newDate.getFullYear()}`
+    }
+    if (type === 1 && hora > 9 || type === 2 && hora > 14) return manana(date)
+    if (type === 1 && hora < 10 || type === 2 && hora < 15) return hoy(dia, mes, anio)
+
+    /* if (type === 1) {
+        if (hora > 9) {
+            const newDate = new Date(date.setDate(date.getDate() + 1))
+            return `${String(newDate.getDate()).padStart(2, "0")}-${String(newDate.getMonth() + 1).padStart(2, "0")}-${newDate.getFullYear()}`
+        } else {
+            return `${String(dia).padStart(2, "0")}-${String(mes).padStart(2, "0")}-${anio}`
+        }
+    } else {
+        if (hora > 14) {
+            const newDate = new Date(date.setDate(date.getDate() + 1))
+
+            return `${String(newDate.getDate()).padStart(2, "0")}-${String(newDate.getMonth() + 1).padStart(2, "0")}-${newDate.getFullYear()}`
+        } else {
+            return `${String(dia).padStart(2, "0")}-${String(mes).padStart(2, "0")}-${anio}`
+        }
+    } */
+}
+
+export const TEXTSTATUS = {
+    1: { color: 'warning', text: 'En espera' },
+    2: { color: 'danger', text: 'Perdedor' },
+    3: { color: 'success', text: 'Ganador' }
 }

@@ -1,6 +1,6 @@
 import { Spinner } from "react-bootstrap"
 import { useHistorialRec } from "../../../../hooks/useHistorialRec"
-import fromatDate, { getTime2 } from '../../../../services/formatDate'
+import { formatDate2, time_4 } from '../../../../services/formatDate'
 import useLoadingStore from '../../../../store/loadingStore'
 const Historial = () => {
     const { loading } = useLoadingStore()
@@ -11,7 +11,7 @@ const Historial = () => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
+                        <th>Fecha x</th>
                         <th>Envia</th>
                         <th>Recibe</th>
                         <th>Monto</th>
@@ -20,7 +20,7 @@ const Historial = () => {
                 <tbody>
                     {recargas.length && recargas.map(item => {
                         return <tr key={item._id}>
-                            <td> {fromatDate(item.date)} - {getTime2(item.date)} </td>
+                            <td> {formatDate2(item.date)} - {time_4(item.date)} </td>
                             <td>
                                 {item.from.name} {item.from.ci}
                             </td>

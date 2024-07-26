@@ -11,34 +11,40 @@ import { useEffect, useState } from "react"
 import getTicketCode from "../services/getTicketCode"
 import { getCurrentTicketData } from "../controllers/ticketController"
 import formatDate from "../services/formatDate"
+import useSession from "./useSession"
 
 const useTicket = () => {
+    const { closeSession } = useSession()
     const errorManager = useErrorManager()
     const { getUser } = useUser()
     const { setLoading } = loadingStore()
     const navigate = useNavigate()
     const { user, setUser } = useUserStore()
-    const { animals, type, setVisible, setAnimals, tickets, setTickets, setTicketData } = useTicketStore()
+    const { animals, type, setVisible, setAnimals, tickets, setTickets, setTicketData, } = useTicketStore()
     const { notify } = useNotify()
     const [playingTickets, setPlayingTickets] = useState([])
 
     const handlePrint = async () => {
         try {
             setLoading(true)
-            const code = await getTicketCode()
-            const body = { animals, user, type, code }
 
-            if (!code) throw "Error al obtener el codigo de ticket"
-            if (!body.animals) throw "No animals"
-            if (!body.user) throw "No user"
-            if (!body.type) throw "No type"
+            const body = {
+                animals, type
+            }
+
+            if (body?.animals?.length < 4) throw "Elija sus animalitos"
+            if (Object.keys(user) === 0) throw "Usuario invalido"
             if (body.animals.length !== 6 && body.animals.length !== 4) throw "Elija animales correctamente: " + body.animals.length
+            if (!body.type) throw "Elija un tipo de quiniela"
 
             const res = await request.post(`${urlApi}/tickets`, body)
+            const formatedData = res.data.body
+
             if (res) {
                 const _user = await getUser(user._id)
                 const newUser = { ...user, balance: _user.balance }
                 setUser(newUser)
+                setTicketData(formatedData)
                 navigate("/print")
             } else {
                 throw 'No se ha podido guardar el ticket'
@@ -46,6 +52,7 @@ const useTicket = () => {
             setLoading(false)
 
         } catch (error) {
+            closeSession()
             errorManager(error)
         } finally {
             setLoading(false)
@@ -77,7 +84,7 @@ const useTicket = () => {
         }
     }
 
-    // eslint-disable-next-line no-unused-vars
+    
     const getTickets = async () => {
         try {
             setLoading(true)

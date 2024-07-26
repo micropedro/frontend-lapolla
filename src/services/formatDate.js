@@ -34,9 +34,29 @@ export const getTime2 = (dateString) => {
     return `${_hours}:${_minutes} ${Number(date.getHours()) < 12 ? ' AM' : ' PM'}`
 }
 
+export const getTime4 = (dateString) => {
+    const date = new Date(dateString)
+    date.setHours(date.getHours() + 4)
+    const hours = Number(date.getHours()) > 12 ? Number(date.getHours()) - 12 : Number(date.getHours())
+    const _hours = String(hours).padStart(2, '0');
+    const minutes = Number(date.getMinutes())
+    const _minutes = String(minutes).padStart(2, '0')
+    return `${_hours}:${_minutes} ${Number(date.getHours()) < 12 ? ' AM' : ' PM'}`
+}
+
+export const time_4 = (dateString) => {
+    const date = new Date(dateString)
+    /*  date.setHours(date.getHours()) */
+    const hours = Number(date.getHours()) > 12 ? Number(date.getHours()) - 12 : Number(date.getHours())
+    const _hours = String(hours).padStart(2, '0');
+    const minutes = Number(date.getMinutes())
+    const _minutes = String(minutes).padStart(2, '0')
+    return `${_hours}:${_minutes} ${Number(date.getHours()) < 12 ? ' AM' : ' PM'}`
+}
+
 export const nivel = {
-    4:"Agencia",
-    5:"Cliente"
+    4: "Agencia",
+    5: "Cliente"
 }
 
 export default formatDate

@@ -171,7 +171,7 @@ body {
     border-radius: 5px;
 }
 
-.img-animals{
+.img-animals {
     height: 100%;
     width: 100%;
 }
@@ -626,6 +626,7 @@ body {
 }
 
 .bg-granja {
+    background-color: rgb(200, 70, 30);
     background-image: url(../images/bg-lobby.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -822,84 +823,92 @@ body {
     text-align: center;
     line-height: 20px;
 }
-.min-h-x{
+
+.min-h-x {
     min-height: 110px;
 }
+
 .bg-light-1 {
     background-color: #e0e79d;
 }
+
 .bg-light-2 {
     background-color: #9dc0e7;
 }
+
 .bg-light-3 {
     background-color: #e7ae9d;
 }
+
 .bg-light-4 {
     background-color: #e19de7;
 }
 
-.run{
+.run {
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 5px;
 }
 
-.bg-granjita{
+.bg-granjita {
     background-color: #ddcf0f;
     color: rgb(126, 85, 8);
 }
 
-.bg-loto{
+.bg-loto {
     background-color: #098b1b;
     color: #05dd3b;
 }
 
-.bg-ruleta{
+.bg-ruleta {
     background-color: #b10385;
     color: pink;
 }
-.run-format{
+
+.run-format {
     border-radius: 3px;
     font-size: 12px;
     line-height: 14px;
     width: 55px;
 }
 
-.sortSaldo{
+.sortSaldo {
     min-width: 85px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.bg-act td{
+.bg-act td {
     background-color: #d1ecc0;
 }
 
-.bg-fin td{
+.bg-fin td {
     background-color: #cacaca;
 }
-.totalMoney{
+
+.totalMoney {
     font-size: 22px;
     color: rgb(226, 8, 8);
     font-weight: 500;
 }
 
-.tittle{
+.tittle {
     font-size: large;
     text-align: center;
 }
-.amount{
+
+.amount {
     font-size: 30px;
     text-align: center;
     margin-bottom: 10px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: rgb(226, 8, 8);
 }
 
-.card-modalPagos{
+.card-modalPagos {
     min-height: 400px;
     max-height: 90vh;
     overflow-y: scroll;
@@ -910,21 +919,22 @@ body {
     justify-content: space-between;
 }
 
-.tipoQuiniela{
+.tipoQuiniela {
     display: flex;
     justify-content: space-between;
 }
 
-.text-no-methods{
+.text-no-methods {
     text-align: center;
     font-size: 20px;
     color: rgb(255, 38, 0);
 }
-.img-modal-reporte{
+
+.img-modal-reporte {
     width: 100%;
 }
 
-.payed{
+.payed {
     height: 35px;
     padding: 10px 5px;
     display: flex;
@@ -933,3 +943,88 @@ body {
     font-weight: 600;
     color: #0ab133;
 }
+
+.experiment-wrap {
+    height: 100vh;
+    position: relative;
+}
+
+.ex1 {
+    position: absolute;
+    height: 100vh;
+    background-color: red;
+    top: 0px;
+}
+
+.ex3 {
+    position: absolute;
+    height: 100vh;
+    right: 0px;
+    top: 0px;
+    background-color: green;
+}
+.ex2{
+    background-color: #0077ff2a;
+    width: 14px;
+    height: 100vh;
+    position: relative;
+    top: 0px;
+}
+.ex2:hover{
+    cursor: e-resize;
+}
+
+.tabs-container{
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: end;
+}
+
+:root{
+    --border-tab-color:rgba(177, 177, 177, 0.575);
+}
+.tabs-active{
+    padding: 5px 20px;
+    border-top: 1px solid var(--border-tab-color);
+    border-left: 1px solid var(--border-tab-color);
+    border-right: 1px solid var(--border-tab-color);
+    border-bottom:none;
+    border-radius: 5px 5px 0px 0px;
+    color: #afb4bb;
+    background-color: #ffffff;
+    color: #f39c12
+}
+
+.tabs-inactive{
+    padding: 5px 20px;
+    border-top: 1px solid var(--border-tab-color);
+    border-left: 1px solid var(--border-tab-color);
+    border-right: 1px solid var(--border-tab-color);
+    border-bottom:none;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #dde0e4;
+    color: #afb4bb;
+}
+/* 
+.btn-tab-inanctive {
+    background-color: #e0e0e0;
+    border-top: 1px solid var(--border-light-2);
+    border-left: 1px solid var(--border-light-2);
+    border-right: 1px solid var(--border-light-2);
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.btn-tab-active {
+    transition: 0.3s;
+    background-color: white;
+    border-top: 1px solid var(--border-light);
+    border-left: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+    padding: 8px 10px 5px 10px;
+}
+
+.btn-tab-active:active,
+.btn-tab-inanctive:active {
+    background-color: rgb(214, 255, 198);
+} */

@@ -1,0 +1,27 @@
+-- Pendientes --
+filtrar de mayor cantidad de aciertos los tickets
+web sockets
+funcion de ganador y perdedor en el backend
+editar todos los tickets ganador o perdedor al elegir ganadores desde el backend
+
+
+--en proceso--
+mostrar asiertos en verde en el cliente
+
+
+-- Listas -----
+
+en clientes funcionalidad de ver tickets de ayer y de hoy como el admin
+otros jugadores separado mini y gran
+separar mis tickets mini y gran
+al intentar vender sacar del sistema si esta bloqueado
+diferencia de hora en recargas
+revisar horas de tickets en clientes
+al recargar cambiar success por Recarga exitosa
+cargar fondo por defecto en naranja
+agregar los ceros al principio de cada numero de animalito en tickets clientes
+ticket falta el numero y el dia que va a jugar
+revisa bloqueo de compra de tickets
+cambiar el logo con la s
+en recargar sale manuel perez fijo
+agregar bloqueo a clientes al comprar tickets
