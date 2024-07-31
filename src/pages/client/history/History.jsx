@@ -6,6 +6,16 @@ import { formatDate2, getTime4 } from '../../../services/formatDate'
 import useHistory from '../../../hooks/useHistory';
 import { formatIf37 } from '../../../services/utils';
 
+const PrintAnimals = ({ ticket }) => {
+    const ticketAnimal = ticket?.animals?.map(i => i.id)
+    const resultAnimals = ticket?.quiniela?.resultAnimals?.map(j => j.animalId)
+
+    return ticketAnimal.map((k, index) => {
+        const classAnimal = resultAnimals?.includes(k)
+        return <div key={index} className={`${classAnimal ? "bg-success-animals" : "bg-default-animals"}`}> {formatIf37(k)} </div>
+    })
+}
+
 
 const History = () => {
 
@@ -73,13 +83,11 @@ const History = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-sm-6 col-md-4 code-card pt-3'>
+
                                             <div>{ticket.quinielaType === "1" ? <> Gran </> : <> Mini </>} Quiniela</div>
                                             <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
-                                            <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                                {ticket.animals.map((animal, index) => (
-                                                    <div key={index} className='pt-2'>{formatIf37(animal.id)}</div>
-                                                ))}
-
+                                            <div className={`${styles.itemNumNumber} d-flex gap-2 align-items-center justify-content-center mb-2 mt-2`}>
+                                                <PrintAnimals ticket={ticket} />
                                             </div>
                                         </div>
                                         <div className='col-12 col-sm-12 col-md-4 code-card'>

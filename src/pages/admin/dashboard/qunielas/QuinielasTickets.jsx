@@ -33,7 +33,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
         tickets.forEach(ticket => {
             let count = 0
             ticket.animals.forEach(animal => {
-                console.log("hora animal: ",animal)
+                console.log("hora animal: ", animal)
                 const includedTime = [15, 16, 17, 18, 19].includes(Number(ticket.hora))
                 /*  console.log(includedTime ? "Si" : "No") */
                 const mapingAnimals = animals.map(a => a.animalId)
@@ -44,7 +44,11 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
         setAciertos3(ac3)
     }
 
-    const MapTicket = (tickets) => tickets.filter(ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
+    const MapTicket = (tickets) => {
+        const res = tickets.filter(ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
+        console.log("sdfsdfd:",res)
+        return res
+    }
 
     useEffect(() => {
         setTypeTicket(() => MapTicket(tickets))

@@ -84,12 +84,13 @@ const useTicket = () => {
         }
     }
 
-    
+
     const getTickets = async () => {
         try {
             setLoading(true)
             if (user?._id) {
                 const res = await request.get(`${urlApi}/gettickets/${user?._id}`)
+                console.log("tickets del usurio: ", res)
                 if (res) {
                     setTickets(res.data.body)
                     return res.data.body

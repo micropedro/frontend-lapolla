@@ -154,6 +154,6 @@ export const fechaJuego = (type) => {
 
 export const TEXTSTATUS = {
     1: { color: 'warning', text: 'En espera' },
-    2: { color: 'danger', text: 'Perdedor' },
-    3: { color: 'success', text: 'Ganador' }
+    2: { color: 'success', text: 'Ganador' },
+    3: { color: 'danger', text: 'Perdedor' },
 }

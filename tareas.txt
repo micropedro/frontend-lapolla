@@ -1,27 +1,27 @@
 -- Pendientes --
 filtrar de mayor cantidad de aciertos los tickets
 web sockets
-funcion de ganador y perdedor en el backend
+registrar datos de la persona ganadora cuando es compra en agencia
+
+
+-- en proceso --
 editar todos los tickets ganador o perdedor al elegir ganadores desde el backend
-
-
---en proceso--
-mostrar asiertos en verde en el cliente
-
+----------------
 
 -- Listas -----
 
-en clientes funcionalidad de ver tickets de ayer y de hoy como el admin
-otros jugadores separado mini y gran
-separar mis tickets mini y gran
-al intentar vender sacar del sistema si esta bloqueado
-diferencia de hora en recargas
-revisar horas de tickets en clientes
-al recargar cambiar success por Recarga exitosa
-cargar fondo por defecto en naranja
-agregar los ceros al principio de cada numero de animalito en tickets clientes
-ticket falta el numero y el dia que va a jugar
-revisa bloqueo de compra de tickets
-cambiar el logo con la s
-en recargar sale manuel perez fijo
-agregar bloqueo a clientes al comprar tickets
+1 mostrar asiertos en verde en el cliente
+2 en clientes funcionalidad de ver tickets de ayer y de hoy como el admin
+3 otros jugadores separado mini y gran
+4 separar mis tickets mini y gran
+5 al intentar vender sacar del sistema si esta bloqueado
+6 diferencia de hora en recargas
+7 revisar horas de tickets en clientes
+8 al recargar cambiar success por Recarga exitosa
+9 cargar fondo por defecto en naranja
+10 agregar los ceros al principio de cada numero de animalito en tickets clientes
+11 ticket falta el numero y el dia que va a jugar
+12 revisa bloqueo de compra de tickets
+13 cambiar el logo con la s
+14 en recargar sale manuel perez fijo
+15 agregar bloqueo a clientes al comprar tickets
