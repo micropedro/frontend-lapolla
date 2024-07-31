@@ -1,43 +1,43 @@
 import useTicketStore from "../../store/ticketStore"
 import dateNow from "../../services/dateNow"
 import useTicket from "../../hooks/useTicket"
-import { convertCeroNumber } from "../../services/utils"
+import { convertCeroNumber, fechaJuego } from "../../services/utils"
 import loadingStore from "../../store/loadingStore"
-import { getTicketCode } from "../../services/utils"
 import { useEffect } from "react"
 import { Spinner } from "react-bootstrap"
 const Ticket = () => {
 
     const { loading } = loadingStore()
     const { handlePrint, getTicketData } = useTicket()
-    const { visible, setVisible, animals, setTicketCode, ticketData } = useTicketStore()
-
-
-
-    useEffect(() => setTicketCode(getTicketCode()), [])
+    const { visible, setVisible, animals, type } = useTicketStore()
 
     useEffect(() => { getTicketData() }, [])
 
     if (visible) return (<div className="bg-modal">
         <div className="ticket-body p-3">
-            {loading ? <div className="text-center py-5"> 
-                <Spinner  />
+            {loading ? <div className="text-center py-5">
+                <Spinner />
             </div> : <>
                 <div>
                     <div className="text-center">
-                        <h4>apuestaslapolla.com</h4>
-                        <div>Nro Ticket. 234 - <i>Codigo: ******</i></div>
+                        <h4 className="text-primary">apuestaslapolla.com</h4>
+                        <div>Nro Ticket. *** - <i>Codigo: ******</i></div>
                         <p className="text-center">
-                           compra: {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                            <div>
+                                comprado el {dateNow.dia}-{dateNow.mes}-{dateNow.anio}
+                            </div>
+                            <div>
+                                a las {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                            </div>
                         </p>
                     </div>
                     <hr />
                     <h4>
-                        Gran Quiniela 25Bs
+                        {type === 1 ? "Gran" : "Mini"} Quiniela 25Bs
                     </h4>
-                    <div> Nº: {ticketData?.count} </div>
+
                     <div>
-                        Para jugar el: {ticketData?.fechaQuiniela}
+                        Para jugar el: {fechaJuego(type)}
                     </div>
                     <hr />
                     <div className="container mx-400">
@@ -61,7 +61,7 @@ const Ticket = () => {
                     <hr />
                 </div>
                 <div>
-                    <button onClick={() => setVisible(false)} className="btn btn-danger ticket-button"> Cancelar </button>
+                    <button onClick={() => setVisible(false)} className="btn btn-secondary ticket-button"> Cancelar </button>
                     {loading ?
                         <button className="btn btn-primary px-5" >  <Spinner /> </button>
                         :

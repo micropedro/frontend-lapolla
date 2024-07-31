@@ -34,11 +34,14 @@ import Recargas from './pages/admin/dashboard/recargas/recargas'
 import ReportUser from './pages/admin/dashboard/reportUser/reportUser'
 import HistorialChanges from './pages/admin/dashboard/changes/changes'
 import Premios from './pages/admin/dashboard/premios/premios'
+import Experiments from './experiments'
 
 const Router = () => {
     return (<>
 
         <Routes>
+
+            <Route path="/experiments" element={<Experiments />} />
             <Route path="/terminos-y-condiciones" element={<Terminos />} />
             <Route path="/politicas-de-privacidad" element={<Politicas />} />
             <Route path="/" element={<Home />} />

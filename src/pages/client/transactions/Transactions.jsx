@@ -63,26 +63,29 @@ const Transactions = () => {
             <div className='row pt-5'>
                 <div className='col-12'>
                     <h4 className={styles.h3}>Historial de Transacciones:</h4>
-                    <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end">
-                        <Tab eventKey="deposit" title="Depósitos">
-                            {loading ? <LoaderBar /> :
-                                <div className="container-fluid">
-                                    <div className='row'>
-                                        <Deposit />
+                    <div className='text-danger'>
+
+                        <Tabs defaultActiveKey="deposit" id="tab" className="mb-3" justify="end" style={{ backgroundColor: 'rgba(255,255,255,0.9)',borderRadius:"5px" }}>
+                            <Tab eventKey="deposit" title="Depósitos" className='text-dark'>
+                                {loading ? <LoaderBar /> :
+                                    <div className="container-fluid">
+                                        <div className='row'>
+                                            <Deposit />
+                                        </div>
                                     </div>
-                                </div>
-                            }
-                        </Tab>
-                        <Tab eventKey="withdraw" title="Retiros">
-                            {loading ? <LoaderBar /> :
-                                <div className="container-fluid">
-                                    <div className='row'>
-                                        <Withdraw />
+                                }
+                            </Tab>
+                            <Tab eventKey="withdraw" title="Retiros" style={{ color: 'red' }}>
+                                {loading ? <LoaderBar /> :
+                                    <div className="container-fluid">
+                                        <div className='row'>
+                                            <Withdraw />
+                                        </div>
                                     </div>
-                                </div>
-                            }
-                        </Tab>
-                    </Tabs>
+                                }
+                            </Tab>
+                        </Tabs>
+                    </div>
                 </div>
             </div>
         </div>

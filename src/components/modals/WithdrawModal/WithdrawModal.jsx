@@ -83,7 +83,7 @@ const WithdrawModal = ({ show, onHide }) => {
                 <Modal.Header closeButton>
                     <Modal.Title className="text-lg font-bold">Retiro de dinero</Modal.Title>
                 </Modal.Header>
-                {user?.userMethods.length === 0 ? <>
+                {user?.userMethods?.length === 0 ? <>
                     <Modal.Body>
                         <div className="p-3 mb-4 alert alert-warning">
                             Debes agregar un metodo de pago en tu perfil para poder hacer retiros

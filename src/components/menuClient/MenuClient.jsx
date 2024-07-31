@@ -2,7 +2,7 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './menuClient.module.css'
-import logo from '../../images/logo.png';
+import logo from '../../images/logo3.png';
 import useMenuClient from './useMenuClient';
 import cash from '../../services/cash';
 

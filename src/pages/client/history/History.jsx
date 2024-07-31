@@ -1,14 +1,25 @@
 /* import { Link } from 'react-router-dom'; */
-
+import { Tab, Tabs } from '../../../components/tabs/Tabs';
 import styles from './history.module.css';
 import Placeholder from 'react-bootstrap/Placeholder';
-import formatDate, { getTime } from '../../../services/formatDate'
+import { formatDate2, getTime4 } from '../../../services/formatDate'
 import useHistory from '../../../hooks/useHistory';
 import { formatIf37 } from '../../../services/utils';
 
+const PrintAnimals = ({ ticket }) => {
+    const ticketAnimal = ticket?.animals?.map(i => i.id)
+    const resultAnimals = ticket?.quiniela?.resultAnimals?.map(j => j.animalId)
+
+    return ticketAnimal.map((k, index) => {
+        const classAnimal = resultAnimals?.includes(k)
+        return <div key={index} className={`${classAnimal ? "bg-success-animals" : "bg-default-animals"}`}> {formatIf37(k)} </div>
+    })
+}
+
+
 const History = () => {
 
-    const { tickets, loading, TEXTSTATUS, handleOptions, options } = useHistory()
+    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle } = useHistory()
 
     return (<>
         <div className='container-fluid mt-3'>
@@ -20,6 +31,24 @@ const History = () => {
                         <button onClick={() => handleOptions(2)} className={`btn text-light ${options === 2 && 'border'}`}>Otros Jugadores</button>
                     </div>
                 </div>
+            </div>
+            <div>
+
+                <Tabs>
+                    <Tab status={tab1} onClick={() => handle(true)}> Gran Quiniela </Tab>
+                    <Tab status={tab2} onClick={() => handle(false)}> Mini Quiniela </Tab>
+                </Tabs>
+
+                {/* <div className='d-flex flex-between mt-3'>
+                    <div className='text-light'>
+                        Filtrar por fecha
+                    </div>
+                    <div className='d-flex mb-2 gap-2'>
+                        <input type="date" className='form-control filtradoFechaCliente' />
+                        <input type="date" className='form-control filtradoFechaCliente' />
+                        <button className='btn btn-primary'>Buscar</button>
+                    </div>
+                </div> */}
             </div>
             <div className="row text-white justify-content-center">
             </div>
@@ -39,7 +68,7 @@ const History = () => {
                             <Placeholder xs={12} />
                         </Placeholder>
                     </div>
-                ) : tickets.length > 0 ? tickets.map((ticket, index) => {
+                ) : fiteredTickets.length > 0 ? fiteredTickets.map((ticket, index) => {
                     return (
                         <div className='col-12 col-md-6' key={index}>
                             <div className='card mt-4'>
@@ -54,21 +83,19 @@ const History = () => {
                                             </div>
                                         </div>
                                         <div className='col-12 col-sm-6 col-md-4 code-card pt-3'>
+
                                             <div>{ticket.quinielaType === "1" ? <> Gran </> : <> Mini </>} Quiniela</div>
                                             <span className={`${styles.itemBadge} badge text-bg-primary`}>Jugadas</span>
-                                            <div className={`${styles.itemNumNumber} d-flex gap-4 align-items-center justify-content-center`}>
-                                                {ticket.animals.map((animal, index) => (
-                                                    <div key={index} className='pt-2'>{formatIf37(animal.id)}</div>
-                                                ))}
-
+                                            <div className={`${styles.itemNumNumber} d-flex gap-2 align-items-center justify-content-center mb-2 mt-2`}>
+                                                <PrintAnimals ticket={ticket} />
                                             </div>
                                         </div>
                                         <div className='col-12 col-sm-12 col-md-4 code-card'>
                                             <div>
-                                                <span><i className="bi bi-calendar"></i> {formatDate(ticket.date)}</span>
+                                                <span><i className="bi bi-calendar"></i> {formatDate2(ticket.date)}</span>
                                             </div>
                                             <div>
-                                                <span><i className="bi bi-clock-history"></i> {getTime(ticket.date)}</span>
+                                                <span><i className="bi bi-clock-history"></i> {getTime4(ticket.date)}</span>
                                             </div>
                                         </div>
                                     </div>

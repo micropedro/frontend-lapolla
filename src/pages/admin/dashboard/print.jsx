@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom"
 import useTicketStore from "../../../store/ticketStore"
 import dateNow from "../../../services/dateNow"
 import useNotify from "../../../hooks/useNotify"
+import { fechaJuego } from "../../../services/utils"
 
 const Print = () => {
     const { notify } = useNotify()
-    const { setVisible, animals, setAnimals, ticketCode, ticketData } = useTicketStore()
+    const { setVisible, animals, setAnimals, ticketData } = useTicketStore()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -23,20 +24,24 @@ const Print = () => {
             <div>
                 <div className="text-center">
                     <h4>apuestaslapolla.com</h4>
-                    <div><i>CODIGO: {ticketCode}</i></div>
+                    <div> Nro Ticket. {ticketData?.count} - <i>CODIGO: {ticketData.code}</i></div>
                     <p className="text-center">
                         <div>
-                            Comprado el {dateNow.fecha} {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
+                            comprado el {dateNow.dia}-{dateNow.mes}-{dateNow.anio}
+                        </div>
+                        <div>
+                            a las {dateNow.horas}:{dateNow.minutos}:{dateNow.seconds} {dateNow.periodo}
                         </div>
                     </p>
                 </div>
                 <div>----------------------------</div>
                 <h4>
-                    GRAN QUINIELA 25.BS
+                    {ticketData.quinielaType === "1" ? "GRAN" : "MINI"} QUINIELA 25.BS
+                    {console.log("ticketData:", ticketData)}
                 </h4>
-                <div> Nº: {ticketData?.count} </div>
+                
                 <div>
-                    Para jugar el: {ticketData?.fechaQuiniela}
+                    Para jugar el: {fechaJuego(Number(ticketData.quinielaType))}
                 </div>
                 <div>----------------------------</div>
                 <div className="container-fluid mx-400">
@@ -44,7 +49,7 @@ const Print = () => {
                         {animals.length > 0 && animals.map((animal, index) => {
                             return (
                                 <div key={index} className="col-6">
-                                    <div > {animal.id === 37 ? "00" : animal.id} {animal.name}, </div>
+                                    <div > {animal.id === 37 ? "00" : animal.id === 0 ? animal.id : String(animal.id).padStart(2,"0")} {animal.name}, </div>
                                 </div>
                             )
                         })}
