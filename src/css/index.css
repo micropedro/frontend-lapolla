@@ -1053,3 +1053,20 @@ body {
     border-radius: 50%;
     line-height: 20px; 
 }
+
+.mins-modal{
+    min-height: 280px;
+    width: 60%;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.debeEnviar{
+    background-color: #bae7b1;
+    color: #ac1e1e;
+    border-radius: 5px;
+    font-size: 40px;
+    font-weight: 400;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

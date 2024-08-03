@@ -128,7 +128,7 @@ const DepositModal = ({ show, onHide }) => {
                             <Form.Control type="text" value={transactionNumber} onChange={(e) => setTransactionNumber(e.target.value)} />
                         </Form.Group>
                         <div className="text-end mt-3">
-                            <Button variant="primary" type='submit'>Ya e realizado el deposito</Button>
+                            <Button variant="primary" type='submit'>Ya he realizado el deposito</Button>
                         </div>
                     </Form>
                 </Modal.Body>

@@ -4,20 +4,21 @@ import request from "../services/request"
 import urlApi from "../services/urlApi"
 import useRetiroStore from "../store/retirosStore"
 import useErrorManager from "./useErrorManager"
-import useModalStore from "../store/modalStore"
+//import useModalStore from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
 import { Spinner } from "react-bootstrap"
 import useUserStore from "../store/userStore"
 import { useLocation } from 'react-router-dom';
-
+import useModalStore from "../pages/admin/dashboard/retiros/modal/store"
 const useRetiros = () => {
+    const { setVisible,setData } = useModalStore()
     const { setLoading } = useLoadingStore()
-    const { setVisible, setText, setButtonText, setClickEvent, setFillBtn } = useModalStore()
+    //const { setVisible, setText, setButtonText, setClickEvent, setFillBtn } = useModalStore()
     const errorManager = useErrorManager()
     const { user } = useUserStore()
     const { setRetiros, retiros } = useRetiroStore()
     const location = useLocation();
-   
+
     const getRetiros = async () => {
         /* if (user.level === 5) return */ // --> no llenar el estado de retiros del administrador
         try {
@@ -36,30 +37,35 @@ const useRetiros = () => {
     const approveWhithdraw = async (_id) => {
         //update retiro .put
         try {
-            setText(<Spinner className="p-4"></Spinner>)
+            /* setText(<Spinner className="p-4"></Spinner>)
+            setFillBtn(false) */
             setLoading(true)
-            setFillBtn(false)
             const responseUpdate = await request.put(urlApi + "/withdraws", { _id })
             if (!responseUpdate) throw new Error("Error en la peticion de retiros")
             await getRetiros()
             setVisible(false)
-            setFillBtn(true)
+            /* setFillBtn(true) */
         } catch (error) {
             setVisible(false)
             setLoading(false)
             errorManager(error)
-            setFillBtn(true)
+            /* setFillBtn(true) */
         }
     }
 
-    const handleModal = (retiro) => {
+    const handleModal = (data) => {
+        setVisible(true)
+        setData(data)
+    }
+
+    /* const handleModal = (retiro) => {
         const { _id, payMethod, amount } = retiro
+        const { methodName, nombre, cedula, correo, tipo, cuenta, banco, telefono, imageUrl } = payMethod
         setClickEvent(() => approveWhithdraw(_id))
-        setButtonText("Ya e pagado")
+        setButtonText("Ya he pagado")
         setFillBtn(true)
         setVisible(true)
 
-        const { methodName, nombre, cedula, correo, tipo, cuenta, banco, telefono, imageUrl } = payMethod
 
         setText(<div className="mw-2 text-dark">
             <div className="flex-between">
@@ -78,7 +84,7 @@ const useRetiros = () => {
                 {amount && <div className="text-center"> <h3>Enviar:  BS. {amount} </h3> </div>}
             </div>
         </div>)
-    }
+    } */
 
     const getRetirosUser = async () => {
         //if(user.level !== 5) return // --> no llenar el estado de depositos del usuario o cliente normal
@@ -97,7 +103,7 @@ const useRetiros = () => {
                 amount: Number(data.amount)
             }
             console.log(body)
-            const res  = await request.post(urlApi + "/withdraws/", body)
+            const res = await request.post(urlApi + "/withdraws/", body)
             await getRetirosUser()
             setLoading(false)
             return res
@@ -111,9 +117,9 @@ const useRetiros = () => {
     useEffect(() => {
         const urlCurrent = new URL(location.pathname, window.location.origin);
         const isTransacctionPage = urlCurrent.pathname.slice(1) === 'transactions';
-        if(user.level === 1 && !isTransacctionPage){
+        if (user.level === 1 && !isTransacctionPage) {
             getRetiros()
-        }else{
+        } else {
             setRetiros([])
             getRetirosUser()
         }

@@ -2,14 +2,16 @@ import { Spinner } from "react-bootstrap"
 import useLoadingStore from "../../../../store/loadingStore"
 import useRetiros from "../../../../hooks/useRetiros"
 import formatDate from "../../../../services/formatDate"
-import {getTime2} from "../../../../services/formatDate"
+import { getTime2 } from "../../../../services/formatDate"
 import Status from "../../../../components/Status"
+import RetiroModal from './modal/retiroModal'
 
 const Pending = () => {
     const { retiros, handleModal } = useRetiros()
     const { loading } = useLoadingStore()
     return (
         <div className="mt-0">
+            <RetiroModal />
             <div>
                 {loading ? <div className="text-center py-5">
                     <Spinner />
