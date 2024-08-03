@@ -2,5 +2,6 @@
     "name": "quinielas",
     "devEnvironmet": true,
     "pathLocale": "http://localhost:5000/api/v1",
-    "pathProduction": "https://backend-lapolla.vercel.app/api/v1"
+    "pathProduction": "https://apuestaslapolla-backend.vercel.app/api/v1",
+    "pathProduction-2": "https://backend-lapolla.vercel.app/api/v1"
 }
