@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import useTicketStore from "../../../store/ticketStore"
 import dateNow from "../../../services/dateNow"
 import useNotify from "../../../hooks/useNotify"
-import { fechaJuego } from "../../../services/utils"
+import { fechaJuego,$last } from "../../../services/utils"
 
 const Print = () => {
     const { notify } = useNotify()
@@ -38,12 +38,18 @@ const Print = () => {
                 <h4>
                     {ticketData.quinielaType === "1" ? "GRAN" : "MINI"} QUINIELA 25.BS
                     {console.log("ticketData:", ticketData)}
+                    {console.log("ticketData:", ticketData)}
                 </h4>
                 
                 <div>
                     Para jugar el: {fechaJuego(Number(ticketData.quinielaType))}
                 </div>
+                <div>
+                    Quiniela: {$last(6,ticketData?.quiniela)}
+                </div>
                 <div>----------------------------</div>
+                <div> Resultados tomados de: </div>
+                Loto Activo, la Granjita, Ruletactiva
                 <div className="container-fluid mx-400">
                     <div className="row">
                         {animals.length > 0 && animals.map((animal, index) => {

@@ -157,3 +157,7 @@ export const TEXTSTATUS = {
     2: { color: 'success', text: 'Ganador' },
     3: { color: 'danger', text: 'Perdedor' },
 }
+
+export const $last = (cant,string)=>{
+    return string.slice(-cant)
+}

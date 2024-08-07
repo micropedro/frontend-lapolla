@@ -1,17 +1,21 @@
 -- Pendientes --
-filtrar de mayor cantidad de aciertos los tickets
 registrar datos de la persona ganadora cuando es compra en agencia
 web sockets
-en el ticket agregar las loterias a que esta jugando
-ampliar la informacion de los ganadores de las quinielas
-ver tickets de 5 dias atras en el cliente para quiniela y mini 
-generar un deposito de ticket ganador 
+
+ver tickets de 5 dias atras en el cliente para quiniela y mini
+generar un deposito de ticket ganador
 agregar un estado al ticket por cobrar y pagado
 
 -- en proceso --
+filtrar de mayor cantidad de aciertos los tickets
+----------------
+
+-- Listas Por revisar-----
+---en el ticket agregar las loterias a que esta jugando
+---ampliar la informacion de los ganadores de las quinielas
+--------------------------
 
 -- Listas -----
-
 1 mostrar asiertos en verde en el cliente
 2 en clientes funcionalidad de ver tickets de ayer y de hoy como el admin
 3 otros jugadores separado mini y gran
