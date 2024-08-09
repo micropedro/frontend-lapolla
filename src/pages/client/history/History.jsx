@@ -16,10 +16,9 @@ const PrintAnimals = ({ ticket }) => {
     })
 }
 
-
 const History = () => {
 
-    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle } = useHistory()
+    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle, aciertos, handleAciertos, getTicketsDate } = useHistory()
 
     return (<>
         <div className='container-fluid mt-3'>
@@ -33,11 +32,24 @@ const History = () => {
                 </div>
             </div>
             <div>
-
                 <Tabs>
                     <Tab status={tab1} onClick={() => handle(true)}> Gran Quiniela </Tab>
                     <Tab status={tab2} onClick={() => handle(false)}> Mini Quiniela </Tab>
                 </Tabs>
+                <div className='flex-between pt-3 text-light row'>
+                    <div className='col-md-6 col-sm-12 pb-2'>
+                        <div>
+                            Buscar:
+                        </div>
+                        <input type="date" className='form-control' onChange={getTicketsDate} />
+                    </div>
+                    <div className='col-md-6 col-sm-12 pb-2'>
+                        <div>
+                            Ordenar:
+                        </div>
+                        <button onClick={handleAciertos} className='btn btn-success'> Cantidad de aciertos {aciertos ? "↑" : "↓"} </button>
+                    </div>
+                </div>
 
                 {/* <div className='d-flex flex-between mt-3'>
                     <div className='text-light'>
@@ -72,6 +84,7 @@ const History = () => {
                     return (
                         <div className='col-12 col-md-6' key={index}>
                             <div className='card mt-4'>
+                                {/* Aciertos : {ticket?.numeroDeAciertos} */}
                                 <div className="container-fluid">
                                     <div className='row text-center'>
                                         <div className='col-12 col-sm-6 col-md-4 code-card'>
