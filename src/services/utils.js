@@ -158,6 +158,25 @@ export const TEXTSTATUS = {
     3: { color: 'danger', text: 'Perdedor' },
 }
 
-export const $last = (cant,string)=>{
+export const $last = (cant, string) => {
     return string.slice(-cant)
 }
+
+export const calcAciertos = (ticket) => {
+
+    console.log("ticket: "+ticket)
+
+    const ticketAnimal = ticket?.animals?.map(i => i.id)
+    const resultAnimals = ticket?.quiniela?.resultAnimals?.map(j => j.animalId)
+
+    const x = ticketAnimal?.filter(k => resultAnimals?.includes(k))
+    console.log(x.length)
+    return x.length
+
+}
+
+export const addAciertos = (tickets) => tickets.map(ticket => {
+    console.log("tickets: ",tickets)
+    const numeroDeAciertos = calcAciertos(ticket) || 0
+    return { ...ticket, numeroDeAciertos }
+})

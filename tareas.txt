@@ -2,15 +2,17 @@
 registrar datos de la persona ganadora cuando es compra en agencia
 web sockets
 
-ver tickets de 5 dias atras en el cliente para quiniela y mini
 generar un deposito de ticket ganador
 agregar un estado al ticket por cobrar y pagado
 
 -- en proceso --
 filtrar de mayor cantidad de aciertos los tickets
+elegir filtro de tickets segun el dia 5 dias atras o llamar a la api que de tickets segun una fecha 
+
 ----------------
 
 -- Listas Por revisar-----
+ver tickets de 5 dias atras en el cliente para quiniela y mini -- getTicketDate en el backend
 ---en el ticket agregar las loterias a que esta jugando
 ---ampliar la informacion de los ganadores de las quinielas
 --------------------------
