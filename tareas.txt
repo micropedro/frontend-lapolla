@@ -1,23 +1,22 @@
 -- Pendientes --
-registrar datos de la persona ganadora cuando es compra en agencia
 web sockets
 
-generar un deposito de ticket ganador
-agregar un estado al ticket por cobrar y pagado
-
 -- en proceso --
-filtrar de mayor cantidad de aciertos los tickets
-elegir filtro de tickets segun el dia 5 dias atras o llamar a la api que de tickets segun una fecha 
-
+ticket ganador premio fijo
+acumulado probar
+polla en el momento revisar
 ----------------
 
--- Listas Por revisar-----
+-- Listas Por revisar-----------
 ver tickets de 5 dias atras en el cliente para quiniela y mini -- getTicketDate en el backend
 ---en el ticket agregar las loterias a que esta jugando
 ---ampliar la informacion de los ganadores de las quinielas
---------------------------
+---cliente gana se le paga  - cambiar estado
+---agencia gana no se le paga  -
+--------------------------------
 
 -- Listas -----
+
 1 mostrar asiertos en verde en el cliente
 2 en clientes funcionalidad de ver tickets de ayer y de hoy como el admin
 3 otros jugadores separado mini y gran
@@ -25,19 +24,18 @@ ver tickets de 5 dias atras en el cliente para quiniela y mini -- getTicketDate 
 5 al intentar vender sacar del sistema si esta bloqueado
 6 diferencia de hora en recargas
 7 revisar horas de tickets en clientes
-
 8 al recargar cambiar success por Recarga exitosa
 9 cargar fondo por defecto en naranja
-
 10 agregar los ceros al principio de cada numero de animalito en tickets clientes
-
 11 ticket falta el numero y el dia que va a jugar
-
 12 revisa bloqueo de compra de tickets
-
-13 cambiar el logo con la s
-
+13 cambiar el logo con la "S"
 14 en recargar sale manuel perez fijo
 15 agregar bloqueo a clientes al comprar tickets
-
 16 editar todos los tickets ganador o perdedor al elegir ganadores desde el backend
+17 filtrar de mayor cantidad de aciertos los tickets
+18 elegir filtro de tickets segun el dia 5 dias atras o llamar a la api que de tickets segun una fecha
+19 registrar datos de la persona ganadora cuando es compra en agencia
+20 comprobacion de ganadores de 3 a 4 en mini quiniela
+21 generar un deposito de ticket ganador
+22 agregar un estado al ticket por cobrar y pagado

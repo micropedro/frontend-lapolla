@@ -5,15 +5,15 @@ import { Spinner } from "react-bootstrap"
 import useLoadingStore from "../../../../store/loadingStore"
 const Premios = () => {
 
-    const { premios, setModalDatos, typeModal, handleModal } = usePremios()
+    const { premios, setModalDatos, typeModal, handleModal, navegador, handleFilterPremios } = usePremios()
     const { loading } = useLoadingStore()
     return (<>
         <ModalDatos typeModal={typeModal} setModalDatos={setModalDatos} />
-        <div className="flex-between">
+        <div className="flex-between p-3">
             <h2 className="h2-plain">Pago de premios</h2>
             <div className="d-flex gap-2 mb-0">
-                <button className="btn">Pendientes</button>
-                <button className="btn">Aprobados</button>
+                <button onClick={() => handleFilterPremios(1, false)} className={`btn ${navegador === 1 && "active"}`}>Pendientes</button>
+                <button onClick={() => handleFilterPremios(2, true)} className={`btn ${navegador === 2 && "active"}`}>Aprobados</button>
             </div>
         </div>
         <hr className="m-0" />
@@ -26,6 +26,7 @@ const Premios = () => {
             <table className="table">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Fecha</th>
                         <th> Ticket </th>
                         <th>Premio</th>
@@ -37,6 +38,7 @@ const Premios = () => {
                     {premios.map(premio => {
                         return (
                             <tr key={premio._id}>
+                                <td>{premio._id}</td>
                                 <td>
                                     {`${formatDate2(premio.date)} - ${getTime2(premio.date)}`}
                                 </td>
@@ -56,7 +58,8 @@ const Premios = () => {
                         )
                     })}
                 </tbody>
-            </table>}
+            </table>
+        }
     </>)
 }
 

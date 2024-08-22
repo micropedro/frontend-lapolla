@@ -29,7 +29,7 @@ const Ganadores = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-8 offset-2 text-center pt-4">
+                <div className="col-12 text-center pt-4">
                     <WinnerTicket />
                 </div>
             </div>

@@ -1,55 +1,130 @@
-import { formatDate2,nivel } from "../../../../services/formatDate"
+import { Spinner } from "react-bootstrap"
+import { formatDate2 } from "../../../../services/formatDate"
 import usePremiosStore from "../../../admin/dashboard/premios/premiosStore"
+import usePremios from "./usePremios"
 
 const ModalDatos = ({ setModalDatos, typeModal }) => {
+
+    const { handleSubmit, closeModal, input, setInput, loading } = usePremios()
     const { premioSelected, modalDatos } = usePremiosStore()
 
-    // Render del modal para datos del premio
+    // Render del modal para datos del ganador del premio
     if (typeModal === "data" && modalDatos) return (<div className="bg-modal">
-        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
-            <b className="text-center">
-                Datos Del pago
-            </b>
-            <hr className="mt-0" />
-            <div>
-                <b className="d-block">{premioSelected.ticket.user.email}</b>
-                <i className="bi bi-credit-card" /> Pago Movil
-                <div>CI: 20.853.601</div>
-                Telefono: 04141220527
-                <div> Banco: Venezuela (0102) </div>
-            </div>
-            <hr className="" />
-            <div className="text-end">
-                <div className="text-start mb-3">
-                    <label htmlFor="">Referencia</label>
-                    <input placeholder="Ingresa el numero de referencia" className="form-control" />
-                </div>
-                <div>
-                    <button onClick={() => setModalDatos(false)} className="btn text-danger mx-3"> Cerrar </button>
-                    <button className="btn btn-primary" disabled> Reportar pago </button>
-                    <button className="btn btn-primary"> Reportar pago </button>
-                </div>
-            </div>
+        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray text-lg">
+            {loading ?
+                <div className="text-center py-5">
+                    <Spinner />
+                </div> : <>
+                    <b className="flex-between mb-1">
+                        <span></span>
+                        <span>
+                            Datos del ganador
+                        </span>
+                        <span>
+                            <button onClick={closeModal} className="btn text-danger"> <i className="bi bi-x-circle-fill text-lg" /> </button>
+                        </span>
+                    </b>
+                    <hr className="mt-0" />
+                    <div>
+                        <div className="d-flex">
+                            <div className="person-icon">
+                                <i className="bi bi-person" />
+                            </div>
+                            <div className="text-medium">
+                                <div className="text-name-winner ">{premioSelected?.userData?.name}</div>
+                                <div className="mt-1">Telefono: {premioSelected?.userData?.phone}</div>
+                                <div> Cedula: {premioSelected?.userData?.ci}</div>
+                            </div>
+                        </div>
+                        <hr className="mt-0" />
+                        <div>
+                            <i className="bi bi-credit-card" />
+                            <span className="mx-2">{premioSelected?.payMethod?.name} </span>
+                        </div>
+
+                        <div> Nro de Cuenta: {premioSelected?.payMethod?.cuenta}</div>
+                        <div> Banco: {premioSelected?.payMethod?.bank}</div>
+                        <div>Tipo de cuenta: {premioSelected?.payMethod?.type}</div>
+                    </div>
+                    <hr className="" />
+                    <div className="text-end">
+                        {!premioSelected.status ?
+                            <form onSubmit={(e) => handleSubmit(e, premioSelected._id)}>
+                                <div className="text-start mb-3">
+                                    <div className="flex-between">
+                                        <label htmlFor="">Referencia</label>
+                                        <div className="text-secondary">
+                                            {input}
+                                        </div>
+                                    </div>
+                                    <input required onChange={(e) => setInput(e.target.value)} placeholder="Ingresa el numero de referencia" className="form-control" name="ref" />
+                                </div>
+                                <div>
+                                    <button onClick={closeModal} className="btn text-danger mx-3"> Cerrar </button>
+                                    {input ?
+                                        <button className="btn btn-primary"> Reportar pago </button>
+                                        :
+                                        <button className="btn btn-primary" disabled> Reportar pago </button>
+                                    }
+                                </div>
+                            </form> : <div className="alert alert-success text-center">
+                                Pago realizado !
+                            </div>
+                        }
+                    </div>
+                </>
+            }
         </div>
-    </div>)
+    </div >)
 
     // Render del modal para los datos del ticket
     if (typeModal === "ticket" && modalDatos) return (<div className="bg-modal">
         <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
-            <b className="text-center">
-                Ticket
+            <b className="flex-between mb-1">
+                <span></span>
+                <span>
+                    Ticket
+                </span>
+                <span>
+                    <button onClick={() => setModalDatos(false)} className="btn text-danger"> <i className="bi bi-x-circle-fill text-lg" /> </button>
+                </span>
             </b>
             <hr className="mt-0" />
-            <div>
-                <span className="d-block">Codigo:
-                    {premioSelected?.ticket?.count}-{premioSelected?.ticket?.code}
+            <div className="text-lg">
+                <div className="text-center mb-2">
+                    <span className="">
+                        {premioSelected?.ticket?.quinielaType === "1" && "Gran Quiniela 24 horas"}
+                        {premioSelected?.ticket?.quinielaType === "2" && "Mini Quiniela 3 a 7 pm"}
+                    </span>
+                </div>
+                <span className="flex-between">
+                    <span>Codigo:</span>
+                    <b>
+                        {premioSelected?.ticket?.count}-{premioSelected?.ticket?.code}
+                    </b>
                 </span>
-                <span className="d-block">Jugadas:
-                    {premioSelected.ticket.animals.map((animal, index) => (`${animal.id === 37 ? "00" : animal.id} ${premioSelected.ticket.animals.length > index + 1 ? ',' : ""} `))}
+                <span className="flex-between">
+                    <span>Jugadas:</span>
+                    <div className="d-flex text-center">
+                        {premioSelected.ticket.animals.map((animal, index) => {
+                            return (<div className="span-id-animals" key={index}> {animal.id === 37 ? "00" : animal.id}</div>)
+                        })}
+                    </div>
                 </span>
-                <div>Ganador: {premioSelected?.ticket?.user.name}</div>
-                <div>Quiniela: {premioSelected?.ticket?.idQuiniela}</div>
-                <div>Fecha: {formatDate2(premioSelected?.ticket.date)}</div>
+                <div className="flex-between">
+                    <span>
+                        Agencia:
+                    </span>
+                    <b>{premioSelected?.ticket?.user.name}</b>
+                </div>
+                <div className="flex-between">
+                    <span>Quiniela:</span>
+                    <b>{premioSelected?.ticket?.idQuiniela}</b>
+                </div>
+                <div className="flex-between">
+                    <span>Fecha:</span>
+                    <b>{formatDate2(premioSelected?.ticket.date)}</b>
+                </div>
             </div>
             <hr className="" />
             <div className="text-end">
@@ -60,30 +135,48 @@ const ModalDatos = ({ setModalDatos, typeModal }) => {
         </div>
     </div>)
 
-    // Render del modal para los datos del usuario
+    // Render del modal para los datos de la agencia
     if (typeModal === "user" && modalDatos) return (<div className="bg-modal">
-        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray">
-            <b className="text-center">
-                Usuario
+        <div className="card p-4 col-10 col-sm-8 col-md-4 col-lg-4 bg-gray text-lg">
+            <b className="flex-between mb-1">
+                <span></span>
+                <span>
+                    Datos agencia
+                </span>
+                <span>
+                    <button onClick={() => setModalDatos(false)} className="btn text-danger"> <i className="bi bi-x-circle-fill text-lg" /> </button>
+                </span>
             </b>
             <hr className="mt-0" />
             <div>
-                <h4 className="d-block mb-0">{premioSelected.ticket.user.name}</h4>
+                <span className="flex-between">
+                    <span>Nombre: </span>
+                    <b>
+                        {premioSelected.ticket.user.name}
+                    </b>
+                </span>
             </div>
-            <div className="d-flex text-gray mb-2">
-                Tipo: <b className="d-block">{nivel[premioSelected.ticket.user.level]}</b>
+            <span className="flex-between">
+                <span>
+                    CI:
+                </span>
+                <span>
+                    <b className="d-block">{premioSelected.ticket.user.ci}</b>
+                </span>
+            </span>
+            <div className="flex-between">
+                <span>
+                    Emial:
+                </span>
+                <b className="d-block">{premioSelected.ticket.user.email}</b>
             </div>
-            <div className="d-flex">
-                CI: <b className="d-block">{premioSelected.ticket.user.ci}</b>
+            <div className="flex-between">
+                <span>Saldo:</span>
+                <b className={premioSelected.ticket.user.balance < 0 ? "text-danger" : "text-success"}>{premioSelected.ticket.user.balance} BS</b>
             </div>
-            <div className="d-flex">
-                Emial: <b className="d-block">{premioSelected.ticket.user.email}</b>
-            </div>
-            <div className="d-flex">
-                Saldo: <b className="d-block">{premioSelected.ticket.user.balance}</b>
-            </div>
-            <div className="d-flex">
-                Prepagado: <b className="d-block">{premioSelected.ticket.user.prepaid ? "Si" : "No"}</b>
+            <div className="flex-between">
+                <span>Agencia postpago</span>
+                <b className="d-block">{premioSelected.ticket.user.prepaid ? "No" : "Si"}</b>
             </div>
 
             <hr className="" />

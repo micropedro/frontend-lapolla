@@ -1,7 +1,7 @@
 import { Spinner } from "react-bootstrap"
 import useQuinielas from "../../../../hooks/useQuinielas"
 import useLoadingStore from "../../../../store/loadingStore"
-import { formatDate2 } from "../../../../services/formatDate"
+import { formatDate2, getTime2 } from "../../../../services/formatDate"
 import { formatIf37 } from "../../../../services/utils"
 const PastQuinielas = () => {
     const { loading } = useLoadingStore()
@@ -25,9 +25,13 @@ const PastQuinielas = () => {
                 {quinielas.length > 0 && quinielas.map((quiniela, index) => (
                     <tr key={index} className={quiniela.tipoQuiniela === 1 ? "tr-gran-quiniela" : "tr-mini-quiniela"}>
                         <td>{quiniela._id.slice(-6)}</td>
-                        <td>{formatDate2(quiniela.fechaQuiniela)}</td>
+                        <td>
+                            {formatDate2(quiniela.fechaQuiniela)} <br />
+
+                            {getTime2(quiniela.date)}
+                        </td>
                         <td>{quiniela?.resultAnimals.map((animal) => {
-                            return (<span key={animal._id}>{ formatIf37(animal.animalId) } </span>)
+                            return (<span key={animal._id}>{formatIf37(animal.animalId)} </span>)
                         })}</td>
                         <td>{quiniela.tipoQuiniela === 1 ? <> Gran </> : <> Mini </>} Quiniela</td>
                         <td>{quiniela.winners.length} <i className="btn bi bi-eye-fill text-primary p-0" /> </td>

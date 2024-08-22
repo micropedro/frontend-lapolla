@@ -30,12 +30,19 @@ const Recargar = () => {
                             <hr />
                             <div className="flex-between">
                                 <h4 className="mx-2">Monto A recargar (Bs)</h4>
-                                <input onChange={(e) => setAmountToRecharge(e.target.value)} className="form-control mx-4" type="number" step={0.01} value={amountToRecharge} />
+                                <input onChange={(e) => setAmountToRecharge(e.target.value)} className="form-control mx-4" type="number" step={0.01} min={0} value={amountToRecharge} />
                                 <div className="my-4 text-end">
-                                    {amountToRecharge ? <button onClick={() => setModal(true)} className="btn btn-primary"> Recargar </button>
+                                    {amountToRecharge && amountToRecharge > 0 ? <button onClick={() => setModal(true)} className="btn btn-primary"> Recargar </button>
                                         : <button disabled className="btn btn-primary"> Recargar </button>}
                                 </div>
                             </div>
+                            {!amountToRecharge || amountToRecharge < 1 &&
+                                <div className="alert alert-danger">
+                                    <div className="text-danger">
+                                        Monto incorrecto ({amountToRecharge})
+                                    </div>
+                                </div>
+                            }
                         </>}
                     </div>
                 </div>

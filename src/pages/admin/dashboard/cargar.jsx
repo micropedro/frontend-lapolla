@@ -13,9 +13,6 @@ const Cargar = () => {
             <div className="mt-3 px-2">
                 <div className="w-100 p-3 bg-dark text-light rounded flex-between-start">
                     <div className="d-flex w-100">
-
-
-
                         <div className="px-3 w-100">
                             <div className="flex-between">
                                 <h4>Cargar Animalito {String(dateNow.horas).padStart(2, "0")}:{String(dateNow.minutos).padStart(2, '0')} {dateNow.periodo}</h4>

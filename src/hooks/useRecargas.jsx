@@ -7,17 +7,19 @@ import useLoadingStore from "../store/loadingStore"
 import usePerfil from "./usePerfil"
 import { useState } from "react"
 import { postRecharge } from "../controllers/recargasController"
+import { validate } from "../services/validate"
 
 const useRecargas = () => {
 
+    const { userRecharge, setUserRecharge, userCi, setUserCi, setModal, amountToRecharge, setAmountToRecharge } = useRecargasStore()
     const { getUser } = usePerfil()
     const { setLoading, loading } = useLoadingStore()
     const errorManager = useErrorManager()
-    const { userRecharge, setUserRecharge, userCi, setUserCi, setModal, amountToRecharge, setAmountToRecharge } = useRecargasStore()
     const { notify } = useNotify()
     const [menu, setMenu] = useState(1)
 
     const getUserToRecharge = async (e = false) => {
+
         if (e) e.preventDefault()
         console.log(e.target)
         try {
@@ -33,10 +35,13 @@ const useRecargas = () => {
 
     const confirmRecharge = async () => {
 
+
         try {
+            validate.required(amountToRecharge > 0, "No puede recargar un monto negativo")
             setLoading(true)
             const _id = userRecharge._id
             const amount = amountToRecharge
+
             const res = await postRecharge({ _id, amount })
             if (res) notify.success(res.data.message)
             await getUser()

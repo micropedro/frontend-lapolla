@@ -44,12 +44,11 @@ const useQuinielas = () => {
         try {
             if (dia === 'ayer') {
                 const res = await getTiketsDeAyer()
-                console.log(res.data.body)
                 setPlayingTickets(res.data.body)
             }
             if (dia === 'hoy') {
                 const res = await getTiketsDeHoy()
-                console.log(res.data.body)
+              
                 setPlayingTickets(res.data.body)
             }
         } catch (error) {

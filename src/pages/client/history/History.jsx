@@ -94,6 +94,9 @@ const History = () => {
                                                 <i className="bi bi-trophy"></i>
                                                 <span className={`${styles.itemBadgestatus} badge text-bg-${TEXTSTATUS[ticket.status].color}`}>{TEXTSTATUS[ticket.status].text}</span>
                                             </div>
+                                            <div>
+                                                {ticket.pagado ? <div className='text-success'>Pagado</div> : <div className='text-warning'>No pagado</div>}
+                                            </div>
                                         </div>
                                         <div className='col-12 col-sm-6 col-md-4 code-card pt-3'>
 

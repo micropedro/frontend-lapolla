@@ -12,7 +12,7 @@ const MethodModal = () => {
             <Modal.Header closeButton>
                 <Modal.Title>Registrar metodo de pago</Modal.Title>
             </Modal.Header>
-            {console.log("adminMethods:" , adminMethods)}
+            
             <Form onSubmit={handleSave}>
                 <Modal.Body>
                     <Form.Group controlId="select">
