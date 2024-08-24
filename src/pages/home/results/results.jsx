@@ -4,6 +4,7 @@ import images from '../../../images/images'
 import { useState } from 'react';
 
 
+
 const ResultsComponent = ({ animals, arrayResults, type }) => {
     return (animals?.length > 0 ?
         <div className="row gx-2">
