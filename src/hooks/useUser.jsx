@@ -21,7 +21,6 @@ const useUsers = () => {
         } finally {
             setLoading(false)
         }
-
     }
 
     const actualizeUserBalance = async () => {
