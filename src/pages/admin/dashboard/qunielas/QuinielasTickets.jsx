@@ -8,7 +8,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
 
     const [asiertos5, setAsiertos5] = useState(0)
     const [asiertos6, setAsiertos6] = useState(0)
-    const [aciertos3, setAciertos3] = useState(0)
+    const [aciertos4, setAciertos4] = useState(0)
     const [typeTicket, setTypeTicket] = useState([])
     const { animals } = useAnimals()
 
@@ -29,7 +29,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
     }
 
     const aciertosMiniQuiniela = (tickets) => {
-        let ac3 = 0
+        let AC4 = 0
         tickets.forEach(ticket => {
             let count = 0
             ticket.animals.forEach(animal => {
@@ -39,25 +39,47 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                 const mapingAnimals = animals.map(a => a.animalId)
                 if (mapingAnimals.includes(animal.id) && includedTime) count = count + 1
             })
-            if (count === 3) ac3 = ac3 + 1
+            if (count === 4) AC4 = AC4 + 1
         })
-        setAciertos3(ac3)
+        setAciertos4(AC4)
     }
 
     const MapTicket = (tickets) => {
-        const res = tickets.filter(ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
-        console.log("sdfsdfd:",res)
+        const res = tickets?.filter(ticket => Number(ticket.quinielaType) === Number(quinielaSelected))
         return res
     }
 
+    /* useEffect(() => {
+        if (tickets?.lenght > 0) {
+            alert(tickets?.lenght)
+            const ticketsAux = MapTicket(tickets)
+            setTypeTicket(()=>MapTicket(tickets))
+            //const aciertos4 = 1
+            //aciertosMiniQuiniela(ticketsAux)
+        }else{
+            alert(tickets.lenght)
+        }
+    }, [tickets]) */
+
+    const calcTicketWinner = (tickets) => {
+        console.log('tickets',tickets)
+    }
+
     useEffect(() => {
-        setTypeTicket(() => MapTicket(tickets))
-        const ticketsAux = MapTicket(tickets)
-        if (typeTicket.length > 0) {
+        const ticketdMaped = () => MapTicket(tickets)
+        setTypeTicket(ticketdMaped)
+        calcTicketWinner(tickets)
+
+
+        /* const ticketsAux = MapTicket(tickets)
+
+        if (typeTicket?.length > 0) {
             quinielaSelected === 1 && aciertosGranQuiniela(ticketsAux)
             quinielaSelected === 2 && aciertosMiniQuiniela(ticketsAux)
-        }
-    }, [tickets, animals, quinielaSelected])
+        } */
+    }, [tickets])
+
+
 
     const roulet = (id) => {
         return id === 1 ? "bg-ruleta" : id === 2 ? "bg-granjita" : "bg-loto"
@@ -100,6 +122,7 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                     <MiniCard> {typeTicket.length} </MiniCard>
                                 </div>
                             </div>
+
                             {quinielaSelected === 1 && (<>
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-3">
@@ -118,13 +141,14 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                     </div>
                                 </div>
                             </>)}
+
                             {quinielaSelected === 2 && (<>
                                 <div className="col-3 min-h-x">
                                     <div className="comun-wrap-quiniela bg-light-3">
                                         <div>
                                             Ganadores con 4 aciertos
                                         </div>
-                                        <MiniCard> {aciertos3} </MiniCard>
+                                        <MiniCard> {aciertos4} </MiniCard>
                                     </div>
                                 </div>
                             </>)}
@@ -133,7 +157,6 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                 </div>}
 
                 <div className="row g-2">
-
                     {typeTicket?.length > 0 && typeTicket.map((ticket) => {
                         return <div key={ticket._id} className="col-12 col-lg-6 col-xl-4">
                             <div className="card p-2">
@@ -144,11 +167,20 @@ const QuinielasTickets = ({ tickets, menu, quinielaSelected = 1 }) => {
                                     {ticket.user.name}
                                     <div className="text-end">
                                         Estado
-                                        <div className="bg-gray px-2 text-dark text-center rounded mb-1">
-                                            {ticket.status === 1 && "Jugando"}
-                                            {ticket.status === 2 && "Ganador por Cobrar"}
-                                            {ticket.status === 3 && "Pagado"}
+                                        <div className="mb-1">
+                                            {ticket.status === 1 && <div className="bg-gray px-2 text-dark text-center rounded mb-1">Jugando ahora</div>}
+                                            {ticket.status === 2 && <div className="bg-success text-light text-center rounded"> Ganador </div>}
+                                            {ticket.status === 3 && <div className="bg-warning text-light text-center rounded"> Perdedor </div>}
                                         </div>
+                                        {ticket.status !== 1 &&
+                                            <div>
+                                                {ticket.pagado ? <>
+                                                    <div className="bg-success text-light text-center rounded px-2"> Pagado </div>
+                                                </> : <>
+                                                    <div className="bg-warning text-light text-center rounded px-2"> Por cobrar </div>
+                                                </>}
+                                            </div>
+                                        }
                                         {String(ticket.count).padStart(3, "0")}-{ticket.code}
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@ import useLoadingStore from "../../../../store/loadingStore"
 import { Spinner } from "react-bootstrap"
 
 const Modal = ({ confirmRecharge }) => {
+    
     const { loading } = useLoadingStore()
     const { modal, setModal, amountToRecharge, userRecharge } = useRecargasStore()
 

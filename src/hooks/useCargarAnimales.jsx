@@ -18,7 +18,7 @@ const useCargarAnimales = () => {
     const [animalSelected3, setAnimalSelected3] = useState()
     const [radioRoulet, setRadioRoulet] = useState(1)
     const { setAnimals, getAnimals } = useAnimals()
-    /* const { animals } = useAnimals() */
+    const { animals } = useAnimals()
 
     const [hora, setHora] = useState(8)
     const [inputDate, setInputDate] = useState(null)
@@ -40,15 +40,6 @@ const useCargarAnimales = () => {
 
     const handleFecha = (fecha) => setInputDate(fecha)
 
-    /*  const isAnimalLoaded = () => {
-         const animalsRoulette = animals.filter(a => {
-             const dateLoaded = formatDate(a.fecha).split('/').reverse().join('-')
-             return a.roulet === radioRoulet && a.hora === hora && dateLoaded === inputDate
-         })
-         if (animalsRoulette.length > 0) return true
-         return false
-     } */
-
     const loadAnimals = async () => {
         const _animals = await getAnimals()
         setAnimals(_animals)
@@ -66,10 +57,16 @@ const useCargarAnimales = () => {
         loadAnimals()
     }, [])
 
+    const isAnimalLoaded = (animalHora) => {
+        console.log(animalSelected, animalHora, animals)
+        const res = animals.filter(animal => animal.hora === animalHora)
+        return res.length > 0
+
+    }
+
     const save = async () => {
 
         try {
-            //if (isAnimalLoaded()) throw 'Esta hora ya ha sido cargada'
 
             const data = {
                 owner: user._id,
@@ -79,6 +76,8 @@ const useCargarAnimales = () => {
                 hora: hora,
                 fecha: inputDate + ' ' + hora + ':00:00'
             }
+
+            if (isAnimalLoaded(data.hora)) throw 'Esta hora ya ha sido cargada'
 
             const result = await request.post(urlApi + '/animals', data)
             if (result.data.message === 'success') notify.success("Cargado con exito")

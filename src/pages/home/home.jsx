@@ -5,14 +5,17 @@ import NextQuiniela from './nextQuiniela'
 import ItemsRoulettes from './itemsRoulettes'
 import Footer from './footer'
 import Carrousels from '../../components/carrousels/Carrousels'
+import images from '../../images/images'
+import PollasActuales from '../../components/pollasActuales/pollasActuales'
 
 const Home = () => {
     return (
         <div className='bg-granja-2'>
             <Menu />
-            <div className="container pt-4 carrousel">    
-                <Carrousels />       
+            <div className="container pt-4 carrousel">
+                <Carrousels />
             </div>
+            <PollasActuales/>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 col-lg-9">

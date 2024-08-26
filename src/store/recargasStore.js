@@ -13,7 +13,7 @@ const useRecargasStore = createWithEqualityFn((set) => ({
     setModal: (newState) => set(() => ({
         modal: newState
     })),
-    amountToRecharge: "",
+    amountToRecharge: undefined,
     setAmountToRecharge: (newState) => set(() => ({
         amountToRecharge: newState
     }))

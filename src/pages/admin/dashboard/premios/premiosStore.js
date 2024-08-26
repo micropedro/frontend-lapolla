@@ -5,7 +5,7 @@ const usePremiosStore = createWithEqualityFn((set) => ({
     setPremios: (newPremios) => set(() => ({
         premios: newPremios
     })),
-    modalDatos:false,
+    modalDatos: false,
     setModalDatos: (newModalDatos) => set(() => ({
         modalDatos: newModalDatos
     })),
@@ -16,6 +16,10 @@ const usePremiosStore = createWithEqualityFn((set) => ({
     premioSelected: "",
     setPremioSelected: (premio) => set(() => ({
         premioSelected: premio
+    })),
+    navegador: 1,
+    setNavegador: (newStatus) => set(() => ({
+        navegador: newStatus
     }))
 }))
 

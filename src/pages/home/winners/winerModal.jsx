@@ -21,9 +21,9 @@ const WinerModal = () => {
                         </div>
                         {data?.winners?.length > 0 &&
                             <>
-                                {data.winners.map(ticket => {
+                                {data?.winners?.map(ticket => {
                                     return <div className="card p-2 shadow mb-3" key={ticket._id}>
-                                        <h3 className="text-success text-center"> Ganador: {ticket.user.name}</h3>
+                                        <h3 className="text-success text-center"> Ganador: {ticket?.user?.name}</h3>
                                         <div className="flex-between">
                                             <div className="">
                                                 <div className="text-gray">
@@ -37,7 +37,7 @@ const WinerModal = () => {
                                                 </h3>
                                             </div>
                                             <div className="d-flex bg-success">
-                                                {ticket.animals.map(animal => {
+                                                {ticket?.animals?.length > 0 && ticket.animals.map(animal => {
                                                     return <div className="" key={animal.id}>
                                                         <img height={"80px"} src={animal.image} alt="" />
                                                     </div>
@@ -45,7 +45,7 @@ const WinerModal = () => {
                                             </div>
                                         </div>
                                     </div>
-                                })}
+                                }) || "" }
                             </>
                         }
                         <div className="text-center mt-2">

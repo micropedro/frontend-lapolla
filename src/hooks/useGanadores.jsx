@@ -7,7 +7,6 @@ import useLoadingStore from "../store/loadingStore"
 import useTicketStore from "../store/ticketStore"
 
 const granQuniela = "1"
-const miniQuiniela = "2"
 
 const useGanadores = () => {
     const { setLoading } = useLoadingStore()
@@ -20,8 +19,8 @@ const useGanadores = () => {
     const winnerTicket = async () => {
         try {
             setLoading(true)
-            const res = await request.get(urlApi + "/tickets/find/one/" + code)
-          
+            const res = await request.get(urlApi + "/tickets/find/one/" + code.toUpperCase())
+
             const ticket = res.data.body
             const ticketType = ticket.quinielaType
             const ticketAnimals = ticket.animals
@@ -29,30 +28,45 @@ const useGanadores = () => {
             setAnimals(animals)
             const ids = animals.map(animal => animal.animalId)
             const ticketsIds = ticketAnimals.map(animal => animal.id)
-            if (ticket) {
-                
-                const numerosRepetidos = ids.filter(num => ticketsIds.includes(num))
-              
 
-                if (ticketType === granQuniela && numerosRepetidos.length === 6) {
-                    ticket.isWinner = true
+            if (ticket) {
+
+                const numerosRepetidos = ticketsIds.filter(num => ids.includes(num))
+
+                console.log(numerosRepetidos)
+
+                if (ticketType === granQuniela) {
+                    if (numerosRepetidos.length === 6 || numerosRepetidos.length === 5) {
+                        ticket.isWinner = true
+                    }
+                    setTicket(ticket)
+                } else {
+                    if (numerosRepetidos.length === 4) {
+                        ticket.isWinner = true
+                    } else {
+                        ticket.isWinner = false
+                    }
                     setTicket(ticket)
                 }
 
-                if (ticketType === miniQuiniela && numerosRepetidos.length === 3) {
-                    ticket.isWinner = true
-                    setTicket(ticket)
+                /* 
+
+                if (ticketType === miniQuiniela && numerosRepetidos.length === 4) {
+                    ticket.isWinner = true 
                 }
 
                 if (ticketType === granQuniela && numerosRepetidos.length !== 6) {
-                    ticket.isWinner = false
-                    setTicket(ticket)
+                    if (numerosRepetidos.length === 5) {
+                        ticket.isWinner = true
+                    } else {
+                        ticket.isWinner = false
+                    }
                 }
+                if (ticketType === miniQuiniela && numerosRepetidos.length !== 4) {
+                    ticket.isWinner = false
+                } */
 
-                if (ticketType === miniQuiniela && numerosRepetidos.length !== 3) {
-                    ticket.isWinner = false
-                    setTicket(ticket)
-                }
+
             }
 
             setLoading(false)
