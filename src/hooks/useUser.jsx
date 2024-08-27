@@ -14,8 +14,12 @@ const useUsers = () => {
             setLoading(true)
             const res = await request.get(urlApi + '/user/' + idUser)
             const user = res.data.body
-            if (!user) throw 'usuario no encontrado'
-            return user
+            if (user) {
+                return user
+            } else {
+                localStorage.removeItem('user')
+            }
+            return false
         } catch (error) {
             errorManager(error)
         } finally {

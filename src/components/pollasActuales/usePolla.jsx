@@ -16,7 +16,6 @@ const usePolla = () => {
             validate.number([result.mini, result.gran])
             validate.required([result.mini >= 0, result.gran >= 0], "Error en validacion de los resultados")
             setPollas(result)
-
         } catch (error) {
             errorMaganer(error)
         }
