@@ -3,9 +3,12 @@ import useRetiros from "../../../../../hooks/useRetiros"
 import useLoadingStore from "../../../../../store/loadingStore"
 import { Spinner } from "react-bootstrap"
 const RetiroModal = () => {
+
     const { loading } = useLoadingStore()
     const { approveWhithdraw } = useRetiros()
     const { visible, setVisible, data } = useModalStore()
+
+
     //const { _id, payMethod, amount } = retiro
     //const { methodName, nombre, cedula, correo, tipo, cuenta, banco, telefono, imageUrl } = payMethod
     if (visible) return (<div className="bg-modal">
@@ -33,9 +36,9 @@ const RetiroModal = () => {
             <div className="flex-between">
                 <button className="btn" onClick={() => setVisible(false)}> Cerrar </button>
                 {loading ?
-                    <button onClick={() => approveWhithdraw(data._id)} className="btn btn-success">Aprobar</button>
-                    :
                     <button className="btn btn-primary" > <Spinner /> </button>
+                    :
+                    <button onClick={() => approveWhithdraw(data._id)} className="btn btn-success">Aprobar</button>
                 }
             </div>
         </div>

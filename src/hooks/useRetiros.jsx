@@ -6,10 +6,10 @@ import useRetiroStore from "../store/retirosStore"
 import useErrorManager from "./useErrorManager"
 //import useModalStore from "../store/modalStore"
 import useLoadingStore from "../store/loadingStore"
-import { Spinner } from "react-bootstrap"
 import useUserStore from "../store/userStore"
 import { useLocation } from 'react-router-dom';
 import useModalStore from "../pages/admin/dashboard/retiros/modal/store"
+
 const useRetiros = () => {
     const { setVisible,setData } = useModalStore()
     const { setLoading } = useLoadingStore()

@@ -5,6 +5,7 @@ import permisions from "../../../../services/permissions"
 const Retiros = () => {
 
     const [tab, setTab] = useState(1)
+    
     if (permisions.permit(5)) return (<>
         <div className="nav-depositos">
             <h2 className="p-2 m-0 h2-plain">Retiros</h2>
