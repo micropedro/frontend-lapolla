@@ -8,7 +8,7 @@ import permisions from '../../../services/permissions'
 
 const Users = () => {
 
-    const { deleteModal, _findUserByCi, handleSortSaldo,sortSaldo, filterUsersFinded, filterduser, getUsers, filterUser } = useUsers()
+    const { deleteModal, _findUserByCi, handleSortSaldo,sortSaldo, filterUsersFinded, filterduser, getUsers, filterUser,fiteredBtn,setFiteredBtn } = useUsers()
 
     if (permisions.permit(0)) return (<Guard >
         <DeleteUserModal />
@@ -20,12 +20,12 @@ const Users = () => {
         </div>
         <hr />
         <div className='flex-between mb-3'>
-            <button onClick={getUsers} className='btn btn-primary'> Cargar todos </button>
+            <button onClick={()=>{getUsers();setFiteredBtn(0)}} className='btn btn-primary'> Cargar todos </button>
 
-            {permisions.userBtnAdmin.includes(permisions.getUser().level) && <button onClick={() => filterUser(2)} className='btn btn-warning'> Administradores </button>}
-            {permisions.userBtnGroup.includes(permisions.getUser().level) && <button onClick={() => filterUser(3)} className='btn btn-warning'> Gruperos </button>}
-            {permisions.userBtnAgencia.includes(permisions.getUser().level) && <button onClick={() => filterUser(4)} className='btn btn-warning'> Agencias </button>}
-            {permisions.userBtnClient.includes(permisions.getUser().level) && <button onClick={() => filterUser(5)} className='btn btn-warning'> Clientes </button>}
+            {permisions.userBtnAdmin.includes(permisions.getUser().level) && <button onClick={() => { filterUser(2); setFiteredBtn(1)}} className={`btn ${fiteredBtn === 1 && `btn-warning`}`}> Administradores </button>}
+            {permisions.userBtnGroup.includes(permisions.getUser().level) && <button onClick={() => { filterUser(3); setFiteredBtn(2)}} className={`btn ${fiteredBtn === 2 && `btn-warning`}`}> Gruperos </button>}
+            {permisions.userBtnAgencia.includes(permisions.getUser().level) && <button onClick={() => { filterUser(4); setFiteredBtn(3)}} className={`btn ${fiteredBtn === 3 && `btn-warning`}`}> Agencias </button>}
+            {permisions.userBtnClient.includes(permisions.getUser().level) && <button onClick={() => { filterUser(5); setFiteredBtn(4)}} className={`btn ${fiteredBtn === 4 && `btn-warning`}`}> Clientes </button>}
 
             <form onSubmit={(e) => _findUserByCi(e)}>
                 <input onChange={(e) => filterUsersFinded(e.target.value)} name='ci' type="text" className='input-buscar' placeholder='cedula o nombre' required />

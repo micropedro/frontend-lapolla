@@ -14,10 +14,10 @@ const Winners = () => {
         <div className='mt-5'>
             <h2 className='text-warning text-center'>Ganadores</h2>
         </div>
-        <div className="">
-            {quinielas.map(q => (
+        <div className="text-light text-center">
+            {quinielas?.length > 0 ? quinielas?.map(q => (
                 <WinnerDetails key={q._id} quiniela={q} />
-            ))}
+            )) : "No hay quinielas registradas"}
             <Link to="/lobby" className='' >
                 <button type="button" className="btn btn-primary w-100 mt-4">
                     <i className="bi bi-caret-right-fill mx-2" />

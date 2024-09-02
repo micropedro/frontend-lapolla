@@ -18,9 +18,7 @@ const useUsers = () => {
 
     const [sortSaldo, setSortSaldo] = useState(true)
     const [filterduser, setFilterduser] = useState([])
-
-
-
+    const [fiteredBtn,setFiteredBtn] = useState(0)
 
     const getUsers = async () => {
         setLoading(true)
@@ -66,11 +64,11 @@ const useUsers = () => {
     const handleSortSaldo = () => {
         setSortSaldo(!sortSaldo)
         if (sortSaldo) {
-            const _users = users?.sort((a, b) => a.balance - b.balance)
-            setFilterduser(_users)
+            const fil = filterduser?.sort((a, b) => a.balance - b.balance)
+            setFilterduser(fil)
         } else {
-            const _users = users?.sort((a, b) => b.balance - a.balance)
-            setFilterduser(_users)
+            const fil2 = filterduser?.sort((a, b) => b.balance - a.balance)
+            setFilterduser(fil2)
         }
         /* const text = "sd"
         const _users = users?.filter(user => user.name.includes(text))
@@ -100,7 +98,8 @@ const useUsers = () => {
         filterduser,
         setFilterduser,
         sortSaldo, setSortSaldo,
-        handleSortSaldo
+        handleSortSaldo,
+        fiteredBtn,setFiteredBtn
     }
 }
 

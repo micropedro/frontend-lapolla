@@ -26,9 +26,9 @@ const PaginationTable = ({ users, deleteModal, handleSortSaldo, sortSaldo }) => 
                             <div className='sortSaldo'>
                                 Saldo
                                 {sortSaldo ?
-                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-danger btn-sm lh-1'> ↑ </button>
+                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-danger btn-sm lh-1'> ↑ ASC </button>
                                     :
-                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-success btn-sm lh-1'> ↓  </button>
+                                    <button onClick={handleSortSaldo} className='mx-1 btn btn-success btn-sm lh-1'> ↓  DES</button>
                                 }
                             </div>
                         </th>
