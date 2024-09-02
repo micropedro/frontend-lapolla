@@ -37,8 +37,8 @@ import venado from '../images/animals/34.png'
 import jirafa from '../images/animals/35.png'
 import culebra from '../images/animals/36.png'
 import ballena from '../images/animals/37.png'
-import logoGq from '../images/granquiniela.png'
-import logoMq from '../images/miniquiniela.png'
+import logoGq from '../images/gran.png'
+import logoMq from '../images/mini.png'
 
 const animals = [
     { name: "delfin", image: delfin, id: 0 },
