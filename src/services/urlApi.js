@@ -6,7 +6,7 @@ const urlApi = env === "true" ? pathLocale : pathProduction */
 //production
 /* import { pathProduction } from '../config.json'
 const urlApi = pathProduction */
-
+/* se retira el dev server*/
 const urlApi = import.meta.env.VITE_PATH
 
 export default urlApi
