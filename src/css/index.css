@@ -144,6 +144,17 @@ body {
     justify-content: space-between;
 }
 
+.loteryButtons a{
+    display: block;
+    gap: 10px;
+    width: 130px;
+}
+
+.loteryButtons{
+    display: flex;
+    gap: 10px;
+}
+
 .flex-between-start {
     display: flex;
     align-items: start;
@@ -1167,3 +1178,4 @@ body {
     font-size: 20px;
     font-weight: 600;
 }
+

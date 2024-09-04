@@ -20,46 +20,58 @@ const Cargar = () => {
                                     <input onChange={(e) => handleFecha(e.target.value)} className="btn-cargar" type="date" name="date" defaultValue={formattedDate} />
                                     <Hora handleHora={handleHora} hora={hora} />
                                 </div>
-                            </div>
-                            <div className="d-flex">
-                                <div className="text-center">
-                                    <div className="animal-none">
-                                        <img height="80" src={animalSelected && animalSelected.image} alt="" />
-                                    </div>
-                                    <div>
-                                        <input defaultChecked={true} type="radio" name="radioRoulet" id={1} onChange={() => setRadioRoulet(1)} />
-                                        <label htmlFor={1} id="radioRoulet">
-                                            Ruleta Activa
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="mx-4">
-                                    <div className="animal-none">
-                                        <img height="80" src={animalSelected2 && animalSelected2.image} alt="" />
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="radioRoulet" id={2} onChange={() => setRadioRoulet(2)} />
-                                        <label htmlFor={2} id="radioRoulet">
-                                            La granjita
-                                        </label>
-                                    </div>
-                                </div>
                                 <div>
-                                    <div className="animal-none">
-                                        <img height="80" src={animalSelected3 && animalSelected3.image} alt="" />
+                                    {animalSelected && animalSelected2 && animalSelected3 ? <button onClick={() => save()} className="btn btn-primary">Guardar</button> :
+                                        <button className="btn btn-secondary" disabled>Guardar</button>}
+                                </div>
+                            </div>
+                            <div className="flex-between-start mt-2">
+                                <div className="d-flex">
+                                    <div className="text-center">
+                                        <div className="animal-none">
+                                            <img height="80" src={animalSelected && animalSelected.image} alt="" />
+                                        </div>
+                                        <div>
+                                            <input defaultChecked={true} type="radio" name="radioRoulet" id={1} onChange={() => setRadioRoulet(1)} />
+                                            <label htmlFor={1} id="radioRoulet">
+                                                Ruleta Activa
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="mx-4">
+                                        <div className="animal-none">
+                                            <img height="80" src={animalSelected2 && animalSelected2.image} alt="" />
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="radioRoulet" id={2} onChange={() => setRadioRoulet(2)} />
+                                            <label htmlFor={2} id="radioRoulet">
+                                                La granjita
+                                            </label>
+                                        </div>
                                     </div>
                                     <div>
-                                        <input type="radio" name="radioRoulet" id={3} onChange={() => setRadioRoulet(3)} />
-                                        <label htmlFor={3} id="radioRoulet">
-                                            Loto Activo
-                                        </label>
+                                        <div className="animal-none">
+                                            <img height="80" src={animalSelected3 && animalSelected3.image} alt="" />
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="radioRoulet" id={3} onChange={() => setRadioRoulet(3)} />
+                                            <label htmlFor={3} id="radioRoulet">
+                                                Loto Activo
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="text-end mt-4">
+                                    <h4>Ver Resultados</h4>
+                                    <div className="loteryButtons">
+                                        <a target="__blank" href="https://www.lottoactivo.com/" className="btn btn-success"> Loto Activo </a>
+                                        <a target="__blank" href="https://loteriadehoy.com/animalito/ruletaactiva/resultados/" className="btn btn-warning"> Ruleta Activa </a>
+                                        <a target="__blank" href="https://lagranjitaonline.com/" className="btn btn-danger"> La Granjita </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {animalSelected && animalSelected2 && animalSelected3 ? <button onClick={() => save()} className="btn btn-primary">Guardar</button> :
-                        <button className="btn btn-secondary" disabled>Guardar</button>}
                 </div>
                 <div className="mt-4">
                     <AnimalsButtons handle={(handle)} />
