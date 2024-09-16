@@ -18,7 +18,7 @@ const PrintAnimals = ({ ticket }) => {
 
 const History = () => {
 
-    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle, aciertos, handleAciertos, getTicketsDate } = useHistory()
+    const { fiteredTickets, loading, TEXTSTATUS, handleOptions, options, tab1, tab2, handle, aciertos, handleAciertos, getTicketsDate, fillx } = useHistory()
 
     return (<>
         <div className='container-fluid mt-3'>
@@ -88,7 +88,7 @@ const History = () => {
                                 <div className="container-fluid">
                                     <div className='row text-center'>
                                         <div className='col-12 col-sm-6 col-md-4 code-card'>
-                                            <div className='text-sm'>{ticket.user.name}</div>
+                                            <div className='text-sm'>{fillx(ticket.user.name)}</div>
                                             <div># {ticket.code}</div>
                                             <div className='flex-center'>
                                                 <i className="bi bi-trophy"></i>

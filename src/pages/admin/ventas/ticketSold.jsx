@@ -1,10 +1,10 @@
 import { convertCeroNumber } from "../../../services/utils"
 import useReportes from "../../../hooks/useReportes"
-
+import { formatedDate, formatHour } from "./utils"
 
 const TicketSold = () => {
 
-    const { listType, setListType, reportesFiltered , filter } = useReportes()
+    const { listType, setListType, reportesFiltered, filter } = useReportes()
 
     return (<div className="container">
         <div className="row">
@@ -25,21 +25,31 @@ const TicketSold = () => {
                 </div>
 
                 {listType ? reportesFiltered.length > 0 && reportesFiltered.map((reporte, index) => {
-                    const date = new Date(reporte.date).getDate()
                     return <div key={index} className="col-3 mb-3 text-center">
                         <div className="card h-100 p-2">
-                            <b>Nro. {index + 1}</b>
-                            <div>
-                                <b className="text-success">
-                                    {reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}
-                                </b>
+                            <div className="flex-between px-3">
+                                <b>Nro.{reporte.count}</b>
+                                <div>
+                                    <b className="text-success">
+                                        {reporte.quinielaType === "1" ? "Gran Quiniela" : "Mini Quiniela"}
+                                    </b>
+                                </div>
                             </div>
-                            <div>
-                                {date}</div>
-                            <div>
-                                {reporte.animals.map((animal, index2) => {
-                                    return (<span className="mx-2" key={index2}>{animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-{animal.name}, </span>)
-                                })}
+                            <div className="text-start mx-3 flex-between">
+                                <div>
+                                    {formatedDate(reporte.date)}
+                                </div>
+                                <div>
+                                    {formatHour(reporte.hora)}
+                                </div>
+                            </div>
+                            <hr className="my-1" />
+                            <div className="container-fluid text-primary">
+                                <div className="row">
+                                    {reporte.animals.map((animal, index2) => {
+                                        return (<div className="col-6 text-start" key={index2}>{animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-{animal.name} </div>)
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,15 +66,12 @@ const TicketSold = () => {
                         </thead>
                         <tbody>
                             {reportesFiltered.length > 0 ? reportesFiltered.map((reporte, index) => {
-                                const date = new Date(reporte.date)
-                                const dia = String(date.getDate()).padStart(2, '0')
-                                const anio = date.getFullYear()
-                                const mes = String(date.getMonth() + 1).padStart(2, '0')
+
                                 return (<tr key={index}>
-                                    <td> {index} </td>
-                                    <td>{reporte.quinielaType === "1" ? "Gan Quiniela" : "Mini Quiniela"}</td>
-                                    <td>{dia}-{mes}-{anio}</td>
-                                    <td>{reporte.hora}</td>
+                                    <td> {reporte.count} </td>
+                                    <td>{reporte.quinielaType === "1" ? "Gran Quiniela" : "Mini Quiniela"}</td>
+                                    <td>{formatedDate(reporte.date)}</td>
+                                    <td>{formatHour(reporte.hora)}</td>
                                     <td className="text-end">{reporte.animals.map((animal) => `${animal.id === 37 ? "00" : convertCeroNumber(animal.id)}-${animal.name}, `)}</td>
                                 </tr>)
                             }) : <tr>

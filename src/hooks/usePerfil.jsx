@@ -17,10 +17,6 @@ const usePerfil = () => {
         const localUser = JSON.parse(localStorage.getItem('user'))
         const res = await request.get(urlApi + '/user/' + localUser._id)
 
-        console.log("localUser", localUser)
-
-        console.log("res", res)
-
         if (res) {
             const { adminMethods, userMethods } = res.data.body
             const user = res.data.body

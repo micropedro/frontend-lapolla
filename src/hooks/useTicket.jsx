@@ -28,9 +28,7 @@ const useTicket = () => {
         try {
             setLoading(true)
 
-            const body = {
-                animals, type
-            }
+            const body = { animals, type }
 
             if (body?.animals?.length < 4) throw "Elija sus animalitos"
             if (Object.keys(user) === 0) throw "Usuario invalido"
@@ -52,6 +50,7 @@ const useTicket = () => {
             setLoading(false)
 
         } catch (error) {
+            setVisible(false)
             closeSession()
             errorManager(error)
         } finally {

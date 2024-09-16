@@ -8,7 +8,7 @@ import AnimalsButtons from "../../../components/animalsButtons"
 const Taquilla = () => {
 
     const { animals, handleSelectedAnimal, saveAndPrint, type, setType, setAnimals } = useVentas()
- 
+
     return (<Guard>
         <div>
             <Ticket />
@@ -22,7 +22,7 @@ const Taquilla = () => {
                 <div>
                     <b> {dateNow.fecha} </b>
                     <div>
-                        <button onClick={() => { setType(1); setAnimals([]);  }} className="btn btn-primary"> Gran Quiniela </button>
+                        <button onClick={() => { setType(1); setAnimals([]); }} className="btn btn-primary"> Gran Quiniela </button>
                         <button onClick={() => { setType(2); setAnimals([]) }} className="btn btn-primary mx-2"> Mini Quiniela </button>
                     </div>
                 </div>
@@ -32,7 +32,11 @@ const Taquilla = () => {
                     {!type && <h3 className="bg-warning py-1 px-3 text-light rounded">Elige un tipo de quiniela</h3>}
                 </div>
             </div>
-            <div>Seleccionados {animals.length}  {type === 1 ? '/ 6' : type === 2 ? '/ 3' : ""}</div>
+            <div>
+                Seleccionados
+                {animals.length}
+                {type === 1 ? '/ 6' : type === 2 ? '/ 4' : ""}
+            </div>
             <div className="animals-content">
                 {animals.length > 0 && animals.map((i, index) => {
                     return <div onClick={() => handleSelectedAnimal(i)} key={index} className="m-1 p-2 anim-btn text-light">

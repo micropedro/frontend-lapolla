@@ -98,6 +98,18 @@ const useHistory = () => {
         }
     }
 
+    const fillx = (name) => {
+        if (!name) return ""
+        const firstName = name.split(" ")[0]
+        const secondNameSplit = name.split(" ")[1]
+        if (secondNameSplit) {
+            const secondName = secondNameSplit.split("").fill("X").join("")
+            return `${firstName ? firstName : ""} ${secondName ? secondName : ""}`
+        } else {
+            return firstName
+        }
+    }
+
     useEffect(() => {
         const newFiltered = aciertos ? fiteredTickets.sort((a, b) => a.numeroDeAciertos - b.numeroDeAciertos) :
             fiteredTickets.sort((a, b) => b.numeroDeAciertos - a.numeroDeAciertos)
@@ -120,7 +132,8 @@ const useHistory = () => {
         fiteredTickets,
         aciertos,
         handleAciertos,
-        getTicketsDate
+        getTicketsDate,
+        fillx
     }
 }
 

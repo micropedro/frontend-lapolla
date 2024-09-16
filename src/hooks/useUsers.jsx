@@ -75,7 +75,7 @@ const useUsers = () => {
         setFilterduser(_users) */
     }
 
-    const getUserName = (userId) => users.length > 0 ? (users.filter(user => user._id === userId)[0]).name : ""
+    const getUserName = (userId) => users.length > 0 ? (users.filter(user => user?._id === userId)[0]).name : ""
 
     const filterUser = async (level) => {
         const users = await getUsers()

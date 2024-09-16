@@ -9,7 +9,6 @@ const Deposit = () => {
     return (
         deposits.length > 0 ? (
             deposits.map(dep => (
-
                 <div className="col-12 mb-2" key={dep._id}>
                     <div className='card'>
                         <div className="container-fluid">
@@ -18,7 +17,7 @@ const Deposit = () => {
                                     <span><i className="bi bi-box-arrow-right" /> Deposito</span>
                                     <span className={`${styles.itemWinText} d-flex align-items-center gap-2`}>
                                         <i className="bi bi-cash text-gray"></i>
-                                        <span className='text-gray'>BS. {dep.amount}</span>
+                                        <span className='text-dark'> BS {dep.adminMethod.tipoDeCambio * dep.amount } {dep.adminMethod.tipoDeCambio !== 1 && `- $ ${dep.amount}`}</span>
                                     </span>
                                     <span className='text-gray fs-6'>ref: {dep.operationRef}</span>
                                 </div>
@@ -66,7 +65,7 @@ const Deposit = () => {
                                 </div>
 
                                 <div className='col-12 col-sm-6 col-md-4 code-card '>
-                                    <span><i className="bi bi-calendar"></i> {formatDate2(dep.date)}</span>
+                                    <span><i className="bi bi-calendar"></i> {formatDate2(dep.date)} </span>
                                     <span><i className="bi bi-clock-history"></i> {getTime(dep.date)}</span>
                                 </div>
                             </div>

@@ -93,8 +93,6 @@ const useRetiros = () => {
     }
 
     const addRetiro = async (data) => {
-
-        console.log(data)
         try {
             setLoading(true)
             const body = {
@@ -102,7 +100,6 @@ const useRetiros = () => {
                 payMethodId: data.payMethodId,
                 amount: Number(data.amount)
             }
-            console.log(body)
             const res = await request.post(urlApi + "/withdraws/", body)
             await getRetirosUser()
             setLoading(false)

@@ -50,7 +50,7 @@ const Taquilla = () => {
                 </div>
 
             </div>
-            <div>Seleccionados {animals.length}  {type === 1 ? '/ 6' : type === 2 ? '/ 3' : ""}</div>
+            <div>Seleccionados {animals.length}  {type === 1 ? '/ 6' : type === 2 ? '/ 4' : ""}</div>
             <div className="animals-content">
                 {animals.length > 0 && animals.map((i, index) => {
                     return <div onClick={() => handleSelectedAnimal(i)} key={index} className="m-1 p-2 anim-btn text-light">

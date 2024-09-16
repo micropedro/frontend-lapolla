@@ -43,7 +43,8 @@ const WithdrawModal = ({ show, onHide }) => {
     const handleSave = async () => {
         try {
             onHide();
-            const data = { payMethodId: methodSelected._id, amount }
+
+            const data = { payMethodId: methodSelected._id, amount}
             const res = await addRetiro(data)
             //actualizar saldo del usuario
             await actualizeUserBalance()
