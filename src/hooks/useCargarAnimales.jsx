@@ -20,7 +20,7 @@ const useCargarAnimales = () => {
     const { setAnimals, getAnimals } = useAnimals()
     const { animals } = useAnimals()
 
-    const [hora, setHora] = useState(8)
+    const [hora, setHora] = useState(10)
     const [inputDate, setInputDate] = useState(null)
 
     const formattedDate = dateNow.anio + '-' + dateNow.mes + '-' + dateNow.dia

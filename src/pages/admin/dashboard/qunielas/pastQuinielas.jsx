@@ -3,9 +3,14 @@ import useQuinielas from "../../../../hooks/useQuinielas"
 import useLoadingStore from "../../../../store/loadingStore"
 import { formatDate2, getTime2 } from "../../../../services/formatDate"
 import { formatIf37 } from "../../../../services/utils"
+import useNotify from "../../../../hooks/useNotify"
 const PastQuinielas = () => {
+    const { notify } = useNotify()
     const { loading } = useLoadingStore()
     const { quinielas } = useQuinielas()
+
+    const notifyName = (animal) => { notify.info(animal.name + " - #" + formatIf37(animal.animalId)) }
+
     return (<div className=""> {loading ? <div className="flex-center p-5"> <Spinner /> </div> :
         <table className="table text-center">
             <thead>
@@ -31,7 +36,12 @@ const PastQuinielas = () => {
                             {getTime2(quiniela.date)}
                         </td>
                         <td>{quiniela?.resultAnimals.map((animal) => {
-                            return (<span key={animal._id}>{formatIf37(animal.animalId)} </span>)
+                            return (<span key={animal._id}>
+                                <button className="mx-1 mb-1" onClick={() => notifyName(animal)}>
+                                    #{formatIf37(animal.animalId)}-
+                                    {animal.hora === 12 ? 12 : animal.hora < 12 ? animal.hora : animal.hora - 12}:00
+                                </button>
+                            </span>)
                         })}</td>
                         <td>{quiniela.tipoQuiniela === 1 ? <> Gran </> : <> Mini </>} Quiniela</td>
                         <td>{quiniela.winners.length} <i className="btn bi bi-eye-fill text-primary p-0" /> </td>
