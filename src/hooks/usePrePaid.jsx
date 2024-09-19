@@ -4,10 +4,11 @@ import useEditUserStore from "../store/editUserStore"
 import useNotify from "./useNotify"
 import useErrorManager from "./useErrorManager"
 import useLoadingStore from "../store/loadingStore"
-
+import useUserStore from "../store/userStore"
 // POST -> blockUser
 
 const usePrePaid = () => {
+    const { user } = useUserStore()
     const errorManager = useErrorManager()
     const { setLoading } = useLoadingStore()
     const { editUser, setEditUser } = useEditUserStore()
@@ -15,18 +16,21 @@ const usePrePaid = () => {
 
     const handlePrePaid = async () => {
         setLoading(true)
-       
+
         try {
-            const response = await request.post(urlApi + "/prepaid", {
-                _id: editUser._id
-            })
+
+            if (user.level >= editUser.level) {
+                setLoading(false)
+                throw new Error("Usuario sin permisos para realizar esta accion")
+            }
+            const response = await request.post(urlApi + "/prepaid", { _id: editUser._id })
             console.log(response.data.body)
             setEditUser({ ...editUser, prepaid: !editUser.prepaid })
             notify.success(response.data.message)
         } catch (error) {
             setEditUser({ ...editUser, prepaid: editUser.prepaid }) // se coloca el mismo valor si falla
             errorManager(error)
-        }finally{
+        } finally {
             setLoading(false)
         }
     }

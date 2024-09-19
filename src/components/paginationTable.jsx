@@ -4,9 +4,10 @@ import useEditUserStore from '../store/editUserStore'
 import { userType } from '../services/utils'
 import { Link } from 'react-router-dom'
 import useLoadingStore from '../store/loadingStore';
-import useReportUser from '../store/reportUserStore';
-const PaginationTable = ({ users, deleteModal, handleSortSaldo, sortSaldo }) => {
-    const { setReportUser } = useReportUser()
+/* import useReportUser from '../store/reportUserStore'; */
+const PaginationTable = ({ users, handleSortSaldo, sortSaldo }) => {
+    //deleteModal
+    /* const { setReportUser } = useReportUser() */
     const { loading } = useLoadingStore()
     const { setEditUser } = useEditUserStore()
     const { totalPages, currentPage, itemsPerPage, currentItems, prevPage, setCurrentPage, nextPage, handleItemsPerPageChange } = usePagination(users)
@@ -60,10 +61,16 @@ const PaginationTable = ({ users, deleteModal, handleSortSaldo, sortSaldo }) => 
                                     <Link to={`/dashboard/editUser/${item._id}`} >
                                         <button onClick={() => setEditUser(item)} className='btn btn-warning mx-1'> <i className='bi bi-card-text' /> </button>
                                     </Link>
-                                    <button onClick={() => deleteModal(item)} className='btn btn-danger mx-1'> <i className='bi bi-dash-square' />   </button>
+
+                                    {/* <Link to={`/dashboard/percentTree/${item._id}`} >
+                                        <button className='btn btn-success mx-1'> <i className='bi bi-percent' /> </button>
+                                    </Link> */}
+
+
+                                    {/* <button onClick={() => deleteModal(item)} className='btn btn-danger mx-1'> <i className='bi bi-dash-square' />   </button>
                                     <Link to='/dashboard/reportuser'>
                                         <button onClick={() => setReportUser(item)} className='btn btn-success mx-1'> <i className='bi bi-list' /> </button>
-                                    </Link>
+                                    </Link> */}
                                 </td>
                             </tr>
                         )) : <tr className='text-center p-5 w-100'>

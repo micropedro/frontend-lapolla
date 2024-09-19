@@ -1179,3 +1179,14 @@ body {
     font-weight: 600;
 }
 
+.flex-around{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.bg-lblue{
+    background-color: #7eb5f5;
+}
+.lb-1{
+    border-bottom: 1px solid rgba(167, 175, 180, 0.253);
+}
