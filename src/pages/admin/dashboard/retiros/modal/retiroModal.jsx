@@ -26,7 +26,7 @@ const RetiroModal = () => {
                     {data?.payMethod?.cuenta && <div>Nro: {data?.payMethod?.cuenta}</div>}
                     {data?.payMethod?.banco && <div>Banco: {data?.payMethod?.banco}</div>}
                     {data?.payMethod?.telefono && <div>Telf: {data?.payMethod?.telefono}</div>}
-                    {data.amount && <div className="text-center"> <h3 className="debeEnviar">Debe Enviar {(data.amount).toFixed(2)} BS </h3> </div>}
+                    {data.amount && <div className="text-center"> <h3 className="debeEnviar">Debe Enviar {(data.amount).toFixed(2)} {data?.payMethod.tipoDeCambio === 1 ?"BS":"$"} </h3> </div>}
                 </div>
                 <div className="mb-3">
                     Ingresar Nro de referencia

@@ -31,7 +31,13 @@ const Pending = () => {
                                 <td>
                                     {formatDate(retiro.date)} - {getTime2(retiro.date)}
                                 </td>
-                                <td>{retiro.amount}</td>
+                                <td>
+
+                                    {retiro.payMethod.tipoDeCambio === 1 ? <>{retiro.amount} BS</> : <>
+                                        {retiro.amount} $ {"→"} {retiro.amount*retiro.payMethod.tipoDeCambio} BS
+                                    </>}
+
+                                </td>
                                 <td>
                                     <Status status={retiro.state} />
                                 </td>

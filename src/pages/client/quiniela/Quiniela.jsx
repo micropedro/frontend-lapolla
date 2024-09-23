@@ -47,7 +47,7 @@ const Taquilla = () => {
                 </div>
                 <div className="col-md-3 d-flex justify-content-end">
                     <div>
-                        <p>Saldo: {user.balance} bs</p>            
+                        {/* <p>Saldo: {user.balance} bs</p>  */}           
                         <button onClick={saveTicketClient} className="btn btn-success"> Comprar Ticket </button>
                     </div>
                 </div>

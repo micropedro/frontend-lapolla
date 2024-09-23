@@ -5,6 +5,8 @@ export default function cash(number) {
         minimumFractionDigits: 2,
     }) */
 
-    return number
+    const money = (Math.floor(number * 100)) / 100
+
+    return money
 
 }
